@@ -2,6 +2,58 @@ import os
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
+import threading
+from selenium import webdriver
+from time import sleep
+import math
+
+
+class AutomationThread(threading.Thread):
+    def __init__(self, num_threads):
+        super(AutomationThread, self).__init__()
+        self.num_threads = num_threads
+
+    def run(self):
+        options = webdriver.ChromeOptions()
+        options.add_argument("--force-device-scale-factor=1")
+        options.add_argument("--no-first-run")
+        options.add_argument("--no-service-autorun")
+        options.add_argument("--password-store-basic")
+        options.add_argument("--lang=en-US")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--disable-cpu")
+        prefs = {
+            "credentials_enable_service": False,
+            "profile.password_manager_enabled": False,
+            "profile.default_content_setting_values.notifications": 2,
+            "download_restrictions": 3,
+        }
+        options.add_experimental_option("prefs", prefs)
+        options.add_experimental_option("useAutomationExtension", False)
+        options.add_argument("--enable-main-frame-before-activation")
+        options.add_argument("--display_capture-permissions-policy-allowed")
+        options.add_argument("--disabled-web-security")
+        options.add_argument("--allow-running-insecure-content")
+        options.add_argument("--disable-popup-blocking")
+        options.add_argument("--ignore-certificate-errors")
+        options.add_argument("--disable-plugins-discovery")
+        options.add_argument("--disabled-gpu-shader-disk-cache")
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        # options.add_argument(
+        #     "--user-data-dir=C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64be3436303d394f7791b045/Default"
+        # )
+        driver = webdriver.Chrome(options=options)
+
+        num_worker = self.num_threads
+        # Số cột muốn sắp xếp trên màn hình
+        cols = 5
+        # x = (num_worker % cols) * 510
+        # y = math.floor(num_worker / cols) * 810
+
+        driver.set_window_rect(0, 0, 1000, 800)
+        driver.get("https://www.tiktok.com/signup/phone-or-email/email")
+        sleep(200)
+        driver.quit()
 
 
 class Ui_ToolRegCloneTiktok(object):
@@ -159,6 +211,8 @@ class Ui_ToolRegCloneTiktok(object):
         ToolRegCloneTiktok.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(parent=ToolRegCloneTiktok)
         self.statusbar.setObjectName("statusbar")
+
+        self.start.clicked.connect(self.startAutomation)
         self.threads_value.valueChanged.connect(self.checkThreadsValue)
         self.list_avatar.clicked.connect(self.selectAvatarFolder)
         self.open_mail_btn.clicked.connect(self.inputMail)
@@ -174,6 +228,15 @@ class Ui_ToolRegCloneTiktok(object):
         self.table_account_info.setColumnWidth(2, 180)
         self.table_account_info.setColumnWidth(3, 200)
         self.table_account_info.setColumnWidth(4, 160)
+
+    def startAutomation(self):
+        num_threads = self.threads_value.value()
+        self.automation_threads = []
+
+        for thread in range(num_threads):
+            automation_thread = AutomationThread(thread)
+            self.automation_threads.append(automation_thread)
+            automation_thread.start()
 
     def checkThreadsValue(self, value):
         if value > 50:
