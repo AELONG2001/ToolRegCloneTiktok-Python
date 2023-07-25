@@ -7,7 +7,6 @@ from selenium import webdriver
 from time import sleep
 import math
 import requests
-import asyncio
 
 
 class AutomationThread(threading.Thread):
@@ -369,7 +368,6 @@ class Ui_ToolRegCloneTiktok(object):
 
         # handle logic tab 2
         self.file_mail_check.clicked.connect(self.inputMailCheck)
-        self.btn_check.clicked.connect(self.handleCheckMail)
 
         ToolRegCloneTiktok.setStatusBar(self.statusbar)
 
@@ -446,29 +444,6 @@ class Ui_ToolRegCloneTiktok(object):
 
         for row, proxy in enumerate(proxy_list):
             self.table_account_info.setItem(row, 3, QTableWidgetItem(proxy.strip()))
-
-    def handleCheckMail(self):
-        content = self.content_file_mail_check
-        for line in content.splitlines():
-            if "|" in line:
-                username, password = line.split("|", 1)
-                try:
-                    params = {"mail": username, "pass": password}
-                    response =requests.get(
-                        "https://tools.dongvanfb.net/api/check_mail", params=params
-                    )
-                    data = response.json()
-                    if "status" in data and data["status"]:
-                        mail_success = f"{username}|{password}\n"
-                        print(mail_success)
-                        # self.mail_success_box.moveCursor(QTextCursor.End)
-                        # self.mail_success_box.insertPlainText(mail_success)
-                    else:
-                        mail_failed = f"{username}|{password}\n"
-                        # self.mail_failed_box.moveCursor(QTextCursor.End)
-                        # self.mail_failed_box.insertPlainText(mail_failed)
-                except requests.exceptions.RequestException as e:
-                    print(f"An error occurred: {e}")
 
     def inputMailCheck(self):
         self.fileNameCheck = QFileDialog.getOpenFileName(
