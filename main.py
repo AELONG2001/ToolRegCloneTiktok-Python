@@ -10,44 +10,31 @@ import requests
 
 
 class AutomationThread(threading.Thread):
-    def __init__(self, num_threads):
+    def __init__(self, num_threads, chrome_count, chrome_percent_zoom, is_show_chrome):
         super(AutomationThread, self).__init__()
         self.num_threads = num_threads
+        self.chrome_count = chrome_count
+        self.chrome_percent_zoom = chrome_percent_zoom
+        self.is_show_chrome = is_show_chrome
 
     def run(self):
+        chrome_percent_zoom = self.chrome_percent_zoom
+        is_show_chrome = self.is_show_chrome
+
         options = webdriver.ChromeOptions()
-        options.add_argument("--force-device-scale-factor=1")
-        options.add_argument("--no-first-run")
-        options.add_argument("--no-service-autorun")
-        options.add_argument("--password-store-basic")
-        options.add_argument("--lang=en-US")
-        options.add_argument("--disable-gpu")
-        options.add_argument("--disable-cpu")
-        prefs = {
-            "credentials_enable_service": False,
-            "profile.password_manager_enabled": False,
-            "profile.default_content_setting_values.notifications": 2,
-            "download_restrictions": 3,
-        }
-        options.add_experimental_option("prefs", prefs)
-        options.add_experimental_option("useAutomationExtension", False)
-        options.add_argument("--enable-main-frame-before-activation")
-        options.add_argument("--display-capture-permissions-policy-allowed")
-        options.add_argument("--disabled-web-security")
-        options.add_argument("--allow-running-insecure-content")
-        options.add_argument("--disable-popup-blocking")
-        options.add_argument("--ignore-certificate-errors")
-        options.add_argument("--disable-plugins-discovery")
-        options.add_argument("--disabled-gpu-shader-disk-cache")
+        if not is_show_chrome:
+            options.add_argument("--headless")
+        options.add_argument(f"--force-device-scale-factor={chrome_percent_zoom}")
         options.add_argument("--disable-blink-features=AutomationControlled")
-        options.add_argument(
-            "--user-data-dir=C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64be3436303d394f7791b045/Default"
-        )
+        # options.add_argument(
+        #     "--user-data-dir=C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64be3436303d394f7791b045/Default"
+        # )
         driver = webdriver.Chrome(options=options)
 
         num_worker = self.num_threads
+        num_chrome_a_row = int(self.chrome_count)
         # Số cột muốn sắp xếp trên màn hình
-        cols = 5
+        cols = num_chrome_a_row
         x = (num_worker % cols) * 510
         y = math.floor(num_worker / cols) * 810
 
@@ -288,14 +275,14 @@ class Ui_ToolRegCloneTiktok(object):
         self.label.setText("")
         self.label.setObjectName("label")
         self.chome_setting = QGroupBox(parent=self.settings)
-        self.chome_setting.setGeometry(QRect(20, 70, 491, 151))
+        self.chome_setting.setGeometry(QRect(20, 70, 961, 151))
         self.chome_setting.setStyleSheet('font: 700 10pt "Segoe UI";')
         self.chome_setting.setObjectName("chome_setting")
         self.chrome_setting_line = QLabel(parent=self.chome_setting)
         self.chrome_setting_line.setGeometry(QRect(10, 30, 151, 21))
         self.chrome_setting_line.setObjectName("chrome_setting_line")
         self.chrome_setting_line_value = QComboBox(parent=self.chome_setting)
-        self.chrome_setting_line_value.setGeometry(QRect(170, 31, 68, 21))
+        self.chrome_setting_line_value.setGeometry(QRect(170, 31, 41, 21))
         self.chrome_setting_line_value.setObjectName("chrome_setting_line_value")
         self.chrome_setting_line_value.addItem("")
         self.chrome_setting_line_value.addItem("")
@@ -308,14 +295,38 @@ class Ui_ToolRegCloneTiktok(object):
         self.chrome_setting_line_value.addItem("")
         self.chrome_setting_line_value.addItem("")
         self.chrome_setting_radio = QLabel(parent=self.chome_setting)
-        self.chrome_setting_radio.setGeometry(QRect(10, 70, 171, 16))
+        self.chrome_setting_radio.setGeometry(QRect(10, 120, 171, 16))
         self.chrome_setting_radio.setObjectName("chrome_setting_radio")
         self.chrome_setting_radio_yes = QRadioButton(parent=self.chome_setting)
-        self.chrome_setting_radio_yes.setGeometry(QRect(200, 70, 41, 20))
+        self.chrome_setting_radio_yes.setGeometry(QRect(150, 120, 41, 20))
         self.chrome_setting_radio_yes.setObjectName("chrome_setting_radio_yes")
+        self.chrome_setting_radio_yes.setChecked(True)
         self.chrome_setting_radio_no = QRadioButton(parent=self.chome_setting)
-        self.chrome_setting_radio_no.setGeometry(QRect(250, 70, 71, 20))
+        self.chrome_setting_radio_no.setGeometry(QRect(190, 120, 71, 20))
         self.chrome_setting_radio_no.setObjectName("chrome_setting_radio_no")
+        self.chrome_percent_zoom = QLabel(parent=self.chome_setting)
+        self.chrome_percent_zoom.setGeometry(QRect(10, 70, 121, 21))
+        self.chrome_percent_zoom.setObjectName("chrome_percent_zoom")
+        self.chrome_delay_minute_value = QComboBox(parent=self.chome_setting)
+        self.chrome_delay_minute_value.setGeometry(QRect(420, 30, 41, 21))
+        self.chrome_delay_minute_value.setObjectName("chrome_delay_minute_value")
+        self.chrome_delay_minute_value.addItem("")
+        self.chrome_delay_minute_value.addItem("")
+        self.chrome_delay_minute_value.addItem("")
+        self.chrome_delay_minute_value.addItem("")
+        self.chrome_delay_minute_value.addItem("")
+        self.chrome_delay_minute_value.addItem("")
+        self.chrome_delay_minute_value.addItem("")
+        self.chrome_delay_minute_value.addItem("")
+        self.chrome_delay_minute_value.addItem("")
+        self.chrome_delay_minute_value.addItem("")
+        self.chrome_delay_minute = QLabel(parent=self.chome_setting)
+        self.chrome_delay_minute.setGeometry(QRect(230, 29, 181, 21))
+        self.chrome_delay_minute.setObjectName("chrome_delay_minute")
+        self.chrome_percent_zoom_value = QDoubleSpinBox(parent=self.chome_setting)
+        self.chrome_percent_zoom_value.setGeometry(QRect(140, 70, 61, 22))
+        self.chrome_percent_zoom_value.setObjectName("chrome_percent_zoom_value")
+        self.chrome_percent_zoom_value.setValue(0.37)
         self.file_mail_check = QPushButton(parent=self.settings)
         self.file_mail_check.setGeometry(QRect(20, 240, 131, 24))
         self.file_mail_check.setIcon(icon3)
@@ -333,23 +344,23 @@ class Ui_ToolRegCloneTiktok(object):
         )
         self.btn_check.setObjectName("btn_check")
         self.mail_success = QLabel(parent=self.settings)
-        self.mail_success.setGeometry(QRect(550, 220, 100, 16))
+        self.mail_success.setGeometry(QRect(550, 240, 100, 16))
         self.mail_success.setStyleSheet(
             'font: 700 10pt "Segoe UI";\n' "color: rgb(0, 170, 54);"
         )
         self.mail_success.setObjectName("mail_success")
         self.mail_success_box = QTextEdit(parent=self.settings)
-        self.mail_success_box.setGeometry(QRect(550, 240, 271, 281))
+        self.mail_success_box.setGeometry(QRect(550, 260, 271, 260))
         self.mail_success_box.setStyleSheet("border: 1px solid rgb(0, 170, 54);")
         self.mail_success_box.setObjectName("mail_success_box")
         self.mail_failed = QLabel(parent=self.settings)
-        self.mail_failed.setGeometry(QRect(890, 220, 100, 16))
+        self.mail_failed.setGeometry(QRect(890, 240, 100, 16))
         self.mail_failed.setStyleSheet(
             'font: 700 10pt "Segoe UI";\n' "color: rgb(255, 0, 0);"
         )
         self.mail_failed.setObjectName("mail_failed")
         self.mail_failed_box = QTextEdit(parent=self.settings)
-        self.mail_failed_box.setGeometry(QRect(890, 240, 271, 281))
+        self.mail_failed_box.setGeometry(QRect(890, 260, 271, 260))
         self.mail_failed_box.setStyleSheet("border: 1px solid rgb(255, 0, 0);")
         self.mail_failed_box.setObjectName("mail_failed_box")
         self.ToolRegCloneTiktok.addTab(self.settings, "")
@@ -359,11 +370,12 @@ class Ui_ToolRegCloneTiktok(object):
         ToolRegCloneTiktok.setStatusBar(self.statusbar)
 
         self.retranslateUi(ToolRegCloneTiktok)
-        self.ToolRegCloneTiktok.setCurrentIndex(1)
+        self.ToolRegCloneTiktok.setCurrentIndex(0)
         QMetaObject.connectSlotsByName(ToolRegCloneTiktok)
 
         # handle logic tab 1
         self.start.clicked.connect(self.startAutomation)
+        # self.stop.clicked.connect(self.stopAutomation)
         self.threads_value.valueChanged.connect(self.checkThreadsValue)
         self.list_avatar.clicked.connect(self.selectAvatarFolder)
         self.list_mail.clicked.connect(self.inputMail)
@@ -383,13 +395,20 @@ class Ui_ToolRegCloneTiktok(object):
         self.table_account_info.setColumnWidth(4, 160)
 
     def startAutomation(self):
+        chrome_count = self.chrome_setting_line_value.currentText()
+        chrome_delay_minute = int(self.chrome_delay_minute_value.currentText())
+        chrome_percent_zoom = self.chrome_percent_zoom_value.value()
+        is_show_chrome = self.chrome_setting_radio_yes.isChecked()
         num_threads = self.threads_value.value()
         self.automation_threads = []
 
         for thread in range(num_threads):
-            automation_thread = AutomationThread(thread)
+            automation_thread = AutomationThread(
+                thread, chrome_count, chrome_percent_zoom, is_show_chrome
+            )
             self.automation_threads.append(automation_thread)
             automation_thread.start()
+            sleep(chrome_delay_minute)
 
     def checkThreadsValue(self, value):
         if value > 50:
@@ -456,27 +475,38 @@ class Ui_ToolRegCloneTiktok(object):
         )[0]
         self.file_mail_check_value.setText(self.fileNameCheck)
         if self.fileNameCheck:
-            mail_content = self.readMailFile(self.fileNameCheck)
-            self.content_file_mail_check = mail_content
+            get_content_file_mail_value = self.file_mail_check_value.text()
+            if get_content_file_mail_value:
+                mail_content = self.readMailFile(self.fileNameCheck)
+                self.content_file_mail_check = mail_content
 
     def handleCheckMail(self):
-        for line in self.content_file_mail_check.splitlines():
-            if "|" in line:
-                username, password = line.split("|", 1)
-                url = f"https://tools.dongvanfb.net/api/check_mail?mail={username}&pass={password}"
-                response = requests.get(url)
-                data = response.json()
-                if "status" in data and data["status"]:
-                    self.success_mail_count += 1
-                    self.mail_success_box.moveCursor(QTextCursor.End)
-                    self.mail_success_box.insertPlainText(f"{username}|{password}\n")
-                    self.mail_success.setText(f"Live Mail ({self.success_mail_count}):")
-                    QApplication.processEvents()
-                else:
-                    self.failed_mail_count += 1
-                    self.mail_failed_box.moveCursor(QTextCursor.End)
-                    self.mail_failed_box.insertPlainText(f"{username}|{password}\n")
-                    self.mail_failed.setText(f"Die Mail ({self.failed_mail_count}):")
+        if self.file_mail_check_value.text():
+            for line in self.content_file_mail_check.splitlines():
+                if "|" in line:
+                    username, password = line.split("|", 1)
+                    url = f"https://tools.dongvanfb.net/api/check_mail?mail={username}&pass={password}"
+                    response = requests.get(url)
+                    data = response.json()
+                    if "status" in data and data["status"]:
+                        self.success_mail_count += 1
+                        self.mail_success_box.moveCursor(QTextCursor.End)
+                        self.mail_success_box.insertPlainText(
+                            f"{username}|{password}\n"
+                        )
+                        self.mail_success.setText(
+                            f"Live Mail ({self.success_mail_count}):"
+                        )
+                        QApplication.processEvents()
+                    else:
+                        self.failed_mail_count += 1
+                        self.mail_failed_box.moveCursor(QTextCursor.End)
+                        self.mail_failed_box.insertPlainText(f"{username}|{password}\n")
+                        self.mail_failed.setText(
+                            f"Die Mail ({self.failed_mail_count}):"
+                        )
+        else:
+            QMessageBox.warning(None, "Warning", "Vui lòng chọn file cần check")
 
     def retranslateUi(self, ToolRegCloneTiktok):
         _translate = QCoreApplication.translate
@@ -565,13 +595,52 @@ class Ui_ToolRegCloneTiktok(object):
         self.chrome_setting_line_value.setItemText(
             9, _translate("ToolRegCloneTiktok", "10")
         )
+        self.chrome_setting_line_value.setCurrentText("5")
         self.chrome_setting_radio.setText(
-            _translate("ToolRegCloneTiktok", "Chạy mà không mở chrome:")
+            _translate("ToolRegCloneTiktok", "Mở chrome khi chạy:")
         )
         self.chrome_setting_radio_yes.setText(_translate("ToolRegCloneTiktok", "Có"))
         self.chrome_setting_radio_no.setText(_translate("ToolRegCloneTiktok", "Không"))
+        self.chrome_percent_zoom.setText(
+            _translate("ToolRegCloneTiktok", "Tỉ lệ Zoom chrome:")
+        )
+        self.chrome_delay_minute_value.setItemText(
+            0, _translate("ToolRegCloneTiktok", "1")
+        )
+        self.chrome_delay_minute_value.setItemText(
+            1, _translate("ToolRegCloneTiktok", "2")
+        )
+        self.chrome_delay_minute_value.setItemText(
+            2, _translate("ToolRegCloneTiktok", "3")
+        )
+        self.chrome_delay_minute_value.setItemText(
+            3, _translate("ToolRegCloneTiktok", "4")
+        )
+        self.chrome_delay_minute_value.setItemText(
+            4, _translate("ToolRegCloneTiktok", "5")
+        )
+        self.chrome_delay_minute_value.setItemText(
+            5, _translate("ToolRegCloneTiktok", "6")
+        )
+        self.chrome_delay_minute_value.setItemText(
+            6, _translate("ToolRegCloneTiktok", "7")
+        )
+        self.chrome_delay_minute_value.setItemText(
+            7, _translate("ToolRegCloneTiktok", "8")
+        )
+        self.chrome_delay_minute_value.setItemText(
+            8, _translate("ToolRegCloneTiktok", "9")
+        )
+        self.chrome_delay_minute_value.setItemText(
+            9, _translate("ToolRegCloneTiktok", "10")
+        )
+        self.chrome_delay_minute_value.setCurrentText("3")
+
         self.file_mail_check.setText(
             _translate("ToolRegCloneTiktok", "File Mail cần check")
+        )
+        self.chrome_delay_minute.setText(
+            _translate("MainWindow", "Số phút delay sau mỗi thread")
         )
         self.btn_check.setText(_translate("ToolRegCloneTiktok", "Check"))
         self.mail_success.setText(_translate("ToolRegCloneTiktok", "Live Mail:"))
