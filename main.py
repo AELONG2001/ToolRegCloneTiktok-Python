@@ -476,7 +476,7 @@ class Ui_ToolRegCloneTiktok(object):
                     self.failed_mail_count += 1
                     self.mail_failed_box.moveCursor(QTextCursor.End)
                     self.mail_failed_box.insertPlainText(f"{username}|{password}\n")
-                    self.mail_failed.setText(f"Die Mail ({self.success_mail_count}):")
+                    self.mail_failed.setText(f"Die Mail ({self.failed_mail_count}):")
 
     def retranslateUi(self, ToolRegCloneTiktok):
         _translate = QCoreApplication.translate
