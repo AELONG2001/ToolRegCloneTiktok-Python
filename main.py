@@ -58,6 +58,10 @@ class AutomationThread(threading.Thread):
 
 
 class Ui_ToolRegCloneTiktok(object):
+    def __init__(self):
+        self.success_mail_count = 0
+        self.failed_mail_count = 0
+
     def setupUi(self, ToolRegCloneTiktok):
         ToolRegCloneTiktok.setObjectName("ToolRegCloneTiktok")
         ToolRegCloneTiktok.resize(1256, 573)
@@ -329,7 +333,7 @@ class Ui_ToolRegCloneTiktok(object):
         )
         self.btn_check.setObjectName("btn_check")
         self.mail_success = QLabel(parent=self.settings)
-        self.mail_success.setGeometry(QRect(550, 220, 61, 16))
+        self.mail_success.setGeometry(QRect(550, 220, 100, 16))
         self.mail_success.setStyleSheet(
             'font: 700 10pt "Segoe UI";\n' "color: rgb(0, 170, 54);"
         )
@@ -339,7 +343,7 @@ class Ui_ToolRegCloneTiktok(object):
         self.mail_success_box.setStyleSheet("border: 1px solid rgb(0, 170, 54);")
         self.mail_success_box.setObjectName("mail_success_box")
         self.mail_failed = QLabel(parent=self.settings)
-        self.mail_failed.setGeometry(QRect(890, 220, 61, 16))
+        self.mail_failed.setGeometry(QRect(890, 220, 100, 16))
         self.mail_failed.setStyleSheet(
             'font: 700 10pt "Segoe UI";\n' "color: rgb(255, 0, 0);"
         )
@@ -456,18 +460,23 @@ class Ui_ToolRegCloneTiktok(object):
             self.content_file_mail_check = mail_content
 
     def handleCheckMail(self):
-        successful_emails = []
         for line in self.content_file_mail_check.splitlines():
             if "|" in line:
                 username, password = line.split("|", 1)
-                url = "https://tools.dongvanfb.net/api/check_mail?mail=biosehyejinb@hotmail.com&pass=ODExen88"
+                url = f"https://tools.dongvanfb.net/api/check_mail?mail={username}&pass={password}"
                 response = requests.get(url)
                 data = response.json()
                 if "status" in data and data["status"]:
-                    successful_emails.append(f"{username}|{password}")
-        if successful_emails:
-            self.mail_success_box.moveCursor(QTextCursor.End)
-            self.mail_success_box.insertPlainText("\n".join(successful_emails))
+                    self.success_mail_count += 1
+                    self.mail_success_box.moveCursor(QTextCursor.End)
+                    self.mail_success_box.insertPlainText(f"{username}|{password}\n")
+                    self.mail_success.setText(f"Live Mail ({self.success_mail_count}):")
+                    QApplication.processEvents()
+                else:
+                    self.failed_mail_count += 1
+                    self.mail_failed_box.moveCursor(QTextCursor.End)
+                    self.mail_failed_box.insertPlainText(f"{username}|{password}\n")
+                    self.mail_failed.setText(f"Die Mail ({self.success_mail_count}):")
 
     def retranslateUi(self, ToolRegCloneTiktok):
         _translate = QCoreApplication.translate
