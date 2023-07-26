@@ -10,8 +10,11 @@ import requests
 
 
 class AutomationThread(threading.Thread):
-    def __init__(self, num_threads, chrome_count, chrome_percent_zoom, is_show_chrome):
+    def __init__(
+        self, stop_event, num_threads, chrome_count, chrome_percent_zoom, is_show_chrome
+    ):
         super(AutomationThread, self).__init__()
+        self.stop_event = stop_event
         self.num_threads = num_threads
         self.chrome_count = chrome_count
         self.chrome_percent_zoom = chrome_percent_zoom
@@ -40,8 +43,11 @@ class AutomationThread(threading.Thread):
         y = math.floor(num_worker / cols) * 810
 
         driver.set_window_rect(x, y, 200, 800)
-        driver.get("https://www.tiktok.com/signup/phone-or-email/email")
-        sleep(200)
+        driver.get("https://www.youtube.com/")
+        while not self.stop_event.is_set():
+            sleep(1)
+            driver.execute_script("window.scrollBy(0, 100);")
+
         driver.quit()
 
 
@@ -387,6 +393,9 @@ class Ui_ToolRegCloneTiktok(object):
         self.file_mail_check.clicked.connect(self.inputMailCheck)
         self.btn_check.clicked.connect(self.handleCheckMail)
 
+        self.stop_event = threading.Event()
+        self.chrome_threads = []
+
         ToolRegCloneTiktok.setStatusBar(self.statusbar)
 
         self.table_account_info.setColumnWidth(0, 200)
@@ -396,28 +405,45 @@ class Ui_ToolRegCloneTiktok(object):
         self.table_account_info.setColumnWidth(4, 160)
 
     def startAutomation(self):
+        num_threads = self.threads_value.value()
+        self.start.setEnabled(False)
+        self.stop.setEnabled(True)
+        self.stop_event.clear()
         chrome_count = self.chrome_setting_line_value.currentText()
         chrome_delay_minute = int(self.chrome_delay_minute_value.currentText())
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
         is_show_chrome = self.chrome_setting_radio_yes.isChecked()
-        num_threads = self.threads_value.value()
-        self.automation_threads = []
 
-        for thread in range(num_threads):
-            automation_thread = AutomationThread(
-                thread, chrome_count, chrome_percent_zoom, is_show_chrome
+        self.chrome_threads = [
+            AutomationThread(
+                self.stop_event,
+                thread,
+                chrome_count,
+                chrome_percent_zoom,
+                is_show_chrome,
             )
-            self.automation_threads.append(automation_thread)
-            automation_thread.start()
+            for thread in range(num_threads)
+        ]
+        for thread in self.chrome_threads:
             sleep(chrome_delay_minute)
+            thread.start()
 
     def stopAutomation(self):
-        self.automation_threads = []
-        for thread in self.automation_threads:
-            thread.stop()
-        for thread in self.automation_threads:
-            thread.join()
-        print("Stoped")
+        result = QMessageBox.question(
+            None,
+            "Xác nhận dừng",
+            "Bạn có chắc chắn muốn dừng không.Điều này có thể gây mất mát dữ liệu?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+
+        if result == QMessageBox.StandardButton.Yes:
+            self.stop_event.set()  # Set flag stop_event để tất cả các luồng biết dừng
+            # for thread in self.chrome_threads:
+            #     thread.join()
+
+            self.stop.setEnabled(False)
+            self.start.setEnabled(True)
 
     def checkThreadsValue(self, value):
         if value > 50:
