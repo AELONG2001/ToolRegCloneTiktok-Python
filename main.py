@@ -8,6 +8,7 @@ from time import sleep
 import math
 import requests
 from concurrent.futures import ThreadPoolExecutor
+from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
 
 
 class AutomationThread(threading.Thread):
@@ -131,12 +132,12 @@ class Ui_ToolRegCloneTiktok(object):
         self.threads_value.setFont(font)
         self.threads_value.setProperty("value", 1)
         self.threads_value.setObjectName("threads_value")
-        self.export_excel = QPushButton(parent=self.home)
-        self.export_excel.setGeometry(QRect(1536, 80, 75, 21))
-        self.export_excel.setStyleSheet(
+        self.export_account = QPushButton(parent=self.home)
+        self.export_account.setGeometry(QRect(1536, 80, 75, 21))
+        self.export_account.setStyleSheet(
             "color:#fff;\n" "background-color: rgb(19, 170, 24);"
         )
-        self.export_excel.setObjectName("export_excel")
+        self.export_account.setObjectName("export_account")
         self.import_proxy = QPushButton(parent=self.home)
         self.import_proxy.setGeometry(QRect(1150, 420, 61, 31))
         self.import_proxy.setObjectName("import_proxy")
@@ -214,12 +215,12 @@ class Ui_ToolRegCloneTiktok(object):
         self.captcha_key.setGeometry(QRect(970, 10, 141, 20))
         self.captcha_key.setText("")
         self.captcha_key.setObjectName("captcha_key")
-        self.export_excel = QPushButton(parent=self.home)
-        self.export_excel.setGeometry(QRect(1130, 10, 75, 21))
-        self.export_excel.setStyleSheet(
+        self.export_account = QPushButton(parent=self.home)
+        self.export_account.setGeometry(QRect(1130, 10, 100, 21))
+        self.export_account.setStyleSheet(
             "color:#fff;\n" "background-color: rgb(19, 170, 24);"
         )
-        self.export_excel.setObjectName("export_excel")
+        self.export_account.setObjectName("export_account")
         self.list_proxy = QLabel(parent=self.home)
         self.list_proxy.setGeometry(QRect(920, 50, 61, 31))
         self.list_proxy.setStyleSheet('font: 700 10pt "Segoe UI";')
@@ -392,7 +393,7 @@ class Ui_ToolRegCloneTiktok(object):
         self.start.clicked.connect(self.startAutomation)
         self.stop.clicked.connect(self.stopAutomation)
         self.threads_value.valueChanged.connect(self.checkThreadsValue)
-        self.list_avatar.clicked.connect(self.selectAvatarFolder)
+        self.list_avatar.clicked.connect(self.handleAvatarFolderSelection)
         self.list_mail.clicked.connect(self.inputMail)
         self.captcha_key.textChanged.connect(self.getCaptchaKey)
         self.import_proxy.clicked.connect(self.importProxy)
@@ -458,15 +459,8 @@ class Ui_ToolRegCloneTiktok(object):
             QMessageBox.warning(None, "Warning", "Tối đa không được vượt quá 50 luồng")
             self.threads_value.setValue(50)
 
-    def selectAvatarFolder(self):
-        options = QFileDialog.Options()
-        options |= QFileDialog.ReadOnly
-        folder = QFileDialog.getExistingDirectory(
-            None,
-            "Select Avatar Folder",
-            "",
-            QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks,
-        )
+    def handleAvatarFolderSelection(self):
+        folder = selectAvatarFolder()
         if folder:
             self.avatar_value.setText(folder)
             image_paths = [
@@ -592,7 +586,7 @@ class Ui_ToolRegCloneTiktok(object):
             )
         )
         self.start.setText(_translate("ToolRegCloneTiktok", "Start"))
-        self.export_excel.setText(_translate("ToolRegCloneTiktok", "Export excel"))
+        self.export_account.setText(_translate("ToolRegCloneTiktok", "Export accounts"))
         self.import_proxy.setText(_translate("ToolRegCloneTiktok", "Import"))
         self.stop.setText(_translate("ToolRegCloneTiktok", "Stop"))
         self.threads.setText(_translate("ToolRegCloneTiktok", "Threads"))
@@ -612,7 +606,7 @@ class Ui_ToolRegCloneTiktok(object):
         self.avatar_value.setText(_translate("ToolRegCloneTiktok", "C://images"))
         self.omocaptcha.setText(_translate("ToolRegCloneTiktok", "omocaptcha.com"))
         self.list_mail.setText(_translate("ToolRegCloneTiktok", " List mail"))
-        self.export_excel.setText(_translate("ToolRegCloneTiktok", "Export excel"))
+        self.export_account.setText(_translate("ToolRegCloneTiktok", "Export accounts"))
         self.list_proxy.setText(_translate("ToolRegCloneTiktok", "List Proxy"))
         self.link_facebook.setText(
             _translate("ToolRegCloneTiktok", "https://www.facebook.com/100093720346445")
