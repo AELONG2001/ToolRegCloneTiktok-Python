@@ -517,11 +517,6 @@ class Ui_ToolRegCloneTiktok(object):
             None, "Open File", "", "(*.txt)"
         )[0]
         self.file_mail_check_value.setText(self.fileNameCheck)
-        if self.fileNameCheck:
-            get_content_file_mail_value = self.file_mail_check_value.text()
-            if get_content_file_mail_value:
-                mail_content = self.readMailFile(self.fileNameCheck)
-                self.content_file_mail_check = mail_content
 
     def handleCheckMail(self):
         if not self.file_mail_check_value.text():
@@ -537,12 +532,30 @@ class Ui_ToolRegCloneTiktok(object):
             mail_content = file.read()
             mail_lines = mail_content.splitlines()
 
+        listMailFilterSpace = []
+        for item in mail_lines:
+            if item.strip():
+                listMailFilterSpace.append(item)
+
         num_threads = 50
+        valid_mails = []
+        invalid_mails = []
+        for line in listMailFilterSpace:
+            if "|" in line:
+                try:
+                    username, password = line.split("|", 1)
+                    valid_mails.append((username, password))
+                except ValueError:
+                    # Nếu xảy ra lỗi khi tách dòng thành username và password, xem như là "invalid_mails"
+                    invalid_mails.append(line)
+            else:
+                # Nếu không tìm thấy "|", xem như là "invalid_mails"
+                invalid_mails.append(line)
 
         with ThreadPoolExecutor(max_workers=num_threads) as executor:
             futures = [
                 executor.submit(check_single_mail, username, password)
-                for username, password in (line.split("|", 1) for line in mail_lines)
+                for username, password in valid_mails
             ]
 
             for future in futures:
@@ -554,9 +567,11 @@ class Ui_ToolRegCloneTiktok(object):
                     self.mail_success.setText(f"Live Mail ({self.success_mail_count}):")
                     QApplication.processEvents()
                 else:
+                    invalid_mails_str = "\n".join(invalid_mails)
                     self.failed_mail_count += 1
                     self.mail_failed_box.moveCursor(QTextCursor.End)
                     self.mail_failed_box.insertPlainText(f"{username}|{password}\n")
+                    self.mail_failed_box.insertPlainText(invalid_mails_str)
                     self.mail_failed.setText(f"Die Mail ({self.failed_mail_count}):")
                     QApplication.processEvents()
 
