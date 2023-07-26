@@ -16,6 +16,7 @@ class AutomationThread(threading.Thread):
         self.chrome_count = chrome_count
         self.chrome_percent_zoom = chrome_percent_zoom
         self.is_show_chrome = is_show_chrome
+        self.is_running = True
 
     def run(self):
         chrome_percent_zoom = self.chrome_percent_zoom
@@ -375,7 +376,7 @@ class Ui_ToolRegCloneTiktok(object):
 
         # handle logic tab 1
         self.start.clicked.connect(self.startAutomation)
-        # self.stop.clicked.connect(self.stopAutomation)
+        self.stop.clicked.connect(self.stopAutomation)
         self.threads_value.valueChanged.connect(self.checkThreadsValue)
         self.list_avatar.clicked.connect(self.selectAvatarFolder)
         self.list_mail.clicked.connect(self.inputMail)
@@ -409,6 +410,14 @@ class Ui_ToolRegCloneTiktok(object):
             self.automation_threads.append(automation_thread)
             automation_thread.start()
             sleep(chrome_delay_minute)
+
+    def stopAutomation(self):
+        self.automation_threads = []
+        for thread in self.automation_threads:
+            thread.stop()
+        for thread in self.automation_threads:
+            thread.join()
+        print("Stoped")
 
     def checkThreadsValue(self, value):
         if value > 50:
