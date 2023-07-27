@@ -9,7 +9,7 @@ def handleSelectMonth(self, thread, driver):
         "xpath", '//*[@aria-label="Month. Double-tap for more options"]'
     )
     monthSelectElement.click()
-    self.table_account_info.setItem(thread, 3, QTableWidgetItem("Đang chọn tháng"))
+    self.table_account_info.setItem(thread, 3, QTableWidgetItem("Đang chọn tháng..."))
     wait(5, 10)
     dropDownSelectMonth = driver.find_element(
         "id", f"Month-options-item-{random_number(0, 11)}"
