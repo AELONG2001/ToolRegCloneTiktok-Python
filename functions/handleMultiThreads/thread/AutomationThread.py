@@ -2,13 +2,26 @@ import threading
 from selenium import webdriver
 import math
 from time import sleep
+from functions.handleMultiThreads.selenium.handleSelectMonth import handleSelectMonth
+from functions.handleMultiThreads.selenium.handleSelectDay import handleSelectDay
+from functions.handleMultiThreads.selenium.handleSelectYear import handleSelectYear
+from functions.handleMultiThreads.selenium.handleInputUserNameAndPassword import (
+    handleInputUserNameAndPassword,
+)
 
 
 class AutomationThread(threading.Thread):
     def __init__(
-        self, stop_event, num_threads, chrome_count, chrome_percent_zoom, is_show_chrome
+        self,
+        self_main,
+        stop_event,
+        num_threads,
+        chrome_count,
+        chrome_percent_zoom,
+        is_show_chrome,
     ):
         super(AutomationThread, self).__init__()
+        self.self_main = self_main
         self.stop_event = stop_event
         self.num_threads = num_threads
         self.chrome_count = chrome_count
@@ -38,9 +51,13 @@ class AutomationThread(threading.Thread):
         y = math.floor(num_worker / cols) * 810
 
         driver.set_window_rect(x, y, 200, 800)
-        driver.get("https://www.youtube.com/")
+        driver.get("https://www.tiktok.com/signup/phone-or-email/email")
+        sleep(3)
         while not self.stop_event.is_set():
-            sleep(1)
-            driver.execute_script("window.scrollBy(0, 100);")
+            handleSelectMonth(self.self_main, self.num_threads, driver)
+            handleSelectDay(self.self_main, self.num_threads, driver)
+            handleSelectYear(self.self_main, self.num_threads, driver)
+            handleInputUserNameAndPassword(self.self_main, self.num_threads, driver)
+            sleep(10)
 
         driver.quit()

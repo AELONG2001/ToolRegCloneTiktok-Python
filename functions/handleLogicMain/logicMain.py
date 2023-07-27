@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import *
 
-from functions.handleMultiThreads.startAutomation import startAutomation
-from functions.handleMultiThreads.stopAutomation import stopAutomation
+from functions.handleMultiThreads.thread.startAutomation import startAutomation
+from functions.handleMultiThreads.thread.stopAutomation import stopAutomation
 from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
 from functions.handleInputFileMail.getMailContent import getMailContent
 from functions.handleInputFileMail.readMailFile import readMailFile
@@ -58,7 +58,7 @@ class AutomationController:
 
         for row, proxy in enumerate(proxy_list):
             self.ui_instance.table_account_info.setItem(
-                row, 3, QTableWidgetItem(proxy.strip())
+                row, 2, QTableWidgetItem(proxy.strip())
             )
 
     def inputMailCheck(self):
