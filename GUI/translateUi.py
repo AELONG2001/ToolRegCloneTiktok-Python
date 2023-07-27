@@ -11,15 +11,15 @@ def translateUi(self, ToolRegCloneTiktok):
     self.mail_value.setText(_translate("ToolRegCloneTiktok", "hotmail.txt"))
     self.list_avatar.setText(_translate("ToolRegCloneTiktok", " Folder Avatar"))
     self.list_proxy.setText(_translate("ToolRegCloneTiktok", "List Proxy"))
-    self.start.setWhatsThis(
+    self.start_button.setWhatsThis(
         _translate(
             "ToolRegCloneTiktok", "<html><head/><body><p><br/></p></body></html>"
         )
     )
-    self.start.setText(_translate("ToolRegCloneTiktok", "Start"))
+    self.start_button.setText(_translate("ToolRegCloneTiktok", "Start"))
     self.export_account.setText(_translate("ToolRegCloneTiktok", "Export accounts"))
     self.import_proxy.setText(_translate("ToolRegCloneTiktok", "Import"))
-    self.stop.setText(_translate("ToolRegCloneTiktok", "Stop"))
+    self.stop_button.setText(_translate("ToolRegCloneTiktok", "Stop"))
     self.threads.setText(_translate("ToolRegCloneTiktok", "Threads"))
     self.table_account_info.setSortingEnabled(False)
     item = self.table_account_info.horizontalHeaderItem(0)

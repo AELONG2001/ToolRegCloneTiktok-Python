@@ -45,10 +45,10 @@ def uiMain(self, ToolRegCloneTiktok):
     self.captcha_key.setGeometry(QRect(1348, 80, 141, 20))
     self.captcha_key.setText("")
     self.captcha_key.setObjectName("captcha_key")
-    self.start = QPushButton(parent=self.home)
-    self.start.setGeometry(QRect(10, 10, 91, 24))
-    self.start.setMouseTracking(False)
-    self.start.setStyleSheet(
+    self.start_button = QPushButton(parent=self.home)
+    self.start_button.setGeometry(QRect(10, 10, 91, 24))
+    self.start_button.setMouseTracking(False)
+    self.start_button.setStyleSheet(
         "color:rgb(255, 252, 252);\n" "background-color:rgb(64, 170, 15)"
     )
     icon1 = QIcon()
@@ -57,9 +57,9 @@ def uiMain(self, ToolRegCloneTiktok):
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
-    self.start.setIcon(icon1)
-    self.start.setAutoRepeat(False)
-    self.start.setObjectName("start")
+    self.start_button.setIcon(icon1)
+    self.start_button.setAutoRepeat(False)
+    self.start_button.setObjectName("start_button")
     self.threads_value = QSpinBox(parent=self.home)
     self.threads_value.setGeometry(QRect(280, 10, 51, 22))
     font = QFont()
@@ -78,19 +78,19 @@ def uiMain(self, ToolRegCloneTiktok):
     self.import_proxy = QPushButton(parent=self.home)
     self.import_proxy.setGeometry(QRect(1150, 420, 61, 31))
     self.import_proxy.setObjectName("import_proxy")
-    self.stop = QPushButton(parent=self.home)
-    self.stop.setGeometry(QRect(110, 10, 91, 24))
-    self.stop.setStyleSheet(
+    self.stop_button = QPushButton(parent=self.home)
+    self.stop_button.setGeometry(QRect(110, 10, 91, 24))
+    self.stop_button.setStyleSheet(
         "color:rgb(255, 252, 252);\n" "background-color:rgb(255, 0, 0)"
     )
     icon2 = QIcon()
     icon2.addPixmap(
-        QPixmap(".\\../../../../../Downloads/icon-qt/stop-button_4340168.png"),
+        QPixmap(".\\../../../../../Downloads/icon-qt/stop_button-button_4340168.png"),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
-    self.stop.setIcon(icon2)
-    self.stop.setObjectName("stop")
+    self.stop_button.setIcon(icon2)
+    self.stop_button.setObjectName("stop_button")
     self.threads = QLabel(parent=self.home)
     self.threads.setGeometry(QRect(220, 10, 61, 21))
     self.threads.setStyleSheet('font: 600 11pt "Segoe UI";')
@@ -325,8 +325,8 @@ def uiMain(self, ToolRegCloneTiktok):
     QMetaObject.connectSlotsByName(ToolRegCloneTiktok)
 
     # handle logic tab 1
-    self.start.clicked.connect(self.startAutomation)
-    self.stop.clicked.connect(self.stopAutomation)
+    self.start_button.clicked.connect(self.start)
+    self.stop_button.clicked.connect(self.stop)
     self.threads_value.valueChanged.connect(self.checkThreadsValue)
     self.list_avatar.clicked.connect(self.handleAvatarFolderSelection)
     self.list_mail.clicked.connect(self.inputMail)
