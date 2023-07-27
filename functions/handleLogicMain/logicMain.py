@@ -19,7 +19,10 @@ class AutomationController:
         stopAutomation(self.ui_instance)
 
     def checkThreadsValue(self, value):
-        if value > 50:
+        if value < 1:
+            QMessageBox.warning(None, "Warning", "Tối thiểu là 1 luồng")
+            self.ui_instance.threads_value.setValue(1)
+        elif value > 50:
             QMessageBox.warning(None, "Warning", "Tối đa không được vượt quá 50 luồng")
             self.ui_instance.threads_value.setValue(50)
 

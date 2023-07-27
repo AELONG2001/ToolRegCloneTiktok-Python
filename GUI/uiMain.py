@@ -60,6 +60,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.start_button.setIcon(icon1)
     self.start_button.setAutoRepeat(False)
     self.start_button.setObjectName("start_button")
+    self.start_button.setCursor(Qt.CursorShape.PointingHandCursor)
     self.threads_value = QSpinBox(parent=self.home)
     self.threads_value.setGeometry(QRect(280, 10, 51, 22))
     font = QFont()
@@ -80,9 +81,11 @@ def uiMain(self, ToolRegCloneTiktok):
     self.import_proxy.setObjectName("import_proxy")
     self.stop_button = QPushButton(parent=self.home)
     self.stop_button.setGeometry(QRect(110, 10, 91, 24))
-    self.stop_button.setStyleSheet(
-        "color:rgb(255, 252, 252);\n" "background-color:rgb(255, 0, 0)"
-    )
+    # self.stop_button.setStyleSheet(
+    #     "color:rgb(255, 252, 252);\n" "background-color:rgb(255, 0, 0)"
+    # )
+    self.stop_button.setStyleSheet("background-color: rgba(0, 0, 0, 0.2);")
+    self.stop_button.setCursor(Qt.CursorShape.PointingHandCursor)
     icon2 = QIcon()
     icon2.addPixmap(
         QPixmap(".\\../../../../../Downloads/icon-qt/stop_button-button_4340168.png"),
