@@ -8,6 +8,9 @@ from functions.handleMultiThreads.selenium.handleSelectYear import handleSelectY
 from functions.handleMultiThreads.selenium.handleInputUserNameAndPassword import (
     handleInputUserNameAndPassword,
 )
+from functions.handleMultiThreads.selenium.handleGetCode import (
+    handleGetCode,
+)
 
 
 class AutomationThread(threading.Thread):
@@ -58,6 +61,7 @@ class AutomationThread(threading.Thread):
             handleSelectDay(self.self_main, self.num_threads, driver)
             handleSelectYear(self.self_main, self.num_threads, driver)
             handleInputUserNameAndPassword(self.self_main, self.num_threads, driver)
+            handleGetCode(self.self_main, self.num_threads, driver)
             sleep(10)
 
         driver.quit()

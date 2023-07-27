@@ -10,6 +10,6 @@ def handleSelectYear(self, thread, driver):
     self.table_account_info.setItem(thread, 3, QTableWidgetItem("Đang chọn năm..."))
     wait(5, 10)
     dropDownSelectYear = driver.find_element(
-        "id", f"Year-options-item-{random_number(0, 28)}"
+        "id", f"Year-options-item-{random_number(18, 40)}"
     )
     dropDownSelectYear.click()
