@@ -7,8 +7,11 @@ from selenium import webdriver
 from time import sleep
 import math
 import requests
-from concurrent.futures import ThreadPoolExecutor
+
 from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
+from functions.handleInputFileMail.getMailContent import getMailContent
+from functions.handleInputFileMail.readMailFile import readMailFile
+from functions.handleCheckMail.check_mail import checkMail
 
 
 class AutomationThread(threading.Thread):
@@ -51,13 +54,6 @@ class AutomationThread(threading.Thread):
             driver.execute_script("window.scrollBy(0, 100);")
 
         driver.quit()
-
-
-def check_single_mail(username, password):
-    url = f"https://tools.dongvanfb.net/api/check_mail?mail={username}&pass={password}"
-    response = requests.get(url)
-    data = response.json()
-    return (username, password, data.get("status", False))
 
 
 class Ui_ToolRegCloneTiktok(object):
@@ -469,25 +465,12 @@ class Ui_ToolRegCloneTiktok(object):
                 if file_name.lower().endswith((".png", ".jpg", ".jpeg", ".webp"))
             ]
 
-    def processMailContent(self, mail_content):
-        accounts = []
-        for line in mail_content.splitlines():
-            if "|" in line:
-                username, password = line.split("|", 1)
-                accounts.append((username.strip(), password.strip()))
-        return accounts
-
-    def readMailFile(self, file_path):
-        with open(file_path, "r") as file:
-            mail_content = file.read()
-            return mail_content
-
     def inputMail(self):
         self.fileName = QFileDialog.getOpenFileName(None, "Open File", "", "(*.txt)")[0]
-        self.list_mail.setText(self.fileName)
+        self.mail_value.setText(self.fileName)
         if self.fileName:
-            mail_content = self.readMailFile(self.fileName)
-            accounts = self.processMailContent(mail_content)
+            mail_content = readMailFile(self.fileName)
+            accounts = getMailContent(mail_content)
             self.fillAccountTable(accounts)
 
     def fillAccountTable(self, accounts):
@@ -522,55 +505,13 @@ class Ui_ToolRegCloneTiktok(object):
         self.mail_success_box.clear()
         self.mail_failed_box.clear()
 
-        with open(self.fileNameCheck, "r") as file:
-            mail_content = file.read()
-            mail_lines = mail_content.splitlines()
-
-        listMailFilterSpace = []
-        for item in mail_lines:
-            if item.strip():
-                listMailFilterSpace.append(item)
-
-        num_threads = 50
-        valid_mails = []
-        invalid_mails = []
-        for line in listMailFilterSpace:
-            if "|" in line:
-                try:
-                    username, password = line.split("|", 1)
-                    valid_mails.append((username, password))
-                except ValueError:
-                    # Nếu xảy ra lỗi khi tách dòng thành username và password, xem như là "invalid_mails"
-                    invalid_mails.append(line)
-            else:
-                # Nếu không tìm thấy "|", xem như là "invalid_mails"
-                invalid_mails.append(line)
-
-        with ThreadPoolExecutor(max_workers=num_threads) as executor:
-            futures = [
-                executor.submit(check_single_mail, username, password)
-                for username, password in valid_mails
-            ]
-
-            for future in futures:
-                username, password, is_live = future.result()
-                if is_live:
-                    self.success_mail_count += 1
-                    self.mail_success_box.moveCursor(QTextCursor.End)
-                    self.mail_success_box.insertPlainText(f"{username}|{password}\n")
-                    self.mail_success.setText(f"Live Mail ({self.success_mail_count}):")
-                    QApplication.processEvents()
-                else:
-                    invalid_mails_str = "\n".join(invalid_mails)
-                    self.failed_mail_count += 1
-                    self.mail_failed_box.moveCursor(QTextCursor.End)
-                    self.mail_failed_box.insertPlainText(f"{username}|{password}\n")
-                    self.mail_failed_box.insertPlainText(invalid_mails_str)
-                    self.mail_failed.setText(f"Die Mail ({self.failed_mail_count}):")
-                    QApplication.processEvents()
-
-        # All tasks are finished, display a message
-        QMessageBox.information(None, "Thông báo", "Hoàn thành kiểm tra email!")
+        checkMail(
+            self.fileNameCheck,
+            self.mail_success_box,
+            self.mail_success,
+            self.mail_failed_box,
+            self.mail_failed,
+        )
 
     def retranslateUi(self, ToolRegCloneTiktok):
         _translate = QCoreApplication.translate
