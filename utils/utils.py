@@ -1,5 +1,5 @@
 import random
-import time
+from time import sleep
 
 
 def random_number(min_num, max_num):
@@ -8,4 +8,4 @@ def random_number(min_num, max_num):
 
 def wait(min_time, max_time):
     delay = random.uniform(min_time, max_time)
-    time.sleep(delay)
+    sleep(delay)

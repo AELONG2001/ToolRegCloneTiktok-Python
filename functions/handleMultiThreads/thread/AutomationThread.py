@@ -1,16 +1,46 @@
 import threading
 from selenium import webdriver
 import math
-from time import sleep
-from functions.handleMultiThreads.selenium.handleSelectMonth import handleSelectMonth
-from functions.handleMultiThreads.selenium.handleSelectDay import handleSelectDay
-from functions.handleMultiThreads.selenium.handleSelectYear import handleSelectYear
-from functions.handleMultiThreads.selenium.handleInputUserNameAndPassword import (
+from utils.utils import wait
+
+from functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth import (
+    handleSelectMonth,
+)
+from functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectDay import (
+    handleSelectDay,
+)
+from functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectYear import (
+    handleSelectYear,
+)
+from functions.handleMultiThreads.selenium.handleAutoScreen.handleInputUserNameAndPassword import (
     handleInputUserNameAndPassword,
 )
-from functions.handleMultiThreads.selenium.handleGetCode import (
+from functions.handleMultiThreads.selenium.handleAutoScreen.handleSubmitAccount import (
+    handleSubmitAccount,
+)
+from functions.handleMultiThreads.selenium.handleAutoScreen.handleInsertNewUsername import (
+    handleInsertNewUsername,
+)
+from functions.handleMultiThreads.selenium.handleCode.handleGetCode import (
     handleGetCode,
 )
+from functions.handleMultiThreads.selenium.handleCode.handleGetCodeFromMail import (
+    handleGetCodeFromMail,
+)
+from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo import (
+    handleResolveCaptchaRotateObjectOmo,
+)
+from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo import (
+    handleResolveCaptchaChooseTwoObjectsOmo,
+)
+from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
+    handleResolveCaptchaRotateObjectAChi,
+)
+from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi import (
+    handleResolveCaptchaChooseTwoObjectsAChi,
+)
+
+from functions.HandleUploadAvatar.handleUploadAvatar import handleUploadAvatar
 
 
 class AutomationThread(threading.Thread):
@@ -33,17 +63,26 @@ class AutomationThread(threading.Thread):
         self.is_running = True
 
     def run(self):
+        list_profiles = [
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c6172dfbc1abf169d0e410/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c6172cda70b51ae2b9321a/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c6172cc787f8de888a2e5f/Default",
+        ]
         chrome_percent_zoom = self.chrome_percent_zoom
         is_show_chrome = self.is_show_chrome
+
+        proxy_text = self.self_main.proxy_value.toPlainText()
+        proxy_list = proxy_text.splitlines()
 
         options = webdriver.ChromeOptions()
         if not is_show_chrome:
             options.add_argument("--headless")
         options.add_argument(f"--force-device-scale-factor={chrome_percent_zoom}")
+        options.add_argument("--mute-audio")
         options.add_argument("--disable-blink-features=AutomationControlled")
-        # options.add_argument(
-        #     "--user-data-dir=C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64be3436303d394f7791b045/Default"
-        # )
+        options.add_argument(f"--proxy-server={proxy_list[self.num_threads]}")
+        options.add_argument(f"--user-data-dir={list_profiles[self.num_threads]}")
+
         driver = webdriver.Chrome(options=options)
 
         num_worker = self.num_threads
@@ -52,16 +91,38 @@ class AutomationThread(threading.Thread):
         cols = num_chrome_a_row
         x = (num_worker % cols) * 510
         y = math.floor(num_worker / cols) * 810
-
         driver.set_window_rect(x, y, 200, 800)
-        driver.get("https://www.tiktok.com/signup/phone-or-email/email")
-        sleep(3)
         while not self.stop_event.is_set():
+            driver.get("https://www.tiktok.com/signup/phone-or-email/email")
             handleSelectMonth(self.self_main, self.num_threads, driver)
             handleSelectDay(self.self_main, self.num_threads, driver)
             handleSelectYear(self.self_main, self.num_threads, driver)
             handleInputUserNameAndPassword(self.self_main, self.num_threads, driver)
             handleGetCode(self.self_main, self.num_threads, driver)
-            sleep(10)
+            wait(4, 6)
+
+            # resolve by Omocaptcha
+            # handleResolveCaptchaRotateObjectOmo(
+            #     self.self_main, self.num_threads, driver
+            # )
+            # handleResolveCaptchaChooseTwoObjectsOmo(
+            #     self.self_main, self.num_threads, driver
+            # )
+
+            # resolve by Achicaptcha
+            handleResolveCaptchaRotateObjectAChi(
+                self.self_main, self.num_threads, driver
+            )
+            handleResolveCaptchaChooseTwoObjectsAChi(
+                self.self_main, self.num_threads, driver
+            )
+
+            handleGetCodeFromMail(self.self_main, self.num_threads, driver)
+            handleSubmitAccount(self.self_main, self.num_threads, driver)
+            handleInsertNewUsername(self.self_main, self.num_threads, driver)
+            handleUploadAvatar(self.self_main, self.num_threads, driver)
+            wait(15, 20)
+            driver.get("https://www.tiktok.com/logout")
+            wait(5, 10)
 
         driver.quit()

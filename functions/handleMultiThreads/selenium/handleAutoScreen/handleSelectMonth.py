@@ -10,7 +10,7 @@ def handleSelectMonth(self, thread, driver):
     )
     monthSelectElement.click()
     self.table_account_info.setItem(thread, 3, QTableWidgetItem("Đang chọn tháng..."))
-    wait(5, 10)
+    wait(2, 4)
     dropDownSelectMonth = driver.find_element(
         "id", f"Month-options-item-{random_number(0, 11)}"
     )

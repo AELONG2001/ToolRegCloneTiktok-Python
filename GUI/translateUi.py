@@ -21,6 +21,7 @@ def translateUi(self, ToolRegCloneTiktok):
     self.import_proxy.setText(_translate("ToolRegCloneTiktok", "Import"))
     self.stop_button.setText(_translate("ToolRegCloneTiktok", "Stop"))
     self.threads.setText(_translate("ToolRegCloneTiktok", "Threads"))
+    self.threads_value.setValue(3)
     self.table_account_info.setSortingEnabled(False)
     item = self.table_account_info.horizontalHeaderItem(0)
     item.setText(_translate("ToolRegCloneTiktok", "username"))
