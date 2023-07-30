@@ -1,5 +1,4 @@
 from PySide6.QtWidgets import *
-from PySide6.QtGui import *
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -17,12 +16,6 @@ def handleInsertNewUsername(self, thread, driver):
         EC.presence_of_element_located(("xpath", '//div[text()="Skip"]'))
     )
     skipElement.click()
-
-    item = QTableWidgetItem("Tạo tài khoản thành công...")
-    green_color = QColor(64, 170, 15)
-    item.setForeground(green_color)
-
-    self.table_account_info.setItem(thread, 3, item)
 
     with open(input_file_path, "r") as f:
         lines = f.readlines()

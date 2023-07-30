@@ -276,7 +276,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.chrome_percent_zoom_value = QDoubleSpinBox(parent=self.chome_setting)
     self.chrome_percent_zoom_value.setGeometry(QRect(140, 70, 61, 22))
     self.chrome_percent_zoom_value.setObjectName("chrome_percent_zoom_value")
-    self.chrome_percent_zoom_value.setValue(1)
+    self.chrome_percent_zoom_value.setValue(0.75)
     self.file_mail_check = QPushButton(parent=self.settings)
     self.file_mail_check.setGeometry(QRect(20, 240, 131, 24))
     self.file_mail_check.setIcon(icon3)

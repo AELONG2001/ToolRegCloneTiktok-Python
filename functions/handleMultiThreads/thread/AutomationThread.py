@@ -64,9 +64,11 @@ class AutomationThread(threading.Thread):
 
     def run(self):
         list_profiles = [
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c6172dfbc1abf169d0e410/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c6172cda70b51ae2b9321a/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c6172cc787f8de888a2e5f/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c650a4bc63ac67b4c066de/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c650a3e16c464ea66600b5/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c650a2c44fb360f5ee1dfa/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c650a17965a209109d8e7e/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c650a017eb06e28ad68020/Default",
         ]
         chrome_percent_zoom = self.chrome_percent_zoom
         is_show_chrome = self.is_show_chrome
@@ -102,20 +104,20 @@ class AutomationThread(threading.Thread):
             wait(4, 6)
 
             # resolve by Omocaptcha
-            # handleResolveCaptchaRotateObjectOmo(
-            #     self.self_main, self.num_threads, driver
-            # )
-            # handleResolveCaptchaChooseTwoObjectsOmo(
-            #     self.self_main, self.num_threads, driver
-            # )
+            handleResolveCaptchaRotateObjectOmo(
+                self.self_main, self.num_threads, driver
+            )
+            handleResolveCaptchaChooseTwoObjectsOmo(
+                self.self_main, self.num_threads, driver
+            )
 
             # resolve by Achicaptcha
-            handleResolveCaptchaRotateObjectAChi(
-                self.self_main, self.num_threads, driver
-            )
-            handleResolveCaptchaChooseTwoObjectsAChi(
-                self.self_main, self.num_threads, driver
-            )
+            # handleResolveCaptchaRotateObjectAChi(
+            #     self.self_main, self.num_threads, driver
+            # )
+            # handleResolveCaptchaChooseTwoObjectsAChi(
+            #     self.self_main, self.num_threads, driver
+            # )
 
             handleGetCodeFromMail(self.self_main, self.num_threads, driver)
             handleSubmitAccount(self.self_main, self.num_threads, driver)

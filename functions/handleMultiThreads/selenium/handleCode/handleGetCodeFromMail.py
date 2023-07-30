@@ -23,8 +23,6 @@ def handleGetCodeFromMail(self, thread, driver):
             response = requests.get(url)
             data = response.json()
 
-            print("data: ", data)
-
             if data["code"]:
                 self.table_account_info.setItem(
                     thread, 3, QTableWidgetItem("Đã lấy được code đợi nhập...")

@@ -16,8 +16,8 @@ def handleGetCode(self, thread, driver):
             getCodeElement.click()
             getCodeElement.click()
 
-            wait(2, 4)
-            checkDectect = driver.find_elements(
+            wait(4, 6)
+            checkDectect = driver.find_element(
                 "xpath",
                 '//span[contains(text(), "Maximum number of attempts reached. Try again later.")]',
             )
