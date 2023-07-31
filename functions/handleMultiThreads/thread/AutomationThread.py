@@ -64,11 +64,11 @@ class AutomationThread(threading.Thread):
 
     def run(self):
         list_profiles = [
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c650a4bc63ac67b4c066de/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c650a3e16c464ea66600b5/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c650a2c44fb360f5ee1dfa/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c650a17965a209109d8e7e/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c650a017eb06e28ad68020/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c722c7c787f8b24bf4374f/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c722c4c0598a599c141f32/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c7222c93d7cd47d3c05015/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c7221bc44fb345353f21e7/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c72207e8986efa9fd33042/Default",
         ]
         chrome_percent_zoom = self.chrome_percent_zoom
         is_show_chrome = self.is_show_chrome

@@ -8,6 +8,7 @@ def handleInsertNewUsername(self, thread, driver):
     password = self.table_account_info.item(thread, 1).text()
     hotmail = f"{username}|{password}"
     account = f"{username}|Long123@|{password}"
+
     input_file_path = r"C:\Users\HD\OneDrive\Documents\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
     output_file_path = r"C:\Users\HD\OneDrive\Documents\Tools\Python\ToolRegCloneTiktok\data\output.txt"
 

@@ -72,7 +72,10 @@ def handleUploadAvatar(self, thread, driver):
             hotmails.append(hotmail)
 
     wait(3, 4)
-    self.table_account_info.removeRow(0)
+    if self.table_account_info.rowCount() > 1:
+        self.table_account_info.removeRow(thread)
+    else:
+        self.table_account_info.removeRow(0)
 
     # delete all cookies
     driver.delete_all_cookies()
