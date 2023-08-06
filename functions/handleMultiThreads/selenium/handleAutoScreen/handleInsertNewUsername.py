@@ -9,8 +9,10 @@ def handleInsertNewUsername(self, thread, driver):
     hotmail = f"{username}|{password}"
     account = f"{username}|Long123@|{password}"
 
-    input_file_path = r"C:\Users\HD\OneDrive\Documents\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
-    output_file_path = r"C:\Users\HD\OneDrive\Documents\Tools\Python\ToolRegCloneTiktok\data\output.txt"
+    print("Hotmail: ", hotmail)
+
+    input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+    output_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\output.txt"
 
     waitForNavigation = WebDriverWait(driver, 100)
     skipElement = waitForNavigation.until(
@@ -19,12 +21,15 @@ def handleInsertNewUsername(self, thread, driver):
     skipElement.click()
 
     with open(input_file_path, "r") as f:
-        lines = f.readlines()
+        mail_content = f.readlines()
 
-    for i in range(len(lines)):
-        lines[i] = lines[i].replace("\n", "")
+    for i in range(len(mail_content)):
+        mail_content[i] = mail_content[i].replace("\n", "")
 
-    update_mail = [line for line in lines if line.strip() != hotmail]
+    update_mail = []
+    for line in mail_content:
+        if line.strip() != hotmail.strip():
+            update_mail.append(line)
 
     # update file hotmail when register successfully
     with open(input_file_path, "w") as f:
@@ -33,4 +38,4 @@ def handleInsertNewUsername(self, thread, driver):
 
     # insert account
     with open(output_file_path, "a") as f:
-        f.writelines(account + "\n")
+        f.write(account + "\n")

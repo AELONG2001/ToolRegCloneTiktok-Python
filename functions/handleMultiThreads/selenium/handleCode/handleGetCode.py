@@ -5,7 +5,7 @@ from utils.utils import wait
 def handleGetCode(self, thread, driver):
     try:
         isGetCodeAgain = True
-        while isGetCodeAgain:
+        while isGetCodeAgain and not self.stop_flag:
             wait(2, 4)
             getCodeElement = driver.find_element(
                 "xpath", '//*[@data-e2e="send-code-button"]'

@@ -9,7 +9,7 @@ from functions.handleMultiThreads.selenium.handleCode.handleSubmitCode import (
 def handleGetCodeFromMail(self, thread, driver):
     try:
         isGetCodeMailAgain = True
-        while isGetCodeMailAgain:
+        while isGetCodeMailAgain and not self.stop_flag:
             if self.table_account_info.item(thread, 0) is not None:
                 username = self.table_account_info.item(thread, 0).text()
             if self.table_account_info.item(thread, 1) is not None:
@@ -22,6 +22,8 @@ def handleGetCodeFromMail(self, thread, driver):
             wait(4, 6)
             response = requests.get(url)
             data = response.json()
+
+            print("Data: ", data)
 
             if data["code"]:
                 self.table_account_info.setItem(

@@ -39,7 +39,7 @@ def handleCreateJobGetCaptchaRotateObjectAChi(
         response = requests.post("http://api.achicaptcha.com/createTask", json=body)
         data = response.json()
 
-        wait(10, 12)
+        wait(6, 8)
         return getResultCaptchaRotateObjectAChi(data["taskId"])
     except requests.exceptions.RequestException as e:
         print(e)

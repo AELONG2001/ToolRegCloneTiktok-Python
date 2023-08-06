@@ -21,7 +21,7 @@ def translateUi(self, ToolRegCloneTiktok):
     self.import_proxy.setText(_translate("ToolRegCloneTiktok", "Import"))
     self.stop_button.setText(_translate("ToolRegCloneTiktok", "Stop"))
     self.threads.setText(_translate("ToolRegCloneTiktok", "Threads"))
-    self.threads_value.setValue(5)
+    self.threads_value.setValue(1)
     self.table_account_info.setSortingEnabled(False)
     item = self.table_account_info.horizontalHeaderItem(0)
     item.setText(_translate("ToolRegCloneTiktok", "username"))
@@ -41,9 +41,9 @@ def translateUi(self, ToolRegCloneTiktok):
     )
     self.phone.setText(_translate("ToolRegCloneTiktok", "037.527.0513"))
     self.hotline.setText(_translate("ToolRegCloneTiktok", "Hotline:"))
-    self.copyright.setText(
-        _translate("ToolRegCloneTiktok", "© Bản quyền thuộc về Long Software")
-    )
+    # self.copyright.setText(
+    #     _translate("ToolRegCloneTiktok", "© Bản quyền thuộc về Long Software")
+    # )
     self.ToolRegCloneTiktok.setTabText(
         self.ToolRegCloneTiktok.indexOf(self.home),
         _translate("ToolRegCloneTiktok", "Home"),

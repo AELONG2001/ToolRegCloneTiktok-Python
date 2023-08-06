@@ -14,15 +14,13 @@ from utils.utils import random_number
 
 
 def handleUploadAvatar(self, thread, driver):
-    output_file_path = r"C:\Users\HD\OneDrive\Documents\Tools\Python\ToolRegCloneTiktok\data\output.txt"
-
     wait(4, 6)
-    list_avatar_folder = (
-        r"C:\Users\HD\OneDrive\Documents\Tools\Python\ToolRegCloneTiktok\data\wibus"
-    )
+    input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+    list_avatar_folder = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\wibus"
 
     list_avatar = os.listdir(list_avatar_folder)
 
+    wait(2, 4)
     pageContent = driver.page_source
     userId = pageContent.split('"nickName":"')[1].split('"')[0]
 
@@ -41,7 +39,7 @@ def handleUploadAvatar(self, thread, driver):
     wait(3, 4)
     inputUploadAvatar = driver.find_element("css selector", "input[type='file']")
     inputUploadAvatar.send_keys(
-        f"C:/Users/HD/OneDrive/Documents/Tools/Python/ToolRegCloneTiktok/data/wibus/{list_avatar[random_number(0, 38)]}"
+        f"C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus/{list_avatar[random_number(0, 37)]}"
     )
 
     wait(3, 4)
@@ -54,7 +52,7 @@ def handleUploadAvatar(self, thread, driver):
     wait(3, 4)
     saveElement = driver.find_element("xpath", '//*[@data-e2e="edit-profile-save"]')
     saveElement.click()
-
+    3
     self.table_account_info.setItem(
         thread, 3, QTableWidgetItem("upload avatar thành công...")
     )
@@ -64,18 +62,6 @@ def handleUploadAvatar(self, thread, driver):
     item.setForeground(green_color)
 
     self.table_account_info.setItem(thread, 3, item)
-
-    hotmails = []
-    with open(output_file_path, "r") as file:
-        for line in file:
-            hotmail = line.strip().split("|")[0]
-            hotmails.append(hotmail)
-
-    wait(3, 4)
-    if self.table_account_info.rowCount() > 1:
-        self.table_account_info.removeRow(thread)
-    else:
-        self.table_account_info.removeRow(0)
 
     # delete all cookies
     driver.delete_all_cookies()

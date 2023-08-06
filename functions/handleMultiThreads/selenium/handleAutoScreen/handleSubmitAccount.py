@@ -4,7 +4,7 @@ from utils.utils import wait
 
 def handleSubmitAccount(self, thread, driver):
     isSubmitAccount = True
-    while isSubmitAccount:
+    while isSubmitAccount and not self.stop_flag:
         submitAccount = driver.find_element("css selector", "button[type='submit']")
         self.table_account_info.setItem(thread, 3, QTableWidgetItem("Đang submit..."))
         submitAccount.click()

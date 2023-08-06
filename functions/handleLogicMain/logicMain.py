@@ -1,4 +1,6 @@
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
+
 
 from functions.handleMultiThreads.thread.startAutomation import startAutomation
 from functions.handleMultiThreads.thread.stopAutomation import stopAutomation
@@ -14,6 +16,18 @@ class AutomationController:
 
     def start(self):
         startAutomation(self.ui_instance)
+
+    def start_next_thread(self):
+        if (
+            self.ui_instance.thread_index < len(self.ui_instance.chrome_threads)
+            and not self.ui_instance.stop_all_threads
+        ):
+            thread = self.ui_instance.chrome_threads[self.ui_instance.thread_index]
+            thread.start()
+            self.ui_instance.thread_index += 1
+            self.ui_instance.start_timer.start()  # Khởi động lại timer để tạo khoảng thời gian cho lần khởi động luồng tiếp theo
+        else:
+            self.ui_instance.start_timer.stop()
 
     def stop(self):
         stopAutomation(self.ui_instance)
@@ -36,18 +50,18 @@ class AutomationController:
             None, "Open File", "", "(*.txt)"
         )[0]
         self.ui_instance.mail_value.setText(self.ui_instance.fileName)
-        if self.ui_instance.fileName:
-            mail_content = readMailFile(self.ui_instance.fileName)
-            accounts = getMailContent(mail_content)
+        # if self.ui_instance.fileName:
+        #     mail_content = readMailFile(self.ui_instance.fileName)
+        #     accounts = getMailContent(mail_content)
 
-            self.ui_instance.table_account_info.setRowCount(len(accounts))
-            for row, (username, password) in enumerate(accounts):
-                self.ui_instance.table_account_info.setItem(
-                    row, 0, QTableWidgetItem(username)
-                )
-                self.ui_instance.table_account_info.setItem(
-                    row, 1, QTableWidgetItem(password)
-                )
+        # self.ui_instance.table_account_info.setRowCount(len(accounts))
+        # for row, (username, password) in enumerate(accounts):
+        #     self.ui_instance.table_account_info.setItem(
+        #         row, 0, QTableWidgetItem(username)
+        #     )
+        #     self.ui_instance.table_account_info.setItem(
+        #         row, 1, QTableWidgetItem(password)
+        #     )
 
     def getCaptchaKey(self, captcha_key):
         self.ui_instance.captcha_key_value = captcha_key

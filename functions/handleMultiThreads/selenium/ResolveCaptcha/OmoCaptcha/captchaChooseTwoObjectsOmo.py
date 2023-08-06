@@ -47,7 +47,7 @@ def handleCreateJobGetCaptchaChooseTwoObjectsOmo(self, thread, base64, width, he
 def handleResolveCaptchaChooseTwoObjectsOmo(self, thread, driver):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
-    while isResolveCaptchaAgain:
+    while isResolveCaptchaAgain and not self.stop_flag:
         wait(2, 4)
         captchaElements = driver.find_elements("css selector", "#captcha-verify-image")
         if not isCheckResolveCaptchaAgain and captchaElements:
@@ -100,7 +100,7 @@ def handleResolveCaptchaChooseTwoObjectsOmo(self, thread, driver):
         )
         submitCaptcha.click()
 
-        wait(2, 4)
+        wait(3, 5)
         if captchaElements:
             isResolveCaptchaAgain = True
             isCheckResolveCaptchaAgain = True

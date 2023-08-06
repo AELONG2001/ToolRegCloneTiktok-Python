@@ -8,7 +8,7 @@ def handleSelectDay(self, thread, driver):
     )
     daySelectElement.click()
     self.table_account_info.setItem(thread, 3, QTableWidgetItem("Đang chọn ngày..."))
-    wait(2, 4)
+    wait(4, 6)
     dropDownSelectDay = driver.find_element(
         "id", f"Day-options-item-{random_number(0, 28)}"
     )

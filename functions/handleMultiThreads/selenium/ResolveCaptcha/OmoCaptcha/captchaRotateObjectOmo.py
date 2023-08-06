@@ -38,7 +38,7 @@ def handleCreateJobGetCaptchaRotateObjectOmo(
         response = requests.post("https://omocaptcha.com/api/createJob", json=body)
         data = response.json()
 
-        wait(6, 10)
+        wait(10, 12)
         return getResultCaptchaRotateObjectOmo(data["job_id"])
     except requests.exceptions.RequestException as e:
         print(e)
@@ -47,7 +47,7 @@ def handleCreateJobGetCaptchaRotateObjectOmo(
 def handleResolveCaptchaRotateObjectOmo(self, thread, driver):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
-    while isResolveCaptchaAgain:
+    while isResolveCaptchaAgain and not self.stop_flag:
         wait(4, 6)
         captchaElements = driver.find_elements(
             "css selector", ".captcha_verify_slide--button"

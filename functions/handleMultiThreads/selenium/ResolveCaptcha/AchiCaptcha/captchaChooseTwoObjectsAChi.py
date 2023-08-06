@@ -37,7 +37,7 @@ def handleCreateJobGetCaptchaChooseTwoObjectsAChi(self, thread, base64):
         response = requests.post("http://api.achicaptcha.com/createTask", json=body)
         data = response.json()
 
-        wait(10, 12)
+        wait(6, 8)
         return getResultCaptchaChooseTwoObjectsAChi(data["taskId"])
     except requests.exceptions.RequestException as e:
         print(e)

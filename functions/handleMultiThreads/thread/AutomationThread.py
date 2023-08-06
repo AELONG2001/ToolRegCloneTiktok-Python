@@ -1,7 +1,12 @@
-import threading
+from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 from selenium import webdriver
 import math
+from time import sleep
 from utils.utils import wait
+
+from functions.handleInputFileMail.getMailContent import getMailContent
+
 
 from functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth import (
     handleSelectMonth,
@@ -42,8 +47,10 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaCho
 
 from functions.HandleUploadAvatar.handleUploadAvatar import handleUploadAvatar
 
+handlers = []
 
-class AutomationThread(threading.Thread):
+
+class AutomationThread(QThread):
     def __init__(
         self,
         self_main,
@@ -53,7 +60,7 @@ class AutomationThread(threading.Thread):
         chrome_percent_zoom,
         is_show_chrome,
     ):
-        super(AutomationThread, self).__init__()
+        super().__init__()
         self.self_main = self_main
         self.stop_event = stop_event
         self.num_threads = num_threads
@@ -61,14 +68,48 @@ class AutomationThread(threading.Thread):
         self.chrome_percent_zoom = chrome_percent_zoom
         self.is_show_chrome = is_show_chrome
         self.is_running = True
+        self.stop_flag = False
+
+    def stop(self):
+        self.stop_flag = True
+        for thread in self.self_main.chrome_threads:
+            thread.terminate()
+
+        self.self_main.stop_progress_dialog.show()
+        QCoreApplication.processEvents()
+
+        if hasattr(self, "driver"):
+            self.driver.quit()
+            AutomationThread.num_quit += 1
+
+        total_threads = len(self.self_main.chrome_threads)
+        completed_threads = AutomationThread.num_quit
+        percent_complete = (completed_threads / total_threads) * 100
+
+        self.self_main.stop_progress_dialog.set_progress(percent_complete)
+        self.self_main.stop_progress_dialog.set_progress_text(
+            f"Đã dừng {completed_threads} luồng"
+        )
+
+        QCoreApplication.processEvents()
+        sleep(1)
+
+        self.self_main.stop_progress_dialog.close()
 
     def run(self):
+        input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+
+        with open(input_file_path, "r") as f:
+            mail_content = f.read()
+
+        accounts = getMailContent(mail_content)
+
+        print("accounts: ", accounts)
+
         list_profiles = [
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c722c7c787f8b24bf4374f/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c722c4c0598a599c141f32/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c7222c93d7cd47d3c05015/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c7221bc44fb345353f21e7/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64c72207e8986efa9fd33042/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64cda9c7d88e4175e37af066/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64cda9c6ee79fe21b648e034/Default",
+            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64cda9c58d271b1e4119bb1a/Default",
         ]
         chrome_percent_zoom = self.chrome_percent_zoom
         is_show_chrome = self.is_show_chrome
@@ -82,10 +123,10 @@ class AutomationThread(threading.Thread):
         options.add_argument(f"--force-device-scale-factor={chrome_percent_zoom}")
         options.add_argument("--mute-audio")
         options.add_argument("--disable-blink-features=AutomationControlled")
-        options.add_argument(f"--proxy-server={proxy_list[self.num_threads]}")
-        options.add_argument(f"--user-data-dir={list_profiles[self.num_threads]}")
+        # options.add_argument(f"--user-data-dir={list_profiles[self.num_threads]}")
+        # options.add_argument(f"--proxy-server={proxy_list[self.num_threads]}")
 
-        driver = webdriver.Chrome(options=options)
+        self.driver = webdriver.Chrome(options=options)
 
         num_worker = self.num_threads
         num_chrome_a_row = int(self.chrome_count)
@@ -93,38 +134,40 @@ class AutomationThread(threading.Thread):
         cols = num_chrome_a_row
         x = (num_worker % cols) * 510
         y = math.floor(num_worker / cols) * 810
-        driver.set_window_rect(x, y, 200, 800)
-        while not self.stop_event.is_set():
-            driver.get("https://www.tiktok.com/signup/phone-or-email/email")
-            handleSelectMonth(self.self_main, self.num_threads, driver)
-            handleSelectDay(self.self_main, self.num_threads, driver)
-            handleSelectYear(self.self_main, self.num_threads, driver)
-            handleInputUserNameAndPassword(self.self_main, self.num_threads, driver)
-            handleGetCode(self.self_main, self.num_threads, driver)
-            wait(4, 6)
+        self.driver.set_window_rect(x, y, 200, 800)
+        while not self.stop_flag:
+            AutomationThread.drivers_list.append(self.driver)
+            self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
+            handleSelectMonth(self.self_main, self.num_threads, self.driver)
+            handleSelectDay(self.self_main, self.num_threads, self.driver)
+            handleSelectYear(self.self_main, self.num_threads, self.driver)
+            handleInputUserNameAndPassword(
+                self.self_main, self.num_threads, self.driver
+            )
+            handleGetCode(self.self_main, self.num_threads, self.driver)
 
-            # resolve by Omocaptcha
+            # Resolve captcha by Omo
             handleResolveCaptchaRotateObjectOmo(
-                self.self_main, self.num_threads, driver
-            )
-            handleResolveCaptchaChooseTwoObjectsOmo(
-                self.self_main, self.num_threads, driver
+                self.self_main, self.num_threads, self.driver
             )
 
-            # resolve by Achicaptcha
+            handleResolveCaptchaChooseTwoObjectsOmo(
+                self.self_main, self.num_threads, self.driver
+            )
+
+            # Resolve captcha by Achi
             # handleResolveCaptchaRotateObjectAChi(
-            #     self.self_main, self.num_threads, driver
+            #     self.self_main, self.num_threads, self.driver
             # )
             # handleResolveCaptchaChooseTwoObjectsAChi(
-            #     self.self_main, self.num_threads, driver
+            #     self.self_main, self.num_threads, self.driver
             # )
 
-            handleGetCodeFromMail(self.self_main, self.num_threads, driver)
-            handleSubmitAccount(self.self_main, self.num_threads, driver)
-            handleInsertNewUsername(self.self_main, self.num_threads, driver)
-            handleUploadAvatar(self.self_main, self.num_threads, driver)
-            wait(15, 20)
-            driver.get("https://www.tiktok.com/logout")
+            handleGetCodeFromMail(self.self_main, self.num_threads, self.driver)
+            handleSubmitAccount(self.self_main, self.num_threads, self.driver)
+            handleInsertNewUsername(self.self_main, self.num_threads, self.driver)
+            handleUploadAvatar(self.self_main, self.num_threads, self.driver)
+            self.driver.get("https://www.tiktok.com/logout")
             wait(5, 10)
 
-        driver.quit()
+        # self.driver.quit()
