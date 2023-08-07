@@ -20,10 +20,14 @@ def getResultCaptchaChooseTwoObjectsAChi(task_id):
         print(e)
 
 
-def handleCreateJobGetCaptchaChooseTwoObjectsAChi(self, thread, base64):
+def handleCreateJobGetCaptchaChooseTwoObjectsAChi(
+    self, thread, base64, current_row_count
+):
     try:
         self.table_account_info.setItem(
-            thread, 3, QTableWidgetItem("Đang đợi kết quả captcha...")
+            current_row_count,
+            3,
+            QTableWidgetItem("Đang đợi kết quả captcha..."),
         )
         body = {
             "clientKey": "08f8b0f0b3aff156866a811508e2bb2e",
@@ -43,15 +47,17 @@ def handleCreateJobGetCaptchaChooseTwoObjectsAChi(self, thread, base64):
         print(e)
 
 
-def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver):
+def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, current_row_count):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
-        wait(2, 4)
+        wait(4, 6)
         captchaElements = driver.find_elements("css selector", "#captcha-verify-image")
         if not isCheckResolveCaptchaAgain and captchaElements:
             self.table_account_info.setItem(
-                thread, 3, QTableWidgetItem("Có catpcha đợi giải...")
+                current_row_count,
+                3,
+                QTableWidgetItem("Có catpcha đợi giải..."),
             )
 
         # Nếu không có captcha thì return và lấy code
@@ -68,7 +74,9 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver):
         response.raise_for_status()
         base64Data = base64.b64encode(response.content).decode("utf-8")
 
-        result = handleCreateJobGetCaptchaChooseTwoObjectsAChi(self, thread, base64Data)
+        result = handleCreateJobGetCaptchaChooseTwoObjectsAChi(
+            self, thread, base64Data, current_row_count
+        )
         print("result: ", result)
 
         [x1, y1, x2, y2] = result.split(",")
@@ -116,4 +124,4 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver):
                 '//*[@data-e2e="send-code-button"]',
             )
             if getCodeElement:
-                handleGetCode(self, thread, driver)
+                handleGetCode(self, thread, driver, current_row_count)

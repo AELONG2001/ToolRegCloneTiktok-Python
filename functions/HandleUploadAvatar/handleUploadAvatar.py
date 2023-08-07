@@ -4,18 +4,17 @@ from PySide6.QtGui import *
 from utils.utils import wait
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo import (
-    handleResolveCaptchaRotateObjectOmo,
+from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
+    handleResolveCaptchaRotateObjectAChi,
 )
-from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo import (
-    handleResolveCaptchaChooseTwoObjectsOmo,
+from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi import (
+    handleResolveCaptchaChooseTwoObjectsAChi,
 )
 from utils.utils import random_number
 
 
-def handleUploadAvatar(self, thread, driver):
+def handleUploadAvatar(self, thread, driver, current_row_count):
     wait(4, 6)
-    input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
     list_avatar_folder = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\wibus"
 
     list_avatar = os.listdir(list_avatar_folder)
@@ -23,6 +22,9 @@ def handleUploadAvatar(self, thread, driver):
     wait(2, 4)
     pageContent = driver.page_source
     userId = pageContent.split('"nickName":"')[1].split('"')[0]
+
+    if userId is None:
+        return
 
     driver.get(f"https://www.tiktok.com/@{userId}")
 
@@ -33,41 +35,41 @@ def handleUploadAvatar(self, thread, driver):
     editProfile.click()
 
     self.table_account_info.setItem(
-        thread, 3, QTableWidgetItem("Đang upload avatar...")
+        current_row_count, 3, QTableWidgetItem("Đang upload avatar...")
     )
 
-    wait(3, 4)
+    wait(4, 6)
     inputUploadAvatar = driver.find_element("css selector", "input[type='file']")
     inputUploadAvatar.send_keys(
         f"C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus/{list_avatar[random_number(0, 37)]}"
     )
 
-    wait(3, 4)
+    wait(4, 6)
     applyAvatarBtn = driver.find_element("xpath", '//button[text()="Apply"]')
     if not applyAvatarBtn.is_displayed():
         # Sử dụng JavaScript để cuộn trang đến vị trí của phần tử
         driver.execute_script("arguments[0].scrollIntoView();", applyAvatarBtn)
     applyAvatarBtn.click()
 
-    wait(3, 4)
+    wait(4, 6)
     saveElement = driver.find_element("xpath", '//*[@data-e2e="edit-profile-save"]')
     saveElement.click()
     3
     self.table_account_info.setItem(
-        thread, 3, QTableWidgetItem("upload avatar thành công...")
+        current_row_count, 3, QTableWidgetItem("upload avatar thành công...")
     )
 
     item = QTableWidgetItem("Tạo tài khoản thành công...")
     green_color = QColor(64, 170, 15)
     item.setForeground(green_color)
 
-    self.table_account_info.setItem(thread, 3, item)
+    self.table_account_info.setItem(current_row_count, 3, item)
 
     # delete all cookies
     driver.delete_all_cookies()
 
     wait(4, 6)
-    handleResolveCaptchaRotateObjectOmo(self, thread, driver)
-    handleResolveCaptchaChooseTwoObjectsOmo(self, thread, driver)
+    handleResolveCaptchaRotateObjectAChi(self, thread, driver, current_row_count)
+    handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, current_row_count)
 
-    wait(5, 10)
+    wait(2, 4)

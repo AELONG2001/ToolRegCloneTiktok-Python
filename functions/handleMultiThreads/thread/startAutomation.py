@@ -1,5 +1,4 @@
 from PySide6.QtWidgets import *
-from time import sleep
 from functions.handleMultiThreads.thread.AutomationThread import AutomationThread
 
 

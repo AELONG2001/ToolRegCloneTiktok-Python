@@ -21,11 +21,13 @@ def getResultCaptchaRotateObjectAChi(task_id):
 
 
 def handleCreateJobGetCaptchaRotateObjectAChi(
-    self, thread, base64DataImgInside, base64DataImgOutside
+    self, thread, base64DataImgInside, base64DataImgOutside, current_row_count
 ):
     try:
         self.table_account_info.setItem(
-            thread, 3, QTableWidgetItem("Đang đợi kết quả captcha...")
+            current_row_count,
+            3,
+            QTableWidgetItem("Đang đợi kết quả captcha..."),
         )
         body = {
             "clientKey": "08f8b0f0b3aff156866a811508e2bb2e",
@@ -45,7 +47,7 @@ def handleCreateJobGetCaptchaRotateObjectAChi(
         print(e)
 
 
-def handleResolveCaptchaRotateObjectAChi(self, thread, driver):
+def handleResolveCaptchaRotateObjectAChi(self, thread, driver, current_row_count):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
@@ -55,7 +57,9 @@ def handleResolveCaptchaRotateObjectAChi(self, thread, driver):
         )
         if not isCheckResolveCaptchaAgain and captchaElements:
             self.table_account_info.setItem(
-                thread, 3, QTableWidgetItem("Có catpcha đợi giải...")
+                current_row_count,
+                3,
+                QTableWidgetItem("Có catpcha đợi giải..."),
             )
 
         # Nếu không có captcha thì return và lấy code
@@ -94,7 +98,7 @@ def handleResolveCaptchaRotateObjectAChi(self, thread, driver):
         base64DataImgInside = encoded_img_list[1]
 
         result = handleCreateJobGetCaptchaRotateObjectAChi(
-            self, thread, base64DataImgInside, base64DataImgOutside
+            self, thread, base64DataImgInside, base64DataImgOutside, current_row_count
         )
         print("result: ", result)
 
@@ -110,7 +114,9 @@ def handleResolveCaptchaRotateObjectAChi(self, thread, driver):
         # Thực hiện kéo thả phần tử
         action_chains = ActionChains(driver)
         self.table_account_info.setItem(
-            thread, 3, QTableWidgetItem("Đang thực hiện giải captcha đợi xíu...")
+            current_row_count,
+            3,
+            QTableWidgetItem("Đang thực hiện giải captcha đợi xíu..."),
         )
         action_chains.move_to_element(dragIcon).perform()
         action_chains.click_and_hold().perform()
@@ -142,4 +148,4 @@ def handleResolveCaptchaRotateObjectAChi(self, thread, driver):
                 '//*[@data-e2e="send-code-button"]',
             )
             if getCodeElement:
-                handleGetCode(self, thread, driver)
+                handleGetCode(self, thread, driver, current_row_count)

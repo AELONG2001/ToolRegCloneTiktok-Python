@@ -21,13 +21,13 @@ def uiMain(self, ToolRegCloneTiktok):
     self.list_avatar.setGeometry(QRect(340, 10, 121, 24))
     icon = QIcon()
     icon.addPixmap(
-        QPixmap(".\\../../../../../Downloads/icon-qt/tik-tok_4782345.png"),
+        QPixmap(".\\../../../../../../Downloads/icon-qt/tik-tok_4782345.png"),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
     ToolRegCloneTiktok.setWindowIcon(icon)
     icon.addPixmap(
-        QPixmap(".\\../../../../../Downloads/icon-qt/folder_3767094.png"),
+        QPixmap(".\\../../../../../../Downloads/icon-qt/folder_3767094.png"),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
@@ -53,7 +53,7 @@ def uiMain(self, ToolRegCloneTiktok):
     )
     icon1 = QIcon()
     icon1.addPixmap(
-        QPixmap(".\\../../../../../Downloads/icon-qt/right_4162041.png"),
+        QPixmap(".\\../../../../../../Downloads/icon-qt/right_4162041.png"),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
@@ -88,14 +88,16 @@ def uiMain(self, ToolRegCloneTiktok):
     self.stop_button.setCursor(Qt.CursorShape.PointingHandCursor)
     icon2 = QIcon()
     icon2.addPixmap(
-        QPixmap(".\\../../../../../Downloads/icon-qt/stop_button-button_4340168.png"),
+        QPixmap(
+            ".\\../../../../../../Downloads/icon-qt/stop_button-button_4340168.png"
+        ),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
     self.stop_button.setIcon(icon2)
     self.stop_button.setObjectName("stop_button")
     self.threads = QLabel(parent=self.home)
-    self.threads.setGeometry(QRect(220, 10, 61, 21))
+    self.threads.setGeometry(QRect(210, 10, 80, 21))
     self.threads.setStyleSheet('font: 600 11pt "Segoe UI";')
     self.threads.setObjectName("threads")
     self.table_account_info = QTableWidget(parent=self.home)
@@ -117,7 +119,7 @@ def uiMain(self, ToolRegCloneTiktok):
         QAbstractItemView.SelectionBehavior.SelectRows
     )
     self.table_account_info.setShowGrid(True)
-    self.table_account_info.setRowCount(10)
+    self.table_account_info.setRowCount(0)
     self.table_account_info.setObjectName("table_account_info")
     self.table_account_info.setColumnCount(4)
     item = QTableWidgetItem()
@@ -141,7 +143,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.list_mail.setGeometry(QRect(590, 10, 121, 24))
     icon3 = QIcon()
     icon3.addPixmap(
-        QPixmap(".\\../../../../../Downloads/icon-qt/txt_8361365.png"),
+        QPixmap(".\\../../../../../../Downloads/icon-qt/txt_8361365.png"),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
@@ -164,7 +166,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value = QPlainTextEdit(parent=self.home)
     self.proxy_value.setGeometry(QRect(920, 80, 211, 371))
     self.proxy_value.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
-    self.proxy_value.setObjectName("proxy_value")
+    self.proxy_value.setPlainText("c3abb268cac9da1b7b6ee092aba94c85")
     self.label_3 = QLabel(parent=self.home)
     self.label_3.setGeometry(QRect(70, 470, 81, 16))
     self.label_3.setStyleSheet(
@@ -197,7 +199,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.icon_facebook.setText("")
     icon4 = QIcon()
     icon4.addPixmap(
-        QPixmap(".\\../../../../../Downloads/icon-qt/facebook_5968764.png"),
+        QPixmap(".\\../../../../../../Downloads/icon-qt/facebook_5968764.png"),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )

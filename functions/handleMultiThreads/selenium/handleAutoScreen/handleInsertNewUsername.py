@@ -3,16 +3,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def handleInsertNewUsername(self, thread, driver):
-    username = self.table_account_info.item(thread, 0).text()
-    password = self.table_account_info.item(thread, 1).text()
-    hotmail = f"{username}|{password}"
-    account = f"{username}|Long123@|{password}"
-
-    print("Hotmail: ", hotmail)
-
-    input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+def handleInsertNewUsername(thread, driver, accounts):
     output_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\output.txt"
+
+    username = accounts[thread][0]
+    password = accounts[thread][1]
+    account = f"{username}|Long123@|{password}"
 
     waitForNavigation = WebDriverWait(driver, 100)
     skipElement = waitForNavigation.until(
@@ -20,21 +16,21 @@ def handleInsertNewUsername(self, thread, driver):
     )
     skipElement.click()
 
-    with open(input_file_path, "r") as f:
-        mail_content = f.readlines()
+    # with open(input_file_path, "r") as f:
+    #     mail_content = f.readlines()
 
-    for i in range(len(mail_content)):
-        mail_content[i] = mail_content[i].replace("\n", "")
+    # for i in range(len(mail_content)):
+    #     mail_content[i] = mail_content[i].replace("\n", "")
 
-    update_mail = []
-    for line in mail_content:
-        if line.strip() != hotmail.strip():
-            update_mail.append(line)
+    # update_mail = []
+    # for line in mail_content:
+    #     if line.strip() != hotmail.strip():
+    #         update_mail.append(line)
 
     # update file hotmail when register successfully
-    with open(input_file_path, "w") as f:
-        for email in update_mail:
-            f.writelines(email + "\n")
+    # with open(input_file_path, "w") as f:
+    #     for email in update_mail:
+    #         f.writelines(email + "\n")
 
     # insert account
     with open(output_file_path, "a") as f:

@@ -5,6 +5,14 @@ import math
 from time import sleep
 from utils.utils import wait
 
+from functions.handleGetProfiles.handleGetProfiles import (
+    handleGetProfileIdsFromGoLogin,
+)
+
+from functions.proxy.handleGetNewTMProxy import (
+    handleGetNewTMProxy,
+)
+
 from functions.handleInputFileMail.getMailContent import getMailContent
 
 
@@ -47,8 +55,6 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaCho
 
 from functions.HandleUploadAvatar.handleUploadAvatar import handleUploadAvatar
 
-handlers = []
-
 
 class AutomationThread(QThread):
     def __init__(
@@ -69,6 +75,24 @@ class AutomationThread(QThread):
         self.is_show_chrome = is_show_chrome
         self.is_running = True
         self.stop_flag = False
+
+        self.options = webdriver.ChromeOptions()
+        self.proxy_update_timer = QTimer()
+        self.proxy_update_timer.timeout.connect(self.update_proxy)
+        self.proxy_update_timer.start(300000)
+
+    def update_proxy(self):
+        list_proxy = handleGetNewTMProxy(self.self_main)
+        print("list_proxy: ", list_proxy)
+        self.options.add_argument(f"--proxy-server={list_proxy[self.num_threads]}")
+
+    @Slot()
+    def show_warning(self):
+        QMessageBox.warning(
+            None,
+            "Warning",
+            "Vui lòng nhập thêm mail",
+        )
 
     def stop(self):
         self.stop_flag = True
@@ -97,38 +121,25 @@ class AutomationThread(QThread):
         self.self_main.stop_progress_dialog.close()
 
     def run(self):
-        input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+        list_profile = handleGetProfileIdsFromGoLogin()
 
-        with open(input_file_path, "r") as f:
-            mail_content = f.read()
-
-        accounts = getMailContent(mail_content)
-
-        print("accounts: ", accounts)
-
-        list_profiles = [
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64cda9c7d88e4175e37af066/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64cda9c6ee79fe21b648e034/Default",
-            "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/64cda9c58d271b1e4119bb1a/Default",
-        ]
+        num_worker = self.num_threads
         chrome_percent_zoom = self.chrome_percent_zoom
         is_show_chrome = self.is_show_chrome
 
-        proxy_text = self.self_main.proxy_value.toPlainText()
-        proxy_list = proxy_text.splitlines()
+        self.update_proxy()
 
-        options = webdriver.ChromeOptions()
+        # list_proxy = handleGetNewTMProxy(self.self_main)
+
         if not is_show_chrome:
-            options.add_argument("--headless")
-        options.add_argument(f"--force-device-scale-factor={chrome_percent_zoom}")
-        options.add_argument("--mute-audio")
-        options.add_argument("--disable-blink-features=AutomationControlled")
-        # options.add_argument(f"--user-data-dir={list_profiles[self.num_threads]}")
-        # options.add_argument(f"--proxy-server={proxy_list[self.num_threads]}")
+            self.options.add_argument("--headless")
+        self.options.add_argument(f"--force-device-scale-factor={chrome_percent_zoom}")
+        self.options.add_argument("--mute-audio")
+        self.options.add_argument("--disable-blink-features=AutomationControlled")
+        self.options.add_argument(f"--user-data-dir={list_profile[num_worker]}")
 
-        self.driver = webdriver.Chrome(options=options)
+        self.driver = webdriver.Chrome(options=self.options)
 
-        num_worker = self.num_threads
         num_chrome_a_row = int(self.chrome_count)
         # Số cột muốn sắp xếp trên màn hình
         cols = num_chrome_a_row
@@ -136,37 +147,91 @@ class AutomationThread(QThread):
         y = math.floor(num_worker / cols) * 810
         self.driver.set_window_rect(x, y, 200, 800)
         while not self.stop_flag:
+            input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+
+            with open(input_file_path, "r") as f:
+                mail_content = f.read()
+
+            accounts = getMailContent(mail_content)
+
+            if len(accounts) > 0:
+                username, password = accounts[num_worker]
+                current_row_count = self.self_main.table_account_info.rowCount()
+                self.self_main.table_account_info.setRowCount(current_row_count + 1)
+                self.self_main.table_account_info.setItem(
+                    current_row_count, 0, QTableWidgetItem(username)
+                )
+                self.self_main.table_account_info.setItem(
+                    current_row_count, 1, QTableWidgetItem(password)
+                )
+            else:
+                if hasattr(self, "driver"):
+                    self.driver.quit()
+                    QMetaObject.invokeMethod(self, "show_warning")
+                return
+
             AutomationThread.drivers_list.append(self.driver)
             self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
-            handleSelectMonth(self.self_main, self.num_threads, self.driver)
-            handleSelectDay(self.self_main, self.num_threads, self.driver)
-            handleSelectYear(self.self_main, self.num_threads, self.driver)
-            handleInputUserNameAndPassword(
-                self.self_main, self.num_threads, self.driver
+            sleep(200000000)
+            handleSelectMonth(
+                self.self_main,
+                self.num_threads,
+                self.driver,
+                accounts,
+                current_row_count,
             )
-            handleGetCode(self.self_main, self.num_threads, self.driver)
+            handleSelectDay(
+                self.self_main, self.num_threads, self.driver, current_row_count
+            )
+            handleSelectYear(
+                self.self_main, self.num_threads, self.driver, current_row_count
+            )
+            handleInputUserNameAndPassword(
+                self.self_main,
+                self.num_threads,
+                self.driver,
+                accounts,
+                current_row_count,
+            )
+            handleGetCode(
+                self.self_main, self.num_threads, self.driver, current_row_count
+            )
 
             # Resolve captcha by Omo
-            handleResolveCaptchaRotateObjectOmo(
-                self.self_main, self.num_threads, self.driver
-            )
+            # handleResolveCaptchaRotateObjectOmo(
+            #     self.self_main, self.num_threads, self.driver
+            # )
 
-            handleResolveCaptchaChooseTwoObjectsOmo(
-                self.self_main, self.num_threads, self.driver
-            )
+            # handleResolveCaptchaChooseTwoObjectsOmo(
+            #     self.self_main, self.num_threads, self.driver
+            # )
 
             # Resolve captcha by Achi
             # handleResolveCaptchaRotateObjectAChi(
-            #     self.self_main, self.num_threads, self.driver
+            #     self.self_main, self.num_threads, self.driver, current_row_count
             # )
             # handleResolveCaptchaChooseTwoObjectsAChi(
-            #     self.self_main, self.num_threads, self.driver
+            #     self.self_main, self.num_threads, self.driver, current_row_count
             # )
 
-            handleGetCodeFromMail(self.self_main, self.num_threads, self.driver)
-            handleSubmitAccount(self.self_main, self.num_threads, self.driver)
-            handleInsertNewUsername(self.self_main, self.num_threads, self.driver)
-            handleUploadAvatar(self.self_main, self.num_threads, self.driver)
+            handleGetCodeFromMail(
+                self.self_main,
+                self.num_threads,
+                self.driver,
+                accounts,
+                current_row_count,
+            )
+            handleSubmitAccount(
+                self.self_main, self.num_threads, self.driver, current_row_count
+            )
+            handleInsertNewUsername(
+                self.num_threads,
+                self.driver,
+                accounts,
+            )
+            handleUploadAvatar(
+                self.self_main, self.num_threads, self.driver, current_row_count
+            )
             self.driver.get("https://www.tiktok.com/logout")
             wait(5, 10)
 

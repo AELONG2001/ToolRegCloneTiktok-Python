@@ -1,23 +1,22 @@
 import requests
 from PySide6.QtWidgets import *
 from utils.utils import wait
+
 from functions.handleMultiThreads.selenium.handleCode.handleSubmitCode import (
     handleSubmitCode,
 )
 
 
-def handleGetCodeFromMail(self, thread, driver):
+def handleGetCodeFromMail(self, thread, driver, accounts, current_row_count):
     try:
         isGetCodeMailAgain = True
         while isGetCodeMailAgain and not self.stop_flag:
-            if self.table_account_info.item(thread, 0) is not None:
-                username = self.table_account_info.item(thread, 0).text()
-            if self.table_account_info.item(thread, 1) is not None:
-                password = self.table_account_info.item(thread, 1).text()
+            username = accounts[thread][0]
+            password = accounts[thread][1]
 
             url = f"https://tools.dongvanfb.net/api/get_code?mail={username}&pass={password}&type=tiktok"
             self.table_account_info.setItem(
-                thread, 3, QTableWidgetItem("Đang lấy code...")
+                current_row_count, 3, QTableWidgetItem("Đang lấy code...")
             )
             wait(4, 6)
             response = requests.get(url)
@@ -27,13 +26,17 @@ def handleGetCodeFromMail(self, thread, driver):
 
             if data["code"]:
                 self.table_account_info.setItem(
-                    thread, 3, QTableWidgetItem("Đã lấy được code đợi nhập...")
+                    current_row_count,
+                    3,
+                    QTableWidgetItem("Đã lấy được code đợi nhập..."),
                 )
                 isGetCodeMailAgain = False
-                handleSubmitCode(self, thread, driver, data["code"])
+                handleSubmitCode(self, thread, driver, data["code"], current_row_count)
             else:
                 self.table_account_info.setItem(
-                    thread, 3, QTableWidgetItem("Chưa có code đang lấy lại code...")
+                    current_row_count,
+                    3,
+                    QTableWidgetItem("Chưa có code đang lấy lại code..."),
                 )
                 isGetCodeMailAgain = True
 
