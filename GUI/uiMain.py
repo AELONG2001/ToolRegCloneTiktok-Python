@@ -166,7 +166,8 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value = QPlainTextEdit(parent=self.home)
     self.proxy_value.setGeometry(QRect(920, 80, 211, 371))
     self.proxy_value.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
-    self.proxy_value.setPlainText("c3abb268cac9da1b7b6ee092aba94c85")
+    self.proxy_value.setPlainText("07abb8e50d61d34b59966335cf9cb7a0")
+
     self.label_3 = QLabel(parent=self.home)
     self.label_3.setGeometry(QRect(70, 470, 81, 16))
     self.label_3.setStyleSheet(

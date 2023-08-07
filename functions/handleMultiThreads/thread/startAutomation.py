@@ -1,13 +1,23 @@
 from PySide6.QtWidgets import *
+from functions.handleInputFileMail.getMailContent import getMailContent
 from functions.handleMultiThreads.thread.AutomationThread import AutomationThread
 
 
 def startAutomation(self):
     AutomationThread.num_quit = 0
     AutomationThread.drivers_list = []
-    # username = self.table_account_info.item(0, 0)
-    # if username is not None:
-    num_threads = self.threads_value.value()
+
+    input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+
+    with open(input_file_path, "r") as f:
+        mail_content = f.read()
+
+    accounts = getMailContent(mail_content)
+
+    if len(accounts) > 0:
+        num_threads = self.threads_value.value()
+    else:
+        num_threads = 1
 
     self.stop_event.clear()
     chrome_count = self.chrome_setting_line_value.currentText()
@@ -36,5 +46,3 @@ def startAutomation(self):
     self.stop_button.setStyleSheet(
         "color:rgb(255, 252, 252);\n" "background-color:rgb(255, 0, 0)"
     )
-    # else:
-    #     QMessageBox.warning(None, "Warning", "Vui lòng nhập mail")

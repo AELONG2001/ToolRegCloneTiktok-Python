@@ -77,14 +77,6 @@ class AutomationThread(QThread):
         self.stop_flag = False
 
         self.options = webdriver.ChromeOptions()
-        self.proxy_update_timer = QTimer()
-        self.proxy_update_timer.timeout.connect(self.update_proxy)
-        self.proxy_update_timer.start(300000)
-
-    def update_proxy(self):
-        list_proxy = handleGetNewTMProxy(self.self_main)
-        print("list_proxy: ", list_proxy)
-        self.options.add_argument(f"--proxy-server={list_proxy[self.num_threads]}")
 
     @Slot()
     def show_warning(self):
@@ -95,6 +87,7 @@ class AutomationThread(QThread):
         )
 
     def stop(self):
+        print("Stoped")
         self.stop_flag = True
         for thread in self.self_main.chrome_threads:
             thread.terminate()
@@ -122,14 +115,11 @@ class AutomationThread(QThread):
 
     def run(self):
         list_profile = handleGetProfileIdsFromGoLogin()
+        list_proxy = handleGetNewTMProxy(self.self_main)
 
         num_worker = self.num_threads
         chrome_percent_zoom = self.chrome_percent_zoom
         is_show_chrome = self.is_show_chrome
-
-        self.update_proxy()
-
-        # list_proxy = handleGetNewTMProxy(self.self_main)
 
         if not is_show_chrome:
             self.options.add_argument("--headless")
@@ -137,6 +127,7 @@ class AutomationThread(QThread):
         self.options.add_argument("--mute-audio")
         self.options.add_argument("--disable-blink-features=AutomationControlled")
         self.options.add_argument(f"--user-data-dir={list_profile[num_worker]}")
+        # self.options.add_argument(f"--proxy-server={list_proxy[num_worker]}")
 
         self.driver = webdriver.Chrome(options=self.options)
 
@@ -167,12 +158,19 @@ class AutomationThread(QThread):
             else:
                 if hasattr(self, "driver"):
                     self.driver.quit()
-                    QMetaObject.invokeMethod(self, "show_warning")
+                QMetaObject.invokeMethod(self, "show_warning")
+                self.self_main.stop_button.setEnabled(False)
+                self.self_main.stop_button.setStyleSheet(
+                    "background-color: rgba(0, 0, 0, 0.2);"
+                )
+                self.self_main.start_button.setEnabled(True)
+                self.self_main.start_button.setStyleSheet(
+                    "color:rgb(255, 252, 252);\n" "background-color:rgb(64, 170, 15)"
+                )
                 return
 
             AutomationThread.drivers_list.append(self.driver)
             self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
-            sleep(200000000)
             handleSelectMonth(
                 self.self_main,
                 self.num_threads,
@@ -207,12 +205,12 @@ class AutomationThread(QThread):
             # )
 
             # Resolve captcha by Achi
-            # handleResolveCaptchaRotateObjectAChi(
-            #     self.self_main, self.num_threads, self.driver, current_row_count
-            # )
-            # handleResolveCaptchaChooseTwoObjectsAChi(
-            #     self.self_main, self.num_threads, self.driver, current_row_count
-            # )
+            handleResolveCaptchaRotateObjectAChi(
+                self.self_main, self.num_threads, self.driver, current_row_count
+            )
+            handleResolveCaptchaChooseTwoObjectsAChi(
+                self.self_main, self.num_threads, self.driver, current_row_count
+            )
 
             handleGetCodeFromMail(
                 self.self_main,
