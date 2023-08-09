@@ -1,47 +1,48 @@
 from selenium import webdriver
-import time
-import requests
+from time import sleep
+import pyautogui
+
+# Khởi tạo trình duyệt Chrome
+options = webdriver.ChromeOptions()
+options.add_extension("TM_chrome.crx")
+driver = webdriver.Chrome(options=options)
 
 
-# Hàm để cập nhật proxy trong WebDriver
-def update_proxy(proxy):
-    options = webdriver.ChromeOptions()
-    options.add_argument("--proxy-server=" + proxy)
-    driver = webdriver.Chrome(options=options)
-    return driver
+# Hàm để cập nhật proxy trong phiên driver hiện có
+def update_proxy(driver):
+    driver.get("chrome-extension://pmdlifofgdjcolhfjjfkojibiimoahlc/popup.html")
+    sleep(2)
+    inputApiKey = driver.find_element("css selector", ".js-api-key")
+    current_value = inputApiKey.get_attribute("value")
+    if not current_value:
+        inputApiKey.send_keys("4e7eeadaa41d83285838285edd60e3e5")
 
+    sleep(2)
+    autoChangeIp = driver.find_element("css selector", ".slider")
+    autoChangeIp.click()
 
-# Hàm để lấy proxy từ API
-def get_new_proxy():
-    api_key_tmproxy = "07abb8e50d61d34b59966335cf9cb7a0"
-    api_key_list = api_key_tmproxy.splitlines()
-    list_proxy = []
+    sleep(2)
+    minute = driver.find_element("css selector", ".js-time-reset-input")
+    minute.send_keys("10")
 
-    url = "https://tmproxy.com/api/proxy/get-new-proxy"
+    # sleep(2)
+    # http_proxy = driver.find_element("css selector", ".js-radio-proxy")
+    # http_proxy.click()
 
-    for key in api_key_list:
-        response = requests.post(url, json={"api_key": f"{key}"})
-        data = response.json()
-        https = data["data"]["https"]
-        list_proxy.append(https)
-
-        return list_proxy
+    sleep(2)
+    connectButton = driver.find_element("css selector", ".js-connect-current-ip")
+    connectButton.click()
 
 
 # Hàm để thực hiện việc cập nhật proxy và chạy trình duyệt
-def run_with_auto_proxy():
+def run_with_auto_proxy(driver):
     while True:
-        proxy_list = get_new_proxy()
-        print("proxy_list: ", proxy_list)
-        selected_proxy = proxy_list[0]
-        driver = update_proxy(selected_proxy)
+        update_proxy(driver)
 
-        driver.refresh()
-        driver.get("https://whatismyipaddress.com/vi-vn/index")
-
-        # Đợi 5 phút trước khi bắt đầu lại vòng lặp
-        time.sleep(300)  # 5 phút = 300 giây
+        sleep(2)
+        driver.get("https://whoer.net/")
+        sleep(200000)
 
 
 if __name__ == "__main__":
-    run_with_auto_proxy()
+    run_with_auto_proxy(driver)

@@ -166,7 +166,13 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value = QPlainTextEdit(parent=self.home)
     self.proxy_value.setGeometry(QRect(920, 80, 211, 371))
     self.proxy_value.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
-    self.proxy_value.setPlainText("07abb8e50d61d34b59966335cf9cb7a0")
+    self.proxy_value.setPlainText(
+        """76ce3a4758f5384ab58ff36d0bef30a1
+bc667610a53ec11e99b07ee542c71c57
+8f84d265792cd86e3b5b9f00e3de5d41
+c72554106c869de5be530403f251f484
+0fd16aea0e1ebbfbeadf3b6b1857689c"""
+    )
 
     self.label_3 = QLabel(parent=self.home)
     self.label_3.setGeometry(QRect(70, 470, 81, 16))
@@ -279,7 +285,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.chrome_percent_zoom_value = QDoubleSpinBox(parent=self.chome_setting)
     self.chrome_percent_zoom_value.setGeometry(QRect(140, 70, 61, 22))
     self.chrome_percent_zoom_value.setObjectName("chrome_percent_zoom_value")
-    self.chrome_percent_zoom_value.setValue(0.75)
+    self.chrome_percent_zoom_value.setValue(0.37)
     self.file_mail_check = QPushButton(parent=self.settings)
     self.file_mail_check.setGeometry(QRect(20, 240, 131, 24))
     self.file_mail_check.setIcon(icon3)

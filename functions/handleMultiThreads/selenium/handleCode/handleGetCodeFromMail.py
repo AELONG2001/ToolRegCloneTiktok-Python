@@ -2,6 +2,10 @@ import requests
 from PySide6.QtWidgets import *
 from utils.utils import wait
 
+from functions.handleMultiThreads.selenium.handleCode.handleGetCode import (
+    handleGetCode,
+)
+
 from functions.handleMultiThreads.selenium.handleCode.handleSubmitCode import (
     handleSubmitCode,
 )
@@ -18,7 +22,7 @@ def handleGetCodeFromMail(self, thread, driver, accounts, current_row_count):
             self.table_account_info.setItem(
                 current_row_count, 3, QTableWidgetItem("Đang lấy code...")
             )
-            wait(4, 6)
+            wait(8, 10)
             response = requests.get(url)
             data = response.json()
 
@@ -38,6 +42,7 @@ def handleGetCodeFromMail(self, thread, driver, accounts, current_row_count):
                     3,
                     QTableWidgetItem("Chưa có code đang lấy lại code..."),
                 )
+                handleGetCode(self, thread, driver, current_row_count)
                 isGetCodeMailAgain = True
 
     except requests.exceptions.RequestException as e:

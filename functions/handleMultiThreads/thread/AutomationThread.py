@@ -75,8 +75,37 @@ class AutomationThread(QThread):
         self.is_show_chrome = is_show_chrome
         self.is_running = True
         self.stop_flag = False
+        self.is_update_proxy = False
 
         self.options = webdriver.ChromeOptions()
+        self.options.add_extension("TM_chrome.crx")
+
+    def update_proxy(self, api_key):
+        self.is_update_proxy = True
+        print("Update Proxy")
+
+        self.driver.get(
+            "chrome-extension://pmdlifofgdjcolhfjjfkojibiimoahlc/popup.html"
+        )
+        sleep(2)
+        inputApiKey = self.driver.find_element("css selector", ".js-api-key")
+        current_value = inputApiKey.get_attribute("value")
+        if not current_value:
+            inputApiKey.send_keys(f"{api_key}")
+
+        sleep(2)
+        autoChangeIp = self.driver.find_element("css selector", ".slider")
+        autoChangeIp.click()
+
+        sleep(2)
+        minute = self.driver.find_element("css selector", ".js-time-reset-input")
+        minute.send_keys("10")
+
+        sleep(2)
+        connectButton = self.driver.find_element(
+            "css selector", ".js-connect-current-ip"
+        )
+        connectButton.click()
 
     @Slot()
     def show_warning(self):
@@ -87,7 +116,6 @@ class AutomationThread(QThread):
         )
 
     def stop(self):
-        print("Stoped")
         self.stop_flag = True
         for thread in self.self_main.chrome_threads:
             thread.terminate()
@@ -114,29 +142,35 @@ class AutomationThread(QThread):
         self.self_main.stop_progress_dialog.close()
 
     def run(self):
-        list_profile = handleGetProfileIdsFromGoLogin()
-        list_proxy = handleGetNewTMProxy(self.self_main)
-
         num_worker = self.num_threads
         chrome_percent_zoom = self.chrome_percent_zoom
-        is_show_chrome = self.is_show_chrome
 
-        if not is_show_chrome:
+        # list_proxy = handleGetNewTMProxy(self.self_main)
+        # print("ProxyList: ", list_proxy)
+        list_profile = handleGetProfileIdsFromGoLogin()
+        api_key_tmproxy = self.self_main.proxy_value.toPlainText()
+        api_key_list = api_key_tmproxy.splitlines()
+
+        print("api_key_list: ", api_key_list)
+
+        num_chrome_a_row = int(self.chrome_count)
+        if not self.is_show_chrome:
             self.options.add_argument("--headless")
-        self.options.add_argument(f"--force-device-scale-factor={chrome_percent_zoom}")
+        self.options.add_argument(
+            f"--force-device-scale-factor={self.chrome_percent_zoom}"
+        )
         self.options.add_argument("--mute-audio")
         self.options.add_argument("--disable-blink-features=AutomationControlled")
         self.options.add_argument(f"--user-data-dir={list_profile[num_worker]}")
         # self.options.add_argument(f"--proxy-server={list_proxy[num_worker]}")
 
         self.driver = webdriver.Chrome(options=self.options)
-
-        num_chrome_a_row = int(self.chrome_count)
         # Số cột muốn sắp xếp trên màn hình
         cols = num_chrome_a_row
         x = (num_worker % cols) * 510
         y = math.floor(num_worker / cols) * 810
         self.driver.set_window_rect(x, y, 200, 800)
+
         while not self.stop_flag:
             input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
 
@@ -170,6 +204,11 @@ class AutomationThread(QThread):
                 return
 
             AutomationThread.drivers_list.append(self.driver)
+
+            if not self.is_update_proxy:
+                self.update_proxy(api_key_list[num_worker])
+                sleep(3)
+
             self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
             handleSelectMonth(
                 self.self_main,
@@ -233,4 +272,4 @@ class AutomationThread(QThread):
             self.driver.get("https://www.tiktok.com/logout")
             wait(5, 10)
 
-        # self.driver.quit()
+        # driver.quit()

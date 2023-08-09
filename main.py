@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
     def __init__(self, ui_self):
         super().__init__()
         self.ui_self = ui_self
-        self.ui_self.setupUi(self)
+        # self.ui_self.setupUi(self)
 
     def closeEvent(self, event):
         result = QMessageBox.question(
