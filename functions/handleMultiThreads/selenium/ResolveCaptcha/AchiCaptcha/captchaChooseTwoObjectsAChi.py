@@ -41,7 +41,7 @@ def handleCreateJobGetCaptchaChooseTwoObjectsAChi(
         response = requests.post("http://api.achicaptcha.com/createTask", json=body)
         data = response.json()
 
-        wait(6, 8)
+        wait(10, 12)
         return getResultCaptchaChooseTwoObjectsAChi(data["taskId"])
     except requests.exceptions.RequestException as e:
         print(e)
@@ -51,7 +51,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, current_row_c
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
-        wait(4, 6)
+        wait(6, 8)
         captchaElements = driver.find_elements("css selector", "#captcha-verify-image")
         if not isCheckResolveCaptchaAgain and captchaElements:
             self.table_account_info.setItem(

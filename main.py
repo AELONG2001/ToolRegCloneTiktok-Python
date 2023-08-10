@@ -40,7 +40,6 @@ class MainWindow(QMainWindow):
     def __init__(self, ui_self):
         super().__init__()
         self.ui_self = ui_self
-        # self.ui_self.setupUi(self)
 
     def closeEvent(self, event):
         result = QMessageBox.question(
@@ -74,7 +73,7 @@ class Ui_ToolRegCloneTiktok(QObject):
         self.failed_mail_count = 0
 
         self.start_timer = QTimer(self)
-        self.start_timer.setInterval(2000)  # Thời gian chờ giữa các lần khởi động luồng
+        self.start_timer.setInterval(5000)  # Thời gian chờ giữa các lần khởi động luồng
         self.start_timer.timeout.connect(self.start_next_thread)
 
         self.stop_progress_dialog = StopProgressDialog()

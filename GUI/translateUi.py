@@ -21,7 +21,7 @@ def translateUi(self, ToolRegCloneTiktok):
     self.import_proxy.setText(_translate("ToolRegCloneTiktok", "Nhập"))
     self.stop_button.setText(_translate("ToolRegCloneTiktok", "Kết thúc"))
     self.threads.setText(_translate("ToolRegCloneTiktok", "Số luồng:"))
-    self.threads_value.setValue(5)
+    self.threads_value.setValue(7)
     self.table_account_info.setSortingEnabled(False)
     item = self.table_account_info.horizontalHeaderItem(0)
     item.setText(_translate("ToolRegCloneTiktok", "username"))
@@ -67,7 +67,7 @@ def translateUi(self, ToolRegCloneTiktok):
     self.chrome_setting_line_value.setItemText(
         9, _translate("ToolRegCloneTiktok", "10")
     )
-    self.chrome_setting_line_value.setCurrentText("5")
+    self.chrome_setting_line_value.setCurrentText("10")
     self.chrome_setting_radio.setText(
         _translate("ToolRegCloneTiktok", "Mở chrome khi chạy:")
     )

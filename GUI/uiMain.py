@@ -169,9 +169,11 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value.setPlainText(
         """76ce3a4758f5384ab58ff36d0bef30a1
 bc667610a53ec11e99b07ee542c71c57
-8f84d265792cd86e3b5b9f00e3de5d41
-c72554106c869de5be530403f251f484
-0fd16aea0e1ebbfbeadf3b6b1857689c"""
+95403cacc8a6a8f38d9275d2b5ddbbf7
+522de73eb7533cf1b86804f53ae19ec0
+75fa27d818a47ab9b168d767b2c3c7d6
+b2d479c182ab7c31e20c9e6776931af8
+44be5eb636e8019d7aab0e9bf9b03f82"""
     )
 
     self.label_3 = QLabel(parent=self.home)

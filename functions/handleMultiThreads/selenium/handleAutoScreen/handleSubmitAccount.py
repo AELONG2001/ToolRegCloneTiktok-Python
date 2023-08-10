@@ -11,7 +11,7 @@ def handleSubmitAccount(self, thread, driver, current_row_count):
         )
         submitAccount.click()
 
-        wait(4, 6)
+        wait(2, 4)
         checkDectect = driver.find_elements(
             "xpath",
             '//span[contains(text(), "Maximum number of attempts reached. Try again later.")]',

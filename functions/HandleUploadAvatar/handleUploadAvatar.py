@@ -13,20 +13,24 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaCho
 from utils.utils import random_number
 
 
-def handleUploadAvatar(self, thread, driver, current_row_count):
-    wait(4, 6)
+def handleUploadAvatar(self, thread, driver, accounts, current_row_count):
+    wait(2, 4)
+    output_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\output.txt"
     list_avatar_folder = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\wibus"
+    username = accounts[thread][0]
+    password = accounts[thread][1]
 
     list_avatar = os.listdir(list_avatar_folder)
 
     wait(2, 4)
     pageContent = driver.page_source
     userId = pageContent.split('"nickName":"')[1].split('"')[0]
+    print("userId: ", userId)
 
     if userId is None:
         return
-
-    driver.get(f"https://www.tiktok.com/@{userId}")
+    else:
+        driver.get(f"https://www.tiktok.com/@{userId}")
 
     waitForNavigation = WebDriverWait(driver, 100)
     editProfile = waitForNavigation.until(
@@ -39,9 +43,15 @@ def handleUploadAvatar(self, thread, driver, current_row_count):
     )
 
     wait(4, 6)
+    cookies = driver.get_cookies()
+    cookies_string = ";".join(
+        [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+    )
+    account = f"{username}|Long123@|{password}|{cookies_string}"
+
     inputUploadAvatar = driver.find_element("css selector", "input[type='file']")
     inputUploadAvatar.send_keys(
-        f"C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus/{list_avatar[random_number(0, 37)]}"
+        f"C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus/{list_avatar[random_number(0, 50)]}"
     )
 
     wait(4, 6)
@@ -65,8 +75,9 @@ def handleUploadAvatar(self, thread, driver, current_row_count):
 
     self.table_account_info.setItem(current_row_count, 3, item)
 
-    # delete all cookies
-    driver.delete_all_cookies()
+    # insert account
+    with open(output_file_path, "a") as f:
+        f.write(account + "\n")
 
     wait(4, 6)
     handleResolveCaptchaRotateObjectAChi(self, thread, driver, current_row_count)

@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from selenium import webdriver
+from selenium.common.exceptions import WebDriverException
 import math
 from time import sleep
 from utils.utils import wait
@@ -97,15 +98,20 @@ class AutomationThread(QThread):
         autoChangeIp = self.driver.find_element("css selector", ".slider")
         autoChangeIp.click()
 
-        sleep(2)
+        sleep(3)
         minute = self.driver.find_element("css selector", ".js-time-reset-input")
         minute.send_keys("10")
 
-        sleep(2)
+        sleep(3)
+        getNewIp = self.driver.find_element("css selector", ".new-ip-btn")
+        getNewIp.click()
+
         connectButton = self.driver.find_element(
             "css selector", ".js-connect-current-ip"
         )
+        sleep(2)
         connectButton.click()
+        sleep(3)
 
     @Slot()
     def show_warning(self):
@@ -150,8 +156,6 @@ class AutomationThread(QThread):
         list_profile = handleGetProfileIdsFromGoLogin()
         api_key_tmproxy = self.self_main.proxy_value.toPlainText()
         api_key_list = api_key_tmproxy.splitlines()
-
-        print("api_key_list: ", api_key_list)
 
         num_chrome_a_row = int(self.chrome_count)
         if not self.is_show_chrome:
@@ -209,7 +213,12 @@ class AutomationThread(QThread):
                 self.update_proxy(api_key_list[num_worker])
                 sleep(3)
 
-            self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
+            try:
+                self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
+            except WebDriverException as e:
+                print("Đã xảy ra lỗi:", e)
+                self.driver.refresh()
+
             handleSelectMonth(
                 self.self_main,
                 self.num_threads,
@@ -267,9 +276,15 @@ class AutomationThread(QThread):
                 accounts,
             )
             handleUploadAvatar(
-                self.self_main, self.num_threads, self.driver, current_row_count
+                self.self_main,
+                self.num_threads,
+                self.driver,
+                accounts,
+                current_row_count,
             )
-            self.driver.get("https://www.tiktok.com/logout")
+            try:
+                self.driver.get("https://www.tiktok.com/logout")
+            except WebDriverException as e:
+                print("Đã xảy ra lỗi:", e)
+                self.driver.refresh()
             wait(5, 10)
-
-        # driver.quit()
