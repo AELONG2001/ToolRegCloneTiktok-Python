@@ -10,11 +10,19 @@ from functions.handleMultiThreads.selenium.handleCode.handleSubmitCode import (
     handleSubmitCode,
 )
 
+from functions.profilesGologin.handleDeleteProfile import (
+    handleDeleteProfile,
+)
 
-def handleGetCodeFromMail(self, thread, driver, accounts, current_row_count):
+
+
+def handleGetCodeFromMail(self, thread, driver, accounts, current_row_count, profile_id):
     try:
-        isGetCodeMailAgain = True
-        while isGetCodeMailAgain and not self.stop_flag:
+        file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+        max_attempts = 1  # Số lần tối đa xuất hiện checkDectect trước khi khởi động lại thread
+        attempts = 0
+        isCode = True
+        while  attempts < max_attempts and isCode and not self.stop_flag:
             username = accounts[thread][0]
             password = accounts[thread][1]
 
@@ -34,16 +42,27 @@ def handleGetCodeFromMail(self, thread, driver, accounts, current_row_count):
                     3,
                     QTableWidgetItem("Đã lấy được code đợi nhập..."),
                 )
-                isGetCodeMailAgain = False
+                isCode = False
+                attempts = 0
                 handleSubmitCode(self, thread, driver, data["code"], current_row_count)
             else:
-                self.table_account_info.setItem(
-                    current_row_count,
-                    3,
-                    QTableWidgetItem("Chưa có code đang lấy lại code..."),
-                )
-                handleGetCode(self, thread, driver, current_row_count)
-                isGetCodeMailAgain = True
+                isCode = True
+                attempts += 1
+                # handleGetCode(self, thread, driver, current_row_count)
+                # isGetCodeMailAgain = True
+
+        # Nếu đã thực hiện đủ số lần tối đa, khởi động lại thread
+        if attempts >= max_attempts:
+            with open(file_path, "a") as file:
+                file.write(f"{username}|{password}\n")
+            driver.quit()
+            handleDeleteProfile(profile_id)
+            self.table_account_info.setItem(
+                current_row_count,
+                3,
+                QTableWidgetItem("Bị chặn, đợi restart lại..."),
+            )
+            self.restart_thread(thread)
 
     except requests.exceptions.RequestException as e:
         print(e)

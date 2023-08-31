@@ -2,6 +2,7 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 from time import sleep
+from dotenv import load_dotenv
 
 # UI
 from GUI.uiMain import uiMain
@@ -9,6 +10,10 @@ from GUI.translateUi import translateUi
 
 # Logic
 from functions.handleLogicMain.logicMain import AutomationController
+from functions.handleMultiThreads.thread.AutomationThread import AutomationThread
+
+
+load_dotenv()
 
 
 class StopProgressDialog(QDialog):
@@ -69,11 +74,12 @@ class Ui_ToolRegCloneTiktok(QObject):
         self.chrome_threads = []
         self.thread_index = 0
         self.stop_all_threads = False
+        self.num_error_send_code = 0
         self.success_mail_count = 0
         self.failed_mail_count = 0
 
         self.start_timer = QTimer(self)
-        self.start_timer.setInterval(5000)  # Thời gian chờ giữa các lần khởi động luồng
+        self.start_timer.setInterval(3000)  # Thời gian chờ giữa các lần khởi động luồng
         self.start_timer.timeout.connect(self.start_next_thread)
 
         self.stop_progress_dialog = StopProgressDialog()
@@ -87,6 +93,18 @@ class Ui_ToolRegCloneTiktok(QObject):
 
     def start_next_thread(self):
         self.automation_controller.start_next_thread()
+    
+    def restart_thread(self, thread):
+        # self.automation_controller.restart_thread(self, thread)
+        print("Restart")
+        chrome_count = self.chrome_setting_line_value.currentText()
+        chrome_percent_zoom = self.chrome_percent_zoom_value.value()
+        is_show_chrome = self.chrome_setting_radio_yes.isChecked()
+        
+        self.chrome_threads[thread].stop()  # Dừng thread hiện tại
+        self.chrome_threads[thread].wait()  # Đợi thread dừng hoàn toàn
+        self.chrome_threads[thread] = AutomationThread(self, self.stop_event, thread, chrome_count, chrome_percent_zoom, is_show_chrome)  # Khởi tạo thread mới
+        self.chrome_threads[thread].start()  # Bắt đầu thread mới
 
     def stop(self):
         self.automation_controller.stop()

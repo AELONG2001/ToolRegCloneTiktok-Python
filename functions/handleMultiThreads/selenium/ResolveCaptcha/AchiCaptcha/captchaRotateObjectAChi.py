@@ -41,17 +41,17 @@ def handleCreateJobGetCaptchaRotateObjectAChi(
         response = requests.post("http://api.achicaptcha.com/createTask", json=body)
         data = response.json()
 
-        wait(10, 12)
+        wait(6, 8)
         return getResultCaptchaRotateObjectAChi(data["taskId"])
     except requests.exceptions.RequestException as e:
         print(e)
 
 
-def handleResolveCaptchaRotateObjectAChi(self, thread, driver, current_row_count):
+def handleResolveCaptchaRotateObjectAChi(self, thread, driver, accounts, current_row_count, profile_id):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
-        wait(6, 8)
+        wait(4, 6)
         captchaElements = driver.find_elements(
             "css selector", ".captcha_verify_slide--button"
         )
@@ -94,6 +94,7 @@ def handleResolveCaptchaRotateObjectAChi(self, thread, driver, current_row_count
             except requests.exceptions.RequestException as e:
                 print(e)
 
+        wait(2, 4)
         base64DataImgOutside = encoded_img_list[0]
         base64DataImgInside = encoded_img_list[1]
 
@@ -101,6 +102,13 @@ def handleResolveCaptchaRotateObjectAChi(self, thread, driver, current_row_count
             self, thread, base64DataImgInside, base64DataImgOutside, current_row_count
         )
         print("result: ", result)
+
+        if not result:
+          thread = self.chrome_threads[thread]
+          driver.quit()
+          thread.start()
+          print("Restart")
+          return
 
         # Lấy kích thước và tọa độ của phần tử
         element_rect = dragIcon.rect
@@ -148,4 +156,4 @@ def handleResolveCaptchaRotateObjectAChi(self, thread, driver, current_row_count
                 '//*[@data-e2e="send-code-button"]',
             )
             if getCodeElement:
-                handleGetCode(self, thread, driver, current_row_count)
+                handleGetCode(self, thread, driver, accounts, current_row_count, profile_id)

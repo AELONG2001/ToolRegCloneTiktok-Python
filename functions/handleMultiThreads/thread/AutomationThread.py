@@ -4,15 +4,19 @@ from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 import math
 from time import sleep
+from fake_useragent import UserAgent
 from utils.utils import wait
 
-from functions.handleGetProfiles.handleGetProfiles import (
-    handleGetProfileIdsFromGoLogin,
+from functions.profilesGologin.handleCreateProfile import (
+    handleCreateProfile,
+)
+from functions.profilesGologin.handleDeleteProfile import (
+    handleDeleteProfile,
 )
 
-from functions.proxy.handleGetNewTMProxy import (
-    handleGetNewTMProxy,
-)
+from functions.proxy.handleGetNewTMProxy import handleGetNewTMProxy
+from functions.proxy.handleGetCurrentTMProxy import handleGetCurrentTMProxy
+
 
 from functions.handleInputFileMail.getMailContent import getMailContent
 
@@ -63,7 +67,7 @@ class AutomationThread(QThread):
         self_main,
         stop_event,
         num_threads,
-        chrome_count,
+        chrome_count ,
         chrome_percent_zoom,
         is_show_chrome,
     ):
@@ -81,38 +85,6 @@ class AutomationThread(QThread):
         self.options = webdriver.ChromeOptions()
         self.options.add_extension("TM_chrome.crx")
 
-    def update_proxy(self, api_key):
-        self.is_update_proxy = True
-        print("Update Proxy")
-
-        self.driver.get(
-            "chrome-extension://pmdlifofgdjcolhfjjfkojibiimoahlc/popup.html"
-        )
-        sleep(2)
-        inputApiKey = self.driver.find_element("css selector", ".js-api-key")
-        current_value = inputApiKey.get_attribute("value")
-        if not current_value:
-            inputApiKey.send_keys(f"{api_key}")
-
-        sleep(2)
-        autoChangeIp = self.driver.find_element("css selector", ".slider")
-        autoChangeIp.click()
-
-        sleep(3)
-        minute = self.driver.find_element("css selector", ".js-time-reset-input")
-        minute.send_keys("10")
-
-        sleep(3)
-        getNewIp = self.driver.find_element("css selector", ".new-ip-btn")
-        getNewIp.click()
-
-        connectButton = self.driver.find_element(
-            "css selector", ".js-connect-current-ip"
-        )
-        sleep(2)
-        connectButton.click()
-        sleep(3)
-
     @Slot()
     def show_warning(self):
         QMessageBox.warning(
@@ -121,60 +93,116 @@ class AutomationThread(QThread):
             "Vui lòng nhập thêm mail",
         )
 
-    def stop(self):
-        self.stop_flag = True
-        for thread in self.self_main.chrome_threads:
-            thread.terminate()
+    def update_proxy(self, api_key):
+        self.is_update_proxy = True
+        print("Update Proxy")
 
-        self.self_main.stop_progress_dialog.show()
-        QCoreApplication.processEvents()
-
-        if hasattr(self, "driver"):
-            self.driver.quit()
-            AutomationThread.num_quit += 1
-
-        total_threads = len(self.self_main.chrome_threads)
-        completed_threads = AutomationThread.num_quit
-        percent_complete = (completed_threads / total_threads) * 100
-
-        self.self_main.stop_progress_dialog.set_progress(percent_complete)
-        self.self_main.stop_progress_dialog.set_progress_text(
-            f"Đã dừng {completed_threads} luồng"
+        self.driver.get(
+            "chrome-extension://pmdlifofgdjcolhfjjfkojibiimoahlc/popup.html"
         )
 
-        QCoreApplication.processEvents()
-        sleep(1)
+        sleep(2)
+        disconnectButton = self.driver.find_element("css selector", ".disconnect-btn")
+        disconnectButton.click()
 
-        self.self_main.stop_progress_dialog.close()
+        sleep(2)
+        inputApiKey = self.driver.find_element("css selector", ".js-api-key")
+        current_value = inputApiKey.get_attribute("value")
+        if not current_value:
+            inputApiKey.send_keys(f"{api_key}")
+
+        sleep(3)
+        autoChangeIp = self.driver.find_element("css selector", ".slider")
+        autoChangeIp.click()
+
+        sleep(2)
+        minute = self.driver.find_element("css selector", ".js-time-reset-input")
+        minute.send_keys("10")
+
+        sleep(2)
+        connectButton = self.driver.find_element(
+            "css selector", ".js-connect-current-ip"
+        )
+        connectButton.click()
+
+    def stop(self):
+        self.stop_flag = True
+        # for thread in self.self_main.chrome_threads:
+        #     thread.terminate()
+
+        # self.self_main.stop_progress_dialog.show()
+        # QCoreApplication.processEvents()
+
+        # if hasattr(self, "driver"):
+        #     self.driver.quit()
+        #     AutomationThread.num_quit += 1
+
+        # total_threads = len(self.self_main.chrome_threads)
+        # completed_threads = AutomationThread.num_quit
+        # percent_complete = (completed_threads / total_threads) * 100
+
+        # self.self_main.stop_progress_dialog.set_progress(percent_complete)
+        # self.self_main.stop_progress_dialog.set_progress_text(
+        #     f"Đã dừng {completed_threads} luồng"
+        # )
+
+        # QCoreApplication.processEvents()
+        # sleep(1)
+
+        # self.self_main.stop_progress_dialog.close()
 
     def run(self):
+        print("run")
         num_worker = self.num_threads
         chrome_percent_zoom = self.chrome_percent_zoom
 
-        # list_proxy = handleGetNewTMProxy(self.self_main)
-        # print("ProxyList: ", list_proxy)
-        list_profile = handleGetProfileIdsFromGoLogin()
         api_key_tmproxy = self.self_main.proxy_value.toPlainText()
         api_key_list = api_key_tmproxy.splitlines()
 
+        user_agent = UserAgent()
+
+        random_user_agent = user_agent.random
+
         num_chrome_a_row = int(self.chrome_count)
+
+        new_proxy = handleGetNewTMProxy(api_key_list[num_worker])
+        current_proxy = handleGetCurrentTMProxy(api_key_list[num_worker])
+
+        if not new_proxy:
+            self.proxy = current_proxy
+        else:
+            self.proxy = new_proxy
+
+        print("Proxy: ",  self.proxy)
+    
+        self.profile_id = handleCreateProfile()
+        print("profile_id: ", self.profile_id)
+            
+
         if not self.is_show_chrome:
-            self.options.add_argument("--headless")
+                self.options.add_argument("--headless")
         self.options.add_argument(
-            f"--force-device-scale-factor={self.chrome_percent_zoom}"
+            f"--force-device-scale-factor={chrome_percent_zoom}"
         )
         self.options.add_argument("--mute-audio")
         self.options.add_argument("--disable-blink-features=AutomationControlled")
-        self.options.add_argument(f"--user-data-dir={list_profile[num_worker]}")
-        # self.options.add_argument(f"--proxy-server={list_proxy[num_worker]}")
+        self.options.add_argument(f"user-agent={random_user_agent}")
+        self.options.add_argument(
+            f"--user-data-dir=C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/{self.profile_id}/Default"
+        )
+        self.options.add_argument(f"--proxy-server={self.proxy}")
 
         self.driver = webdriver.Chrome(options=self.options)
+        AutomationThread.drivers_list.append(self.driver)
+        
         # Số cột muốn sắp xếp trên màn hình
         cols = num_chrome_a_row
         x = (num_worker % cols) * 510
         y = math.floor(num_worker / cols) * 810
+
         self.driver.set_window_rect(x, y, 200, 800)
 
+        
         while not self.stop_flag:
             input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
 
@@ -207,17 +235,24 @@ class AutomationThread(QThread):
                 )
                 return
 
-            AutomationThread.drivers_list.append(self.driver)
-
             if not self.is_update_proxy:
                 self.update_proxy(api_key_list[num_worker])
-                sleep(3)
+                sleep(5)
+
 
             try:
                 self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
-            except WebDriverException as e:
-                print("Đã xảy ra lỗi:", e)
-                self.driver.refresh()
+            except WebDriverException:
+                print("Lỗi mạng hoặc trang không thể truy cập:")
+                self.driver.quit()
+                handleDeleteProfile(self.profile_id)
+                self.self_main.table_account_info.setItem(
+                    current_row_count,
+                    3,
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                )
+                self.self_main.restart_thread(self.num_threads)
+
 
             handleSelectMonth(
                 self.self_main,
@@ -225,6 +260,7 @@ class AutomationThread(QThread):
                 self.driver,
                 accounts,
                 current_row_count,
+                self.profile_id
             )
             handleSelectDay(
                 self.self_main, self.num_threads, self.driver, current_row_count
@@ -240,7 +276,7 @@ class AutomationThread(QThread):
                 current_row_count,
             )
             handleGetCode(
-                self.self_main, self.num_threads, self.driver, current_row_count
+                self.self_main, self.num_threads, self.driver, accounts, current_row_count, self.profile_id
             )
 
             # Resolve captcha by Omo
@@ -254,10 +290,10 @@ class AutomationThread(QThread):
 
             # Resolve captcha by Achi
             handleResolveCaptchaRotateObjectAChi(
-                self.self_main, self.num_threads, self.driver, current_row_count
+                self.self_main, self.num_threads, self.driver, accounts, current_row_count, self.profile_id
             )
             handleResolveCaptchaChooseTwoObjectsAChi(
-                self.self_main, self.num_threads, self.driver, current_row_count
+                self.self_main, self.num_threads, self.driver, accounts, current_row_count, self.profile_id
             )
 
             handleGetCodeFromMail(
@@ -266,14 +302,11 @@ class AutomationThread(QThread):
                 self.driver,
                 accounts,
                 current_row_count,
+                self.profile_id
             )
-            handleSubmitAccount(
-                self.self_main, self.num_threads, self.driver, current_row_count
-            )
+            handleSubmitAccount(self.self_main, self.num_threads, self.driver, accounts, current_row_count, self.profile_id)
             handleInsertNewUsername(
-                self.num_threads,
                 self.driver,
-                accounts,
             )
             handleUploadAvatar(
                 self.self_main,
@@ -281,10 +314,10 @@ class AutomationThread(QThread):
                 self.driver,
                 accounts,
                 current_row_count,
+                self.profile_id
             )
-            try:
-                self.driver.get("https://www.tiktok.com/logout")
-            except WebDriverException as e:
-                print("Đã xảy ra lỗi:", e)
-                self.driver.refresh()
-            wait(5, 10)
+
+            wait(4, 6)
+            self.driver.get("https://www.tiktok.com/logout")
+            wait(2, 4)
+        self.driver.quit()

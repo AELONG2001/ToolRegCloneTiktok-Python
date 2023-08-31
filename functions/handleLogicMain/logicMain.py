@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 
-
+from functions.handleMultiThreads.thread.AutomationThread import AutomationThread
 from functions.handleMultiThreads.thread.startAutomation import startAutomation
 from functions.handleMultiThreads.thread.stopAutomation import stopAutomation
 from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
@@ -28,6 +28,7 @@ class AutomationController:
             self.ui_instance.start_timer.start()  # Khởi động lại timer để tạo khoảng thời gian cho lần khởi động luồng tiếp theo
         else:
             self.ui_instance.start_timer.stop()
+
 
     def stop(self):
         stopAutomation(self.ui_instance)

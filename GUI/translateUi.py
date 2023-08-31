@@ -21,7 +21,7 @@ def translateUi(self, ToolRegCloneTiktok):
     self.import_proxy.setText(_translate("ToolRegCloneTiktok", "Nhập"))
     self.stop_button.setText(_translate("ToolRegCloneTiktok", "Kết thúc"))
     self.threads.setText(_translate("ToolRegCloneTiktok", "Số luồng:"))
-    self.threads_value.setValue(7)
+    self.threads_value.setValue(5)
     self.table_account_info.setSortingEnabled(False)
     item = self.table_account_info.horizontalHeaderItem(0)
     item.setText(_translate("ToolRegCloneTiktok", "username"))
