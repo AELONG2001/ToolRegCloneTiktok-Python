@@ -136,6 +136,7 @@ class Ui_ToolRegCloneTiktok(QObject):
 
 if __name__ == "__main__":
     import sys
+    
     app = QApplication(sys.argv)
     ui = Ui_ToolRegCloneTiktok()
     ToolRegCloneTiktok = MainWindow(ui)
