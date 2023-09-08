@@ -167,11 +167,11 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value.setGeometry(QRect(920, 80, 211, 371))
     self.proxy_value.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
     self.proxy_value.setPlainText(
-        """03d61177f4cbf2e3d93bfce1734979cc
-c9045295f14be8f80fc86d422636abc8
-463cc8760ba08b4b56ef2c7ba87c21e9
-ea925f3b81ff4ffa7ce924bd7c7373c1
-51d13aa2ff19d51fbffc2b07ad93d40d
+        """2f9cfb0b78d191f9cdf5b5a84f8a9dee
+3aa56c2f6b4dc5680833d11607ed6a60
+c99cdfcb754c07790f19375e21789ed8
+088bbe19db498c2b88f6837b08982513
+19a397ab0cc7aea175bc12ca550ebb41
 """
     )
 

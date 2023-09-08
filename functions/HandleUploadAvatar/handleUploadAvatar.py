@@ -4,9 +4,7 @@ from PySide6.QtGui import *
 from utils.utils import wait
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from functions.profilesGologin.handleDeleteProfile import (
-    handleDeleteProfile,
-)
+
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
     handleResolveCaptchaRotateObjectAChi,
 )
@@ -14,6 +12,7 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaCho
     handleResolveCaptchaChooseTwoObjectsAChi,
 )
 from utils.utils import random_number
+from selenium.common.exceptions import ElementClickInterceptedException
 
 
 def handleUploadAvatar(self, thread, driver, accounts, current_row_count, profile_id):
@@ -83,16 +82,21 @@ def handleUploadAvatar(self, thread, driver, accounts, current_row_count, profil
 
     wait(4, 6)
     applyAvatarBtn = driver.find_element("xpath", '//button[text()="Apply"]')
-    if not applyAvatarBtn.is_displayed():
-        # Sử dụng JavaScript để cuộn trang đến vị trí của phần tử
-        driver.execute_script("arguments[0].scrollIntoView();", applyAvatarBtn)
-    applyAvatarBtn.click()
+    try:
+        if not applyAvatarBtn.is_displayed():
+            # Sử dụng JavaScript để cuộn trang đến vị trí của phần tử
+            driver.execute_script("arguments[0].scrollIntoView();", applyAvatarBtn)
+        applyAvatarBtn.click()
+    except:
+        return
+        
 
     wait(4, 6)
-    saveElement = driver.find_elements("xpath", '//*[@data-e2e="edit-profile-save"]')
-    if saveElement:
-        saveElement[0].click()
-    else:
+    saveElement = driver.find_element("xpath", '//*[@data-e2e="edit-profile-save"]')
+    try:
+        saveElement.click()
+    except ElementClickInterceptedException:
+        print("không tìm thấy saveElement")
         return
     
     self.table_account_info.setItem(
@@ -104,7 +108,5 @@ def handleUploadAvatar(self, thread, driver, accounts, current_row_count, profil
     item.setForeground(green_color)
 
     self.table_account_info.setItem(current_row_count, 3, item)
-
-    # handleDeleteProfile(profile_id)
 
     wait(2, 4)

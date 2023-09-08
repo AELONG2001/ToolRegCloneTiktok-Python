@@ -31,7 +31,7 @@ def handleSelectMonth(self, thread, driver, accounts, current_row_count, profile
             f.writelines(hotmail + "\n")
 
     try:
-        waitForNavigation = WebDriverWait(driver, 5)
+        waitForNavigation = WebDriverWait(driver, 100)
         monthSelectElement = waitForNavigation.until(
             EC.presence_of_element_located(
                 ("xpath", '//*[@aria-label="Month. Double-tap for more options"]')
@@ -44,7 +44,7 @@ def handleSelectMonth(self, thread, driver, accounts, current_row_count, profile
         self.table_account_info.setItem(
             current_row_count, 3, QTableWidgetItem("Đang chọn tháng...")
         )
-        wait(2, 4)
+        wait(4, 6)
         dropDownSelectMonth = driver.find_element(
             "id", f"Month-options-item-{random_number(0, 11)}"
         )

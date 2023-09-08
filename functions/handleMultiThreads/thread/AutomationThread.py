@@ -175,7 +175,7 @@ class AutomationThread(QThread):
 
         print("Proxy: ",  self.proxy)
     
-        self.profile_id = handleCreateProfile()
+        self.profile_id = handleCreateProfile(self.proxy)
         print("profile_id: ", self.profile_id)
             
 
@@ -185,6 +185,30 @@ class AutomationThread(QThread):
             f"--force-device-scale-factor={chrome_percent_zoom}"
         )
         self.options.add_argument("--mute-audio")
+        self.options.add_argument('--no-first-run')
+        self.options.add_argument('--no-service-autorun')
+        self.options.add_argument('--password-store-basic')
+        self.options.add_argument('--lang=en-US')
+        self.options.add_argument('--disabled-gpu')
+        self.options.add_argument('--disabled-cpu')
+        prefs = {
+            "credentials_enable_service": False,
+            "profile.password_manager_enabled": False,
+            "profile.default_content_setting_values.notifications": 2,
+            "download_restrictions": 3
+        }
+        self.options.add_experimental_option('prefs', prefs)
+        self.options.add_experimental_option('useAutomationExtension', False)
+        self.options.add_argument('--enable-main-frame-before-activation')
+        self.options.add_argument('--display-capture-permissions-policy-allowed')
+        self.options.add_argument('--device-scale-factor=1')
+        self.options.add_argument('--disable-web-secutiry')
+        self.options.add_argument('--allow-running-insecure-content')
+        self.options.add_argument('--disable-popup-blocking')
+        self.options.add_argument('--ignore-certificate-errors')
+        self.options.add_argument('--disable-plugins-discovery')
+        self.options.add_argument('--disable-gpu-shader-disk-cache')
+
         self.options.add_argument("--disable-blink-features=AutomationControlled")
         self.options.add_argument(f"user-agent={random_user_agent}")
         self.options.add_argument(
@@ -306,7 +330,7 @@ class AutomationThread(QThread):
             )
             handleSubmitAccount(self.self_main, self.num_threads, self.driver, accounts, current_row_count, self.profile_id)
             handleInsertNewUsername(
-                self.driver,
+                self.self_main, self.num_threads, self.driver, accounts, current_row_count, self.profile_id
             )
             handleUploadAvatar(
                 self.self_main,
