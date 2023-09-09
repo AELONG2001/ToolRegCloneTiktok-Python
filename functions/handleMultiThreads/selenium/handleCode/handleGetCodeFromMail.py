@@ -53,6 +53,7 @@ def handleGetCodeFromMail(self, thread, driver, accounts, current_row_count, pro
 
         # Nếu đã thực hiện đủ số lần tối đa, khởi động lại thread
         if attempts >= max_attempts:
+            wait(1, 2)
             with open(file_path, "a") as file:
                 file.write(f"{username}|{password}\n")
             driver.quit()

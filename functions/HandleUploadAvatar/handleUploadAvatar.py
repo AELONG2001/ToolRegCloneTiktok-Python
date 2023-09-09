@@ -4,6 +4,9 @@ from PySide6.QtGui import *
 from utils.utils import wait
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import TimeoutException
+
 
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
     handleResolveCaptchaRotateObjectAChi,
@@ -26,18 +29,14 @@ def handleUploadAvatar(self, thread, driver, accounts, current_row_count, profil
 
     wait(2, 4)
     pageContent = driver.page_source
+    userId = pageContent.split('"nickName":"')[1].split('"')[0]
+   
     try:
-        userId = pageContent.split('"nickName":"')[1].split('"')[0]
-    except:
-        userId = None
-        return
-
-    print("userId: ", userId)
-
-    if userId:
         driver.get(f"https://www.tiktok.com/@{userId}")
-    else:
+    except WebDriverException:
+        print("Không thể truy cập với user_id này")
         return
+
     
     wait(4, 6)
     cookies = driver.get_cookies()
@@ -57,14 +56,18 @@ def handleUploadAvatar(self, thread, driver, accounts, current_row_count, profil
     if checkCaptcha:
         return
     
-    waitForNavigation = WebDriverWait(driver, 100)
-    editProfile = waitForNavigation.until(
-        EC.presence_of_element_located(("xpath", '//span[text()="Edit profile"]'))
-    )
-    wait(4, 6)
-    handleResolveCaptchaRotateObjectAChi(self, thread, driver, accounts, current_row_count, profile_id)
-    handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, current_row_count, profile_id)
-    editProfile.click()
+    try:
+        waitForNavigation = WebDriverWait(driver, 50)
+        editProfile = waitForNavigation.until(
+            EC.presence_of_element_located(("xpath", '//span[text()="Edit profile"]'))
+        )
+        wait(4, 6)
+        handleResolveCaptchaRotateObjectAChi(self, thread, driver, accounts, current_row_count, profile_id)
+        handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, current_row_count, profile_id)
+        editProfile.click()
+    except TimeoutException:
+        print("Không tìm thấy Edit profile sau khoảng thời gian chờ")
+        return
 
     self.table_account_info.setItem(
         current_row_count, 3, QTableWidgetItem("Đang upload avatar...")

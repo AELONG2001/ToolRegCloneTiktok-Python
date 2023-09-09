@@ -172,6 +172,11 @@ def uiMain(self, ToolRegCloneTiktok):
 c99cdfcb754c07790f19375e21789ed8
 088bbe19db498c2b88f6837b08982513
 19a397ab0cc7aea175bc12ca550ebb41
+3ae1c14191e2cdc2ee6badded8e646d6
+f6df4ae556013a378a04e688812c671e
+1f39ed24d97f888dccf9c994b36b26dc
+a278abf14a050683cea5df6bf47f9cc3
+0aa2ab8e9b89757ad5216900419ea164
 """
     )
 
@@ -286,7 +291,7 @@ c99cdfcb754c07790f19375e21789ed8
     self.chrome_percent_zoom_value = QDoubleSpinBox(parent=self.chome_setting)
     self.chrome_percent_zoom_value.setGeometry(QRect(140, 70, 61, 22))
     self.chrome_percent_zoom_value.setObjectName("chrome_percent_zoom_value")
-    self.chrome_percent_zoom_value.setValue(0.75)
+    self.chrome_percent_zoom_value.setValue(0.37)
     self.file_mail_check = QPushButton(parent=self.settings)
     self.file_mail_check.setGeometry(QRect(20, 240, 131, 24))
     self.file_mail_check.setIcon(icon3)

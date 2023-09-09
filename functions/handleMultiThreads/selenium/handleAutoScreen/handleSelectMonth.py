@@ -54,6 +54,7 @@ def handleSelectMonth(self, thread, driver, accounts, current_row_count, profile
         file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
         username = accounts[thread][0]
         password = accounts[thread][1]
+        wait(1, 2)
         with open(file_path, "a") as file:
             file.write(f"{username}|{password}\n")
         driver.quit()

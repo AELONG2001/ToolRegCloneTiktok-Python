@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import *
-from time import sleep
+from utils.utils import wait
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
@@ -8,9 +8,9 @@ from functions.profilesGologin.handleDeleteProfile import (
 )
 
 def handleInsertNewUsername(self, thread, driver, accounts, current_row_count, profile_id):
-    # file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
-    # username = accounts[thread][0]
-    # password = accounts[thread][1]
+    output_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\output.txt"
+    username = accounts[thread][0]
+    password = accounts[thread][1]
     try:
         waitForNavigation = WebDriverWait(driver, 100)
         skipElement = waitForNavigation.until(
@@ -19,8 +19,10 @@ def handleInsertNewUsername(self, thread, driver, accounts, current_row_count, p
         skipElement.click()
     except TimeoutException:
         print("Không tìm thấy skipElement sau khoảng thời gian chờ")
-        # with open(file_path, "a") as file:
-        #         file.write(f"{username}|{password}\n")
+        account = f"{username}|Long123@|{password}"
+        wait(1, 2)
+        with open(output_file_path, "a") as f:
+            f.write(account + "\n")
         driver.quit()
         handleDeleteProfile(profile_id)
         self.table_account_info.setItem(
