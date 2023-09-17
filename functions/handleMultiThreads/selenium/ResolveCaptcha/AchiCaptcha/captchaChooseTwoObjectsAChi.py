@@ -9,7 +9,6 @@ from functions.profilesGologin.handleDeleteProfile import (
     handleDeleteProfile,
 )
 
-
 def getResultCaptchaChooseTwoObjectsAChi(task_id):
     try:
         body = {
@@ -25,7 +24,7 @@ def getResultCaptchaChooseTwoObjectsAChi(task_id):
 
 
 def handleCreateJobGetCaptchaChooseTwoObjectsAChi(
-    self, thread, base64, current_row_count
+    self, base64, current_row_count
 ):
     try:
         self.table_account_info.setItem(
@@ -52,11 +51,16 @@ def handleCreateJobGetCaptchaChooseTwoObjectsAChi(
 
 
 def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, current_row_count, profile_id):
+    file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+    username = accounts[thread][0]
+    password = accounts[thread][1]
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
         wait(4, 6)
         captchaElements = driver.find_elements("css selector", "#captcha-verify-image")
+        isNotCaptchaChooseTwoObjects = driver.find_elements("css selector", ".secsdk-captcha-drag-icon")
+        
         if not isCheckResolveCaptchaAgain and captchaElements:
             self.table_account_info.setItem(
                 current_row_count,
@@ -64,11 +68,34 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, cur
                 QTableWidgetItem("Có catpcha đợi giải..."),
             )
 
-        # Nếu không có captcha thì return và lấy code
-        if not captchaElements:
-            return
-
+        if not captchaElements or isNotCaptchaChooseTwoObjects:
+           return
+        
         captchaElement = captchaElements[0]
+
+        wait(3, 4)
+        noInternetCaptcha = driver.find_elements(
+                "xpath",
+                '//div[contains(text(), "No internet connection. Please try again.")]',
+            )
+        
+        if noInternetCaptcha:
+            print("No internet captcha")
+            if driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                wait(1, 2)
+                with open(file_path, "a") as file:
+                    file.write(f"{username}|{password}\n")
+                driver.quit()
+                handleDeleteProfile(profile_id)
+                self.table_account_info.setItem(
+                    current_row_count,
+                    3,
+                    QTableWidgetItem("Bị chặn, đợi restart lại...8"),
+                )
+                self.restart_thread(thread)
+            else:
+                return
+
 
         widthCaptcha = captchaElement.size["width"]
         heightCaptcha = captchaElement.size["height"]
@@ -79,18 +106,27 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, cur
         base64Data = base64.b64encode(response.content).decode("utf-8")
 
         result = handleCreateJobGetCaptchaChooseTwoObjectsAChi(
-            self, thread, base64Data, current_row_count
+            self, base64Data, current_row_count
         )
         print("result: ", result)
 
         if result:
           [x1, y1, x2, y2] = result.split(",")
         else:
-          thread = self.chrome_threads[thread]
-          driver.quit()
-          thread.start()
-          print("Restart")
-          return
+            if driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                wait(1, 2)
+                with open(file_path, "a") as file:
+                        file.write(f"{username}|{password}\n")
+                driver.quit()
+                handleDeleteProfile(profile_id)
+                self.table_account_info.setItem(
+                        current_row_count,
+                        3,
+                        QTableWidgetItem("Bị chặn, đợi restart lại...9"),
+                    )
+                self.restart_thread(thread)
+            else:
+               return
 
         x1_relative = int(x1) * 340 / 552 - (widthCaptcha / 2)
         y1_relative = int(y1) * 212 / 344 - (heightCaptcha / 2)
@@ -112,9 +148,6 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, cur
             ).click().perform()
         except WebDriverException:
             print("Lỗi trong quá trình thực hiện chuỗi hành động")
-            file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
-            username = accounts[thread][0]
-            password = accounts[thread][1]
             wait(1, 2)
             with open(file_path, "a") as file:
                 file.write(f"{username}|{password}\n")
@@ -123,7 +156,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, cur
             self.table_account_info.setItem(
                 current_row_count,
                 3,
-                QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                QTableWidgetItem("Bị chặn, đợi restart lại...10"),
             )
             self.restart_thread(thread)
 

@@ -62,7 +62,7 @@ def handleSelectMonth(self, thread, driver, accounts, current_row_count, profile
         self.table_account_info.setItem(
             current_row_count,
             3,
-            QTableWidgetItem("Bị chặn, đợi restart lại..."),
+            QTableWidgetItem("Bị chặn, đợi restart lại...1"),
         )
         self.restart_thread(thread)
 

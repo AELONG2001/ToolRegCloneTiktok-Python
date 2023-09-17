@@ -1,6 +1,5 @@
 from PySide6.QtWidgets import *
 from utils.utils import wait
-from time import sleep
 from functions.profilesGologin.handleDeleteProfile import (
     handleDeleteProfile,
 )
@@ -24,9 +23,8 @@ def handleGetCode(self, thread, driver, accounts, current_row_count, profile_id)
             )
             getCodeElement.click()
             getCodeElement.click()
-            self.num_error_send_code += 1
 
-            wait(6, 10)
+            wait(4, 6)
             checkDectect = driver.find_element(
                 "xpath",
                 '//span[contains(text(), "Maximum number of attempts reached. Try again later.")]',
@@ -47,7 +45,7 @@ def handleGetCode(self, thread, driver, accounts, current_row_count, profile_id)
             self.table_account_info.setItem(
                 current_row_count,
                 3,
-                QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                QTableWidgetItem("Bị chặn, đợi restart lại...6"),
             )
             self.restart_thread(thread)
 

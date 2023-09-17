@@ -61,7 +61,7 @@ def handleGetCodeFromMail(self, thread, driver, accounts, current_row_count, pro
             self.table_account_info.setItem(
                 current_row_count,
                 3,
-                QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                QTableWidgetItem("Bị chặn, đợi restart lại...7"),
             )
             self.restart_thread(thread)
 

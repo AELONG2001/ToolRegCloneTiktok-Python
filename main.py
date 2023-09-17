@@ -74,7 +74,6 @@ class Ui_ToolRegCloneTiktok(QObject):
         self.chrome_threads = []
         self.thread_index = 0
         self.stop_all_threads = False
-        self.num_error_send_code = 0
         self.success_mail_count = 0
         self.failed_mail_count = 0
 

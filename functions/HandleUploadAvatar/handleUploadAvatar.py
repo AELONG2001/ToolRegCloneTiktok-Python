@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import ElementClickInterceptedException
 
 
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
@@ -14,8 +15,21 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRot
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi import (
     handleResolveCaptchaChooseTwoObjectsAChi,
 )
+from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi import (
+    handleResolveCaptchaSliderObjectAChi,
+)
+
+from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo import (
+    handleResolveCaptchaRotateObjectOmo,
+)
+from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo import (
+    handleResolveCaptchaChooseTwoObjectsOmo,
+)
+from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo import (
+    handleResolveCaptchaSliderObjectOmo,
+)
+
 from utils.utils import random_number
-from selenium.common.exceptions import ElementClickInterceptedException
 
 
 def handleUploadAvatar(self, thread, driver, accounts, current_row_count, profile_id):
@@ -29,15 +43,44 @@ def handleUploadAvatar(self, thread, driver, accounts, current_row_count, profil
 
     wait(2, 4)
     pageContent = driver.page_source
-    userId = pageContent.split('"nickName":"')[1].split('"')[0]
+    if '"nickName":"' in pageContent:
+        try:
+            userId = pageContent.split('"nickName":"')[1].split('"')[0]
+        except IndexError:
+            return
+    else:
+        return
    
     try:
-        driver.get(f"https://www.tiktok.com/@{userId}")
+        if userId:
+          driver.get(f"https://www.tiktok.com/@{userId}")
+        else:
+            cookies = driver.get_cookies()
+            cookies_string = ";".join(
+                [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+            )
+            account = f"{username}|Long123@|{password}|{cookies_string}"
+            with open(output_file_path, "a") as f:
+                f.write(account + "\n")
+            return
     except WebDriverException:
+        cookies = driver.get_cookies()
+        cookies_string = ";".join(
+            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+        )
+        account = f"{username}|Long123@|{password}|{cookies_string}"
+        with open(output_file_path, "a") as f:
+            f.write(account + "\n")
         print("Không thể truy cập với user_id này")
         return
 
     
+    # wait(4, 6)
+    # checkCaptcha = driver.find_elements("css selector", "#verify-bar-close")
+
+    # if checkCaptcha:
+    #     return
+
     wait(4, 6)
     cookies = driver.get_cookies()
     cookies_string = ";".join(
@@ -48,24 +91,26 @@ def handleUploadAvatar(self, thread, driver, accounts, current_row_count, profil
     # insert account
     with open(output_file_path, "a") as f:
         f.write(account + "\n")
-
-    
-    wait(4, 6)
-    checkCaptcha = driver.find_elements("css selector", "#verify-bar-close")
-
-    if checkCaptcha:
-        return
     
     try:
-        waitForNavigation = WebDriverWait(driver, 50)
+        wait(2, 3)
+        handleResolveCaptchaRotateObjectAChi(self, thread, driver, accounts, current_row_count, profile_id)
+        handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, current_row_count, profile_id)
+        handleResolveCaptchaSliderObjectAChi(self, thread, driver, accounts, current_row_count, profile_id)
+        # handleResolveCaptchaRotateObjectOmo(self, thread, driver, accounts, current_row_count, profile_id)
+        # handleResolveCaptchaChooseTwoObjectsOmo(self, thread, driver, accounts, current_row_count, profile_id)
+        # handleResolveCaptchaSliderObjectOmo(self, thread, driver, accounts, current_row_count, profile_id)
+
+        waitForNavigation = WebDriverWait(driver, 60)
         editProfile = waitForNavigation.until(
             EC.presence_of_element_located(("xpath", '//span[text()="Edit profile"]'))
         )
-        wait(4, 6)
-        handleResolveCaptchaRotateObjectAChi(self, thread, driver, accounts, current_row_count, profile_id)
-        handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, current_row_count, profile_id)
+       
         editProfile.click()
     except TimeoutException:
+        print("Không tìm thấy Edit profile sau khoảng thời gian chờ")
+        return
+    except ElementClickInterceptedException:
         print("Không tìm thấy Edit profile sau khoảng thời gian chờ")
         return
 

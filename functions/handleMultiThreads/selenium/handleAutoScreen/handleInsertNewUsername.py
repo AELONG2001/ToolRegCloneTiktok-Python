@@ -8,26 +8,23 @@ from functions.profilesGologin.handleDeleteProfile import (
 )
 
 def handleInsertNewUsername(self, thread, driver, accounts, current_row_count, profile_id):
-    output_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\output.txt"
+    file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
     username = accounts[thread][0]
     password = accounts[thread][1]
-    try:
-        waitForNavigation = WebDriverWait(driver, 100)
-        skipElement = waitForNavigation.until(
-            EC.presence_of_element_located(("xpath", '//div[text()="Skip"]'))
-        )
-        skipElement.click()
-    except TimeoutException:
-        print("Không tìm thấy skipElement sau khoảng thời gian chờ")
-        account = f"{username}|Long123@|{password}"
-        wait(1, 2)
-        with open(output_file_path, "a") as f:
-            f.write(account + "\n")
-        driver.quit()
-        handleDeleteProfile(profile_id)
-        self.table_account_info.setItem(
-            current_row_count,
-            3,
-            QTableWidgetItem("Bị chặn, đợi restart lại..."),
-        )
-        self.restart_thread(thread)
+    waitForNavigation = WebDriverWait(driver, 100)
+    skipElement = waitForNavigation.until(
+        EC.presence_of_element_located(("xpath", '//div[text()="Skip"]'))
+    )
+    skipElement.click()
+    # print("Không tìm thấy skipElement sau khoảng thời gian chờ")
+    # wait(1, 2)
+    # with open(file_path, "a") as file:
+    #     file.write(f"{username}|{password}\n")
+    # driver.quit()
+    # handleDeleteProfile(profile_id)
+    # self.table_account_info.setItem(
+    #     current_row_count,
+    #     3,
+    #     QTableWidgetItem("Bị chặn, đợi restart lại..."),
+    # )
+    # self.restart_thread(thread)

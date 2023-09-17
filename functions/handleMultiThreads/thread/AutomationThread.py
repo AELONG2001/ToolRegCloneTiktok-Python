@@ -117,7 +117,9 @@ class AutomationThread(QThread):
 
         sleep(2)
         minute = self.driver.find_element("css selector", ".js-time-reset-input")
-        minute.send_keys("10")
+        minute_value = minute.get_attribute("value")
+        if not minute_value:
+            minute.send_keys("10")
 
         sleep(2)
         connectButton = self.driver.find_element(
@@ -267,13 +269,19 @@ class AutomationThread(QThread):
             try:
                 self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
             except WebDriverException:
+                file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+                wait(1, 2)
+                username = accounts[self.num_threads][0]
+                password = accounts[self.num_threads][1]
+                with open(file_path, "a") as file:
+                    file.write(f"{username}|{password}\n")
                 print("Lỗi mạng hoặc trang không thể truy cập:")
                 self.driver.quit()
                 handleDeleteProfile(self.profile_id)
                 self.self_main.table_account_info.setItem(
                     current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                    QTableWidgetItem("Bị chặn, đợi restart lại...24"),
                 )
                 self.self_main.restart_thread(self.num_threads)
 
@@ -305,11 +313,11 @@ class AutomationThread(QThread):
 
             # Resolve captcha by Omo
             # handleResolveCaptchaRotateObjectOmo(
-            #     self.self_main, self.num_threads, self.driver
+            #     self.self_main, self.num_threads, self.driver, accounts, current_row_count, self.profile_id
             # )
 
             # handleResolveCaptchaChooseTwoObjectsOmo(
-            #     self.self_main, self.num_threads, self.driver
+            #    self.self_main, self.num_threads, self.driver, accounts, current_row_count, self.profile_id
             # )
 
             # Resolve captcha by Achi
