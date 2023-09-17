@@ -75,7 +75,7 @@ def handleSubmitAccount(self, thread, driver, accounts, current_row_count, profi
             print("Đã submit quá nhiều lần, đợi restart lại")
             driver.refresh()
             driver.refresh()
-            wait(4, 6)
+            wait(10, 12)
             if driver.current_url != "https://www.tiktok.com/signup/phone-or-email/email":
                 print("Tài khoản đã được tạo rồi")
                 account = f"{username}|Long123@|{password}"

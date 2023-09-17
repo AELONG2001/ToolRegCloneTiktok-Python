@@ -78,7 +78,8 @@ class Ui_ToolRegCloneTiktok(QObject):
         self.failed_mail_count = 0
 
         self.start_timer = QTimer(self)
-        self.start_timer.setInterval(3000)  # Thời gian chờ giữa các lần khởi động luồng
+        self.start_timer.setInterval(6000)  # Thời gian chờ giữa các lần khởi động luồng
+       
         self.start_timer.timeout.connect(self.start_next_thread)
 
         self.stop_progress_dialog = StopProgressDialog()

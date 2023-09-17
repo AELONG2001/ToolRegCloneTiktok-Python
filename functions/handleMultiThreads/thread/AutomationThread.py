@@ -223,7 +223,7 @@ class AutomationThread(QThread):
         
         # Số cột muốn sắp xếp trên màn hình
         cols = num_chrome_a_row
-        x = (num_worker % cols) * 510
+        x = (num_worker % cols) * 504
         y = math.floor(num_worker / cols) * 810
 
         self.driver.set_window_rect(x, y, 200, 800)
@@ -268,13 +268,7 @@ class AutomationThread(QThread):
 
             try:
                 self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
-            except WebDriverException:
-                file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
-                wait(1, 2)
-                username = accounts[self.num_threads][0]
-                password = accounts[self.num_threads][1]
-                with open(file_path, "a") as file:
-                    file.write(f"{username}|{password}\n")
+            except WebDriverException:            
                 print("Lỗi mạng hoặc trang không thể truy cập:")
                 self.driver.quit()
                 handleDeleteProfile(self.profile_id)

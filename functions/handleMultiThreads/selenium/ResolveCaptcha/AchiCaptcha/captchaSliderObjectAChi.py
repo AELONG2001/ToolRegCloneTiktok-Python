@@ -158,6 +158,23 @@ def handleResolveCaptchaSliderObjectAChi(self, thread, driver, accounts, current
         wait(4, 6)
         driver.refresh()
 
+        if noInternetCaptcha:
+            print("No internet captcha")
+            if driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                wait(1, 2)
+                with open(file_path, "a") as file:
+                    file.write(f"{username}|{password}\n")
+                driver.quit()
+                handleDeleteProfile(profile_id)
+                self.table_account_info.setItem(
+                    current_row_count,
+                    3,
+                    QTableWidgetItem("Bị chặn, đợi restart lại...15"),
+                )
+                self.restart_thread(thread)
+            else:
+                return
+
         wait(2, 4)
         if captchaElements:
             isResolveCaptchaAgain = True
