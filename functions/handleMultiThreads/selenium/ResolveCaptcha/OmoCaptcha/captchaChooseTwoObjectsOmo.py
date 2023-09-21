@@ -3,16 +3,17 @@ import base64
 from PySide6.QtWidgets import *
 from utils.utils import wait
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import WebDriverException
 from functions.handleMultiThreads.selenium.handleCode.handleGetCode import handleGetCode
 from functions.profilesGologin.handleDeleteProfile import (
     handleDeleteProfile,
 )
 
 
-def getResultCaptchaChooseTwoObjectsOmo(job_id):
+def getResultCaptchaChooseTwoObjectsOmo(captcha_key, job_id):
     try:
         body = {
-            "api_token": "VO3raK5ZAM2zqw03ffZTYQVCaTNw0rwJ4dX9heNPncuwJXF7u2E2hPqkm54kc5lZtrBF8ENsAuPVG1So",
+            "api_token": captcha_key,
             "job_id": job_id,
         }
 
@@ -23,13 +24,13 @@ def getResultCaptchaChooseTwoObjectsOmo(job_id):
         print(e)
 
 
-def handleCreateJobGetCaptchaChooseTwoObjectsOmo(self, thread, base64, width, height):
+def handleCreateJobGetCaptchaChooseTwoObjectsOmo(captcha_key, self, thread, base64, width, height):
     try:
         self.table_account_info.setItem(
             thread, 3, QTableWidgetItem("Đang đợi kết quả captcha...")
         )
         body = {
-            "api_token": "VO3raK5ZAM2zqw03ffZTYQVCaTNw0rwJ4dX9heNPncuwJXF7u2E2hPqkm54kc5lZtrBF8ENsAuPVG1So",
+            "api_token": captcha_key,
             "data": {
                 "type_job_id": "22",
                 "image_base64": base64,
@@ -42,12 +43,12 @@ def handleCreateJobGetCaptchaChooseTwoObjectsOmo(self, thread, base64, width, he
         data = response.json()
 
         wait(6, 8)
-        return getResultCaptchaChooseTwoObjectsOmo(data["job_id"])
+        return getResultCaptchaChooseTwoObjectsOmo(captcha_key, data["job_id"])
     except requests.exceptions.RequestException as e:
         print(e)
 
 
-def handleResolveCaptchaChooseTwoObjectsOmo(self, thread, driver, accounts, current_row_count, profile_id):
+def handleResolveCaptchaChooseTwoObjectsOmo(captcha_key, self, thread, driver, accounts, current_row_count, profile_id):
     file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
     username = accounts[thread][0]
     password = accounts[thread][1]
@@ -85,7 +86,7 @@ def handleResolveCaptchaChooseTwoObjectsOmo(self, thread, driver, accounts, curr
                 self.table_account_info.setItem(
                     current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại...17"),
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
                 )
                 self.restart_thread(thread)
             else:
@@ -100,7 +101,7 @@ def handleResolveCaptchaChooseTwoObjectsOmo(self, thread, driver, accounts, curr
         base64Data = base64.b64encode(response.content).decode("utf-8")
 
         result = handleCreateJobGetCaptchaChooseTwoObjectsOmo(
-            self, thread, base64Data, widthCaptcha, heightCaptcha
+            captcha_key, self, thread, base64Data, widthCaptcha, heightCaptcha
         )
         print("result: ", result)
         
@@ -116,7 +117,7 @@ def handleResolveCaptchaChooseTwoObjectsOmo(self, thread, driver, accounts, curr
                 self.table_account_info.setItem(
                         current_row_count,
                         3,
-                        QTableWidgetItem("Bị chặn, đợi restart lại...18"),
+                        QTableWidgetItem("Bị chặn, đợi restart lại..."),
                     )
                 self.restart_thread(thread)
             else:
@@ -130,15 +131,29 @@ def handleResolveCaptchaChooseTwoObjectsOmo(self, thread, driver, accounts, curr
         # hand logic click captcha
         action_chains = ActionChains(driver)
 
-        action_chains.move_to_element_with_offset(
-            captchaElement, x1_relative, y1_relative
-        ).click().perform()
+        try:
+            action_chains.move_to_element_with_offset(
+                captchaElement, x1_relative, y1_relative
+            ).click().perform()
 
-        wait(1, 2)
+            wait(1, 2)
 
-        action_chains.move_to_element_with_offset(
-            captchaElement, x2_relative, y2_relative
-        ).click().perform()
+            action_chains.move_to_element_with_offset(
+                captchaElement, x2_relative, y2_relative
+            ).click().perform()
+        except WebDriverException:
+            print("Lỗi trong quá trình thực hiện chuỗi hành động")
+            wait(1, 2)
+            with open(file_path, "a") as file:
+                file.write(f"{username}|{password}\n")
+            driver.quit()
+            handleDeleteProfile(profile_id)
+            self.table_account_info.setItem(
+                current_row_count,
+                3,
+                QTableWidgetItem("Bị chặn, đợi restart lại..."),
+            )
+            self.restart_thread(thread)
 
         wait(2, 3)
         submitCaptcha = driver.find_element(

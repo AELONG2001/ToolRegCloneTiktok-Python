@@ -21,7 +21,8 @@ def startAutomation(self):
 
     self.stop_event.clear()
     chrome_count = self.chrome_setting_line_value.currentText()
-    chrome_delay_minute = int(self.chrome_delay_minute_value.currentText())
+    captcha_type = self.captcha_type.currentText()
+    captcha_key = self.captcha_key.text()
     chrome_percent_zoom = self.chrome_percent_zoom_value.value()
     is_show_chrome = self.chrome_setting_radio_yes.isChecked()
 
@@ -33,6 +34,8 @@ def startAutomation(self):
             self.stop_event,
             thread,
             chrome_count,
+            captcha_type,
+            captcha_key,
             chrome_percent_zoom,
             is_show_chrome,
         )

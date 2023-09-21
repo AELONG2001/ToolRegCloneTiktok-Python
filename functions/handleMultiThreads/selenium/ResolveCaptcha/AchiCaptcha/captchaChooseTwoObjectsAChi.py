@@ -9,10 +9,10 @@ from functions.profilesGologin.handleDeleteProfile import (
     handleDeleteProfile,
 )
 
-def getResultCaptchaChooseTwoObjectsAChi(task_id):
+def getResultCaptchaChooseTwoObjectsAChi(captcha_key, task_id):
     try:
         body = {
-            "clientKey": "08f8b0f0b3aff156866a811508e2bb2e",
+            "clientKey": captcha_key,
             "taskId": task_id,
         }
 
@@ -24,7 +24,7 @@ def getResultCaptchaChooseTwoObjectsAChi(task_id):
 
 
 def handleCreateJobGetCaptchaChooseTwoObjectsAChi(
-    self, base64, current_row_count
+    captcha_key, self, base64, current_row_count
 ):
     try:
         self.table_account_info.setItem(
@@ -33,7 +33,7 @@ def handleCreateJobGetCaptchaChooseTwoObjectsAChi(
             QTableWidgetItem("Đang đợi kết quả captcha..."),
         )
         body = {
-            "clientKey": "08f8b0f0b3aff156866a811508e2bb2e",
+            "clientKey": captcha_key,
             "task": {
                 "type": "TiktokCaptchaTask",
                 "subType": "2",
@@ -45,12 +45,12 @@ def handleCreateJobGetCaptchaChooseTwoObjectsAChi(
         data = response.json()
 
         wait(6, 8)
-        return getResultCaptchaChooseTwoObjectsAChi(data["taskId"])
+        return getResultCaptchaChooseTwoObjectsAChi(captcha_key, data["taskId"])
     except requests.exceptions.RequestException as e:
         print(e)
 
 
-def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, current_row_count, profile_id):
+def handleResolveCaptchaChooseTwoObjectsAChi(captcha_key, self, thread, driver, accounts, current_row_count, profile_id):
     file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
     username = accounts[thread][0]
     password = accounts[thread][1]
@@ -90,7 +90,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, cur
                 self.table_account_info.setItem(
                     current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại...8"),
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
                 )
                 self.restart_thread(thread)
             else:
@@ -106,7 +106,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, cur
         base64Data = base64.b64encode(response.content).decode("utf-8")
 
         result = handleCreateJobGetCaptchaChooseTwoObjectsAChi(
-            self, base64Data, current_row_count
+            captcha_key, self, base64Data, current_row_count
         )
         print("result: ", result)
 
@@ -122,7 +122,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, cur
                 self.table_account_info.setItem(
                         current_row_count,
                         3,
-                        QTableWidgetItem("Bị chặn, đợi restart lại...9"),
+                        QTableWidgetItem("Bị chặn, đợi restart lại..."),
                     )
                 self.restart_thread(thread)
             else:
@@ -156,7 +156,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, cur
             self.table_account_info.setItem(
                 current_row_count,
                 3,
-                QTableWidgetItem("Bị chặn, đợi restart lại...10"),
+                QTableWidgetItem("Bị chặn, đợi restart lại..."),
             )
             self.restart_thread(thread)
 

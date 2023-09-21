@@ -95,16 +95,15 @@ class Ui_ToolRegCloneTiktok(QObject):
         self.automation_controller.start_next_thread()
     
     def restart_thread(self, thread):
-        # self.automation_controller.restart_thread(self, thread)
         print("Restart")
         chrome_count = self.chrome_setting_line_value.currentText()
+        captcha_type = self.captcha_type.currentText()
+        captcha_key = self.captcha_key.text()
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
         is_show_chrome = self.chrome_setting_radio_yes.isChecked()
         
-        self.chrome_threads[thread].stop()  # Dừng thread hiện tại
-        self.chrome_threads[thread].wait()  # Đợi thread dừng hoàn toàn
-        self.chrome_threads[thread] = AutomationThread(self, self.stop_event, thread, chrome_count, chrome_percent_zoom, is_show_chrome)  # Khởi tạo thread mới
-        self.chrome_threads[thread].start()  # Bắt đầu thread mới
+        self.chrome_threads[thread] = AutomationThread(self, self.stop_event, thread, chrome_count, captcha_type, captcha_key, chrome_percent_zoom, is_show_chrome)  # Khởi tạo thread mới
+        self.chrome_threads[thread].start()
 
     def stop(self):
         self.automation_controller.stop()
@@ -118,8 +117,8 @@ class Ui_ToolRegCloneTiktok(QObject):
     def inputMail(self):
         self.automation_controller.inputMail()
 
-    def getCaptchaKey(self):
-        self.automation_controller.getCaptchaKey()
+    def exportAccount(self):
+        self.automation_controller.exportAccount()
 
     def importProxy(self):
         self.automation_controller.importProxy()

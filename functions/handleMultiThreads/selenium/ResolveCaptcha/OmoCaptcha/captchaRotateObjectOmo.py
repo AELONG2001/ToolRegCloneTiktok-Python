@@ -9,10 +9,10 @@ from functions.profilesGologin.handleDeleteProfile import (
 )
 
 
-def getResultCaptchaRotateObjectOmo(job_id):
+def getResultCaptchaRotateObjectOmo(captcha_key, job_id):
     try:
         body = {
-            "api_token": "VO3raK5ZAM2zqw03ffZTYQVCaTNw0rwJ4dX9heNPncuwJXF7u2E2hPqkm54kc5lZtrBF8ENsAuPVG1So",
+            "api_token": captcha_key,
             "job_id": job_id,
         }
 
@@ -24,14 +24,14 @@ def getResultCaptchaRotateObjectOmo(job_id):
 
 
 def handleCreateJobGetCaptchaRotateObjectOmo(
-    self, thread, base64DataImgInside, base64DataImgOutside
+    captcha_key, self, thread, base64DataImgInside, base64DataImgOutside
 ):
     try:
         self.table_account_info.setItem(
             thread, 3, QTableWidgetItem("Đang đợi kết quả captcha...")
         )
         body = {
-            "api_token": "VO3raK5ZAM2zqw03ffZTYQVCaTNw0rwJ4dX9heNPncuwJXF7u2E2hPqkm54kc5lZtrBF8ENsAuPVG1So",
+            "api_token": captcha_key,
             "data": {
                 "type_job_id": "23",
                 "image_base64": f"{base64DataImgInside}|{base64DataImgOutside}",
@@ -42,12 +42,12 @@ def handleCreateJobGetCaptchaRotateObjectOmo(
         data = response.json()
 
         wait(6, 8)
-        return getResultCaptchaRotateObjectOmo(data["job_id"])
+        return getResultCaptchaRotateObjectOmo(captcha_key, data["job_id"])
     except requests.exceptions.RequestException as e:
         print(e)
 
 
-def handleResolveCaptchaRotateObjectOmo(self, thread, driver, accounts, current_row_count, profile_id):
+def handleResolveCaptchaRotateObjectOmo(captcha_key, self, thread, driver, accounts, current_row_count, profile_id):
     file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
     username = accounts[thread][0]
     password = accounts[thread][1]
@@ -89,7 +89,7 @@ def handleResolveCaptchaRotateObjectOmo(self, thread, driver, accounts, current_
                 self.table_account_info.setItem(
                     current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại...19"),
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
                 )
                 self.restart_thread(thread)
             else:
@@ -125,7 +125,7 @@ def handleResolveCaptchaRotateObjectOmo(self, thread, driver, accounts, current_
         base64DataImgInside = encoded_img_list[1]
 
         result = handleCreateJobGetCaptchaRotateObjectOmo(
-            self, thread, base64DataImgInside, base64DataImgOutside
+            captcha_key, self, thread, base64DataImgInside, base64DataImgOutside
         )
         print("result: ", result)
         
@@ -147,7 +147,7 @@ def handleResolveCaptchaRotateObjectOmo(self, thread, driver, accounts, current_
                 self.table_account_info.setItem(
                     current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại...20"),
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
                 )
                 self.restart_thread(thread)
             else:
@@ -178,7 +178,7 @@ def handleResolveCaptchaRotateObjectOmo(self, thread, driver, accounts, current_
                 self.table_account_info.setItem(
                     current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại...21"),
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
                 )
                 self.restart_thread(thread)
             else:
@@ -194,6 +194,29 @@ def handleResolveCaptchaRotateObjectOmo(self, thread, driver, accounts, current_
             action_chains.move_by_offset(step_distance, 0).perform()
 
         action_chains.release().perform()
+
+        wait(3, 4)
+        noInternetCaptcha = driver.find_elements(
+                "xpath",
+                '//div[contains(text(), "No internet connection. Please try again.")]',
+            )
+        
+        if noInternetCaptcha:
+            print("No internet captcha")
+            if driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                wait(1, 2)
+                with open(file_path, "a") as file:
+                    file.write(f"{username}|{password}\n")
+                driver.quit()
+                handleDeleteProfile(profile_id)
+                self.table_account_info.setItem(
+                    current_row_count,
+                    3,
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                )
+                self.restart_thread(thread)
+            else:
+                return
 
         wait(2, 4)
         if captchaElements:

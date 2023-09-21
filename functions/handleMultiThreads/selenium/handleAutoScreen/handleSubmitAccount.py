@@ -37,7 +37,7 @@ def handleSubmitAccount(self, thread, driver, accounts, current_row_count, profi
             self.table_account_info.setItem(
                 current_row_count,
                 3,
-                QTableWidgetItem("Bị chặn, đợi restart lại...2"),
+                QTableWidgetItem("Bị chặn, đợi restart lại..."),
             )
             self.restart_thread(thread)
         except StaleElementReferenceException:
@@ -55,7 +55,7 @@ def handleSubmitAccount(self, thread, driver, accounts, current_row_count, profi
             self.table_account_info.setItem(
                 current_row_count,
                 3,
-                QTableWidgetItem("Bị chặn, đợi restart lại...3"),
+                QTableWidgetItem("Bị chặn, đợi restart lại..."),
             )
             self.restart_thread(thread)
         
@@ -78,7 +78,11 @@ def handleSubmitAccount(self, thread, driver, accounts, current_row_count, profi
             wait(10, 12)
             if driver.current_url != "https://www.tiktok.com/signup/phone-or-email/email":
                 print("Tài khoản đã được tạo rồi")
-                account = f"{username}|Long123@|{password}"
+                cookies = driver.get_cookies()
+                cookies_string = ";".join(
+                    [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+                )
+                account = f"{username}|Long123@|{password}|{cookies_string}"
                 wait(1, 2)
                 with open(output_file_path, "a") as f:
                     f.write(account + "\n")
@@ -87,7 +91,7 @@ def handleSubmitAccount(self, thread, driver, accounts, current_row_count, profi
                 self.table_account_info.setItem(
                     current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại...4"),
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
                 )
                 self.restart_thread(thread)
             else:
@@ -99,6 +103,6 @@ def handleSubmitAccount(self, thread, driver, accounts, current_row_count, profi
                 self.table_account_info.setItem(
                     current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại...5"),
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
                 )
                 self.restart_thread(thread)

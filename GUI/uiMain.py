@@ -21,13 +21,13 @@ def uiMain(self, ToolRegCloneTiktok):
     self.list_avatar.setGeometry(QRect(340, 10, 121, 24))
     icon = QIcon()
     icon.addPixmap(
-        QPixmap(".\\../../../../../../Downloads/icon-qt/tik-tok_4782345.png"),
+        QPixmap(".\\icons/logo_tiktok.png"),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
     ToolRegCloneTiktok.setWindowIcon(icon)
     icon.addPixmap(
-        QPixmap(".\\../../../../../../Downloads/icon-qt/folder_3767094.png"),
+        QPixmap(".\\icons/folder.png"),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
@@ -53,7 +53,7 @@ def uiMain(self, ToolRegCloneTiktok):
     )
     icon1 = QIcon()
     icon1.addPixmap(
-        QPixmap(".\\../../../../../../Downloads/icon-qt/right_4162041.png"),
+        QPixmap(".\\icons/play-button.png"),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
@@ -89,7 +89,7 @@ def uiMain(self, ToolRegCloneTiktok):
     icon2 = QIcon()
     icon2.addPixmap(
         QPixmap(
-            ".\\../../../../../../Downloads/icon-qt/stop_button-button_4340168.png"
+            ".\\icons/pause-button.png"
         ),
         QIcon.Mode.Normal,
         QIcon.State.Off,
@@ -135,15 +135,16 @@ def uiMain(self, ToolRegCloneTiktok):
     self.avatar_value = QLineEdit(parent=self.home)
     self.avatar_value.setGeometry(QRect(470, 10, 113, 21))
     self.avatar_value.setObjectName("avatar_value")
-    self.omocaptcha = QLabel(parent=self.home)
-    self.omocaptcha.setGeometry(QRect(850, 10, 121, 21))
-    self.omocaptcha.setStyleSheet('font: 11pt "Sans Serif Collection";')
-    self.omocaptcha.setObjectName("omocaptcha")
+    self.captcha_type = QComboBox(parent=self.home)
+    self.captcha_type.setObjectName("comboBox")
+    self.captcha_type.setGeometry(QRect(860, 10, 101, 21))
+    self.captcha_type.addItem("")
+    self.captcha_type.addItem("")
     self.list_mail = QPushButton(parent=self.home)
     self.list_mail.setGeometry(QRect(590, 10, 121, 24))
     icon3 = QIcon()
     icon3.addPixmap(
-        QPixmap(".\\../../../../../../Downloads/icon-qt/txt_8361365.png"),
+        QPixmap(".\\icons/list-mail.png"),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
@@ -151,7 +152,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.list_mail.setObjectName("list_mail")
     self.captcha_key = QLineEdit(parent=self.home)
     self.captcha_key.setGeometry(QRect(970, 10, 141, 20))
-    self.captcha_key.setText("")
+    self.captcha_key.setText("08f8b0f0b3aff156866a811508e2bb2e")
     self.captcha_key.setObjectName("captcha_key")
     self.export_account = QPushButton(parent=self.home)
     self.export_account.setGeometry(QRect(1130, 10, 100, 21))
@@ -167,36 +168,9 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value.setGeometry(QRect(920, 80, 211, 371))
     self.proxy_value.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
     self.proxy_value.setPlainText(
-        """3ae1c14191e2cdc2ee6badded8e646d6
-f6df4ae556013a378a04e688812c671e
-1f39ed24d97f888dccf9c994b36b26dc
-a278abf14a050683cea5df6bf47f9cc3
-0aa2ab8e9b89757ad5216900419ea164
-dcfcb2c935a417b945cb3aabe00b1ba6
-8e2d550e007363344768353db82c24d0
-e791108ef3bceef5c885a63e8b5c2428
-0649095e003b4f4ddfef41b352f9b91a
-913f64b10e97470712b2f4ea586cacbe
-9c321d661a5fa95b773000e4fe9cbe00
-5b15dcb549e92902bcf3e147d3219b03
-2e30c03858c2667aeeb0423a1270961f
-10a8d0dd464f9a25cf66b06b70e2973f
-efd3750122e0329b8a231a991801970e
-cd006867aaf7472dcc0a75908f98c411
-c953323b032c559d0588bf645c389710
-1c9081aaba4e62814390c3dc5172348b
-5dceb6518d3393d894bbd196236878d7
-22b2dbe42bca215d85a1c007240b205c
-6fecc3161701a612d26593469fd437ec
-e2c3f1a830deeafa83213456233eb316
-f07d63255ca72745d33985e2be924f20
-47fe16b46e37e5fb1f977f37f78f0c02
-79cbd5b5d9000bdaef16faa36aee10fa
-f55b57b7db1d08b0c0f36d119f71de26
-0f49c131d193d428049bd030da4ebfb9
-b525ad3e37b92e3608ac603846cb8449
-66d7c15c5834dca14cba6a26cfaaade1
-60aea5a8779042d23362a4762847f52a
+        """48e8e535bc077621531e1c9252ac119e
+d9cce7515fd46db3b14728adf6f9eec8
+4ee275823d6657532022070e9a8c7e19
 """
     )
 
@@ -232,7 +206,7 @@ b525ad3e37b92e3608ac603846cb8449
     self.icon_facebook.setText("")
     icon4 = QIcon()
     icon4.addPixmap(
-        QPixmap(".\\../../../../../../Downloads/icon-qt/facebook_5968764.png"),
+        QPixmap(".\\icons/facebook.png"),
         QIcon.Mode.Normal,
         QIcon.State.Off,
     )
@@ -311,7 +285,7 @@ b525ad3e37b92e3608ac603846cb8449
     self.chrome_percent_zoom_value = QDoubleSpinBox(parent=self.chome_setting)
     self.chrome_percent_zoom_value.setGeometry(QRect(140, 70, 61, 22))
     self.chrome_percent_zoom_value.setObjectName("chrome_percent_zoom_value")
-    self.chrome_percent_zoom_value.setValue(0.375)
+    self.chrome_percent_zoom_value.setValue(0.75)
     self.file_mail_check = QPushButton(parent=self.settings)
     self.file_mail_check.setGeometry(QRect(20, 240, 131, 24))
     self.file_mail_check.setIcon(icon3)
@@ -364,7 +338,8 @@ b525ad3e37b92e3608ac603846cb8449
     self.threads_value.valueChanged.connect(self.checkThreadsValue)
     self.list_avatar.clicked.connect(self.handleAvatarFolderSelection)
     self.list_mail.clicked.connect(self.inputMail)
-    self.captcha_key.textChanged.connect(self.getCaptchaKey)
+    # self.captcha_key.textChanged.connect(self.getCaptchaKey)
+    self.export_account.clicked.connect(self.exportAccount)
     self.import_proxy.clicked.connect(self.importProxy)
 
     # handle logic tab 2

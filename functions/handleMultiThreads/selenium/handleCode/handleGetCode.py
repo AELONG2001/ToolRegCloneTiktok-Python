@@ -45,7 +45,7 @@ def handleGetCode(self, thread, driver, accounts, current_row_count, profile_id)
             self.table_account_info.setItem(
                 current_row_count,
                 3,
-                QTableWidgetItem("Bị chặn, đợi restart lại...6"),
+                QTableWidgetItem("Bị chặn, đợi restart lại..."),
             )
             self.restart_thread(thread)
 

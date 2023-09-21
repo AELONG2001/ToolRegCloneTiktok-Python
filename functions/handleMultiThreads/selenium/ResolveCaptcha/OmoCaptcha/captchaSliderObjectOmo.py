@@ -8,10 +8,10 @@ from functions.profilesGologin.handleDeleteProfile import (
     handleDeleteProfile,
 )
 
-def getResultCaptchaSliderObjectOmo(job_id):
+def getResultCaptchaSliderObjectOmo(captcha_key, job_id):
     try:
         body = {
-            "api_token": "VO3raK5ZAM2zqw03ffZTYQVCaTNw0rwJ4dX9heNPncuwJXF7u2E2hPqkm54kc5lZtrBF8ENsAuPVG1So",
+            "api_token": captcha_key,
             "job_id": job_id,
         }
 
@@ -23,7 +23,7 @@ def getResultCaptchaSliderObjectOmo(job_id):
 
 
 def handleCreateJobGetCaptchaSliderObjectOmo(
-    self, base64, width, current_row_count
+    captcha_key, self, base64, width, current_row_count
 ):
     try:
         self.table_account_info.setItem(
@@ -32,7 +32,7 @@ def handleCreateJobGetCaptchaSliderObjectOmo(
             QTableWidgetItem("Đang đợi kết quả captcha..."),
         )
         body = {
-            "api_token": "VO3raK5ZAM2zqw03ffZTYQVCaTNw0rwJ4dX9heNPncuwJXF7u2E2hPqkm54kc5lZtrBF8ENsAuPVG1So",
+            "api_token": captcha_key,
             "data": {
                 "type_job_id": "21",
                 "image_base64": f"{base64}",
@@ -44,12 +44,12 @@ def handleCreateJobGetCaptchaSliderObjectOmo(
         data = response.json()
 
         wait(6, 8)
-        return getResultCaptchaSliderObjectOmo(data["job_id"])
+        return getResultCaptchaSliderObjectOmo(captcha_key, data["job_id"])
     except requests.exceptions.RequestException as e:
         print(e)
 
 
-def handleResolveCaptchaSliderObjectOmo(self, thread, driver, accounts, current_row_count, profile_id):
+def handleResolveCaptchaSliderObjectOmo(captcha_key, self, thread, driver, accounts, current_row_count, profile_id):
     file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
     username = accounts[thread][0]
     password = accounts[thread][1]
@@ -92,7 +92,7 @@ def handleResolveCaptchaSliderObjectOmo(self, thread, driver, accounts, current_
                 self.table_account_info.setItem(
                     current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại...22"),
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
                 )
                 self.restart_thread(thread)
             else:
@@ -106,7 +106,7 @@ def handleResolveCaptchaSliderObjectOmo(self, thread, driver, accounts, current_
         base64Data = base64.b64encode(response.content).decode("utf-8")
 
         result = handleCreateJobGetCaptchaSliderObjectOmo(
-            self, base64Data, widthCaptcha, current_row_count
+            captcha_key, self, base64Data, widthCaptcha, current_row_count
         )
         print("result: ", result)
 
@@ -127,7 +127,7 @@ def handleResolveCaptchaSliderObjectOmo(self, thread, driver, accounts, current_
                 self.table_account_info.setItem(
                     current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại...23"),
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
                 )
                 self.restart_thread(thread)
             else:
@@ -155,6 +155,29 @@ def handleResolveCaptchaSliderObjectOmo(self, thread, driver, accounts, current_
 
         wait(4, 6)
         driver.refresh()
+
+        wait(3, 4)
+        noInternetCaptcha = driver.find_elements(
+                "xpath",
+                '//div[contains(text(), "No internet connection. Please try again.")]',
+            )
+
+        if noInternetCaptcha:
+            print("No internet captcha")
+            if driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                wait(1, 2)
+                with open(file_path, "a") as file:
+                    file.write(f"{username}|{password}\n")
+                driver.quit()
+                handleDeleteProfile(profile_id)
+                self.table_account_info.setItem(
+                    current_row_count,
+                    3,
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                )
+                self.restart_thread(thread)
+            else:
+                return
 
         wait(2, 4)
         if captchaElements:

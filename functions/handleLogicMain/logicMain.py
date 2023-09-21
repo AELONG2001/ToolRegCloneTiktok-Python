@@ -51,21 +51,19 @@ class AutomationController:
             None, "Open File", "", "(*.txt)"
         )[0]
         self.ui_instance.mail_value.setText(self.ui_instance.fileName)
-        # if self.ui_instance.fileName:
-        #     mail_content = readMailFile(self.ui_instance.fileName)
-        #     accounts = getMailContent(mail_content)
 
-        # self.ui_instance.table_account_info.setRowCount(len(accounts))
-        # for row, (username, password) in enumerate(accounts):
-        #     self.ui_instance.table_account_info.setItem(
-        #         row, 0, QTableWidgetItem(username)
-        #     )
-        #     self.ui_instance.table_account_info.setItem(
-        #         row, 1, QTableWidgetItem(password)
-        #     )
+    def exportAccount(self):
+      file_path = "data/output.txt"
+      file_name, _ = QFileDialog.getSaveFileName(None, "Chọn nơi lưu tệp", file_path, "Tệp văn bản (*.txt);;Tất cả các tệp (*)")
+      if file_name:
+        try:
+            with open(file_name, 'w') as file:
+                # Đọc nội dung từ file cần lưu và ghi vào file mới
+                with open(file_path, 'r') as source_file:
+                    file.write(source_file.read())
+        except Exception:
+            pass
 
-    def getCaptchaKey(self, captcha_key):
-        self.ui_instance.captcha_key_value = captcha_key
 
     def importProxy(self):
         proxy_text = self.ui_instance.proxy_value.toPlainText()

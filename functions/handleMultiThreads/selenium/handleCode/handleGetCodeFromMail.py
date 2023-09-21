@@ -26,12 +26,18 @@ def handleGetCodeFromMail(self, thread, driver, accounts, current_row_count, pro
             username = accounts[thread][0]
             password = accounts[thread][1]
 
-            url = f"https://tools.dongvanfb.net/api/get_code?mail={username}&pass={password}&type=tiktok"
+            params = {
+                "mail": username,
+                "pass": password,
+                "type": "tiktok"
+            }
+
+            url = f"https://tools.dongvanfb.net/api/get_code"
             self.table_account_info.setItem(
                 current_row_count, 3, QTableWidgetItem("Đang lấy code...")
             )
             wait(8, 10)
-            response = requests.get(url)
+            response = requests.get(url, params=params)
             data = response.json()
 
             print("Data: ", data)
@@ -61,7 +67,7 @@ def handleGetCodeFromMail(self, thread, driver, accounts, current_row_count, pro
             self.table_account_info.setItem(
                 current_row_count,
                 3,
-                QTableWidgetItem("Bị chặn, đợi restart lại...7"),
+                QTableWidgetItem("Bị chặn, đợi restart lại..."),
             )
             self.restart_thread(thread)
 

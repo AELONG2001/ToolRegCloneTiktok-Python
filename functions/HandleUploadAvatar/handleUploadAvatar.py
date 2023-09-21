@@ -32,7 +32,7 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSlid
 from utils.utils import random_number
 
 
-def handleUploadAvatar(self, thread, driver, accounts, current_row_count, profile_id):
+def handleUploadAvatar(self, thread, driver, accounts, captcha_type, captcha_key, current_row_count, profile_id):
     wait(2, 4)
     output_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\output.txt"
     list_avatar_folder = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\wibus"
@@ -94,12 +94,14 @@ def handleUploadAvatar(self, thread, driver, accounts, current_row_count, profil
     
     try:
         wait(2, 3)
-        handleResolveCaptchaRotateObjectAChi(self, thread, driver, accounts, current_row_count, profile_id)
-        handleResolveCaptchaChooseTwoObjectsAChi(self, thread, driver, accounts, current_row_count, profile_id)
-        handleResolveCaptchaSliderObjectAChi(self, thread, driver, accounts, current_row_count, profile_id)
-        # handleResolveCaptchaRotateObjectOmo(self, thread, driver, accounts, current_row_count, profile_id)
-        # handleResolveCaptchaChooseTwoObjectsOmo(self, thread, driver, accounts, current_row_count, profile_id)
-        # handleResolveCaptchaSliderObjectOmo(self, thread, driver, accounts, current_row_count, profile_id)
+        if captcha_type == "Achicaptcha":
+            handleResolveCaptchaRotateObjectAChi(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
+            handleResolveCaptchaChooseTwoObjectsAChi(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
+            handleResolveCaptchaSliderObjectAChi(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
+        else: 
+            handleResolveCaptchaRotateObjectOmo(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
+            handleResolveCaptchaChooseTwoObjectsOmo(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
+            handleResolveCaptchaSliderObjectOmo(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
 
         waitForNavigation = WebDriverWait(driver, 60)
         editProfile = waitForNavigation.until(

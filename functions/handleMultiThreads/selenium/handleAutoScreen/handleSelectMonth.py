@@ -44,7 +44,7 @@ def handleSelectMonth(self, thread, driver, accounts, current_row_count, profile
         self.table_account_info.setItem(
             current_row_count, 3, QTableWidgetItem("Đang chọn tháng...")
         )
-        wait(4, 6)
+        wait(2, 4)
         dropDownSelectMonth = driver.find_element(
             "id", f"Month-options-item-{random_number(0, 11)}"
         )
@@ -62,7 +62,7 @@ def handleSelectMonth(self, thread, driver, accounts, current_row_count, profile
         self.table_account_info.setItem(
             current_row_count,
             3,
-            QTableWidgetItem("Bị chặn, đợi restart lại...1"),
+            QTableWidgetItem("Bị chặn, đợi restart lại..."),
         )
         self.restart_thread(thread)
 
