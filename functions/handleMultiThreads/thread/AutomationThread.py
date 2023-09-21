@@ -75,6 +75,7 @@ class AutomationThread(QThread):
         captcha_key,
         chrome_percent_zoom,
         is_show_chrome,
+        is_restart = False
     ):
         super().__init__()
         self.self_main = self_main
@@ -85,6 +86,8 @@ class AutomationThread(QThread):
         self.captcha_key = captcha_key
         self.chrome_percent_zoom = chrome_percent_zoom
         self.is_show_chrome = is_show_chrome
+        self.is_restart = is_restart
+
         self.is_running = True
         self.stop_flag = False
         self.is_update_proxy = False
@@ -217,7 +220,7 @@ class AutomationThread(QThread):
 
         api_key_tmproxy = self.self_main.proxy_value.toPlainText()
         api_key_list = api_key_tmproxy.splitlines()
-
+        
         user_agent = UserAgent()
 
         random_user_agent = user_agent.random
@@ -287,11 +290,14 @@ class AutomationThread(QThread):
 
         
         while not self.stop_flag:
-            # mail = handleAutoBuyHotmail()
-            # print("mail: ", mail)
+            # if not self.is_restart:
+            #    mail = handleAutoBuyHotmail()
+            #    print("mail: ", mail)
 
             # with open(self.input_file_path, "a") as file:
             #         file.write(f"{mail}\n")
+
+            # wait(2, 4)
 
             with open(self.input_file_path, "r") as f:
                 mail_content = f.read()

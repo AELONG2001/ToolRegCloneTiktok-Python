@@ -19,7 +19,7 @@ from functions.profilesGologin.handleDeleteProfile import (
 def handleGetCodeFromMail(self, thread, driver, accounts, current_row_count, profile_id):
     try:
         file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
-        max_attempts = 1  # Số lần tối đa xuất hiện checkDectect trước khi khởi động lại thread
+        max_attempts = 3  # Số lần tối đa xuất hiện checkDectect trước khi khởi động lại thread
         attempts = 0
         isCode = True
         while  attempts < max_attempts and isCode and not self.stop_flag:

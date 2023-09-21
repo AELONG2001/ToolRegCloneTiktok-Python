@@ -14,10 +14,10 @@ def startAutomation(self):
 
     accounts = getMailContent(mail_content)
 
-    if len(accounts) > 0:
-        num_threads = self.threads_value.value()
-    else:
-        num_threads = 1
+    # if len(accounts) > 0:
+    num_threads = self.threads_value.value()
+    # else:
+    #     num_threads = 1
 
     self.stop_event.clear()
     chrome_count = self.chrome_setting_line_value.currentText()

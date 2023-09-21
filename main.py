@@ -102,8 +102,8 @@ class Ui_ToolRegCloneTiktok(QObject):
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
         is_show_chrome = self.chrome_setting_radio_yes.isChecked()
         
-        self.chrome_threads[thread] = AutomationThread(self, self.stop_event, thread, chrome_count, captcha_type, captcha_key, chrome_percent_zoom, is_show_chrome)  # Khởi tạo thread mới
-        self.chrome_threads[thread].start()
+        self.chrome_threads[thread] = AutomationThread(self, self.stop_event, thread, chrome_count, captcha_type, captcha_key, chrome_percent_zoom, is_show_chrome, True)  # Khởi tạo thread mới
+        # self.chrome_threads[thread].start()
 
     def stop(self):
         self.automation_controller.stop()

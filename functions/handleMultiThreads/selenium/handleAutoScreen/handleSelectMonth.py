@@ -15,6 +15,7 @@ def handleSelectMonth(self, thread, driver, accounts, current_row_count, profile
     password = accounts[thread][1]
     hotmail = f"{username}|{password}"
 
+    # lấy mail và update lại file
     with open(input_file_path, "r") as f:
         mail_content = f.readlines()
 
