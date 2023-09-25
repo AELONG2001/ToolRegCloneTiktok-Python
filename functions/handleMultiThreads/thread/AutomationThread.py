@@ -74,7 +74,6 @@ class AutomationThread(QThread):
         captcha_type,
         captcha_key,
         chrome_percent_zoom,
-        is_show_chrome,
         is_restart = False
     ):
         super().__init__()
@@ -85,7 +84,6 @@ class AutomationThread(QThread):
         self.captcha_type = captcha_type
         self.captcha_key = captcha_key
         self.chrome_percent_zoom = chrome_percent_zoom
-        self.is_show_chrome = is_show_chrome
         self.is_restart = is_restart
 
         self.is_running = True
@@ -240,9 +238,6 @@ class AutomationThread(QThread):
         self.profile_id = handleCreateProfile(self.proxy)
         print("profile_id: ", self.profile_id)
             
-
-        if not self.is_show_chrome:
-                self.options.add_argument("--headless")
         self.options.add_argument(
             f"--force-device-scale-factor={chrome_percent_zoom}"
         )

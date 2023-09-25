@@ -12,7 +12,7 @@ def startAutomation(self):
     with open(input_file_path, "r") as f:
         mail_content = f.read()
 
-    accounts = getMailContent(mail_content)
+    # accounts = getMailContent(mail_content)
 
     # if len(accounts) > 0:
     num_threads = self.threads_value.value()
@@ -24,7 +24,6 @@ def startAutomation(self):
     captcha_type = self.captcha_type.currentText()
     captcha_key = self.captcha_key.text()
     chrome_percent_zoom = self.chrome_percent_zoom_value.value()
-    is_show_chrome = self.chrome_setting_radio_yes.isChecked()
 
     self.thread_index = 0
     self.stop_all_threads = False
@@ -37,7 +36,6 @@ def startAutomation(self):
             captcha_type,
             captcha_key,
             chrome_percent_zoom,
-            is_show_chrome,
         )
         for thread in range(num_threads)
     ]

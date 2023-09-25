@@ -13,6 +13,7 @@ from functions.handleLogicMain.logicMain import AutomationController
 from functions.handleMultiThreads.thread.AutomationThread import AutomationThread
 
 
+
 load_dotenv()
 
 
@@ -39,7 +40,6 @@ class StopProgressDialog(QDialog):
 
     def set_progress_text(self, text):
         self.progress_label.setText(text)
-
 
 class MainWindow(QMainWindow):
     def __init__(self, ui_self):
@@ -69,7 +69,7 @@ class MainWindow(QMainWindow):
 class Ui_ToolRegCloneTiktok(QObject):
     def __init__(self):
         super().__init__()
-
+       
         self.stop_flag = False
         self.chrome_threads = []
         self.thread_index = 0
@@ -78,7 +78,7 @@ class Ui_ToolRegCloneTiktok(QObject):
         self.failed_mail_count = 0
 
         self.start_timer = QTimer(self)
-        self.start_timer.setInterval(6000)  # Thời gian chờ giữa các lần khởi động luồng
+        self.start_timer.setInterval(3000)  # Thời gian chờ giữa các lần khởi động luồng
        
         self.start_timer.timeout.connect(self.start_next_thread)
 
@@ -100,9 +100,8 @@ class Ui_ToolRegCloneTiktok(QObject):
         captcha_type = self.captcha_type.currentText()
         captcha_key = self.captcha_key.text()
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
-        is_show_chrome = self.chrome_setting_radio_yes.isChecked()
         
-        self.chrome_threads[thread] = AutomationThread(self, self.stop_event, thread, chrome_count, captcha_type, captcha_key, chrome_percent_zoom, is_show_chrome, True)  # Khởi tạo thread mới
+        self.chrome_threads[thread] = AutomationThread(self, self.stop_event, thread, chrome_count, captcha_type, captcha_key, chrome_percent_zoom, True)  # Khởi tạo thread mới
         # self.chrome_threads[thread].start()
 
     def stop(self):
@@ -117,18 +116,48 @@ class Ui_ToolRegCloneTiktok(QObject):
     def inputMail(self):
         self.automation_controller.inputMail()
 
+    def getCaptchaType(self):
+        self.automation_controller.getCaptchaType()
+
+    def getCaptchaKey(self):
+        self.automation_controller.getCaptchaKey()
+
     def exportAccount(self):
         self.automation_controller.exportAccount()
 
     def importProxy(self):
         self.automation_controller.importProxy()
 
+    def getDefaultPassword(self):
+        self.automation_controller.getDefaultPassword()
+
+    def getIsChromeCount(self):
+        self.automation_controller.getIsChromeCount()
+
+    def getChromePercentZoom(self):
+        self.automation_controller.getChromePercentZoom()
+
+    def getChromeValueDelay(self):
+        self.automation_controller.getChromeValueDelay()
+
+    def getTokenGologin(self):
+        self.automation_controller.getTokenGologin()
+
+    def getValueApiHotmailbox(self):
+        self.automation_controller.getValueApiHotmailbox()
+
+    def checkIsUploadAvatar(self):
+        self.automation_controller.checkIsUploadAvatar()
+    
+    def getTypeExportAccount(self):
+        self.automation_controller.getTypeExportAccount()
+
     def inputMailCheck(self):
         self.automation_controller.inputMailCheck()
 
     def handleCheckMail(self):
         self.automation_controller.handleCheckMail()
-
+    
     def retranslateUi(self, ToolRegCloneTiktok):
         translateUi(self, ToolRegCloneTiktok)
 
