@@ -9,7 +9,7 @@ def translateUi(self, ToolRegCloneTiktok):
     ToolRegCloneTiktok.setWindowTitle(
         _translate("ToolRegCloneTiktok", "ToolRegCloneTiktok")
     )
-    self.mail_value.setText(_translate("ToolRegCloneTiktok", "hotmail.txt"))
+    self.mail_value.setText(_translate("ToolRegCloneTiktok", ""))
     self.list_avatar.setText(_translate("ToolRegCloneTiktok", " Folder Avatar"))
     self.start_button.setWhatsThis(
         _translate(
@@ -54,7 +54,6 @@ def translateUi(self, ToolRegCloneTiktok):
     self.password_reg_account.setText(
         _translate("ToolRegCloneTiktok", "Mật khẩu account reg:")
     )
-    self.password_reg_account_value.setText(_translate("MainWindow", "Abc123@"))
     self.setting_tool.setTitle(_translate("ToolRegCloneTiktok", "Thiết lập thông số"))
     self.chrome_setting_line.setText(
         _translate("ToolRegCloneTiktok", "Số chrome trên 1 dòng:")
@@ -87,33 +86,102 @@ def translateUi(self, ToolRegCloneTiktok):
         _translate("ToolRegCloneTiktok", "Settings"),
     )
 
-    if os.path.exists("config_accounts.json"):
-        with open("config_accounts.json", "r") as json_file:
+    if os.path.exists("configs_account.json"):
+        with open("configs_account.json", "r") as json_file:
             data = json.load(json_file)
 
-        self.threads_value.setValue(data["num_threads"])
-        self.avatar_value.setText(data["url_avatar"])
-        self.mail_value.setText(data["url_mail"])
-        self.captcha_type.setCurrentIndex(data["captcha_type"] - 1)
-        self.captcha_key.setText(data["captcha_key"])
-        self.proxy_value.setPlainText("\n".join(data["proxys"]))
-        self.password_reg_account_value.setText(data["default_password"])
-        self.chrome_setting_line_value.setValue(data["is_chrome_count"])
-        self.chrome_percent_zoom_value.setValue(data["chrome_percent_zoom"])
-        self.chrome_delay_minute_value.setValue(data["chromeValueDelay"])
-        self.api_token_gologin_value.setText(data["api_token_gologin"])
-        self.api_hotmailbox_value.setText(data["api_value_hotmailbox"])
-
-        if data["is_upload_avatar"]:
-          self.is_upload_avatar_yes.setChecked(True)
+        if "num_threads" in data: 
+            self.threads_value.setValue(data["num_threads"])
         else:
-          self.is_upload_avatar_no.setChecked(True)        
+           self.threads_value.setValue(1)
 
-        self.export_account_format_value.setCurrentIndex(data["typeExportAccount"] - 1)
+        if "url_avatar" in data: 
+            self.avatar_value.setText(data["url_avatar"])
+        else:
+            self.avatar_value.setText("C://images")
 
-        self.file_mail_check_value.setText(data["url_mail_check"])
+        if "url_mail" in data:
+           self.mail_value.setText(data["url_mail"])
+        else:
+           self.mail_value.setText("")
 
+        if "captcha_type" in data:
+          self.captcha_type.setCurrentIndex(data["captcha_type"] - 1)
+        else:
+          self.captcha_type.setCurrentIndex(0)
+
+        if "captcha_key" in data:
+           self.captcha_key.setText(data["captcha_key"])
+        else:
+           self.captcha_key.setText("")
+
+        if "proxys" in data:
+           self.proxy_value.setPlainText("\n".join(data["proxys"]))
+        else:
+           self.proxy_value.setPlainText("")
         
+        if "default_password" in data:
+           self.password_reg_account_value.setText(data["default_password"])
+        else:
+           self.password_reg_account_value.setText("Abc123@")
+
+        if "is_chrome_count" in data:
+           self.chrome_setting_line_value.setValue(data["is_chrome_count"])
+        else:
+           self.chrome_setting_line_value.setValue(10)
+
+        if "chrome_percent_zoom" in data:
+           self.chrome_percent_zoom_value.setValue(data["chrome_percent_zoom"])
+        else:
+           self.chrome_percent_zoom_value.setValue(0.37)
+
+        if "chromeValueDelay" in data:
+           self.chrome_delay_minute_value.setValue(data["chromeValueDelay"])
+        else:
+           self.chrome_delay_minute_value.setValue(3)
+
+        if "api_token_gologin" in data:
+           self.api_token_gologin_value.setText(data["api_token_gologin"])
+        else:
+           self.api_token_gologin_value.setText("")
+        
+        if "api_value_hotmailbox" in data:
+            self.api_hotmailbox_value.setText(data["api_value_hotmailbox"])
+        else:
+           self.api_hotmailbox_value.setText("")
+
+        if "is_upload_avatar" in data:
+            if data["is_upload_avatar"]:
+               self.is_upload_avatar_yes.setChecked(True)
+            else:
+              self.is_upload_avatar_no.setChecked(True)
+        else:
+            self.is_upload_avatar_yes.setChecked(True)
+
+        if "typeExportAccount" in data:
+            self.export_account_format_value.setCurrentIndex(data["typeExportAccount"] - 1)
+        else:
+           self.export_account_format_value.setCurrentIndex(0)
+
+        if "url_mail_check" in data:
+            self.file_mail_check_value.setText(data["url_mail_check"])
+        else:
+           self.file_mail_check_value.setText("")
 
     else:
         self.threads_value.setValue(1)
+        self.avatar_value.setText("C://images")
+        self.mail_value.setText("mail.txt")
+        self.captcha_type.setCurrentIndex(0)
+        self.captcha_key.setText("")
+        self.proxy_value.setPlainText("")
+        self.password_reg_account_value.setText("Abc123@")
+        self.chrome_setting_line_value.setValue(10)
+        self.chrome_percent_zoom_value.setValue(0.37)
+        self.chrome_delay_minute_value.setValue(3)
+        self.api_token_gologin_value.setText("")
+        self.api_hotmailbox_value.setText("")
+        self.is_upload_avatar_yes.setChecked(True)
+        self.export_account_format_value.setCurrentIndex(0)
+        self.file_mail_check_value.setText("")
+        

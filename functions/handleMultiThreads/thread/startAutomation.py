@@ -1,16 +1,59 @@
 from PySide6.QtWidgets import *
 from functions.handleInputFileMail.getMailContent import getMailContent
 from functions.handleMultiThreads.thread.AutomationThread import AutomationThread
+import os
+import json
 
 
 def startAutomation(self):
     AutomationThread.num_quit = 0
     AutomationThread.drivers_list = []
 
-    input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+    if os.path.exists("configs_account.json"):
+        with open("configs_account.json", "r") as json_file:
+            data = json.load(json_file)
 
-    with open(input_file_path, "r") as f:
-        mail_content = f.read()
+        # input user have to includes mail
+        if "url_mail" in data:
+           input_file_path = data["url_mail"]
+           output_file_path = "data/output.txt"
+        else:
+            QMessageBox.warning(None, "Warning", "Vui lòng nhập mail")
+            return
+        
+        # input user have to includes captcha_key
+        if not "captcha_key" in data:
+            QMessageBox.warning(None, "Warning", "Vui lòng nhập captcha key")
+            return
+        else:
+            if not data["captcha_key"]:
+               QMessageBox.warning(None, "Warning", "Vui lòng nhập captcha key")
+               return
+        
+        # input user have to includes proxys
+        if not "proxys" in data:
+            QMessageBox.warning(None, "Warning", "Vui lòng nhập proxys")
+            return
+        else:
+            if not data["proxys"]:
+               QMessageBox.warning(None, "Warning", "Vui lòng nhập proxys")
+               return
+        
+        # input user have to includes api_token_gologin
+        if not "api_token_gologin" in data:
+            QMessageBox.warning(None, "Warning", "Vui lòng nhập api_token_gologin")
+            return
+        else:
+            if not data["api_token_gologin"]:
+               QMessageBox.warning(None, "Warning", "Vui lòng nhập api_token_gologin")
+               return
+
+
+    else:
+        QMessageBox.warning(None, "Warning", "Vui lòng cập nhập các thông tin cần thiết trước khi bắt đầu chạy tool.\nVD: nhập mail, api captcha key,...")
+    
+    # with open(input_file_path, "r") as f:
+    #     mail_content = f.read()
 
     # accounts = getMailContent(mail_content)
 
@@ -19,8 +62,7 @@ def startAutomation(self):
     # else:
     #     num_threads = 1
 
-    self.stop_event.clear()
-    chrome_count = self.chrome_setting_line_value.currentText()
+    chrome_count = self.chrome_setting_line_value.value()
     captcha_type = self.captcha_type.currentText()
     captcha_key = self.captcha_key.text()
     chrome_percent_zoom = self.chrome_percent_zoom_value.value()
@@ -30,8 +72,9 @@ def startAutomation(self):
     self.chrome_threads = [
         AutomationThread(
             self,
-            self.stop_event,
             thread,
+            input_file_path,
+            output_file_path,
             chrome_count,
             captcha_type,
             captcha_key,

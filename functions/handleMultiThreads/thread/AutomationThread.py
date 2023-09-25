@@ -68,8 +68,9 @@ class AutomationThread(QThread):
     def __init__(
         self,
         self_main,
-        stop_event,
         num_threads,
+        input_file_path,
+        output_file_path,
         chrome_count ,
         captcha_type,
         captcha_key,
@@ -78,8 +79,9 @@ class AutomationThread(QThread):
     ):
         super().__init__()
         self.self_main = self_main
-        self.stop_event = stop_event
         self.num_threads = num_threads
+        self.input_file_path = input_file_path
+        self.output_file_path = output_file_path
         self.chrome_count = chrome_count
         self.captcha_type = captcha_type
         self.captcha_key = captcha_key
@@ -88,14 +90,9 @@ class AutomationThread(QThread):
 
         self.is_running = True
         self.stop_flag = False
-        self.is_update_proxy = False
         self.accounts = []
 
         self.options = webdriver.ChromeOptions()
-        # self.options.add_extension("TM_chrome.crx")
-
-        self.input_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
-        self.output_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\output.txt"
 
     @Slot()
     def show_warning(self):
@@ -104,40 +101,6 @@ class AutomationThread(QThread):
             "Warning",
             "Vui lòng nhập thêm mail",
         )
-
-    def update_proxy(self, api_key):
-        self.is_update_proxy = True
-        print("Update Proxy")
-
-        self.driver.get(
-            "chrome-extension://pmdlifofgdjcolhfjjfkojibiimoahlc/popup.html"
-        )
-
-        sleep(2)
-        disconnectButton = self.driver.find_element("css selector", ".disconnect-btn")
-        disconnectButton.click()
-
-        sleep(2)
-        inputApiKey = self.driver.find_element("css selector", ".js-api-key")
-        current_value = inputApiKey.get_attribute("value")
-        if not current_value:
-            inputApiKey.send_keys(f"{api_key}")
-
-        sleep(3)
-        autoChangeIp = self.driver.find_element("css selector", ".slider")
-        autoChangeIp.click()
-
-        sleep(2)
-        minute = self.driver.find_element("css selector", ".js-time-reset-input")
-        minute_value = minute.get_attribute("value")
-        if not minute_value:
-            minute.send_keys("10")
-
-        sleep(2)
-        connectButton = self.driver.find_element(
-            "css selector", ".js-connect-current-ip"
-        )
-        connectButton.click()
 
     def stop(self):
         username = self.accounts[self.num_threads][0]
@@ -323,11 +286,6 @@ class AutomationThread(QThread):
                 )
                 return
 
-            # if not self.is_update_proxy:
-            #     self.update_proxy(api_key_list[num_worker])
-            #     sleep(5)
-
-
             try:
                 self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
             except WebDriverException:            
@@ -345,6 +303,7 @@ class AutomationThread(QThread):
             handleSelectMonth(
                 self.self_main,
                 self.num_threads,
+                self.input_file_path,
                 self.driver,
                 self.accounts,
                 current_row_count,
@@ -364,46 +323,48 @@ class AutomationThread(QThread):
                 current_row_count,
             )
             handleGetCode(
-                self.self_main, self.num_threads, self.driver, self.accounts, current_row_count, self.profile_id
+                self.self_main, self.num_threads,  self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
             )
 
             if self.captcha_type == "Achicaptcha":
                 # Resolve captcha by Achi
                 handleResolveCaptchaRotateObjectAChi(
-                    self.captcha_key, self.self_main, self.num_threads, self.driver, self.accounts, current_row_count, self.profile_id
+                    self.captcha_key, self.self_main, self.num_threads, self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
                 )
                 handleResolveCaptchaChooseTwoObjectsAChi(
-                    self.captcha_key, self.self_main, self.num_threads, self.driver, self.accounts, current_row_count, self.profile_id
+                    self.captcha_key, self.self_main, self.num_threads, self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
                 )
-
                
             else:
                 # Resolve captcha by Omo
                 handleResolveCaptchaRotateObjectOmo(
-                    self.captcha_key, self.self_main, self.num_threads, self.driver, self.accounts, current_row_count, self.profile_id
+                    self.captcha_key, self.self_main, self.num_threads, self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
                 )
 
                 handleResolveCaptchaChooseTwoObjectsOmo(
-                    self.captcha_key, self.self_main, self.num_threads, self.driver, self.accounts, current_row_count, self.profile_id
+                    self.captcha_key, self.self_main, self.num_threads, self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
                 )
 
             handleGetCodeFromMail(
                     self.self_main,
                     self.num_threads,
+                    self.input_file_path,
                     self.driver,
                     self.accounts,
                     current_row_count,
                     self.profile_id
                 )
-
             
-            handleSubmitAccount(self.self_main, self.num_threads, self.driver, self.accounts, current_row_count, self.profile_id)
+            handleSubmitAccount(self.self_main, self.num_threads,  self.input_file_path,
+                self.output_file_path, self.driver, self.accounts, current_row_count, self.profile_id)
             handleInsertNewUsername(
                 self.self_main, self.num_threads, self.driver, self.accounts, current_row_count, self.profile_id
             )
             handleUploadAvatar(
                 self.self_main,
                 self.num_threads,
+                self.input_file_path,
+                self.output_file_path,
                 self.driver,
                 self.accounts,
                 self.captcha_type,

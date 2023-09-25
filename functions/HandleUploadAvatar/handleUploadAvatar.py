@@ -1,4 +1,3 @@
-import os
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from utils.utils import wait
@@ -7,7 +6,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import ElementClickInterceptedException
-
+from selenium.common.exceptions import NoSuchElementException
+import os
+import json
+import re
 
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
     handleResolveCaptchaRotateObjectAChi,
@@ -32,10 +34,19 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSlid
 from utils.utils import random_number
 
 
-def handleUploadAvatar(self, thread, driver, accounts, captcha_type, captcha_key, current_row_count, profile_id):
+def handleUploadAvatar(self, thread, input_file_path, output_file_path, driver, accounts, captcha_type, captcha_key, current_row_count, profile_id):
     wait(2, 4)
-    output_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\output.txt"
-    list_avatar_folder = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\wibus"
+    output_file_path = output_file_path
+    is_list_avtart_default = True
+
+    with open("configs_account.json", "r") as json_file:
+        data = json.load(json_file)
+    if "url_avatar" in data:
+        is_list_avtart_default = False
+        list_avatar_folder = data["url_avatar"]     
+    else:
+        is_list_avtart_default = True
+        list_avatar_folder = "data/wibus"
     username = accounts[thread][0]
     password = accounts[thread][1]
 
@@ -95,13 +106,13 @@ def handleUploadAvatar(self, thread, driver, accounts, captcha_type, captcha_key
     try:
         wait(2, 3)
         if captcha_type == "Achicaptcha":
-            handleResolveCaptchaRotateObjectAChi(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
-            handleResolveCaptchaChooseTwoObjectsAChi(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
-            handleResolveCaptchaSliderObjectAChi(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
+            handleResolveCaptchaRotateObjectAChi(captcha_key, self, thread, input_file_path, driver, accounts, current_row_count, profile_id)
+            handleResolveCaptchaChooseTwoObjectsAChi(captcha_key, self, thread, input_file_path, driver, accounts, current_row_count, profile_id)
+            handleResolveCaptchaSliderObjectAChi(captcha_key, self, thread, input_file_path, driver, accounts, current_row_count, profile_id)
         else: 
-            handleResolveCaptchaRotateObjectOmo(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
-            handleResolveCaptchaChooseTwoObjectsOmo(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
-            handleResolveCaptchaSliderObjectOmo(captcha_key, self, thread, driver, accounts, current_row_count, profile_id)
+            handleResolveCaptchaRotateObjectOmo(captcha_key, self, thread, input_file_path, driver, accounts, current_row_count, profile_id)
+            handleResolveCaptchaChooseTwoObjectsOmo(captcha_key, self, thread, input_file_path, driver, accounts, current_row_count, profile_id)
+            handleResolveCaptchaSliderObjectOmo(captcha_key, self, thread, input_file_path, driver, accounts, current_row_count, profile_id)
 
         waitForNavigation = WebDriverWait(driver, 60)
         editProfile = waitForNavigation.until(
@@ -124,9 +135,23 @@ def handleUploadAvatar(self, thread, driver, accounts, captcha_type, captcha_key
     wait(2, 4)
     inputUploadAvatar = driver.find_elements("css selector", "input[type='file']")
     if inputUploadAvatar:
-        inputUploadAvatar[0].send_keys(
-            f"C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus/{list_avatar[random_number(0, 50)]}"
-        )
+            if is_list_avtart_default:
+                current_file_path = os.path.abspath(__file__)
+                pattern = r"ToolRegCloneTiktok"
+                parts = re.split(pattern, current_file_path)
+
+                if len(parts) > 1:
+                    path_avatar_default_origin = parts[0]
+                    path_avatar_default_origin = path_avatar_default_origin.replace("\\", "/")
+                    
+                    inputUploadAvatar[0].send_keys(
+                        f"{path_avatar_default_origin}ToolRegCloneTiktok/{list_avatar_folder}/{list_avatar[random_number(0, len(list_avatar) - 1)]}"
+                    )
+            else:
+                inputUploadAvatar[0].send_keys(
+                    f"{list_avatar_folder}/{list_avatar[random_number(0, len(list_avatar) - 1)]}"
+                )
+        
     else:
         return
 
@@ -137,7 +162,7 @@ def handleUploadAvatar(self, thread, driver, accounts, captcha_type, captcha_key
             # Sử dụng JavaScript để cuộn trang đến vị trí của phần tử
             driver.execute_script("arguments[0].scrollIntoView();", applyAvatarBtn)
         applyAvatarBtn.click()
-    except:
+    except NoSuchElementException:
         return
         
 

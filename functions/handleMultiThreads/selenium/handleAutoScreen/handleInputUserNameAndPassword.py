@@ -3,7 +3,6 @@ from utils.utils import wait
 
 
 def handleInputUserNameAndPassword(self, thread, driver, accounts, current_row_count):
-    print("accounts: ", accounts)
     username = accounts[thread][0]
     if username is not None:
         wait(2, 4)

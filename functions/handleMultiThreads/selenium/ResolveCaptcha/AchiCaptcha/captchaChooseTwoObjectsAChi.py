@@ -50,8 +50,8 @@ def handleCreateJobGetCaptchaChooseTwoObjectsAChi(
         print(e)
 
 
-def handleResolveCaptchaChooseTwoObjectsAChi(captcha_key, self, thread, driver, accounts, current_row_count, profile_id):
-    file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
+def handleResolveCaptchaChooseTwoObjectsAChi(captcha_key, self, thread, input_file_path, driver, accounts, current_row_count, profile_id):
+    input_file_path = input_file_path
     username = accounts[thread][0]
     password = accounts[thread][1]
     isResolveCaptchaAgain = True
@@ -83,7 +83,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(captcha_key, self, thread, driver, 
             print("No internet captcha")
             if driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 wait(1, 2)
-                with open(file_path, "a") as file:
+                with open(input_file_path, "a") as file:
                     file.write(f"{username}|{password}\n")
                 driver.quit()
                 handleDeleteProfile(profile_id)
@@ -115,7 +115,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(captcha_key, self, thread, driver, 
         else:
             if driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 wait(1, 2)
-                with open(file_path, "a") as file:
+                with open(input_file_path, "a") as file:
                         file.write(f"{username}|{password}\n")
                 driver.quit()
                 handleDeleteProfile(profile_id)
@@ -149,7 +149,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(captcha_key, self, thread, driver, 
         except WebDriverException:
             print("Lỗi trong quá trình thực hiện chuỗi hành động")
             wait(1, 2)
-            with open(file_path, "a") as file:
+            with open(input_file_path, "a") as file:
                 file.write(f"{username}|{password}\n")
             driver.quit()
             handleDeleteProfile(profile_id)
@@ -185,4 +185,4 @@ def handleResolveCaptchaChooseTwoObjectsAChi(captcha_key, self, thread, driver, 
                 '//*[@data-e2e="send-code-button"]',
             )
             if getCodeElement:
-                handleGetCode(self, thread, driver, accounts, current_row_count, profile_id)
+                handleGetCode(self, thread, input_file_path, driver, accounts, current_row_count, profile_id)

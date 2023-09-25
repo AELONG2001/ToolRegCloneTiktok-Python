@@ -6,10 +6,10 @@ from functions.profilesGologin.handleDeleteProfile import (
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import StaleElementReferenceException
 
-def handleSubmitAccount(self, thread, driver, accounts, current_row_count, profile_id):
+def handleSubmitAccount(self, thread, input_file_path, output_file_path, driver, accounts, current_row_count, profile_id):
     isSubmitAccount = True
-    file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\hotmail.txt"
-    output_file_path = r"C:\Users\HD\OneDrive\Documents\WorkSpace\Tools\Python\ToolRegCloneTiktok\data\output.txt"
+    input_file_path = input_file_path
+    output_file_path = output_file_path
     username = accounts[thread][0]
     password = accounts[thread][1]
 
@@ -96,7 +96,7 @@ def handleSubmitAccount(self, thread, driver, accounts, current_row_count, profi
                 self.restart_thread(thread)
             else:
                 wait(1, 2)
-                with open(file_path, "a") as file:
+                with open(input_file_path, "a") as file:
                     file.write(f"{username}|{password}\n")
                 driver.quit()
                 handleDeleteProfile(profile_id)

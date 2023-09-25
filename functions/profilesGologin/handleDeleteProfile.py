@@ -1,11 +1,12 @@
-import random
 import requests
-import os
-
+import json
 
 def handleDeleteProfile(profile_id):
     try:
-        api_token_gologin = os.getenv("API_TOKEN_GOLOGIN")
+        with open("configs_account.json", "r") as json_file:
+           data = json.load(json_file)
+
+        api_token_gologin = data["api_token_gologin"]
 
         url = f"https://api.gologin.com/browser/{profile_id}"
         headers = {

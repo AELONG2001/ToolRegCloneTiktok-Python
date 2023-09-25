@@ -139,8 +139,8 @@ class AutomationController:
         self.ui_instance.mail_success_box.clear()
         self.ui_instance.mail_failed_box.clear()
 
-        if os.path.exists("config_accounts.json"):
-            with open("config_accounts.json", "r") as json_file:
+        if os.path.exists("configs_account.json"):
+            with open("configs_account.json", "r") as json_file:
                 data = json.load(json_file)
             fileMailCheck = data["url_mail_check"]
         else:

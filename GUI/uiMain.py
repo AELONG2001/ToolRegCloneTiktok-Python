@@ -14,6 +14,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.home.setObjectName("home")
     self.mail_value = QLineEdit(parent=self.home)
     self.mail_value.setGeometry(QRect(720, 10, 113, 21))
+    self.mail_value.setReadOnly(True)
     self.mail_value.setObjectName("mail_value")
     self.list_avatar = QPushButton(parent=self.home)
     self.list_avatar.setGeometry(QRect(340, 10, 121, 24))
@@ -127,6 +128,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.avatar_value = QLineEdit(parent=self.home)
     self.avatar_value.setGeometry(QRect(470, 10, 113, 21))
     self.avatar_value.setObjectName("avatar_value")
+    self.avatar_value.setReadOnly(True)
     self.captcha_type = QComboBox(parent=self.home)
     self.captcha_type.setObjectName("comboBox")
     self.captcha_type.setGeometry(QRect(860, 10, 101, 21))
@@ -284,6 +286,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.file_mail_check_value = QLineEdit(parent=self.settings)
     self.file_mail_check_value.setGeometry(QRect(160, 240, 261, 21))
     self.file_mail_check_value.setObjectName("file_mail_check_value")
+    self.file_mail_check_value.setReadOnly(True)
     self.btn_check = QPushButton(parent=self.settings)
     self.btn_check.setGeometry(QRect(430, 240, 81, 24))
     self.btn_check.setStyleSheet(

@@ -11,11 +11,9 @@ from GUI.translateUi import translateUi
 # Logic
 from functions.handleLogicMain.logicMain import AutomationController
 from functions.handleMultiThreads.thread.AutomationThread import AutomationThread
-
-
+import json
 
 load_dotenv()
-
 
 class StopProgressDialog(QDialog):
     def __init__(self, parent=None):
@@ -31,7 +29,6 @@ class StopProgressDialog(QDialog):
 
         self.setLayout(layout)
         self.setModal(True)
-        self.setAutoFillBackground(True)
         self.setAutoFillBackground(True)
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
 
@@ -96,13 +93,20 @@ class Ui_ToolRegCloneTiktok(QObject):
     
     def restart_thread(self, thread):
         print("Restart")
-        chrome_count = self.chrome_setting_line_value.currentText()
+        with open("configs_account.json", "r") as json_file:
+            data = json.load(json_file)
+
+        input_file_path = data["url_mail"]
+        output_file_path = "data/output.txt"
+        chrome_count = self.chrome_setting_line_value.value()
         captcha_type = self.captcha_type.currentText()
         captcha_key = self.captcha_key.text()
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
         
-        self.chrome_threads[thread] = AutomationThread(self, self.stop_event, thread, chrome_count, captcha_type, captcha_key, chrome_percent_zoom, True)  # Khởi tạo thread mới
-        # self.chrome_threads[thread].start()
+        self.chrome_threads[thread] = AutomationThread(
+            self, thread, input_file_path, output_file_path,  chrome_count, captcha_type, captcha_key, chrome_percent_zoom, True
+        )  # Khởi tạo thread mới
+        self.chrome_threads[thread].start()
 
     def stop(self):
         self.automation_controller.stop()

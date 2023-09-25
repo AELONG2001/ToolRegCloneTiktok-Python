@@ -1,13 +1,15 @@
 import requests
-import os
 from utils.utils import generate_random_name
-
+import json
 
 def handleCreateProfile(proxy):
     random_name = generate_random_name()
     ip, port = proxy.split(":")
     try:
-        api_token_gologin = os.getenv("API_TOKEN_GOLOGIN")
+        with open("configs_account.json", "r") as json_file:
+           data = json.load(json_file)
+
+        api_token_gologin = data["api_token_gologin"]
 
         url = "https://api.gologin.com/browser"
         headers = {
