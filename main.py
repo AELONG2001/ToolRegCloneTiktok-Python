@@ -99,12 +99,13 @@ class Ui_ToolRegCloneTiktok(QObject):
         input_file_path = data["url_mail"]
         output_file_path = "data/output.txt"
         chrome_count = self.chrome_setting_line_value.value()
-        captcha_type = self.captcha_type.currentText()
+        captcha_type = self.captcha_type.currentIndex()
         captcha_key = self.captcha_key.text()
+        proxy_type = self.proxy_type.currentIndex()
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
         
         self.chrome_threads[thread] = AutomationThread(
-            self, thread, input_file_path, output_file_path,  chrome_count, captcha_type, captcha_key, chrome_percent_zoom, True
+            self, thread, input_file_path, output_file_path,  chrome_count, captcha_type, captcha_key, proxy_type, chrome_percent_zoom, True
         )  # Khởi tạo thread mới
         self.chrome_threads[thread].start()
 
@@ -128,6 +129,9 @@ class Ui_ToolRegCloneTiktok(QObject):
 
     def exportAccount(self):
         self.automation_controller.exportAccount()
+
+    def getProxyType(self):
+        self.automation_controller.getProxyType()
 
     def importProxy(self):
         self.automation_controller.importProxy()

@@ -344,6 +344,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.api_hotmailbox_value.textChanged.connect(self.getValueApiHotmailbox)
     self.is_upload_avatar_yes.toggled.connect(self.checkIsUploadAvatar)
     self.export_account_format_value.currentTextChanged.connect(self.getTypeExportAccount)
+    self.proxy_type.currentTextChanged.connect(self.getProxyType)
 
     # handle logic tab 2
     self.file_mail_check.clicked.connect(self.inputMailCheck)

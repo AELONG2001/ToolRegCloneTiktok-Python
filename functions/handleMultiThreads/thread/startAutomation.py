@@ -63,8 +63,9 @@ def startAutomation(self):
     #     num_threads = 1
 
     chrome_count = self.chrome_setting_line_value.value()
-    captcha_type = self.captcha_type.currentText()
+    captcha_type = self.captcha_type.currentIndex()
     captcha_key = self.captcha_key.text()
+    proxy_type = self.proxy_type.currentIndex()
     chrome_percent_zoom = self.chrome_percent_zoom_value.value()
 
     self.thread_index = 0
@@ -78,6 +79,7 @@ def startAutomation(self):
             chrome_count,
             captcha_type,
             captcha_key,
+            proxy_type,
             chrome_percent_zoom,
         )
         for thread in range(num_threads)

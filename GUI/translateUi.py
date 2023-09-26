@@ -119,6 +119,12 @@ def translateUi(self, ToolRegCloneTiktok):
            self.proxy_value.setPlainText("\n".join(data["proxys"]))
         else:
            self.proxy_value.setPlainText("")
+
+        if "proxy_type" in data:
+           self.proxy_type.setCurrentIndex(data["proxy_type"] - 1)
+        else:
+           self.proxy_type.setCurrentIndex(0)
+        
         
         if "default_password" in data:
            self.password_reg_account_value.setText(data["default_password"])
@@ -175,6 +181,7 @@ def translateUi(self, ToolRegCloneTiktok):
         self.captcha_type.setCurrentIndex(0)
         self.captcha_key.setText("")
         self.proxy_value.setPlainText("")
+        self.proxy_type.setCurrentIndex(0)
         self.password_reg_account_value.setText("Abc123@")
         self.chrome_setting_line_value.setValue(10)
         self.chrome_percent_zoom_value.setValue(0.37)

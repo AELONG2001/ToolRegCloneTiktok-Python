@@ -78,6 +78,10 @@ class AutomationController:
         except Exception:
             pass
 
+    def getProxyType(self):
+        proxy_type = self.ui_instance.proxy_type.currentIndex()
+        handleSaveDataInputUser("proxy_type", proxy_type + 1)
+
     def importProxy(self):
         proxy_text = self.ui_instance.proxy_value.toPlainText()
         proxy_list = proxy_text.splitlines()

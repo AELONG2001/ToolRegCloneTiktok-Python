@@ -74,6 +74,7 @@ class AutomationThread(QThread):
         chrome_count ,
         captcha_type,
         captcha_key,
+        proxy_type,
         chrome_percent_zoom,
         is_restart = False
     ):
@@ -85,6 +86,7 @@ class AutomationThread(QThread):
         self.chrome_count = chrome_count
         self.captcha_type = captcha_type
         self.captcha_key = captcha_key
+        self.proxy_type = proxy_type
         self.chrome_percent_zoom = chrome_percent_zoom
         self.is_restart = is_restart
 
@@ -179,8 +181,7 @@ class AutomationThread(QThread):
         num_worker = self.num_threads
         chrome_percent_zoom = self.chrome_percent_zoom
 
-        api_key_tmproxy = self.self_main.proxy_value.toPlainText()
-        api_key_list = api_key_tmproxy.splitlines()
+        
         
         user_agent = UserAgent()
 
@@ -188,13 +189,28 @@ class AutomationThread(QThread):
 
         num_chrome_a_row = int(self.chrome_count)
 
-        new_proxy = handleGetNewTMProxy(api_key_list[num_worker])
-        current_proxy = handleGetCurrentTMProxy(api_key_list[num_worker])
+        print("ProxyType: ", self.proxy_type)
 
-        if not new_proxy:
-            self.proxy = current_proxy
+        # check type proxys
+        if self.proxy_type == 0:
+            api_key_tmproxy = self.self_main.proxy_value.toPlainText()
+            api_key_list = api_key_tmproxy.splitlines()
+
+            new_proxy = handleGetNewTMProxy(api_key_list[num_worker])
+            current_proxy = handleGetCurrentTMProxy(api_key_list[num_worker])
+
+            if not new_proxy:
+                self.proxy = current_proxy
+            else:
+                self.proxy = new_proxy
+        elif self.proxy_type == 1:
+            get_list_http_proxy = self.self_main.proxy_value.toPlainText()
+            http_proxys = get_list_http_proxy.splitlines()
+            self.proxy = http_proxys[num_worker]
         else:
-            self.proxy = new_proxy
+            get_list_socks5_proxy = self.self_main.proxy_value.toPlainText()
+            socks5_proxys = get_list_socks5_proxy.splitlines()
+            self.proxy = socks5_proxys[num_worker]
 
         print("Proxy: ",  self.proxy)
     
@@ -326,7 +342,7 @@ class AutomationThread(QThread):
                 self.self_main, self.num_threads,  self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
             )
 
-            if self.captcha_type == "Achicaptcha":
+            if self.captcha_type == 0:
                 # Resolve captcha by Achi
                 handleResolveCaptchaRotateObjectAChi(
                     self.captcha_key, self.self_main, self.num_threads, self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
