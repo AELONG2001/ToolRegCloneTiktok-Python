@@ -33,8 +33,9 @@ def translateUi(self, ToolRegCloneTiktok):
     self.captcha_type.setItemText(0, _translate("ToolRegCloneTiktok", "Achicaptcha"))
     self.captcha_type.setItemText(1, _translate("ToolRegCloneTiktok", "Omocaptcha"))
     self.proxy_type.setItemText(0, _translate("MainWindow", "TM Proxy"))
-    self.proxy_type.setItemText(1, _translate("MainWindow", "HTTP Proxy"))
-    self.proxy_type.setItemText(2, _translate("MainWindow", "SOCKS5 Proxy"))
+    self.proxy_type.setItemText(1, _translate("MainWindow", "Tin Proxy"))
+    self.proxy_type.setItemText(2, _translate("MainWindow", "HTTP Proxy"))
+    self.proxy_type.setItemText(3, _translate("MainWindow", "SOCKS5 Proxy"))
 
     self.list_mail.setText(_translate("ToolRegCloneTiktok", " List mail"))
     self.export_account.setText(_translate("ToolRegCloneTiktok", "Xuất tài khoản"))
@@ -54,6 +55,7 @@ def translateUi(self, ToolRegCloneTiktok):
     self.password_reg_account.setText(
         _translate("ToolRegCloneTiktok", "Mật khẩu account reg:")
     )
+    self.random_password_account.setText(_translate("ToolRegCloneTiktok", "random"))
     self.setting_tool.setTitle(_translate("ToolRegCloneTiktok", "Thiết lập thông số"))
     self.chrome_setting_line.setText(
         _translate("ToolRegCloneTiktok", "Số chrome trên 1 dòng:")
@@ -125,11 +127,18 @@ def translateUi(self, ToolRegCloneTiktok):
         else:
            self.proxy_type.setCurrentIndex(0)
         
-        
-        if "default_password" in data:
-           self.password_reg_account_value.setText(data["default_password"])
+        if "password_account" in data:
+           self.password_reg_account_value.setText(data["password_account"])
         else:
-           self.password_reg_account_value.setText("Abc123@")
+           self.password_reg_account_value.setText("")
+
+        if "random_password_account" in data:
+           if data["random_password_account"]:
+              self.random_password_account.setChecked(True)
+           else:
+              self.random_password_account.setChecked(False)
+        else:
+           self.random_password_account.setChecked(True)
 
         if "is_chrome_count" in data:
            self.chrome_setting_line_value.setValue(data["is_chrome_count"])
@@ -182,7 +191,8 @@ def translateUi(self, ToolRegCloneTiktok):
         self.captcha_key.setText("")
         self.proxy_value.setPlainText("")
         self.proxy_type.setCurrentIndex(0)
-        self.password_reg_account_value.setText("Abc123@")
+        self.password_reg_account_value.setText("")
+        self.random_password_account.setChecked(True)
         self.chrome_setting_line_value.setValue(10)
         self.chrome_percent_zoom_value.setValue(0.37)
         self.chrome_delay_minute_value.setValue(3)

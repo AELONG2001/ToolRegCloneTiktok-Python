@@ -8,11 +8,15 @@ from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
 from functions.handleCheckMail.checkMail import checkMail
 import os
 import json
-
+import sys
+import re
 
 class AutomationController:
     def __init__(self, ui_instance):
         self.ui_instance = ui_instance
+        self.timer_check_password = QTimer()
+        self.timer_check_password.timeout.connect(self.check_password)
+        self.timer_check_password.setSingleShot(True)  # Đặt chế độ single shot để chỉ chạy một lần
 
     def start(self):
         startAutomation(self.ui_instance)
@@ -31,6 +35,18 @@ class AutomationController:
 
     def stop(self):
         stopAutomation(self.ui_instance)
+
+    def validate_password(self, password):
+        password_regex = re.compile(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&*()])[A-Za-z\d@#$%^&*()]{8,}$')
+        return bool(password_regex.match(password))
+    
+    def check_password(self):
+        password_account = self.ui_instance.password_reg_account_value.text()
+        if self.validate_password(password_account):
+            self.ui_instance.check_rule_password_account.setText("")
+        else:
+            self.ui_instance.check_rule_password_account.setText("Mật khẩu phải bao gồm ít nhất 8 ký tự bao gồm chữ, số và ký tự đặc biệt")
+
 
     def checkThreadsValue(self, value):
         num_threads = self.ui_instance.threads_value.value()
@@ -94,8 +110,19 @@ class AutomationController:
         handleSaveDataInputUser("proxys", proxy_list)
 
     def getDefaultPassword(self):
-        default_password = self.ui_instance.password_reg_account_value.text()
-        handleSaveDataInputUser("default_password", default_password)
+        password_account = self.ui_instance.password_reg_account_value.text()
+        handleSaveDataInputUser("password_account", password_account)
+
+        if not password_account:
+            self.ui_instance.random_password_account.setChecked(True)
+        else:
+            self.ui_instance.random_password_account.setChecked(False)
+
+        self.timer_check_password.start(1000)
+
+    def checkRandomPassword(self):
+        random_password_account = self.ui_instance.random_password_account.isChecked()
+        handleSaveDataInputUser("random_password_account", random_password_account)
 
     def getIsChromeCount(self):
         is_chrome_count = self.ui_instance.chrome_setting_line_value.value()

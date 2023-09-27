@@ -2,7 +2,7 @@ from PySide6.QtWidgets import *
 from utils.utils import wait
 
 
-def handleInputUserNameAndPassword(self, thread, driver, accounts, current_row_count):
+def handleInputUserNameAndPassword(self, thread, driver, accounts, password_account, current_row_count):
     username = accounts[thread][0]
     if username is not None:
         wait(2, 4)
@@ -17,4 +17,4 @@ def handleInputUserNameAndPassword(self, thread, driver, accounts, current_row_c
         self.table_account_info.setItem(
             current_row_count, 3, QTableWidgetItem("Đang nhập password...")
         )
-        passwordElement.send_keys("Long123@")
+        passwordElement.send_keys(password_account)

@@ -34,7 +34,7 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSlid
 from utils.utils import random_number
 
 
-def handleUploadAvatar(self, thread, input_file_path, output_file_path, driver, accounts, captcha_type, captcha_key, current_row_count, profile_id):
+def handleUploadAvatar(self, thread, input_file_path, output_file_path, driver, accounts, captcha_type, captcha_key, password_account, current_row_count, profile_id):
     wait(2, 4)
     output_file_path = output_file_path
     is_list_avtart_default = True
@@ -70,7 +70,7 @@ def handleUploadAvatar(self, thread, input_file_path, output_file_path, driver, 
             cookies_string = ";".join(
                 [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
             )
-            account = f"{username}|Long123@|{password}|{cookies_string}"
+            account = f"{username}|{password_account}|{password}|{cookies_string}"
             with open(output_file_path, "a") as f:
                 f.write(account + "\n")
             return
@@ -79,7 +79,7 @@ def handleUploadAvatar(self, thread, input_file_path, output_file_path, driver, 
         cookies_string = ";".join(
             [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
         )
-        account = f"{username}|Long123@|{password}|{cookies_string}"
+        account = f"{username}|{password_account}|{password}|{cookies_string}"
         with open(output_file_path, "a") as f:
             f.write(account + "\n")
         print("Không thể truy cập với user_id này")
@@ -97,7 +97,7 @@ def handleUploadAvatar(self, thread, input_file_path, output_file_path, driver, 
     cookies_string = ";".join(
         [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
     )
-    account = f"{username}|Long123@|{password}|{cookies_string}"
+    account = f"{username}|{password_account}|{password}|{cookies_string}"
 
     # insert account
     with open(output_file_path, "a") as f:
@@ -114,7 +114,7 @@ def handleUploadAvatar(self, thread, input_file_path, output_file_path, driver, 
             handleResolveCaptchaChooseTwoObjectsOmo(captcha_key, self, thread, input_file_path, driver, accounts, current_row_count, profile_id)
             handleResolveCaptchaSliderObjectOmo(captcha_key, self, thread, input_file_path, driver, accounts, current_row_count, profile_id)
 
-        waitForNavigation = WebDriverWait(driver, 60)
+        waitForNavigation = WebDriverWait(driver, 200)
         editProfile = waitForNavigation.until(
             EC.presence_of_element_located(("xpath", '//span[text()="Edit profile"]'))
         )

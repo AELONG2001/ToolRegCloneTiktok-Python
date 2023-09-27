@@ -4,7 +4,17 @@ import json
 
 def handleCreateProfile(proxy):
     random_name = generate_random_name()
-    ip, port = proxy.split(":")
+    username_proxy = ""
+    password_proxy = ""
+    if len(proxy.split(":")) > 2:
+        get_proxy = proxy.split(":")
+        ip = get_proxy[0]
+        port = get_proxy[1]
+        username_proxy = get_proxy[2]
+        password_proxy = get_proxy[3]
+    else:
+       ip, port = proxy.split(":")
+       
     try:
         with open("configs_account.json", "r") as json_file:
            data = json.load(json_file)
@@ -49,8 +59,8 @@ def handleCreateProfile(proxy):
                         "mode": "http",
                         "host": f"{ip}",
                         "port": f"{port}",
-                        "username": "",
-                        "password": ""
+                        "username": f"{username_proxy}",
+                        "password": f"{password_proxy}"
                     },
                     "dns": "string",
                     "plugins": {

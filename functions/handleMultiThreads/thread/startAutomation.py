@@ -48,9 +48,8 @@ def startAutomation(self):
                QMessageBox.warning(None, "Warning", "Vui lòng nhập api_token_gologin")
                return
 
-
     else:
-        QMessageBox.warning(None, "Warning", "Vui lòng cập nhập các thông tin cần thiết trước khi bắt đầu chạy tool.\nVD: nhập mail, api captcha key,...")
+        QMessageBox.warning(None, "Warning", "Vui lòng cập nhập các thông tin cần thiết trước khi bắt đầu chạy tool.\nVD: nhập mail, api captcha key,proxy,token và path của gologin...")
     
     # with open(input_file_path, "r") as f:
     #     mail_content = f.read()
@@ -66,6 +65,7 @@ def startAutomation(self):
     captcha_type = self.captcha_type.currentIndex()
     captcha_key = self.captcha_key.text()
     proxy_type = self.proxy_type.currentIndex()
+    random_password_account = self.random_password_account.isChecked()
     chrome_percent_zoom = self.chrome_percent_zoom_value.value()
 
     self.thread_index = 0
@@ -80,6 +80,7 @@ def startAutomation(self):
             captcha_type,
             captcha_key,
             proxy_type,
+            random_password_account,
             chrome_percent_zoom,
         )
         for thread in range(num_threads)

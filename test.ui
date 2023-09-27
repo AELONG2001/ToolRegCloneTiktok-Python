@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1256</width>
-    <height>573</height>
+    <height>579</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../../../Downloads/icon-qt/folder_3767094.png</normaloff>../../../../../../../Downloads/icon-qt/folder_3767094.png</iconset>
+        <normaloff>../../../../../../../../Downloads/icon-qt/folder_3767094.png</normaloff>../../../../../../../../Downloads/icon-qt/folder_3767094.png</iconset>
       </property>
      </widget>
      <widget class="QLabel" name="list_proxy">
@@ -126,7 +126,7 @@ background-color:rgb(64, 170, 15)</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../../../Downloads/icon-qt/right_4162041.png</normaloff>../../../../../../../Downloads/icon-qt/right_4162041.png</iconset>
+        <normaloff>../../../../../../../../Downloads/icon-qt/right_4162041.png</normaloff>../../../../../../../../Downloads/icon-qt/right_4162041.png</iconset>
       </property>
       <property name="autoRepeat">
        <bool>false</bool>
@@ -204,7 +204,7 @@ background-color:rgb(255, 0, 0)</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../../../Downloads/icon-qt/stop-button_4340168.png</normaloff>../../../../../../../Downloads/icon-qt/stop-button_4340168.png</iconset>
+        <normaloff>../../../../../../../../Downloads/icon-qt/stop-button_4340168.png</normaloff>../../../../../../../../Downloads/icon-qt/stop-button_4340168.png</iconset>
       </property>
      </widget>
      <widget class="QLabel" name="threads">
@@ -329,7 +329,7 @@ background-color:rgb(255, 0, 0)</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../../../Downloads/icon-qt/txt_8361365.png</normaloff>../../../../../../../Downloads/icon-qt/txt_8361365.png</iconset>
+        <normaloff>../../../../../../../../Downloads/icon-qt/txt_8361365.png</normaloff>../../../../../../../../Downloads/icon-qt/txt_8361365.png</iconset>
       </property>
      </widget>
      <widget class="QLineEdit" name="captcha_key_2">
@@ -476,7 +476,7 @@ font: 700 10pt &quot;Segoe UI&quot;;</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../../.designer/backup/icon-qt/facebook_5968764.png</normaloff>../../../../../../.designer/backup/icon-qt/facebook_5968764.png</iconset>
+        <normaloff>../../../../../../../../.designer/backup/icon-qt/facebook_5968764.png</normaloff>../../../../../../../../.designer/backup/icon-qt/facebook_5968764.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -863,7 +863,7 @@ font: 11pt &quot;Sans Serif Collection&quot;;</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../../.designer/backup/icon-qt/txt_8361365.png</normaloff>../../../../../../.designer/backup/icon-qt/txt_8361365.png</iconset>
+        <normaloff>../../../../../../../../.designer/backup/icon-qt/txt_8361365.png</normaloff>../../../../../../../../.designer/backup/icon-qt/txt_8361365.png</iconset>
       </property>
      </widget>
      <widget class="QLineEdit" name="file_mail_check_value">
@@ -953,6 +953,22 @@ color: rgb(255, 0, 0);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border: 1px solid rgb(255, 0, 0);</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>20</y>
+        <width>72</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 600 10pt &quot;Segoe UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>random</string>
       </property>
      </widget>
     </widget>

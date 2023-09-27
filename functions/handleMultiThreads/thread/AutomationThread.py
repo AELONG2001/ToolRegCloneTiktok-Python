@@ -5,7 +5,8 @@ from selenium.common.exceptions import WebDriverException
 import math
 from time import sleep
 from fake_useragent import UserAgent
-from utils.utils import wait
+from utils.utils import wait, generate_password
+
 
 
 from functions.profilesGologin.handleCreateProfile import (
@@ -15,8 +16,11 @@ from functions.profilesGologin.handleDeleteProfile import (
     handleDeleteProfile,
 )
 
-from functions.proxy.handleGetNewTMProxy import handleGetNewTMProxy
-from functions.proxy.handleGetCurrentTMProxy import handleGetCurrentTMProxy
+from functions.proxy.TMProxy.handleGetNewTMProxy import handleGetNewTMProxy
+from functions.proxy.TMProxy.handleGetCurrentTMProxy import handleGetCurrentTMProxy
+
+from functions.proxy.TinProxy.handleGetNewTinProxy import handleGetNewTinProxy
+from functions.proxy.TinProxy.handleGetCurrentTinProxy import handleGetCurrentTinProxy
 
 from functions.autoBuyHotmail.autoBuyHotmail import handleAutoBuyHotmail
 
@@ -75,6 +79,7 @@ class AutomationThread(QThread):
         captcha_type,
         captcha_key,
         proxy_type,
+        random_password_account,
         chrome_percent_zoom,
         is_restart = False
     ):
@@ -87,12 +92,14 @@ class AutomationThread(QThread):
         self.captcha_type = captcha_type
         self.captcha_key = captcha_key
         self.proxy_type = proxy_type
+        self.random_password_account = random_password_account
         self.chrome_percent_zoom = chrome_percent_zoom
         self.is_restart = is_restart
 
         self.is_running = True
         self.stop_flag = False
         self.accounts = []
+        self.password_account = ""
 
         self.options = webdriver.ChromeOptions()
 
@@ -107,6 +114,7 @@ class AutomationThread(QThread):
     def stop(self):
         username = self.accounts[self.num_threads][0]
         password = self.accounts[self.num_threads][1]
+        password_account = self.password_account
         
 
         self.stop_flag = True
@@ -150,7 +158,7 @@ class AutomationThread(QThread):
                 cookies_string = ";".join(
                     [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
                 )
-                account = f"{username}|Long123@|{password}|{cookies_string}"
+                account = f"{username}|{password_account}|{password}|{cookies_string}"
                 wait(1, 2)
                 with open(self.output_file_path, "a") as f:
                     f.write(account + "\n")
@@ -180,16 +188,12 @@ class AutomationThread(QThread):
         print("run")
         num_worker = self.num_threads
         chrome_percent_zoom = self.chrome_percent_zoom
-
-        
         
         user_agent = UserAgent()
 
         random_user_agent = user_agent.random
 
         num_chrome_a_row = int(self.chrome_count)
-
-        print("ProxyType: ", self.proxy_type)
 
         # check type proxys
         if self.proxy_type == 0:
@@ -204,17 +208,25 @@ class AutomationThread(QThread):
             else:
                 self.proxy = new_proxy
         elif self.proxy_type == 1:
-            get_list_http_proxy = self.self_main.proxy_value.toPlainText()
-            http_proxys = get_list_http_proxy.splitlines()
-            self.proxy = http_proxys[num_worker]
+            api_key_tinproxy = self.self_main.proxy_value.toPlainText()
+            api_key_list = api_key_tinproxy.splitlines()
+
+            new_proxy = handleGetNewTinProxy(api_key_list[num_worker])
+            current_proxy = handleGetCurrentTinProxy(api_key_list[num_worker])
+
+            if not new_proxy:
+                self.proxy = current_proxy
+            else:
+                self.proxy = new_proxy
         else:
-            get_list_socks5_proxy = self.self_main.proxy_value.toPlainText()
-            socks5_proxys = get_list_socks5_proxy.splitlines()
-            self.proxy = socks5_proxys[num_worker]
+            get_list_proxy = self.self_main.proxy_value.toPlainText()
+            proxys = get_list_proxy.splitlines()
+            self.proxy = proxys[num_worker]
 
         print("Proxy: ",  self.proxy)
-    
+
         self.profile_id = handleCreateProfile(self.proxy)
+
         print("profile_id: ", self.profile_id)
             
         self.options.add_argument(
@@ -250,6 +262,13 @@ class AutomationThread(QThread):
         self.options.add_argument(
             f"--user-data-dir=C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/{self.profile_id}/Default"
         )
+
+        # if len(self.proxy.split(":")) > 2:
+        #     ip, port, username_proxy, password_proxy = self.proxy.split(":")
+        #     proxy_type = "http"
+        #     self.options.add_argument(f"--proxy-server={proxy_type}://{username_proxy}:{password_proxy}@{ip}:{port}")
+        # else:
+        
         self.options.add_argument(f"--proxy-server={self.proxy}")
 
         self.driver = webdriver.Chrome(options=self.options)
@@ -272,6 +291,14 @@ class AutomationThread(QThread):
             #         file.write(f"{mail}\n")
 
             # wait(2, 4)
+
+            if self.random_password_account:
+                self.password_account = generate_password()
+            else:
+                if self.self_main.password_reg_account_value.text():
+                    self.password_account = self.self_main.password_reg_account_value.text()
+                else:
+                    self.password_account = "Abc1234@"  
 
             with open(self.input_file_path, "r") as f:
                 mail_content = f.read()
@@ -336,6 +363,7 @@ class AutomationThread(QThread):
                 self.num_threads,
                 self.driver,
                 self.accounts,
+                self.password_account,
                 current_row_count,
             )
             handleGetCode(
@@ -372,7 +400,7 @@ class AutomationThread(QThread):
                 )
             
             handleSubmitAccount(self.self_main, self.num_threads,  self.input_file_path,
-                self.output_file_path, self.driver, self.accounts, current_row_count, self.profile_id)
+                self.output_file_path, self.driver, self.accounts, self.password_account, current_row_count, self.profile_id)
             handleInsertNewUsername(
                 self.self_main, self.num_threads, self.driver, self.accounts, current_row_count, self.profile_id
             )
@@ -385,6 +413,7 @@ class AutomationThread(QThread):
                 self.accounts,
                 self.captcha_type,
                 self.captcha_key,
+                self.password_account,
                 current_row_count,
                 self.profile_id
             )

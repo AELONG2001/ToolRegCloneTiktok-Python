@@ -32,7 +32,7 @@ def handleSelectMonth(self, thread, input_file_path, driver, accounts, current_r
             f.writelines(hotmail + "\n")
 
     try:
-        waitForNavigation = WebDriverWait(driver, 100)
+        waitForNavigation = WebDriverWait(driver, 30)
         monthSelectElement = waitForNavigation.until(
             EC.presence_of_element_located(
                 ("xpath", '//*[@aria-label="Month. Double-tap for more options"]')

@@ -6,7 +6,7 @@ from functions.profilesGologin.handleDeleteProfile import (
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import StaleElementReferenceException
 
-def handleSubmitAccount(self, thread, input_file_path, output_file_path, driver, accounts, current_row_count, profile_id):
+def handleSubmitAccount(self, thread, input_file_path, output_file_path, driver, accounts, password_account, current_row_count, profile_id):
     isSubmitAccount = True
     input_file_path = input_file_path
     output_file_path = output_file_path
@@ -28,7 +28,7 @@ def handleSubmitAccount(self, thread, input_file_path, output_file_path, driver,
             cookies_string = ";".join(
                 [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
             )
-            account = f"{username}|Long123@|{password}|{cookies_string}"
+            account = f"{username}|{password_account}|{password}|{cookies_string}"
             wait(1, 2)
             with open(output_file_path, "a") as f:
                 f.write(account + "\n")
@@ -46,7 +46,7 @@ def handleSubmitAccount(self, thread, input_file_path, output_file_path, driver,
             cookies_string = ";".join(
                 [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
             )
-            account = f"{username}|Long123@|{password}|{cookies_string}"
+            account = f"{username}|{password_account}|{password}|{cookies_string}"
             wait(1, 2)
             with open(output_file_path, "a") as f:
                 f.write(account + "\n")
@@ -82,7 +82,7 @@ def handleSubmitAccount(self, thread, input_file_path, output_file_path, driver,
                 cookies_string = ";".join(
                     [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
                 )
-                account = f"{username}|Long123@|{password}|{cookies_string}"
+                account = f"{username}|{password_account}|{password}|{cookies_string}"
                 wait(1, 2)
                 with open(output_file_path, "a") as f:
                     f.write(account + "\n")

@@ -102,10 +102,20 @@ class Ui_ToolRegCloneTiktok(QObject):
         captcha_type = self.captcha_type.currentIndex()
         captcha_key = self.captcha_key.text()
         proxy_type = self.proxy_type.currentIndex()
+        random_password_account = self.random_password_account.isChecked()
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
         
         self.chrome_threads[thread] = AutomationThread(
-            self, thread, input_file_path, output_file_path,  chrome_count, captcha_type, captcha_key, proxy_type, chrome_percent_zoom, True
+            self, thread,
+            input_file_path,
+            output_file_path,
+            chrome_count,
+            captcha_type,
+            captcha_key,
+            proxy_type,
+            random_password_account,
+            chrome_percent_zoom,
+            True
         )  # Khởi tạo thread mới
         self.chrome_threads[thread].start()
 
@@ -138,6 +148,9 @@ class Ui_ToolRegCloneTiktok(QObject):
 
     def getDefaultPassword(self):
         self.automation_controller.getDefaultPassword()
+
+    def checkRandomPassword(self):
+        self.automation_controller.checkRandomPassword()
 
     def getIsChromeCount(self):
         self.automation_controller.getIsChromeCount()
