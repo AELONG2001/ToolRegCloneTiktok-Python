@@ -1,3 +1,4 @@
+import os
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
@@ -264,23 +265,18 @@ def uiMain(self, ToolRegCloneTiktok):
     self.api_token_gologin_value.setGeometry(QRect(510, 30, 161, 21))
     self.api_token_gologin_value.setStyleSheet("font: 10pt \"Segoe UI\";")
     self.api_token_gologin_value.setObjectName("api_token_gologin_value")
-    self.is_upload_avatar =QLabel(parent=self.setting_tool)
-    self.is_upload_avatar.setGeometry(QRect(380, 110, 101, 16))
-    self.is_upload_avatar.setObjectName("is_upload_avatar")
-    self.is_upload_avatar_yes =QRadioButton(parent=self.setting_tool)
-    self.is_upload_avatar_yes.setGeometry(QRect(480, 110, 41, 21))
-    self.is_upload_avatar_yes.setStyleSheet("font: 10pt \"Segoe UI\";")
-    self.is_upload_avatar_yes.setObjectName("is_upload_avatar_yes")
-    self.is_upload_avatar_yes.setChecked(True)
-    self.is_upload_avatar_no =QRadioButton(parent=self.setting_tool)
-    self.is_upload_avatar_no.setGeometry(QRect(530, 110, 71, 21))
-    self.is_upload_avatar_no.setStyleSheet("font: 10pt \"Segoe UI\";")
-    self.is_upload_avatar_no.setObjectName("is_upload_avatar_no")
+    self.path_gologin = QLabel(parent=self.setting_tool)
+    self.path_gologin.setGeometry(QRect(380, 70, 91, 21))
+    self.path_gologin.setObjectName("path_gologin")
+    self.path_gologin_value = QLineEdit(parent=self.setting_tool)
+    self.path_gologin_value.setGeometry(QRect(470, 70, 201, 21))
+    self.path_gologin_value.setStyleSheet("font: 10pt \"Segoe UI\";")
+    self.path_gologin_value.setObjectName("path_gologin_value")
     self.api_hotmailbox =QLabel(parent=self.setting_tool)
-    self.api_hotmailbox.setGeometry(QRect(380, 70, 111, 21))
+    self.api_hotmailbox.setGeometry(QRect(380, 110, 111, 21))
     self.api_hotmailbox.setObjectName("api_hotmailbox")
     self.api_hotmailbox_value =QLineEdit(parent=self.setting_tool)
-    self.api_hotmailbox_value.setGeometry(QRect(490, 70, 161, 21))
+    self.api_hotmailbox_value.setGeometry(QRect(490, 110, 181, 21))
     self.api_hotmailbox_value.setStyleSheet("font: 10pt \"Segoe UI\";")
     self.api_hotmailbox_value.setObjectName("api_hotmailbox_value")
     self.export_account_format =QLabel(parent=self.setting_tool)
@@ -293,6 +289,18 @@ def uiMain(self, ToolRegCloneTiktok):
     self.export_account_format_value.addItem("")
     self.export_account_format_value.addItem("")
     self.export_account_format_value.addItem("")
+    self.is_upload_avatar =QLabel(parent=self.setting_tool)
+    self.is_upload_avatar.setGeometry(QRect(800, 70, 101, 16))
+    self.is_upload_avatar.setObjectName("is_upload_avatar")
+    self.is_upload_avatar_yes =QRadioButton(parent=self.setting_tool)
+    self.is_upload_avatar_yes.setGeometry(QRect(900, 70, 41, 21))
+    self.is_upload_avatar_yes.setStyleSheet("font: 10pt \"Segoe UI\";")
+    self.is_upload_avatar_yes.setObjectName("is_upload_avatar_yes")
+    self.is_upload_avatar_yes.setChecked(True)
+    self.is_upload_avatar_no =QRadioButton(parent=self.setting_tool)
+    self.is_upload_avatar_no.setGeometry(QRect(950, 70, 71, 21))
+    self.is_upload_avatar_no.setStyleSheet("font: 10pt \"Segoe UI\";")
+    self.is_upload_avatar_no.setObjectName("is_upload_avatar_no")
     self.file_mail_check = QPushButton(parent=self.settings)
     self.file_mail_check.setGeometry(QRect(20, 240, 131, 24))
     self.file_mail_check.setIcon(icon3)
@@ -302,7 +310,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.file_mail_check_value.setObjectName("file_mail_check_value")
     self.file_mail_check_value.setReadOnly(True)
     self.btn_check = QPushButton(parent=self.settings)
-    self.btn_check.setGeometry(QRect(430, 240, 81, 24))
+    self.btn_check.setGeometry(QRect(430, 240, 120, 24))
     self.btn_check.setStyleSheet(
         'font: 700 10pt "Segoe UI";\n'
         "color: #fff;\n"
@@ -310,14 +318,25 @@ def uiMain(self, ToolRegCloneTiktok):
         ""
     )
     self.btn_check.setObjectName("btn_check")
+    self.loading_icon = QLabel(parent=self.settings)
+    self.loading_icon.setGeometry(QRect(528, 246, 14, 14))
+    self.loading_icon.setText("abc")
+    relative_path = "icons/loading.gif"
+    absolute_path = os.path.abspath(relative_path)
+    self.loadingMovie = QMovie(absolute_path)
+    self.loading_icon.setMovie(self.loadingMovie)
+    self.loading_icon.setObjectName("loading_icon")
+
+    self.loading_icon.setVisible(False)
+    
     self.mail_success = QLabel(parent=self.settings)
-    self.mail_success.setGeometry(QRect(550, 240, 100, 16))
+    self.mail_success.setGeometry(QRect(580, 240, 100, 16))
     self.mail_success.setStyleSheet(
         'font: 700 10pt "Segoe UI";\n' "color: rgb(0, 170, 54);"
     )
     self.mail_success.setObjectName("mail_success")
     self.mail_success_box = QTextEdit(parent=self.settings)
-    self.mail_success_box.setGeometry(QRect(550, 260, 271, 260))
+    self.mail_success_box.setGeometry(QRect(580, 260, 271, 260))
     self.mail_success_box.setStyleSheet("border: 1px solid rgb(0, 170, 54);")
     self.mail_success_box.setObjectName("mail_success_box")
     self.mail_failed = QLabel(parent=self.settings)
@@ -356,6 +375,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.chrome_percent_zoom_value.valueChanged.connect(self.getChromePercentZoom)
     self.chrome_delay_minute_value.valueChanged.connect(self.getChromeValueDelay)
     self.api_token_gologin_value.textChanged.connect(self.getTokenGologin)
+    self.path_gologin_value.textChanged.connect(self.getPathGologin)
     self.api_hotmailbox_value.textChanged.connect(self.getValueApiHotmailbox)
     self.is_upload_avatar_yes.toggled.connect(self.checkIsUploadAvatar)
     self.export_account_format_value.currentTextChanged.connect(self.getTypeExportAccount)
@@ -366,6 +386,9 @@ def uiMain(self, ToolRegCloneTiktok):
     self.btn_check.clicked.connect(self.handleCheckMail)
 
     self.chrome_threads = []
+    self.max_thread_count = 30
+    self.threadpool = QThreadPool.globalInstance()
+    self.threadpool.setMaxThreadCount(self.max_thread_count)
 
     ToolRegCloneTiktok.setStatusBar(self.statusbar)
 

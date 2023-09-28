@@ -1,67 +1,64 @@
-from PySide6.QtWidgets import *
-from PySide6.QtGui import *
 import requests
-from concurrent.futures import ThreadPoolExecutor
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
 
 
 def handleCheckMailApi(username, password):
-    url = f"https://tools.dongvanfb.net/api/check_mail?mail={username}&pass={password}"
-    response = requests.get(url)
+    url = f"https://tools.dongvanfb.net/api/check_mail"
+    params = {
+        "mail": username,
+        "pass": password
+    }
+    response = requests.get(url, params=params)
     data = response.json()
     return (username, password, data.get("status", False))
 
 
+class EmailCheckerTaskSignals(QObject):
+    result_signal = Signal(str, bool)  # Sửa đổi từ pyqtSignal thành Signal
+
+class EmailCheckerTask(QRunnable):
+    def __init__(self, username, password):
+        super().__init__()
+        self.username = username
+        self.password = password
+        self.signals = EmailCheckerTaskSignals()
+
+    def run(self):
+        _, _, status = handleCheckMailApi(self.username, self.password)
+        # result_text = f"Email: {self.username} - {'Thành công' if status else 'Thất bại'}"
+        self.signals.result_signal.emit(self.username, status)
+
 def checkMail(
-    fileNameCheck, mail_success_box, mail_success, mail_failed_box, mail_failed
+    self, fileNameCheck
 ):
-    with open(fileNameCheck, "r") as file:
-        mail_content = file.read()
-        mail_lines = mail_content.splitlines()
+    self.mail_success.setText(f"Live Mail (0):")
+    self.mail_failed.setText(f"Die Mail (0):")
 
-    listMailFilterSpace = []
-    for item in mail_lines:
-        if item.strip():
-            listMailFilterSpace.append(item)
 
-    num_threads = 50
-    valid_mails = []
-    invalid_mails = []
-    for line in listMailFilterSpace:
-        if "|" in line:
-            try:
-                username, password = line.split("|", 1)
-                valid_mails.append((username, password))
-            except ValueError:
-                # Nếu xảy ra lỗi khi tách dòng thành username và password, xem như là "invalid_mails"
-                invalid_mails.append(line)
-        else:
-            # Nếu không tìm thấy "|", xem như là "invalid_mails"
-            invalid_mails.append(line)
+    self.mail_success_box.clear()
+    self.mail_failed_box.clear()
 
-    with ThreadPoolExecutor(max_workers=num_threads) as executor:
-        futures = [
-            executor.submit(handleCheckMailApi, username, password)
-            for username, password in valid_mails
-        ]
+    self.success_mail_count = 0
+    self.failed_mail_count = 0
 
-        success_mail_count = 0
-        failed_mail_count = 0
-        for future in futures:
-            username, password, is_live = future.result()
-            if is_live:
-                success_mail_count += 1
-                mail_success_box.moveCursor(QTextCursor.End)
-                mail_success_box.insertPlainText(f"{username}|{password}\n")
-                mail_success.setText(f"Live Mail ({success_mail_count}):")
-                QApplication.processEvents()
-            else:
-                invalid_mails_str = "\n".join(invalid_mails)
-                failed_mail_count += 1
-                mail_failed_box.moveCursor(QTextCursor.End)
-                mail_failed_box.insertPlainText(f"{username}|{password}\n")
-                mail_failed_box.insertPlainText(invalid_mails_str)
-                mail_failed.setText(f"Die Mail ({failed_mail_count}):")
-                QApplication.processEvents()
+    total_email_count = 0
+    
+    with open(fileNameCheck, 'r') as file:
+        lines = file.readlines()
+        total_email_count += len(lines)
 
-    # All tasks are finished, display a message
-    QMessageBox.information(None, "Thông báo", "Hoàn thành kiểm tra email!")
+        for line in lines:
+            username, password = line.strip().split('|')
+            task = EmailCheckerTask(username, password)
+            task.signals.result_signal.connect(self.updateResultText)
+            self.threadpool.start(task)
+
+    self.total_email_count = total_email_count
+    self.btn_check.setText("Đang check")
+    self.btn_check.setEnabled(False)
+    self.btn_check.setStyleSheet("background-color: rgba(0, 0, 0, 0.2);")
+    self.loading_icon.setVisible(True)
+    self.loadingMovie.start()
+

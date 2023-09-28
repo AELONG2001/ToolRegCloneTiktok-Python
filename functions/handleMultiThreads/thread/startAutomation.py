@@ -67,6 +67,7 @@ def startAutomation(self):
     proxy_type = self.proxy_type.currentIndex()
     random_password_account = self.random_password_account.isChecked()
     chrome_percent_zoom = self.chrome_percent_zoom_value.value()
+    path_profile_gologin = self.path_gologin_value.text()
 
     self.thread_index = 0
     self.stop_all_threads = False
@@ -82,13 +83,14 @@ def startAutomation(self):
             proxy_type,
             random_password_account,
             chrome_percent_zoom,
+            path_profile_gologin
         )
         for thread in range(num_threads)
     ]
     self.start_next_thread()
 
     self.start_button.setEnabled(False)
-    self.start_button.setStyleSheet("background-color: rgba(0, 0, 0, 0.2);")
+    self.start_button.setStyleSheet("background-color: rgba(0, 0, 0, 0.2)")
     self.stop_button.setEnabled(True)
     self.stop_button.setStyleSheet(
         "color:rgb(255, 252, 252);\n" "background-color:rgb(255, 0, 0)"

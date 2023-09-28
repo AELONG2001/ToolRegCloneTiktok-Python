@@ -104,6 +104,8 @@ class Ui_ToolRegCloneTiktok(QObject):
         proxy_type = self.proxy_type.currentIndex()
         random_password_account = self.random_password_account.isChecked()
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
+        path_profile_gologin = self.path_gologin_value.text()
+
         
         self.chrome_threads[thread] = AutomationThread(
             self, thread,
@@ -115,6 +117,7 @@ class Ui_ToolRegCloneTiktok(QObject):
             proxy_type,
             random_password_account,
             chrome_percent_zoom,
+            path_profile_gologin,
             True
         )  # Khởi tạo thread mới
         self.chrome_threads[thread].start()
@@ -164,6 +167,9 @@ class Ui_ToolRegCloneTiktok(QObject):
     def getTokenGologin(self):
         self.automation_controller.getTokenGologin()
 
+    def getPathGologin(self):
+        self.automation_controller.getPathGologin()
+
     def getValueApiHotmailbox(self):
         self.automation_controller.getValueApiHotmailbox()
 
@@ -178,6 +184,36 @@ class Ui_ToolRegCloneTiktok(QObject):
 
     def handleCheckMail(self):
         self.automation_controller.handleCheckMail()
+
+    def updateResultText(self, username, status):
+        if status:
+            self.mail_success_box.append(username)
+            self.success_mail_count += 1
+        else:
+            self.mail_failed_box.append(username)
+            self.failed_mail_count += 1
+
+        self.updateCounts()
+
+        if self.success_mail_count + self.failed_mail_count == self.total_email_count:
+            self.showSuccessMessage()
+
+    def updateCounts(self):
+        self.mail_success.setText(f"Live Mail ({self.success_mail_count}):")
+        self.mail_failed.setText(f"Die Mail ({self.failed_mail_count}):")
+
+    def showSuccessMessage(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Icon.Information)
+        msg.setText("Kiểm tra email hoàn thành.")
+        msg.setWindowTitle("Thành công")
+        msg.exec()
+
+        self.btn_check.setEnabled(True)
+        self.btn_check.setStyleSheet("color: #fff; background-color: rgb(64, 170, 15)")
+        self.btn_check.setText("Check")
+        self.loading_icon.setVisible(False)
+
     
     def retranslateUi(self, ToolRegCloneTiktok):
         translateUi(self, ToolRegCloneTiktok)

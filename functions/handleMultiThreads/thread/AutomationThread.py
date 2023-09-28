@@ -81,6 +81,7 @@ class AutomationThread(QThread):
         proxy_type,
         random_password_account,
         chrome_percent_zoom,
+        path_profile_gologin,
         is_restart = False
     ):
         super().__init__()
@@ -94,6 +95,7 @@ class AutomationThread(QThread):
         self.proxy_type = proxy_type
         self.random_password_account = random_password_account
         self.chrome_percent_zoom = chrome_percent_zoom
+        self.path_profile_gologin = path_profile_gologin
         self.is_restart = is_restart
 
         self.is_running = True
@@ -214,6 +216,8 @@ class AutomationThread(QThread):
             new_proxy = handleGetNewTinProxy(api_key_list[num_worker])
             current_proxy = handleGetCurrentTinProxy(api_key_list[num_worker])
 
+            print("new_proxy: ", new_proxy)
+
             if not new_proxy:
                 self.proxy = current_proxy
             else:
@@ -223,7 +227,7 @@ class AutomationThread(QThread):
             proxys = get_list_proxy.splitlines()
             self.proxy = proxys[num_worker]
 
-        print("Proxy: ",  self.proxy)
+        # print("Proxy: ",  self.proxy)
 
         self.profile_id = handleCreateProfile(self.proxy)
 
@@ -260,7 +264,7 @@ class AutomationThread(QThread):
         self.options.add_argument("--disable-blink-features=AutomationControlled")
         self.options.add_argument(f"user-agent={random_user_agent}")
         self.options.add_argument(
-            f"--user-data-dir=C:/Users/HD/AppData/Local/Temp/GoLogin/profiles/{self.profile_id}/Default"
+            f"--user-data-dir={self.path_profile_gologin}/{self.profile_id}/Default"
         )
 
         # if len(self.proxy.split(":")) > 2:

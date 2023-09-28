@@ -32,10 +32,10 @@ def translateUi(self, ToolRegCloneTiktok):
     self.avatar_value.setText(_translate("ToolRegCloneTiktok", "C://images"))
     self.captcha_type.setItemText(0, _translate("ToolRegCloneTiktok", "Achicaptcha"))
     self.captcha_type.setItemText(1, _translate("ToolRegCloneTiktok", "Omocaptcha"))
-    self.proxy_type.setItemText(0, _translate("MainWindow", "TM Proxy"))
-    self.proxy_type.setItemText(1, _translate("MainWindow", "Tin Proxy"))
-    self.proxy_type.setItemText(2, _translate("MainWindow", "HTTP Proxy"))
-    self.proxy_type.setItemText(3, _translate("MainWindow", "SOCKS5 Proxy"))
+    self.proxy_type.setItemText(0, _translate("ToolRegCloneTiktok", "TM Proxy"))
+    self.proxy_type.setItemText(1, _translate("ToolRegCloneTiktok", "Tin Proxy"))
+    self.proxy_type.setItemText(2, _translate("ToolRegCloneTiktok", "HTTP Proxy"))
+    self.proxy_type.setItemText(3, _translate("ToolRegCloneTiktok", "SOCKS5 Proxy"))
 
     self.list_mail.setText(_translate("ToolRegCloneTiktok", " List mail"))
     self.export_account.setText(_translate("ToolRegCloneTiktok", "Xuất tài khoản"))
@@ -69,17 +69,18 @@ def translateUi(self, ToolRegCloneTiktok):
         _translate("ToolRegCloneTiktok", "File Mail cần check")
     )
     self.chrome_delay_minute.setText(
-        _translate("MainWindow", "Số phút delay sau mỗi thread:")
+        _translate("ToolRegCloneTiktok", "Số phút delay sau mỗi thread:")
     )
-    self.api_token_gologin.setText(_translate("MainWindow", "API Token Gologin:"))
-    self.is_upload_avatar.setText(_translate("MainWindow", "Upload avatar:"))
-    self.is_upload_avatar_yes.setText(_translate("MainWindow", "Có"))
-    self.is_upload_avatar_no.setText(_translate("MainWindow", "Không"))
-    self.api_hotmailbox.setText(_translate("MainWindow", "API Hotmailbox:"))
-    self.export_account_format.setText(_translate("MainWindow", "Định dạng xuất accounts:"))
-    self.export_account_format_value.setItemText(0, _translate("MainWindow", "mail | passMail | passAccount | cookie"))
-    self.export_account_format_value.setItemText(1, _translate("MainWindow", "mail | passMail | passAccount"))
-    self.export_account_format_value.setItemText(2, _translate("MainWindow", "maill | passAccount"))
+    self.api_token_gologin.setText(_translate("ToolRegCloneTiktok", "API Token Gologin:"))
+    self.path_gologin.setText(_translate("ToolRegCloneTiktok", "Path Gologin:"))
+    self.api_hotmailbox.setText(_translate("ToolRegCloneTiktok", "API Hotmailbox:"))
+    self.export_account_format.setText(_translate("ToolRegCloneTiktok", "Định dạng xuất accounts:"))
+    self.export_account_format_value.setItemText(0, _translate("ToolRegCloneTiktok", "mail | passMail | passAccount | cookie"))
+    self.export_account_format_value.setItemText(1, _translate("ToolRegCloneTiktok", "mail | passMail | passAccount"))
+    self.export_account_format_value.setItemText(2, _translate("ToolRegCloneTiktok", "maill | passAccount"))
+    self.is_upload_avatar.setText(_translate("ToolRegCloneTiktok", "Upload avatar:"))
+    self.is_upload_avatar_yes.setText(_translate("ToolRegCloneTiktok", "Có"))
+    self.is_upload_avatar_no.setText(_translate("ToolRegCloneTiktok", "Không"))
     self.btn_check.setText(_translate("ToolRegCloneTiktok", "Check"))
     self.mail_success.setText(_translate("ToolRegCloneTiktok", "Live Mail:"))
     self.mail_failed.setText(_translate("ToolRegCloneTiktok", "Die Mail"))
@@ -159,6 +160,11 @@ def translateUi(self, ToolRegCloneTiktok):
            self.api_token_gologin_value.setText(data["api_token_gologin"])
         else:
            self.api_token_gologin_value.setText("")
+
+        if "path_gologin" in data:
+           self.path_gologin_value.setText(data["path_gologin"])
+        else:
+           self.path_gologin_value.setText("")
         
         if "api_value_hotmailbox" in data:
             self.api_hotmailbox_value.setText(data["api_value_hotmailbox"])
@@ -197,6 +203,7 @@ def translateUi(self, ToolRegCloneTiktok):
         self.chrome_percent_zoom_value.setValue(0.37)
         self.chrome_delay_minute_value.setValue(3)
         self.api_token_gologin_value.setText("")
+        self.path_gologin_value.setText("")
         self.api_hotmailbox_value.setText("")
         self.is_upload_avatar_yes.setChecked(True)
         self.export_account_format_value.setCurrentIndex(0)

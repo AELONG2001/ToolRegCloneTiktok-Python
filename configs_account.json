@@ -1,6 +1,6 @@
 {
     "num_threads": 3,
-    "url_mail": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/hotmail.txt",
+    "url_mail": "",
     "captcha_key": "08f8b0f0b3aff156866a811508e2bb2e",
     "proxys": [
         "W1Qp5r0nmVHeMoY4iOfUkUxBd32eeV56",
@@ -12,6 +12,10 @@
     "url_avatar": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus",
     "proxy_type": 2,
     "chrome_percent_zoom": 0.75,
-    "password_account": "abcz@11",
-    "random_password_account": false
+    "password_account": "",
+    "random_password_account": true,
+    "path_gologin": "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles",
+    "is_upload_avatar": true,
+    "typeExportAccount": 1,
+    "chromeValueDelay": 3
 }

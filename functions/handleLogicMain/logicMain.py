@@ -45,7 +45,9 @@ class AutomationController:
         if self.validate_password(password_account):
             self.ui_instance.check_rule_password_account.setText("")
         else:
-            self.ui_instance.check_rule_password_account.setText("Mật khẩu phải bao gồm ít nhất 8 ký tự bao gồm chữ, số và ký tự đặc biệt")
+            random_password_account = self.ui_instance.random_password_account.isChecked()
+            if not random_password_account:
+                self.ui_instance.check_rule_password_account.setText("Mật khẩu phải bao gồm ít nhất 8 ký tự bao gồm chữ, số và ký tự đặc biệt")
 
 
     def checkThreadsValue(self, value):
@@ -122,6 +124,8 @@ class AutomationController:
 
     def checkRandomPassword(self):
         random_password_account = self.ui_instance.random_password_account.isChecked()
+        if self.ui_instance.random_password_account:
+            self.ui_instance.check_rule_password_account.setText("")
         handleSaveDataInputUser("random_password_account", random_password_account)
 
     def getIsChromeCount(self):
@@ -139,6 +143,10 @@ class AutomationController:
     def getTokenGologin(self):
         api_token_gologin = self.ui_instance.api_token_gologin_value.text()
         handleSaveDataInputUser("api_token_gologin", api_token_gologin)
+
+    def getPathGologin(self):
+        path_gologin = self.ui_instance.path_gologin_value.text()
+        handleSaveDataInputUser("path_gologin", path_gologin)    
 
     def getValueApiHotmailbox(self):
         api_value_hotmailbox = self.ui_instance.api_hotmailbox_value.text()
@@ -164,24 +172,12 @@ class AutomationController:
         if not self.ui_instance.file_mail_check_value.text():
             QMessageBox.warning(None, "Warning", "Vui lòng chọn file cần check")
             return
-
-        self.ui_instance.success_mail_count = 0
-        self.ui_instance.failed_mail_count = 0
-        self.ui_instance.mail_success_box.clear()
-        self.ui_instance.mail_failed_box.clear()
-
+        
         if os.path.exists("configs_account.json"):
             with open("configs_account.json", "r") as json_file:
                 data = json.load(json_file)
             fileMailCheck = data["url_mail_check"]
         else:
-            fileMailCheck = self.ui_instance.fileNameCheck
-        
+            fileMailCheck = self.ui_instance.fileNameCheck        
 
-        checkMail(
-            fileMailCheck,
-            self.ui_instance.mail_success_box,
-            self.ui_instance.mail_success,
-            self.ui_instance.mail_failed_box,
-            self.ui_instance.mail_failed,
-        )
+        checkMail(self.ui_instance, fileMailCheck)
