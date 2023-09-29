@@ -16,7 +16,7 @@ def handleCheckMailApi(username, password):
 
 
 class EmailCheckerTaskSignals(QObject):
-    result_signal = Signal(str, bool)  # Sửa đổi từ pyqtSignal thành Signal
+    result_signal = Signal(str, bool)
 
 class EmailCheckerTask(QRunnable):
     def __init__(self, username, password):

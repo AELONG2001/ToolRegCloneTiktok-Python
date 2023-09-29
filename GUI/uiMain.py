@@ -386,7 +386,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.btn_check.clicked.connect(self.handleCheckMail)
 
     self.chrome_threads = []
-    self.max_thread_count = 30
+    self.max_thread_count = 50
     self.threadpool = QThreadPool.globalInstance()
     self.threadpool.setMaxThreadCount(self.max_thread_count)
 

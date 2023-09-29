@@ -82,6 +82,7 @@ class AutomationThread(QThread):
         random_password_account,
         chrome_percent_zoom,
         path_profile_gologin,
+        is_upload_avatar,
         is_restart = False
     ):
         super().__init__()
@@ -96,6 +97,7 @@ class AutomationThread(QThread):
         self.random_password_account = random_password_account
         self.chrome_percent_zoom = chrome_percent_zoom
         self.path_profile_gologin = path_profile_gologin
+        self.is_upload_avatar = is_upload_avatar
         self.is_restart = is_restart
 
         self.is_running = True
@@ -408,19 +410,20 @@ class AutomationThread(QThread):
             handleInsertNewUsername(
                 self.self_main, self.num_threads, self.driver, self.accounts, current_row_count, self.profile_id
             )
-            handleUploadAvatar(
-                self.self_main,
-                self.num_threads,
-                self.input_file_path,
-                self.output_file_path,
-                self.driver,
-                self.accounts,
-                self.captcha_type,
-                self.captcha_key,
-                self.password_account,
-                current_row_count,
-                self.profile_id
-            )
+            if self.is_upload_avatar:
+                handleUploadAvatar(
+                    self.self_main,
+                    self.num_threads,
+                    self.input_file_path,
+                    self.output_file_path,
+                    self.driver,
+                    self.accounts,
+                    self.captcha_type,
+                    self.captcha_key,
+                    self.password_account,
+                    current_row_count,
+                    self.profile_id
+                )
 
             wait(4, 6)
             self.driver.get("https://www.tiktok.com/logout")

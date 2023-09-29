@@ -131,22 +131,27 @@ def handleUploadAvatar(self, thread, input_file_path, output_file_path, driver, 
         current_row_count, 3, QTableWidgetItem("Đang upload avatar...")
     )
 
-    
     wait(2, 4)
     inputUploadAvatar = driver.find_elements("css selector", "input[type='file']")
     if inputUploadAvatar:
             if is_list_avtart_default:
-                current_file_path = os.path.abspath(__file__)
-                pattern = r"ToolRegCloneTiktok"
-                parts = re.split(pattern, current_file_path)
+                # current_file_path = os.path.abspath(__file__)
+                # pattern = r"ToolRegCloneTiktok"
+                # parts = re.split(pattern, current_file_path)
 
-                if len(parts) > 1:
-                    path_avatar_default_origin = parts[0]
-                    path_avatar_default_origin = path_avatar_default_origin.replace("\\", "/")
-                    
-                    inputUploadAvatar[0].send_keys(
-                        f"{path_avatar_default_origin}ToolRegCloneTiktok/{list_avatar_folder}/{list_avatar[random_number(0, len(list_avatar) - 1)]}"
-                    )
+                relative_path = "data/wibus"
+                absolute_path = os.path.abspath(relative_path)
+
+                # if len(parts) > 1:
+                # path_avatar_default_origin = parts[0]
+                # path_avatar_default_origin = path_avatar_default_origin.replace("\\", "/")
+
+                path_avatar_default_origin = absolute_path
+                
+                inputUploadAvatar[0].send_keys(
+                    # f"{path_avatar_default_origin}ToolRegCloneTiktok/{list_avatar_folder}/{list_avatar[random_number(0, len(list_avatar) - 1)]}"
+                    f"{path_avatar_default_origin}/{list_avatar[random_number(0, len(list_avatar) - 1)]}"
+                )
             else:
                 inputUploadAvatar[0].send_keys(
                     f"{list_avatar_folder}/{list_avatar[random_number(0, len(list_avatar) - 1)]}"

@@ -105,7 +105,7 @@ class Ui_ToolRegCloneTiktok(QObject):
         random_password_account = self.random_password_account.isChecked()
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
         path_profile_gologin = self.path_gologin_value.text()
-
+        is_upload_avatar = self.is_upload_avatar_yes.isChecked()
         
         self.chrome_threads[thread] = AutomationThread(
             self, thread,
@@ -118,6 +118,7 @@ class Ui_ToolRegCloneTiktok(QObject):
             random_password_account,
             chrome_percent_zoom,
             path_profile_gologin,
+            is_upload_avatar,
             True
         )  # Khởi tạo thread mới
         self.chrome_threads[thread].start()

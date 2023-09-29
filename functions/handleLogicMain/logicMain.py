@@ -85,16 +85,37 @@ class AutomationController:
         handleSaveDataInputUser("captcha_key", captcha_key)
 
     def exportAccount(self):
-      file_path = "data/output.txt"
-      file_name, _ = QFileDialog.getSaveFileName(None, "Chọn nơi lưu tệp", file_path, "Tệp văn bản (*.txt);;Tất cả các tệp (*)")
-      if file_name:
-        try:
-            with open(file_name, 'w') as file:
-                # Đọc nội dung từ file cần lưu và ghi vào file mới
-                with open(file_path, 'r') as source_file:
-                    file.write(source_file.read())
-        except Exception:
-            pass
+      file_path = "data/accounts.txt"     
+      typeExportAccount = self.ui_instance.export_account_format_value.currentIndex()
+
+      default_file_name = "output.txt"
+
+      if typeExportAccount == 1:
+        default_file_name = "output_without_cookie.txt"
+      elif typeExportAccount == 2:
+        default_file_name = "output_username_password.txt"
+
+      file_name, _ = QFileDialog.getSaveFileName(None, "Chọn nơi lưu tệp", default_file_name, "Tệp văn bản (*.txt);;Tất cả các tệp (*)")
+ 
+      with open(file_path, "r") as file:
+            accounts =  file.readlines()
+
+      if typeExportAccount == 0:
+            selected_data = accounts
+      elif typeExportAccount == 1:
+            selected_data = [line.split("|")[:3] for line in accounts]
+      elif typeExportAccount == 2:
+            selected_data = [line.split("|")[:2] for line in accounts]
+      else:
+            return
+
+      with open(file_name, "w") as txtfile:
+            if typeExportAccount in [1, 2]:
+                for line in selected_data:
+                    txtfile.write("|".join(line) + "\n")
+            else:
+                txtfile.writelines(selected_data)
+            
 
     def getProxyType(self):
         proxy_type = self.ui_instance.proxy_type.currentIndex()

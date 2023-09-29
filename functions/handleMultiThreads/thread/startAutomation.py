@@ -68,6 +68,7 @@ def startAutomation(self):
     random_password_account = self.random_password_account.isChecked()
     chrome_percent_zoom = self.chrome_percent_zoom_value.value()
     path_profile_gologin = self.path_gologin_value.text()
+    is_upload_avatar = self.is_upload_avatar_yes.isChecked()
 
     self.thread_index = 0
     self.stop_all_threads = False
@@ -83,7 +84,8 @@ def startAutomation(self):
             proxy_type,
             random_password_account,
             chrome_percent_zoom,
-            path_profile_gologin
+            path_profile_gologin,
+            is_upload_avatar
         )
         for thread in range(num_threads)
     ]
