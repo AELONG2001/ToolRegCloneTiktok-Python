@@ -128,7 +128,7 @@ def handleCreateProfile(proxy):
                 }
         response = requests.post(url, headers=headers, json=body)
         profile = response.json()
-
+        
         return profile["id"]
 
     except requests.exceptions.RequestException as e:

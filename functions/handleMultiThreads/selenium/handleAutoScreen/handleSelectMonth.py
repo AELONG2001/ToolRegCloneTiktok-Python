@@ -31,39 +31,64 @@ def handleSelectMonth(self, thread, input_file_path, driver, accounts, current_r
         for hotmail in update_mail:
             f.writelines(hotmail + "\n")
 
-    try:
-        waitForNavigation = WebDriverWait(driver, 30)
-        monthSelectElement = waitForNavigation.until(
-            EC.presence_of_element_located(
-                ("xpath", '//*[@aria-label="Month. Double-tap for more options"]')
-            )
-        )
-        self.table_account_info.setItem(
+    self.table_account_info.setItem(
             current_row_count, 3, QTableWidgetItem("Bắt đầu reg...")
+        )
+
+    try:
+        waitForNavigation = WebDriverWait(driver, 10)
+        emailSelectElement = waitForNavigation.until(
+                EC.presence_of_element_located(
+                    ("xpath", '//*[@data-list-item-value="email"]')
+                )
+        )
+        emailSelectElement.click()
+        wait(2, 3)
+        monthSelectElement = driver.find_element(
+        "xpath", '//*[@aria-label="Month. Double-tap for more options"]'
         )
         monthSelectElement.click()
         self.table_account_info.setItem(
-            current_row_count, 3, QTableWidgetItem("Đang chọn tháng...")
+                current_row_count, 3, QTableWidgetItem("Đang chọn tháng...")
         )
         wait(4, 6)
         dropDownSelectMonth = driver.find_element(
             "id", f"Month-options-item-{random_number(0, 11)}"
         )
         dropDownSelectMonth.click()
-    except TimeoutException:
-        print("Không tìm thấy monthSelectElement sau khoảng thời gian chờ")
-        input_file_path = input_file_path
-        username = accounts[thread][0]
-        password = accounts[thread][1]
-        wait(1, 2)
-        with open(input_file_path, "a") as file:
-            file.write(f"{username}|{password}\n")
-        driver.quit()
-        handleDeleteProfile(profile_id)
-        self.table_account_info.setItem(
-            current_row_count,
-            3,
-            QTableWidgetItem("Bị chặn, đợi restart lại..."),
-        )
-        self.restart_thread(thread)
+    except:
+        try:
+            waitForNavigation = WebDriverWait(driver, 30)
+            monthSelectElement = waitForNavigation.until(
+                EC.presence_of_element_located(
+                    ("xpath", '//*[@aria-label="Month. Double-tap for more options"]')
+                )
+            )
+            monthSelectElement.click()
+            self.table_account_info.setItem(
+                current_row_count, 3, QTableWidgetItem("Đang chọn tháng...")
+            )
+            wait(4, 6)
+            dropDownSelectMonth = driver.find_element(
+                "id", f"Month-options-item-{random_number(0, 11)}"
+            )
+            dropDownSelectMonth.click()
+        except TimeoutException:
+            print("Không tìm thấy monthSelectElement sau khoảng thời gian chờ")
+            input_file_path = input_file_path
+            username = accounts[thread][0]
+            password = accounts[thread][1]
+            wait(1, 2)
+            with open(input_file_path, "a") as file:
+                file.write(f"{username}|{password}\n")
+            driver.quit()
+            handleDeleteProfile(profile_id)
+            self.table_account_info.setItem(
+                current_row_count,
+                3,
+                QTableWidgetItem("Bị chặn, đợi restart lại..."),
+            )
+            self.restart_thread(thread)
+
+    
 

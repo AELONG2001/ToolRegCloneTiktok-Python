@@ -116,8 +116,6 @@ class AutomationThread(QThread):
         )
 
     def stop(self):
-        username = self.accounts[self.num_threads][0]
-        password = self.accounts[self.num_threads][1]
         password_account = self.password_account
         
 
@@ -135,14 +133,14 @@ class AutomationThread(QThread):
             exists = False
             for line in existing_data:
                 parts = line.strip().split('|')
-                if len(parts) >= 1 and username == parts[0]:
+                if len(parts) >= 1 and self.username == parts[0]:
                     exists = True
                     break
 
             # check if data not exist
             if not exists:
                 with open(self.input_file_path, "a") as file:
-                    file.write(f"{username}|{password}\n")
+                    file.write(f"{self.username}|{self.password}\n")
         else:
             # open file output
             with open(self.output_file_path, "r") as file:
@@ -152,7 +150,7 @@ class AutomationThread(QThread):
             exists = False
             for line in existing_data:
                 parts = line.strip().split('|')
-                if len(parts) >= 1 and username == parts[0]:
+                if len(parts) >= 1 and self.username == parts[0]:
                     exists = True
                     break
 
@@ -162,7 +160,7 @@ class AutomationThread(QThread):
                 cookies_string = ";".join(
                     [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
                 )
-                account = f"{username}|{password_account}|{password}|{cookies_string}"
+                account = f"{self.username}|{password_account}|{self.password}|{cookies_string}"
                 wait(1, 2)
                 with open(self.output_file_path, "a") as f:
                     f.write(account + "\n")
@@ -217,8 +215,6 @@ class AutomationThread(QThread):
 
             new_proxy = handleGetNewTinProxy(api_key_list[num_worker])
             current_proxy = handleGetCurrentTinProxy(api_key_list[num_worker])
-
-            print("new_proxy: ", new_proxy)
 
             if not new_proxy:
                 self.proxy = current_proxy
@@ -286,17 +282,18 @@ class AutomationThread(QThread):
         y = math.floor(num_worker / cols) * 810
 
         self.driver.set_window_rect(x, y, 200, 800)
-
         
         while not self.stop_flag:
-            # if not self.is_restart:
-            #    mail = handleAutoBuyHotmail()
-            #    print("mail: ", mail)
+            isAutoBuyMail = self.self_main.api_hotmailbox_value.text()
+            if isAutoBuyMail:
+                if not self.is_restart:
+                    mail = handleAutoBuyHotmail()
+                    print("mail: ", mail)
 
-            # with open(self.input_file_path, "a") as file:
-            #         file.write(f"{mail}\n")
+                with open(self.input_file_path, "a") as file:
+                        file.write(f"{mail}\n")
 
-            # wait(2, 4)
+                wait(2, 4)
 
             if self.random_password_account:
                 self.password_account = generate_password()
@@ -311,15 +308,19 @@ class AutomationThread(QThread):
 
             self.accounts = getMailContent(mail_content)
 
+            if isAutoBuyMail:
+                self.username, self.password = self.accounts[0]
+            else:
+                self.username, self.password = self.accounts[num_worker]
+
             if len(self.accounts) > 0:
-                username, password = self.accounts[num_worker]
                 current_row_count = self.self_main.table_account_info.rowCount()
                 self.self_main.table_account_info.setRowCount(current_row_count + 1)
                 self.self_main.table_account_info.setItem(
-                    current_row_count, 0, QTableWidgetItem(username)
+                    current_row_count, 0, QTableWidgetItem(self.username)
                 )
                 self.self_main.table_account_info.setItem(
-                    current_row_count, 1, QTableWidgetItem(password)
+                    current_row_count, 1, QTableWidgetItem(self.password)
                 )
             else:
                 if hasattr(self, "driver"):

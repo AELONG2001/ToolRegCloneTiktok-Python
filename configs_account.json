@@ -1,21 +1,24 @@
 {
-    "num_threads": 3,
-    "url_mail": "",
+    "num_threads": 1,
+    "url_mail": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/hotmail.txt",
     "captcha_key": "08f8b0f0b3aff156866a811508e2bb2e",
     "proxys": [
-        "W1Qp5r0nmVHeMoY4iOfUkUxBd32eeV56",
-        "6iJcZGMY7CduDinYqUrN7dXCm1e6zxtJ",
-        "KQiMBeK9tZi1di5In4GduicVezOgs7Zw"
+        "cbbf53208bf427404b5f4eab29c87fbe",
+        "42791c4ff45bcba839b80a97bc80c025",
+        "03507d91865a894b1799f306f704267a",
+        "beefa107ef11996df44d9e71b62f8784",
+        "eb11947d6cf46417f49c553bebb107b9"
     ],
-    "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTBiYWFkMWFkNjg4NDQ5YjNjNGRhMzciLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTBiYWFmN2Y1YmM2NzVlOGRmMmU3YTYifQ.ILx5GVVuF_tv_eYrP0lix4ZJ8gJ_IjMEXv9Rsd4bWuU",
+    "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTE4Yzg1MjdmNmM5MjNhYTUzOWFhMWIiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTE4Y2UwZjJlOTE2ZDJjY2QxNDZmNzIifQ.XqiH1uoVtyLUw_BgLMOgxpJ-lBrUYmAbBKBc84wZWfc",
     "url_mail_check": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/hotmail.txt",
-    "url_avatar": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus",
-    "proxy_type": 2,
+    "proxy_type": 1,
     "chrome_percent_zoom": 0.75,
     "password_account": "",
     "random_password_account": true,
     "path_gologin": "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles",
     "is_upload_avatar": true,
     "typeExportAccount": 1,
-    "chromeValueDelay": 3
+    "chromeValueDelay": 3,
+    "is_chrome_count": 10,
+    "api_value_hotmailbox": ""
 }
