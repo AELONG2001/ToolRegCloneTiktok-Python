@@ -83,6 +83,8 @@ class AutomationThread(QThread):
         chrome_percent_zoom,
         path_profile_gologin,
         is_upload_avatar,
+        username_restart = "",
+        password_restart = "",
         is_restart = False
     ):
         super().__init__()
@@ -98,6 +100,8 @@ class AutomationThread(QThread):
         self.chrome_percent_zoom = chrome_percent_zoom
         self.path_profile_gologin = path_profile_gologin
         self.is_upload_avatar = is_upload_avatar
+        self.username_restart = username_restart
+        self.password_restart = password_restart
         self.is_restart = is_restart
 
         self.is_running = True
@@ -284,16 +288,8 @@ class AutomationThread(QThread):
         self.driver.set_window_rect(x, y, 200, 800)
         
         while not self.stop_flag:
-            isAutoBuyMail = self.self_main.api_hotmailbox_value.text()
-            if isAutoBuyMail:
-                if not self.is_restart:
-                    mail = handleAutoBuyHotmail()
-                    print("mail: ", mail)
-
-                with open(self.input_file_path, "a") as file:
-                        file.write(f"{mail}\n")
-
-                wait(2, 4)
+                # with open(self.input_file_path, "a") as file:
+                #         file.write(f"{mail}\n")
 
             if self.random_password_account:
                 self.password_account = generate_password()
@@ -303,130 +299,109 @@ class AutomationThread(QThread):
                 else:
                     self.password_account = "Abc1234@"  
 
-            with open(self.input_file_path, "r") as f:
-                mail_content = f.read()
+            # with open(self.input_file_path, "r") as f:
+            #     mail_content = f.read()
 
-            self.accounts = getMailContent(mail_content)
+            # self.accounts = getMailContent(mail_content)
 
+            isAutoBuyMail = self.self_main.api_hotmailbox_value.text()
             if isAutoBuyMail:
-                self.username, self.password = self.accounts[0]
-            else:
-                self.username, self.password = self.accounts[num_worker]
+                if not self.is_restart:
+                    self.mail = handleAutoBuyHotmail()
+                    print("Mail: ", self.mail)
+                    self.username, self.password =  self.mail.split("|")
+                else:
+                    if not self.username_restart or not self.password_restart:
+                        self.mail = handleAutoBuyHotmail()
+                        print("Mail: ", self.mail)
+                        self.username, self.password =  self.mail.split("|")
+                    else:
+                        self.username = self.username_restart
+                        self.password = self.password_restart
+                
+            # else:
+                # self.username = self.accounts[num_worker][0]
+                # self.password = self.accounts[num_worker][1]
 
-            if len(self.accounts) > 0:
-                current_row_count = self.self_main.table_account_info.rowCount()
-                self.self_main.table_account_info.setRowCount(current_row_count + 1)
-                self.self_main.table_account_info.setItem(
-                    current_row_count, 0, QTableWidgetItem(self.username)
-                )
-                self.self_main.table_account_info.setItem(
-                    current_row_count, 1, QTableWidgetItem(self.password)
-                )
-            else:
-                if hasattr(self, "driver"):
-                    self.driver.quit()
-                QMetaObject.invokeMethod(self, "show_warning")
-                self.self_main.stop_button.setEnabled(False)
-                self.self_main.stop_button.setStyleSheet(
-                    "background-color: rgba(0, 0, 0, 0.2);"
-                )
-                self.self_main.start_button.setEnabled(True)
-                self.self_main.start_button.setStyleSheet(
-                    "color:rgb(255, 252, 252);\n" "background-color:rgb(64, 170, 15)"
-                )
-                return
+            # if len(self.accounts) > 0:
+            self.current_row_count = self.self_main.table_account_info.rowCount()
+            self.self_main.table_account_info.setRowCount(self.current_row_count + 1)
+            self.self_main.table_account_info.setItem(
+                self.current_row_count, 0, QTableWidgetItem(self.username)
+            )
+            self.self_main.table_account_info.setItem(
+                self.current_row_count, 1, QTableWidgetItem(self.password)
+            )
+            # else:
+            #     if hasattr(self, "driver"):
+            #         self.driver.quit()
+            #     QMetaObject.invokeMethod(self, "show_warning")
+            #     self.self_main.stop_button.setEnabled(False)
+            #     self.self_main.stop_button.setStyleSheet(
+            #         "background-color: rgba(0, 0, 0, 0.2);"
+            #     )
+            #     self.self_main.start_button.setEnabled(True)
+            #     self.self_main.start_button.setStyleSheet(
+            #         "color:rgb(255, 252, 252);\n" "background-color:rgb(64, 170, 15)"
+            #     )
+            #     return
 
             try:
                 self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
             except WebDriverException:            
                 print("Lỗi mạng hoặc trang không thể truy cập:")
+                # wait(1, 2)
+                # with open(self.input_file_path, "a") as file:
+                #     file.write(f"{self.username}|{self.password}\n")
                 self.driver.quit()
                 handleDeleteProfile(self.profile_id)
                 self.self_main.table_account_info.setItem(
-                    current_row_count,
+                    self.current_row_count,
                     3,
                     QTableWidgetItem("Bị chặn, đợi restart lại..."),
                 )
-                self.self_main.restart_thread(self.num_threads)
+                self.self_main.restart_thread(self.num_threads, self.username, self.password)
 
 
-            handleSelectMonth(
-                self.self_main,
-                self.num_threads,
-                self.input_file_path,
-                self.driver,
-                self.accounts,
-                current_row_count,
-                self.profile_id
-            )
-            handleSelectDay(
-                self.self_main, self.num_threads, self.driver, current_row_count
-            )
-            handleSelectYear(
-                self.self_main, self.num_threads, self.driver, current_row_count
-            )
-            handleInputUserNameAndPassword(
-                self.self_main,
-                self.num_threads,
-                self.driver,
-                self.accounts,
-                self.password_account,
-                current_row_count,
-            )
-            handleGetCode(
-                self.self_main, self.num_threads,  self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
-            )
+            handleSelectMonth(self)
+            handleSelectDay(self)
+            handleSelectYear(self)
+            handleInputUserNameAndPassword(self)
+            handleGetCode(self)
 
             if self.captcha_type == 0:
                 # Resolve captcha by Achi
-                handleResolveCaptchaRotateObjectAChi(
-                    self.captcha_key, self.self_main, self.num_threads, self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
-                )
-                handleResolveCaptchaChooseTwoObjectsAChi(
-                    self.captcha_key, self.self_main, self.num_threads, self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
-                )
+                handleResolveCaptchaRotateObjectAChi(self)
+                handleResolveCaptchaChooseTwoObjectsAChi(self)
                
             else:
                 # Resolve captcha by Omo
-                handleResolveCaptchaRotateObjectOmo(
-                    self.captcha_key, self.self_main, self.num_threads, self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
-                )
+                handleResolveCaptchaRotateObjectOmo(self)
 
-                handleResolveCaptchaChooseTwoObjectsOmo(
-                    self.captcha_key, self.self_main, self.num_threads, self.input_file_path, self.driver, self.accounts, current_row_count, self.profile_id
-                )
+                handleResolveCaptchaChooseTwoObjectsOmo(self)
 
-            handleGetCodeFromMail(
-                    self.self_main,
-                    self.num_threads,
-                    self.input_file_path,
-                    self.driver,
-                    self.accounts,
-                    current_row_count,
-                    self.profile_id
-                )
+            handleGetCodeFromMail(self)
             
-            handleSubmitAccount(self.self_main, self.num_threads,  self.input_file_path,
-                self.output_file_path, self.driver, self.accounts, self.password_account, current_row_count, self.profile_id)
-            handleInsertNewUsername(
-                self.self_main, self.num_threads, self.driver, self.accounts, current_row_count, self.profile_id
-            )
+            handleSubmitAccount(self)
+            handleInsertNewUsername(self)
             if self.is_upload_avatar:
-                handleUploadAvatar(
-                    self.self_main,
-                    self.num_threads,
-                    self.input_file_path,
-                    self.output_file_path,
-                    self.driver,
-                    self.accounts,
-                    self.captcha_type,
-                    self.captcha_key,
-                    self.password_account,
-                    current_row_count,
-                    self.profile_id
-                )
+                handleUploadAvatar(self)
 
             wait(4, 6)
-            self.driver.get("https://www.tiktok.com/logout")
+            try:
+                self.driver.get("https://www.tiktok.com/logout")
+            except WebDriverException:            
+                print("Lỗi mạng hoặc trang không thể truy cập:")
+                # wait(1, 2)
+                # with open(self.input_file_path, "a") as file:
+                #     file.write(f"{self.username}|{self.password}\n")
+                self.driver.quit()
+                handleDeleteProfile(self.profile_id)
+                self.self_main.table_account_info.setItem(
+                    self.current_row_count,
+                    3,
+                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                )
+                self.self_main.restart_thread(self.num_threads, "", "")
             wait(2, 4)
         self.driver.quit()

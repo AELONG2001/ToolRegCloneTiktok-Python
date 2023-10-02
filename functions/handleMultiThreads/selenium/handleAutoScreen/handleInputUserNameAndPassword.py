@@ -2,19 +2,18 @@ from PySide6.QtWidgets import *
 from utils.utils import wait
 
 
-def handleInputUserNameAndPassword(self, thread, driver, accounts, password_account, current_row_count):
-    username = accounts[thread][0]
-    if username is not None:
+def handleInputUserNameAndPassword(self):
+    if self.username is not None:
         wait(2, 4)
-        emailElement = driver.find_element("css selector", "input[name='email']")
-        self.table_account_info.setItem(
-            current_row_count, 3, QTableWidgetItem("Đang nhập email...")
+        emailElement = self.driver.find_element("css selector", "input[name='email']")
+        self.self_main.table_account_info.setItem(
+            self.current_row_count, 3, QTableWidgetItem("Đang nhập email...")
         )
-        emailElement.send_keys(username)
+        emailElement.send_keys(self.username)
 
         wait(2, 4)
-        passwordElement = driver.find_element("css selector", "input[type='password']")
-        self.table_account_info.setItem(
-            current_row_count, 3, QTableWidgetItem("Đang nhập password...")
+        passwordElement = self.driver.find_element("css selector", "input[type='password']")
+        self.self_main.table_account_info.setItem(
+            self.current_row_count, 3, QTableWidgetItem("Đang nhập password...")
         )
-        passwordElement.send_keys(password_account)
+        passwordElement.send_keys(self.password_account)

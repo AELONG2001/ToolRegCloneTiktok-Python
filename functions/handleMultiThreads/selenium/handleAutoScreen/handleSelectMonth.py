@@ -8,35 +8,32 @@ from functions.profilesGologin.handleDeleteProfile import (
 )
 
 
-def handleSelectMonth(self, thread, input_file_path, driver, accounts, current_row_count, profile_id):
-    input_file_path = input_file_path
+def handleSelectMonth(self):
 
-    username = accounts[thread][0]
-    password = accounts[thread][1]
-    hotmail = f"{username}|{password}"
+    # hotmail = f"{self.username}|{self.password}"
 
-    # lấy mail và update lại file
-    with open(input_file_path, "r") as f:
-        mail_content = f.readlines()
+    # # lấy mail và update lại file
+    # with open(self.input_file_path, "r") as f:
+    #     mail_content = f.readlines()
 
-    for i in range(len(mail_content)):
-        mail_content[i] = mail_content[i].replace("\n", "")
+    # for i in range(len(mail_content)):
+    #     mail_content[i] = mail_content[i].replace("\n", "")
 
-    update_mail = []
-    for line in mail_content:
-        if line.strip() != hotmail.strip():
-            update_mail.append(line)
+    # update_mail = []
+    # for line in mail_content:
+    #     if line.strip() != hotmail.strip():
+    #         update_mail.append(line)
 
-    with open(input_file_path, "w") as f:
-        for hotmail in update_mail:
-            f.writelines(hotmail + "\n")
+    # with open(self.input_file_path, "w") as f:
+    #     for hotmail in update_mail:
+    #         f.writelines(hotmail + "\n")
 
-    self.table_account_info.setItem(
-            current_row_count, 3, QTableWidgetItem("Bắt đầu reg...")
+    self.self_main.table_account_info.setItem(
+            self.current_row_count, 3, QTableWidgetItem("Bắt đầu reg...")
         )
 
     try:
-        waitForNavigation = WebDriverWait(driver, 10)
+        waitForNavigation = WebDriverWait(self.driver, 10)
         emailSelectElement = waitForNavigation.until(
                 EC.presence_of_element_located(
                     ("xpath", '//*[@data-list-item-value="email"]')
@@ -44,51 +41,48 @@ def handleSelectMonth(self, thread, input_file_path, driver, accounts, current_r
         )
         emailSelectElement.click()
         wait(2, 3)
-        monthSelectElement = driver.find_element(
+        monthSelectElement = self.driver.find_element(
         "xpath", '//*[@aria-label="Month. Double-tap for more options"]'
         )
         monthSelectElement.click()
-        self.table_account_info.setItem(
-                current_row_count, 3, QTableWidgetItem("Đang chọn tháng...")
+        self.self_main.table_account_info.setItem(
+                self.current_row_count, 3, QTableWidgetItem("Đang chọn tháng...")
         )
         wait(4, 6)
-        dropDownSelectMonth = driver.find_element(
+        dropDownSelectMonth = self.driver.find_element(
             "id", f"Month-options-item-{random_number(0, 11)}"
         )
         dropDownSelectMonth.click()
     except:
         try:
-            waitForNavigation = WebDriverWait(driver, 30)
+            waitForNavigation = WebDriverWait(self.driver, 30)
             monthSelectElement = waitForNavigation.until(
                 EC.presence_of_element_located(
                     ("xpath", '//*[@aria-label="Month. Double-tap for more options"]')
                 )
             )
             monthSelectElement.click()
-            self.table_account_info.setItem(
-                current_row_count, 3, QTableWidgetItem("Đang chọn tháng...")
+            self.self_main.table_account_info.setItem(
+                self.current_row_count, 3, QTableWidgetItem("Đang chọn tháng...")
             )
             wait(4, 6)
-            dropDownSelectMonth = driver.find_element(
+            dropDownSelectMonth = self.driver.find_element(
                 "id", f"Month-options-item-{random_number(0, 11)}"
             )
             dropDownSelectMonth.click()
         except TimeoutException:
             print("Không tìm thấy monthSelectElement sau khoảng thời gian chờ")
-            input_file_path = input_file_path
-            username = accounts[thread][0]
-            password = accounts[thread][1]
-            wait(1, 2)
-            with open(input_file_path, "a") as file:
-                file.write(f"{username}|{password}\n")
-            driver.quit()
-            handleDeleteProfile(profile_id)
-            self.table_account_info.setItem(
-                current_row_count,
+            # wait(1, 2)
+            # with open(self.input_file_path, "a") as file:
+            #     file.write(f"{self.username}|{self.password}\n")
+            self.driver.quit()
+            handleDeleteProfile(self.profile_id)
+            self.self_main.table_account_info.setItem(
+                self.current_row_count,
                 3,
                 QTableWidgetItem("Bị chặn, đợi restart lại..."),
             )
-            self.restart_thread(thread)
+            self.self_main.restart_thread(self.num_threads, self.username, self.password)
 
     
 

@@ -67,6 +67,7 @@ class Ui_ToolRegCloneTiktok(QObject):
     def __init__(self):
         super().__init__()
        
+        self.mutex = QMutex()
         self.stop_flag = False
         self.chrome_threads = []
         self.thread_index = 0
@@ -84,14 +85,13 @@ class Ui_ToolRegCloneTiktok(QObject):
     def setupUi(self, ToolRegCloneTiktok):
         uiMain(self, ToolRegCloneTiktok)
         self.automation_controller = AutomationController(self)
-
     def start(self):
         self.automation_controller.start()
 
     def start_next_thread(self):
         self.automation_controller.start_next_thread()
     
-    def restart_thread(self, thread):
+    def restart_thread(self, thread, username, password):
         print("Restart")
         with open("configs_account.json", "r") as json_file:
             data = json.load(json_file)
@@ -108,7 +108,8 @@ class Ui_ToolRegCloneTiktok(QObject):
         is_upload_avatar = self.is_upload_avatar_yes.isChecked()
         
         self.chrome_threads[thread] = AutomationThread(
-            self, thread,
+            self, 
+            thread,
             input_file_path,
             output_file_path,
             chrome_count,
@@ -119,6 +120,8 @@ class Ui_ToolRegCloneTiktok(QObject):
             chrome_percent_zoom,
             path_profile_gologin,
             is_upload_avatar,
+            username,
+            password,
             True
         )  # Khởi tạo thread mới
         self.chrome_threads[thread].start()

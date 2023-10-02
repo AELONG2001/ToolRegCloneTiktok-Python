@@ -2,16 +2,16 @@ from PySide6.QtWidgets import *
 from utils.utils import random_number, wait
 
 
-def handleSelectYear(self, thread, driver, current_row_count):
-    yearSelectElement = driver.find_element(
+def handleSelectYear(self):
+    yearSelectElement = self.driver.find_element(
         "xpath", '//*[@aria-label="Year. Double-tap for more options"]'
     )
     yearSelectElement.click()
-    self.table_account_info.setItem(
-        current_row_count, 3, QTableWidgetItem("Đang chọn năm...")
+    self.self_main.table_account_info.setItem(
+        self.current_row_count, 3, QTableWidgetItem("Đang chọn năm...")
     )
     wait(4, 6)
-    dropDownSelectYear = driver.find_element(
+    dropDownSelectYear = self.driver.find_element(
         "id", f"Year-options-item-{random_number(18, 40)}"
     )
     dropDownSelectYear.click()

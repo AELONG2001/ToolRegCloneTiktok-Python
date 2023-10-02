@@ -6,7 +6,7 @@ def handleCreateJobGetHcaptcha(
     self, base64, current_row_count
 ):
     try:
-        self.table_account_info.setItem(
+        self.self_main.table_account_info.setItem(
             current_row_count,
             3,
             QTableWidgetItem("Đang đợi kết quả captcha..."),
