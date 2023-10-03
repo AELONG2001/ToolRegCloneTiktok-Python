@@ -33,7 +33,7 @@ def handleSelectMonth(self):
         )
 
     try:
-        waitForNavigation = WebDriverWait(self.driver, 10)
+        waitForNavigation = WebDriverWait(self.driver, 30)
         emailSelectElement = waitForNavigation.until(
                 EC.presence_of_element_located(
                     ("xpath", '//*[@data-list-item-value="email"]')

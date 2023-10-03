@@ -120,6 +120,7 @@ class Ui_ToolRegCloneTiktok(QObject):
             chrome_percent_zoom,
             path_profile_gologin,
             is_upload_avatar,
+            self.data_queue,
             username,
             password,
             True

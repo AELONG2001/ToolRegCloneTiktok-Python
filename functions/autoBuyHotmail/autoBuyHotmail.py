@@ -10,9 +10,7 @@ def handleAutoBuyHotmail():
        
         response = requests.get("https://api.hotmailbox.me/mail/buy", params=params)
         data = response.json()
-
-        print("Data: ", data)
-
+        
         for mail in data["Data"]["Emails"]:
               email = mail.get("Email", "")
               password = mail.get("Password", "")

@@ -83,6 +83,7 @@ class AutomationThread(QThread):
         chrome_percent_zoom,
         path_profile_gologin,
         is_upload_avatar,
+        data_queue,
         username_restart = "",
         password_restart = "",
         is_restart = False
@@ -100,6 +101,7 @@ class AutomationThread(QThread):
         self.chrome_percent_zoom = chrome_percent_zoom
         self.path_profile_gologin = path_profile_gologin
         self.is_upload_avatar = is_upload_avatar
+        self.data_queue = data_queue
         self.username_restart = username_restart
         self.password_restart = password_restart
         self.is_restart = is_restart
@@ -229,7 +231,7 @@ class AutomationThread(QThread):
             proxys = get_list_proxy.splitlines()
             self.proxy = proxys[num_worker]
 
-        # print("Proxy: ",  self.proxy)
+        print("Proxy: ",  self.proxy)
 
         self.profile_id = handleCreateProfile(self.proxy)
 
@@ -287,10 +289,8 @@ class AutomationThread(QThread):
 
         self.driver.set_window_rect(x, y, 200, 800)
         
-        while not self.stop_flag:
-                # with open(self.input_file_path, "a") as file:
-                #         file.write(f"{mail}\n")
-
+        while not self.data_queue.empty() and not self.stop_flag:
+            
             if self.random_password_account:
                 self.password_account = generate_password()
             else:
@@ -299,18 +299,10 @@ class AutomationThread(QThread):
                 else:
                     self.password_account = "Abc1234@"  
 
-            # with open(self.input_file_path, "r") as f:
-            #     mail_content = f.read()
-
-            # self.accounts = getMailContent(mail_content)
-
             isAutoBuyMail = self.self_main.api_hotmailbox_value.text()
+
             if isAutoBuyMail:
-                if not self.is_restart:
-                    self.mail = handleAutoBuyHotmail()
-                    print("Mail: ", self.mail)
-                    self.username, self.password =  self.mail.split("|")
-                else:
+                if self.is_restart:
                     if not self.username_restart or not self.password_restart:
                         self.mail = handleAutoBuyHotmail()
                         print("Mail: ", self.mail)
@@ -318,10 +310,33 @@ class AutomationThread(QThread):
                     else:
                         self.username = self.username_restart
                         self.password = self.password_restart
-                
-            # else:
-                # self.username = self.accounts[num_worker][0]
-                # self.password = self.accounts[num_worker][1]
+                else:
+                    self.mail = handleAutoBuyHotmail()
+                    print("Mail: ", self.mail)
+                    self.username, self.password =  self.mail.split("|")
+            else:
+                if self.is_restart:
+                    if not self.username_restart or not self.password_restart:
+                        self.username, self.password = self.data_queue.get()
+                        with open(self.input_file_path, 'r') as file:
+                            lines = file.readlines()
+
+                        new_lines = [line for line in lines if not line.startswith(f"{self.username}|{self.password}")]
+
+                        with open(self.input_file_path, 'w') as file:
+                            file.writelines(new_lines)
+                    else:
+                        self.username = self.username_restart
+                        self.password = self.password_restart
+                else:
+                    self.username, self.password = self.data_queue.get()
+                    with open(self.input_file_path, 'r') as file:
+                        lines = file.readlines()
+
+                    new_lines = [line for line in lines if not line.startswith(f"{self.username}|{self.password}")]
+
+                    with open(self.input_file_path, 'w') as file:
+                        file.writelines(new_lines)
 
             # if len(self.accounts) > 0:
             self.current_row_count = self.self_main.table_account_info.rowCount()

@@ -1,11 +1,13 @@
 {
-    "num_threads": 3,
+    "num_threads": 5,
     "url_mail": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/hotmail.txt",
     "captcha_key": "08f8b0f0b3aff156866a811508e2bb2e",
     "proxys": [
         "cbbf53208bf427404b5f4eab29c87fbe",
         "42791c4ff45bcba839b80a97bc80c025",
-        "03507d91865a894b1799f306f704267a"
+        "03507d91865a894b1799f306f704267a",
+        "151fa8d212d0097bedc521e60f33aa4c",
+        "a5bf772f40d91b0a2d0d7af9c7aa31e4"
     ],
     "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTE4Yzg1MjdmNmM5MjNhYTUzOWFhMWIiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTE4Y2UwZjJlOTE2ZDJjY2QxNDZmNzIifQ.XqiH1uoVtyLUw_BgLMOgxpJ-lBrUYmAbBKBc84wZWfc",
     "url_mail_check": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/hotmail.txt",
@@ -18,5 +20,5 @@
     "typeExportAccount": 1,
     "chromeValueDelay": 3,
     "is_chrome_count": 10,
-    "api_value_hotmailbox": "919cadef6eb94c3d83a6b312c49b66ed"
+    "api_value_hotmailbox": ""
 }

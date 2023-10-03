@@ -3,7 +3,7 @@ from functions.handleInputFileMail.getMailContent import getMailContent
 from functions.handleMultiThreads.thread.AutomationThread import AutomationThread
 import os
 import json
-
+from queue import Queue
 
 def startAutomation(self):
     AutomationThread.num_quit = 0
@@ -61,6 +61,14 @@ def startAutomation(self):
     # else:
     #     num_threads = 1
 
+    with open(input_file_path, 'r') as file:
+        lines = file.readlines()
+
+    self.data_queue = Queue()
+    for line in lines:
+        username, password = line.strip().split('|')
+        self.data_queue.put((username, password))
+
     chrome_count = self.chrome_setting_line_value.value()
     captcha_type = self.captcha_type.currentIndex()
     captcha_key = self.captcha_key.text()
@@ -85,7 +93,8 @@ def startAutomation(self):
             random_password_account,
             chrome_percent_zoom,
             path_profile_gologin,
-            is_upload_avatar
+            is_upload_avatar,
+            self.data_queue,
         )
         for thread in range(num_threads)
     ]
