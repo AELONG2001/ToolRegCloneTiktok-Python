@@ -16,7 +16,7 @@ def handleCheckMailApi(username, password):
 
 
 class EmailCheckerTaskSignals(QObject):
-    result_signal = Signal(str, bool)
+    result_signal = Signal(str, str, bool)
 
 class EmailCheckerTask(QRunnable):
     def __init__(self, username, password):
@@ -27,8 +27,7 @@ class EmailCheckerTask(QRunnable):
 
     def run(self):
         _, _, status = handleCheckMailApi(self.username, self.password)
-        # result_text = f"Email: {self.username} - {'Thành công' if status else 'Thất bại'}"
-        self.signals.result_signal.emit(self.username, status)
+        self.signals.result_signal.emit(self.username, self.password, status)
 
 def checkMail(
     self, fileNameCheck

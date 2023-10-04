@@ -190,12 +190,12 @@ class Ui_ToolRegCloneTiktok(QObject):
     def handleCheckMail(self):
         self.automation_controller.handleCheckMail()
 
-    def updateResultText(self, username, status):
+    def updateResultText(self, username, password, status):
         if status:
-            self.mail_success_box.append(username)
+            self.mail_success_box.append(f"{username}|{password}")
             self.success_mail_count += 1
         else:
-            self.mail_failed_box.append(username)
+            self.mail_failed_box.append(f"{username}|{password}")
             self.failed_mail_count += 1
 
         self.updateCounts()
