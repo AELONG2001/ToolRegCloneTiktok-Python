@@ -14,7 +14,7 @@ from functions.profilesGologin.handleDeleteProfile import (
 
 def handleGetCodeFromMail(self):
     try:
-        max_attempts = 3  # Số lần tối đa xuất hiện checkDectect trước khi khởi động lại self.thread
+        max_attempts = 3
         attempts = 0
         isCode = True
         while  attempts < max_attempts and isCode and not self.stop_flag:
@@ -33,6 +33,18 @@ def handleGetCodeFromMail(self):
             data = response.json()
 
             print("Data: ", data)
+
+            if data["content"] == "Invalid email or password or IMAP disabled":
+                with open("data/invalid_mail.txt", "a") as file:
+                    file.write(f"{self.username}|{self.password}\n")
+                self.driver.quit()
+                handleDeleteProfile(self.profile_id)
+                self.self_main.table_account_info.setItem(
+                    self.current_row_count,
+                    3,
+                    QTableWidgetItem("Bị chặn, đợi restart lại...28"),
+                )
+                self.self_main.restart_thread(self.num_threads, "", "")
 
             if data["code"]:
                 self.self_main.table_account_info.setItem(
@@ -54,14 +66,16 @@ def handleGetCodeFromMail(self):
             # wait(1, 2)
             # with open(self.input_file_path, "a") as file:
             #     file.write(f"{self.username}|{self.password}\n")
+           
             self.driver.quit()
             handleDeleteProfile(self.profile_id)
             self.self_main.table_account_info.setItem(
                 self.current_row_count,
                 3,
-                QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                QTableWidgetItem("Bị chặn, đợi restart lại... 5"),
             )
             self.self_main.restart_thread(self.num_threads, self.username, self.password)
+            
 
     except requests.exceptions.RequestException as e:
         print(e)

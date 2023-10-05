@@ -33,7 +33,7 @@ def handleSelectMonth(self):
         )
 
     try:
-        waitForNavigation = WebDriverWait(self.driver, 5)
+        waitForNavigation = WebDriverWait(self.driver, 10)
         emailSelectElement = waitForNavigation.until(
                 EC.presence_of_element_located(
                     ("xpath", '//*[@data-list-item-value="email"]')
@@ -80,7 +80,7 @@ def handleSelectMonth(self):
             self.self_main.table_account_info.setItem(
                 self.current_row_count,
                 3,
-                QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                QTableWidgetItem("Bị chặn, đợi restart lại... 1"),
             )
             self.self_main.restart_thread(self.num_threads, self.username, self.password)
 

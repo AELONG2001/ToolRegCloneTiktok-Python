@@ -88,7 +88,7 @@ def handleResolveCaptchaSliderObjectOmo(self):
                 self.self_main.table_account_info.setItem(
                     self.current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                    QTableWidgetItem("Bị chặn, đợi restart lại... 25"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username, self.password)
             else:
@@ -123,7 +123,7 @@ def handleResolveCaptchaSliderObjectOmo(self):
                 self.self_main.table_account_info.setItem(
                     self.current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                    QTableWidgetItem("Bị chặn, đợi restart lại... 26"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username, self.password)
             else:
@@ -169,7 +169,7 @@ def handleResolveCaptchaSliderObjectOmo(self):
                 self.self_main.table_account_info.setItem(
                     self.current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                    QTableWidgetItem("Bị chặn, đợi restart lại... 27"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username, self.password)
             else:

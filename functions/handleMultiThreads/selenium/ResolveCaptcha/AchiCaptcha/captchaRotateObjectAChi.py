@@ -89,7 +89,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                 self.self_main.table_account_info.setItem(
                     self.current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                    QTableWidgetItem("Bị chặn, đợi restart lại... 9"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username, self.password)
             else:
@@ -136,7 +136,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                 self.self_main.table_account_info.setItem(
                     self.current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                    QTableWidgetItem("Bị chặn, đợi restart lại... 10"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username, self.password)
             else:
@@ -164,7 +164,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                 self.self_main.table_account_info.setItem(
                     self.current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                    QTableWidgetItem("Bị chặn, đợi restart lại... 11"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username, self.password)
             else:
@@ -197,7 +197,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                 self.self_main.table_account_info.setItem(
                     self.current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                    QTableWidgetItem("Bị chặn, đợi restart lại... 12"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username, self.password)
             else:
@@ -231,7 +231,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                 self.self_main.table_account_info.setItem(
                     self.current_row_count,
                     3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại..."),
+                    QTableWidgetItem("Bị chặn, đợi restart lại... 13"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username, self.password)
             else:
