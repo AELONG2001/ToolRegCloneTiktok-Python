@@ -14,6 +14,17 @@ def handleSubmitAccount(self):
         self.self_main.table_account_info.setItem(
             self.current_row_count, 3, QTableWidgetItem("Đang submit...")
         )
+        wait(2, 3)
+        if self.driver.current_url == "https://www.tiktok.com/login/download-app":
+            self.driver.quit()
+            handleDeleteProfile(self.profile_id)
+            self.self_main.table_account_info.setItem(
+                self.current_row_count,
+                3,
+                QTableWidgetItem("Bị chặn, đợi restart lại... 31"),
+            )
+            self.self_main.restart_thread(self.num_threads, self.username, self.password)
+
         submitAccount = self.driver.find_element("css selector", "button[type='submit']")
         try:
             submitAccount.click()
@@ -61,8 +72,9 @@ def handleSubmitAccount(self):
     if attempts >= max_attempts:
             print("Đã submit quá nhiều lần, đợi restart lại")
             self.driver.refresh()
+            wait(2, 3)
             self.driver.refresh()
-            wait(10, 12)
+            wait(2, 3)
             if self.driver.current_url != "https://www.tiktok.com/signup/phone-or-email/email":
                 print("Tài khoản đã được tạo rồi")
                 account = f"{self.username}|{self.password_account}|{self.password}|3"

@@ -1,19 +1,27 @@
 import requests
 from utils.utils import generate_random_name
 import json
+from PySide6.QtWidgets import *
 
-def handleCreateProfile(proxy):
+def handleCreateProfile(self):
     random_name = generate_random_name()
     username_proxy = ""
     password_proxy = ""
-    if len(proxy.split(":")) > 2:
-        get_proxy = proxy.split(":")
+    if len(self.proxy.split(":")) > 2:
+        get_proxy = self.proxy.split(":")
         ip = get_proxy[0]
         port = get_proxy[1]
         username_proxy = get_proxy[2]
         password_proxy = get_proxy[3]
     else:
-       ip, port = proxy.split(":")
+       if ':' in self.proxy:
+            ip, port = self.proxy.split(":")
+       else:
+           self.self_main.table_account_info.setItem(
+              self.current_row_count, 3, QTableWidgetItem("Lỗi proxy...")
+           )
+           ip = ""
+           port = ""
        
     try:
         with open("configs_account.json", "r") as json_file:

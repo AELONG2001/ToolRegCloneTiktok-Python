@@ -114,7 +114,7 @@ def handleUploadAvatar(self):
             handleResolveCaptchaChooseTwoObjectsOmo(self)
             handleResolveCaptchaSliderObjectOmo(self)
 
-        waitForNavigation = WebDriverWait(self.driver, 200)
+        waitForNavigation = WebDriverWait(self.driver, 100)
         editProfile = waitForNavigation.until(
             EC.presence_of_element_located(("xpath", '//span[text()="Edit profile"]'))
         )

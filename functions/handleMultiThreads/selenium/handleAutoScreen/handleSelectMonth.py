@@ -9,28 +9,9 @@ from functions.profilesGologin.handleDeleteProfile import (
 
 
 def handleSelectMonth(self):
-
-    # hotmail = f"{self.username}|{self.password}"
-
-    # # lấy mail và update lại file
-    # with open(self.input_file_path, "r") as f:
-    #     mail_content = f.readlines()
-
-    # for i in range(len(mail_content)):
-    #     mail_content[i] = mail_content[i].replace("\n", "")
-
-    # update_mail = []
-    # for line in mail_content:
-    #     if line.strip() != hotmail.strip():
-    #         update_mail.append(line)
-
-    # with open(self.input_file_path, "w") as f:
-    #     for hotmail in update_mail:
-    #         f.writelines(hotmail + "\n")
-
     self.self_main.table_account_info.setItem(
             self.current_row_count, 3, QTableWidgetItem("Bắt đầu reg...")
-        )
+    )
 
     try:
         waitForNavigation = WebDriverWait(self.driver, 10)

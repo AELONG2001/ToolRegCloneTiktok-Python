@@ -171,6 +171,24 @@ def handleResolveCaptchaChooseTwoObjectsOmo(self):
             "xpath",
             '//span[contains(text(), "Maximum number of attempts reached. Try again later.")]',
         )
+        checkAccountCreated = self.driver.find_elements(
+                "xpath",
+                '//*[contains(@fill, "rgba(254, 44, 85, 1.0)")]',
+            )
+        
+        if checkAccountCreated[0]:
+                wait(1, 2)
+                with open("data/account_created.txt", "a") as file:
+                    file.write(f"{self.username}|{self.password}\n")
+                self.driver.quit()
+                handleDeleteProfile(self.profile_id)
+                self.self_main.table_account_info.setItem(
+                    self.current_row_count,
+                    3,
+                    QTableWidgetItem("Bị chặn, đợi restart lại... 30"),
+                )
+                self.self_main.restart_thread(self.num_threads, "", "")
+        
         if checkDectect:
             getCodeElement = self.driver.find_element(
                 "xpath",

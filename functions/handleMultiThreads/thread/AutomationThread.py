@@ -205,16 +205,23 @@ class AutomationThread(QThread):
 
         # check type proxys
         if self.proxy_type == 0:
-            api_key_tmproxy = self.self_main.proxy_value.toPlainText()
-            api_key_list = api_key_tmproxy.splitlines()
+            isGetTMProxyAgain = True
+            while isGetTMProxyAgain:
+                api_key_tmproxy = self.self_main.proxy_value.toPlainText()
+                api_key_list = api_key_tmproxy.splitlines()
 
-            new_proxy = handleGetNewTMProxy(api_key_list[num_worker])
-            current_proxy = handleGetCurrentTMProxy(api_key_list[num_worker])
+                new_proxy = handleGetNewTMProxy(api_key_list[num_worker])
+                current_proxy = handleGetCurrentTMProxy(api_key_list[num_worker])
 
-            if not new_proxy:
-                self.proxy = current_proxy
-            else:
-                self.proxy = new_proxy
+                if not new_proxy:
+                    self.proxy = current_proxy
+                else:
+                    self.proxy = new_proxy
+                    
+                if ':' in self.proxy:
+                    isGetTMProxyAgain = False
+                else:
+                    isGetTMProxyAgain = True
         elif self.proxy_type == 1:
             api_key_tinproxy = self.self_main.proxy_value.toPlainText()
             api_key_list = api_key_tinproxy.splitlines()
@@ -233,7 +240,7 @@ class AutomationThread(QThread):
 
         print("Proxy: ",  self.proxy)
 
-        self.profile_id = handleCreateProfile(self.proxy)
+        self.profile_id = handleCreateProfile(self)
 
         print("profile_id: ", self.profile_id)
             
@@ -291,14 +298,14 @@ class AutomationThread(QThread):
 
         self.isAutoBuyMail = self.self_main.api_hotmailbox_value.text()
         
-        while not self.stop_flag if self.isAutoBuyMail else not self.data_queue.empty() and not self.stop_flag:
+        while not self.stop_flag:
             if self.random_password_account:
                 self.password_account = generate_password()
             else:
                 if self.self_main.password_reg_account_value.text():
                     self.password_account = self.self_main.password_reg_account_value.text()
                 else:
-                    self.password_account = "Abc1234@"  
+                    self.password_account = "Abc1234@"
 
 
             if  self.isAutoBuyMail:

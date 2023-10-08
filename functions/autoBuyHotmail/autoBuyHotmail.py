@@ -18,12 +18,12 @@ def handleAutoBuyHotmail():
                 if data["Message"] == "Số dư tài khoản không đủ":
                     isBuyMailAgain = False
                     email_password = ""
-                    return
-                if data["Message"] == "Bạn đã mua hàng thành công":
-                    email = data["Data"]["Emails"][0]["Email"]
-                    password = data["Data"]["Emails"][0]["Password"]
-                    email_password = f"{email}|{password}"
-                    isBuyMailAgain = False
+                else:
+                    if data["Message"] == "Bạn đã mua hàng thành công":
+                        email = data["Data"]["Emails"][0]["Email"]
+                        password = data["Data"]["Emails"][0]["Password"]
+                        email_password = f"{email}|{password}"
+                        isBuyMailAgain = False
             else:
                 isBuyMailAgain = True
 
