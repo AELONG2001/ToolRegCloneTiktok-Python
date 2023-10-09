@@ -122,9 +122,6 @@ class AutomationThread(QThread):
         )
 
     def stop(self):
-        password_account = self.password_account
-        
-
         self.stop_flag = True
         for thread in self.self_main.chrome_threads:
             thread.terminate()
@@ -166,7 +163,7 @@ class AutomationThread(QThread):
                 cookies_string = ";".join(
                     [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
                 )
-                account = f"{self.username}|{password_account}|{self.password}|{cookies_string}"
+                account = f"{self.username}|{self.password_account}|{self.password}|{cookies_string}"
                 wait(1, 2)
                 with open(self.output_file_path, "a") as f:
                     f.write(account + "\n")
@@ -274,17 +271,11 @@ class AutomationThread(QThread):
 
         self.options.add_argument("--disable-blink-features=AutomationControlled")
         self.options.add_argument(f"user-agent={random_user_agent}")
-        self.options.add_argument(
-            f"--user-data-dir={self.path_profile_gologin}/{self.profile_id}/Default"
-        )
-
-        # if len(self.proxy.split(":")) > 2:
-        #     ip, port, username_proxy, password_proxy = self.proxy.split(":")
-        #     proxy_type = "http"
-        #     self.options.add_argument(f"--proxy-server={proxy_type}://{username_proxy}:{password_proxy}@{ip}:{port}")
-        # else:
+        # self.options.add_argument(
+        #     f"--user-data-dir={self.path_profile_gologin}/{self.profile_id}/Default"
+        # )
         
-        self.options.add_argument(f"--proxy-server={self.proxy}")
+        # self.options.add_argument(f"--proxy-server={self.proxy}")
 
         self.driver = webdriver.Chrome(options=self.options)
         AutomationThread.drivers_list.append(self.driver)

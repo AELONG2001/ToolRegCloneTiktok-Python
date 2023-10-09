@@ -14,8 +14,7 @@ from functions.profilesGologin.handleDeleteProfile import (
 
 def handleGetCodeFromMail(self):
     try:
-        max_attempts = 3
-        # max_getCodeAgain = 0
+        max_attempts = 5
         attempts = 0
         isCode = True
         while  attempts < max_attempts and isCode and not self.stop_flag:
@@ -61,10 +60,9 @@ def handleGetCodeFromMail(self):
                 attempts += 1
 
         if attempts >= max_attempts:
-            # max_getCodeAgain += 1
             # wait(1, 2)
-            # with open(self.input_file_path, "a") as file:
-            #     file.write(f"{self.username}|{self.password}\n")
+            # with open("data/mail_getcode_again.txt", "a") as file:
+            #         file.write(f"{self.username}|{self.password}\n")
            
             self.driver.quit()
             handleDeleteProfile(self.profile_id)
@@ -75,17 +73,6 @@ def handleGetCodeFromMail(self):
             )
             self.self_main.restart_thread(self.num_threads, self.username, self.password)
 
-        # if max_attempts >= 3:
-        #     with open("data/mail_getcode_again.txt", "a") as file:
-        #             file.write(f"{self.username}|{self.password}\n")
-        #     self.driver.quit()
-        #     handleDeleteProfile(self.profile_id)
-        #     self.self_main.table_account_info.setItem(
-        #         self.current_row_count,
-        #         3,
-        #         QTableWidgetItem("Bị chặn, đợi restart lại... 29"),
-        #     )
-        #     self.self_main.restart_thread(self.num_threads, "", "") 
 
     except requests.exceptions.RequestException as e:
         print(e)
