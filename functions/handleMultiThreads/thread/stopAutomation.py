@@ -22,6 +22,8 @@ def stopAutomation(self):
 
         self.chrome_threads.clear()  # Xóa danh sách các luồng đã dừng
 
+        self.stop_progress_dialog.close()
+
         self.stop_button.setEnabled(False)
         self.stop_button.setStyleSheet("background-color: rgba(0, 0, 0, 0.2)")
         self.start_button.setEnabled(True)

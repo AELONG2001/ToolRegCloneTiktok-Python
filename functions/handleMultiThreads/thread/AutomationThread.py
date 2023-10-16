@@ -185,9 +185,6 @@ class AutomationThread(QThread):
         )
 
         QCoreApplication.processEvents()
-        sleep(1)
-
-        self.self_main.stop_progress_dialog.close()
 
     def run(self):
         print("run")
@@ -271,11 +268,11 @@ class AutomationThread(QThread):
 
         self.options.add_argument("--disable-blink-features=AutomationControlled")
         self.options.add_argument(f"user-agent={random_user_agent}")
-        # self.options.add_argument(
-        #     f"--user-data-dir={self.path_profile_gologin}/{self.profile_id}/Default"
-        # )
+        self.options.add_argument(
+            f"--user-data-dir={self.path_profile_gologin}/{self.profile_id}/Default"
+        )
         
-        # self.options.add_argument(f"--proxy-server={self.proxy}")
+        self.options.add_argument(f"--proxy-server={self.proxy}")
 
         self.driver = webdriver.Chrome(options=self.options)
         AutomationThread.drivers_list.append(self.driver)

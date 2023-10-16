@@ -89,6 +89,7 @@ class Ui_ToolRegCloneTiktok(QObject):
     def setupUi(self, ToolRegCloneTiktok):
         uiMain(self, ToolRegCloneTiktok)
         self.automation_controller = AutomationController(self)
+        
     def start(self):
         self.automation_controller.start()
 
