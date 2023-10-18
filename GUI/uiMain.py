@@ -232,7 +232,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.label.setObjectName("label")
     self.setting_tool = QGroupBox(parent=self.settings)
     self.setting_tool.setGeometry(QRect(20, 70, 1221, 151))
-    self.setting_tool.setStyleSheet('font: 700 10pt "Segoe UI";')
+    self.setting_tool.setStyleSheet('font: 600 10pt "Segoe UI";')
     self.setting_tool.setObjectName("setting_tool")
     self.chrome_setting_line = QLabel(parent=self.setting_tool)
     self.chrome_setting_line.setGeometry(QRect(10, 30, 151, 21))
