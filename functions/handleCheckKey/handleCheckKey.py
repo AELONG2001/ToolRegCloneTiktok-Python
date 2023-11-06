@@ -6,7 +6,7 @@ def handleCheckKey(key, serial_number):
         "machine_code": serial_number
     }
 
-    data = requests.post("http://localhost/api_check_key/api.php", body).json()
+    data = requests.post("https://longsoftware.click/api.php", body).json()
     print("data: ", data)
 
     return data

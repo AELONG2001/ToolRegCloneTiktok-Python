@@ -29,34 +29,8 @@ def handleSubmitAccount(self):
         try:
             submitAccount.click()
         except ElementClickInterceptedException:
-            # print("Không tìm thấy submitAccount element")
-            # account = f"{self.username}|{self.password_account}|{self.password}|1"
-            # wait(1, 2)
-            # with open(self.output_file_path, "a") as f:
-            #     f.write(account + "\n")
-            # self.driver.quit()
-            # handleDeleteProfile(self.profile_id)
-            # self.self_main.table_account_info.setItem(
-            #     self.current_row_count,
-            #     3,
-            #     QTableWidgetItem("Bị chặn, đợi restart lại..."),
-            # )
-            # self.self_main.restart_thread(self.num_threads, "", "")
             pass
         except StaleElementReferenceException:
-            # print("Không tìm thấy submitAccount element")
-            # account = f"{self.username}|{self.password_account}|{self.password}|2"
-            # wait(1, 2)
-            # with open(self.output_file_path, "a") as f:
-            #     f.write(account + "\n")
-            # self.driver.quit()
-            # handleDeleteProfile(self.profile_id)
-            # self.self_main.table_account_info.setItem(
-            #     self.current_row_count,
-            #     3,
-            #     QTableWidgetItem("Bị chặn, đợi restart lại..."),
-            # )
-            # self.self_main.restart_thread(self.num_threads, "", "")
             pass
 
         wait(6, 8)
