@@ -4,10 +4,10 @@ from PySide6.QtWidgets import *
 import os
 import json
 
-def translateUi(self, ToolRegCloneTiktok):
+def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
     _translate = QCoreApplication.translate
     ToolRegCloneTiktok.setWindowTitle(
-        _translate("ToolRegCloneTiktok", "ToolRegCloneTiktok")
+        _translate("ToolRegCloneTiktok", f"ToolRegCloneTiktok - {current_version} (Còn {remaining_days} ngày)")
     )
     self.mail_value.setText(_translate("ToolRegCloneTiktok", ""))
     self.list_avatar.setText(_translate("ToolRegCloneTiktok", " Folder Avatar"))
@@ -39,15 +39,17 @@ def translateUi(self, ToolRegCloneTiktok):
 
     self.list_mail.setText(_translate("ToolRegCloneTiktok", " List mail"))
     self.export_account.setText(_translate("ToolRegCloneTiktok", "Xuất tài khoản"))
+    self.update_label.setText(_translate("ToolRegCloneTiktok", "Đã có phiên bản mới, cập nhập ngay...."))
+    self.update_button.setText(_translate("ToolRegCloneTiktok", "Cập nhập"))
     self.list_proxy.setText(_translate("ToolRegCloneTiktok", "Proxys:"))
-    self.link_facebook.setText(
-        _translate("ToolRegCloneTiktok", "https://www.facebook.com/longkata2001")
-    )
-    self.phone.setText(_translate("ToolRegCloneTiktok", "037.527.0513"))
-    self.hotline.setText(_translate("ToolRegCloneTiktok", "Hotline:"))
-    # self.copyright.setText(
-    #     _translate("ToolRegCloneTiktok", "© Bản quyền thuộc về Long Software")
-    # )
+    # self.hotline.setText(_translate("ToolRegCloneTiktok", "Hotline:"))
+    # self.phone.setText(_translate("ToolRegCloneTiktok", "037.527.0513"))
+    #  self.copyright.setText(
+    #      _translate("ToolRegCloneTiktok", "© Bản quyền thuộc về longsoftware.vn")
+    #  )
+    #  self.link_facebook.setText(
+    #      _translate("ToolRegCloneTiktok", "https://www.facebook.com/longkata2001")
+    #  )
     self.ToolRegCloneTiktok.setTabText(
         self.ToolRegCloneTiktok.indexOf(self.home),
         _translate("ToolRegCloneTiktok", "Home"),

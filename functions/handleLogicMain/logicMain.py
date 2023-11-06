@@ -8,8 +8,12 @@ from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
 from functions.handleCheckMail.checkMail import checkMail
 import os
 import json
-import sys
 import re
+import urllib.request
+import zipfile
+import shutil
+from subprocess import run, CREATE_NO_WINDOW
+
 
 class AutomationController:
     def __init__(self, ui_instance):
@@ -17,6 +21,69 @@ class AutomationController:
         self.timer_check_password = QTimer()
         self.timer_check_password.timeout.connect(self.check_password)
         self.timer_check_password.setSingleShot(True)  # Đặt chế độ single shot để chỉ chạy một lần
+
+    def update(self):
+        self.ui_instance.is_update = True
+        self.ui_instance.update_progress_dialog.show()
+        QCoreApplication.processEvents()
+        print("Update")
+        url = self.ui_instance.data["link_update"]
+        total_size_version = int(self.ui_instance.data["size_update"])
+        file_name = "./repository.zip"
+        
+        file_size = total_size_version / 1048576
+        file_size_dl = 0
+        block_sz = 8192
+
+        u = urllib.request.urlopen(url)
+        with open(file_name, 'wb') as f:
+            while True:
+                buffer = u.read(block_sz)
+                if not buffer:
+                    break
+
+                file_size_dl += len(buffer)
+                f.write(buffer)
+                # Tính tỷ lệ đã tải
+                percent_complete = (file_size_dl * 100.0 / total_size_version)
+                # print(f"Tải xong: {file_size_dl / (1024 * 1024):.2f}MB/{file_size:.2f}MB")
+                # print("percent_complete: ", int(percent_complete))
+
+                self.ui_instance.update_progress_dialog.set_percent_title(f"{file_size_dl / (1024 * 1024):.2f}MB/{file_size:.2f}MB")
+                self.ui_instance.update_progress_dialog.set_progress_dialog(int(percent_complete))
+                QCoreApplication.processEvents()
+            print("Download completed.")
+
+        with zipfile.ZipFile(file_name, 'r') as zip_ref:
+            # Giải nén toàn bộ nội dung vào thư mục đích
+            zip_ref.extractall()
+
+            # Lấy danh sách các tên tệp tin và thư mục trong file zip
+            file_list = zip_ref.namelist()
+
+            # Lấy tên thư mục đã giải nén
+            extracted_folder_name = None
+            for name in file_list:
+                if name.endswith('/'):
+                    extracted_folder_name = name.rstrip('/')
+                    break
+        
+        
+        os.rename(f"./{extracted_folder_name.strip()}", self.ui_instance.latest_version)
+        os.remove(file_name)
+        if not os.path.exists(f"{self.ui_instance.current_version}"):
+            os.makedirs(f"{self.ui_instance.current_version}")
+        source_file = "./ToolRegCloneTiktok.exe"
+        destination_directory = f"{self.ui_instance.current_version}"
+        destination_path = os.path.join(destination_directory, os.path.basename(source_file))
+        # move old exe to old version folder
+        os.rename(source_file, destination_path)
+        os.rename(f"{self.ui_instance.latest_version}/ToolRegCloneTiktok.exe", source_file)
+        shutil.rmtree(f"{self.ui_instance.current_version}")
+        shutil.rmtree(f"{self.ui_instance.latest_version}")
+        QApplication.quit()
+        run("./ToolRegCloneTiktok.exe", creationflags=CREATE_NO_WINDOW)
+        self.ui_instance.is_update = False
 
     def start(self):
         startAutomation(self.ui_instance)

@@ -9,8 +9,13 @@ def uiMain(self, ToolRegCloneTiktok):
     self.centralwidget = QWidget(parent=ToolRegCloneTiktok)
     self.centralwidget.setObjectName("centralwidget")
     self.ToolRegCloneTiktok = QTabWidget(parent=self.centralwidget)
-    self.ToolRegCloneTiktok.setGeometry(QRect(-4, -1, 1301, 1079))
+    self.ToolRegCloneTiktok.setGeometry(QRect(0, 0, 1301, 1079))
     self.ToolRegCloneTiktok.setObjectName("ToolRegCloneTiktok")
+    screen_geometry = QGuiApplication.primaryScreen().geometry()
+    x = (screen_geometry.width() - ToolRegCloneTiktok.width()) / 2
+    y = (screen_geometry.height() - ToolRegCloneTiktok.height()) / 2
+    ToolRegCloneTiktok.move(x, y)
+
     self.home = QWidget()
     self.home.setObjectName("home")
     self.mail_value = QLineEdit(parent=self.home)
@@ -154,6 +159,20 @@ def uiMain(self, ToolRegCloneTiktok):
         "color:#fff;\n" "background-color: rgb(19, 170, 24);"
     )
     self.export_account.setObjectName("export_account")
+    self.update_label = QLabel(parent=self.home)
+    self.update_label.setGeometry(QRect(10, 50, 240, 21))
+    self.update_label.setStyleSheet('font: 600 10pt "Segoe UI";')
+    self.update_label.setObjectName("update_label")
+
+    self.update_button = QPushButton(parent=self.home)
+    self.update_button.setGeometry(250, 50, 100, 28)
+    self.update_button.clicked.connect(self.update)
+    self.update_button.setEnabled(True)
+    self.update_button.setStyleSheet(
+        "color: white; background-color: rgb(64, 170, 50);"
+    )
+
+   
     self.list_proxy = QLabel(parent=self.home)
     self.list_proxy.setGeometry(QRect(920, 50, 61, 41))
     self.list_proxy.setStyleSheet('font: 700 10pt "Segoe UI";')
@@ -169,6 +188,17 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value.setGeometry(QRect(920, 90, 211, 361))
     self.proxy_value.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
     self.proxy_value.setPlainText("")
+
+    if self.current_version == self.latest_version:
+        self.update_label.hide()
+        self.update_button.hide()
+    else:
+        self.table_account_info.setGeometry(QRect(10, 100, 881, 391))
+        self.list_proxy.setGeometry(QRect(920, 85, 61, 41))
+        self.proxy_type.setGeometry(QRect(970, 95, 121, 22))
+        self.proxy_value.setGeometry(QRect(920, 130, 211, 361))
+        self.check_proxy.setGeometry(QRect(1150, 460, 61, 31))
+
     self.link_facebook = QLabel(parent=self.home)
     self.link_facebook.setGeometry(QRect(50, 490, 301, 31))
     self.link_facebook.setStyleSheet(
@@ -179,27 +209,27 @@ def uiMain(self, ToolRegCloneTiktok):
         'font: 700 10pt "Segoe UI";'
     )
     self.link_facebook.setObjectName("link_facebook")
-    self.phone = QLabel(parent=self.home)
-    self.phone.setGeometry(QRect(70, 460, 81, 31))
-    self.phone.setStyleSheet("color:#00557f;\n" 'font: 700 10pt "Segoe UI";')
-    self.phone.setObjectName("phone")
-    self.hotline = QLabel(parent=self.home)
-    self.hotline.setGeometry(QRect(10, 455, 49, 41))
-    self.hotline.setStyleSheet('font: 700 10pt "Segoe UI";')
-    self.hotline.setObjectName("hotline")
-    self.icon_facebook = QPushButton(parent=self.home)
-    self.icon_facebook.setGeometry(QRect(10, 490, 31, 31))
-    icon4 = QIcon()
-    icon4.addPixmap(
-        QPixmap(".\\icons/facebook.png"),
-        QIcon.Mode.Normal,
-        QIcon.State.Off,
-    )
-    self.icon_facebook.setIcon(icon4)
-    self.icon_facebook.setIconSize(QSize(20, 20))
-    self.icon_facebook.setObjectName("icon_facebook")
+    # self.phone = QLabel(parent=self.home)
+    # self.phone.setGeometry(QRect(70, 460, 81, 31))
+    # self.phone.setStyleSheet("color:#00557f;\n" 'font: 700 10pt "Segoe UI";')
+    # self.phone.setObjectName("phone")
+    # self.hotline = QLabel(parent=self.home)
+    # self.hotline.setGeometry(QRect(10, 455, 49, 41))
+    # self.hotline.setStyleSheet('font: 700 10pt "Segoe UI";')
+    # self.hotline.setObjectName("hotline")
+    # self.icon_facebook = QPushButton(parent=self.home)
+    # self.icon_facebook.setGeometry(QRect(10, 490, 31, 31))
+    # icon4 = QIcon()
+    # icon4.addPixmap(
+    #     QPixmap(".\\icons/facebook.png"),
+    #     QIcon.Mode.Normal,
+    #     QIcon.State.Off,
+    # )
+    # self.icon_facebook.setIcon(icon4)
+    # self.icon_facebook.setIconSize(QSize(20, 20))
+    # self.icon_facebook.setObjectName("icon_facebook")
     self.copyright = QLabel(parent=self.home)
-    self.copyright.setGeometry(QRect(790, 490, 231, 16))
+    self.copyright.setGeometry(QRect(790, 510, 250, 16))
     self.copyright.setStyleSheet('font: 700 10pt "Segoe UI";')
     self.copyright.setObjectName("copyright")
     self.ToolRegCloneTiktok.addTab(self.home, "")

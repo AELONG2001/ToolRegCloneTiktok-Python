@@ -4,7 +4,6 @@ from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 import math
 from time import sleep
-from fake_useragent import UserAgent
 from utils.utils import wait, generate_password
 
 
@@ -191,52 +190,50 @@ class AutomationThread(QThread):
         num_worker = self.num_threads
         chrome_percent_zoom = self.chrome_percent_zoom
         
-        user_agent = UserAgent()
 
-        random_user_agent = user_agent.random
 
         num_chrome_a_row = int(self.chrome_count)
 
         # check type proxys
-        if self.proxy_type == 0:
-            isGetTMProxyAgain = True
-            while isGetTMProxyAgain:
-                api_key_tmproxy = self.self_main.proxy_value.toPlainText()
-                api_key_list = api_key_tmproxy.splitlines()
+        # if self.proxy_type == 0:
+        #     isGetTMProxyAgain = True
+        #     while isGetTMProxyAgain:
+        #         api_key_tmproxy = self.self_main.proxy_value.toPlainText()
+        #         api_key_list = api_key_tmproxy.splitlines()
 
-                new_proxy = handleGetNewTMProxy(api_key_list[num_worker])
-                current_proxy = handleGetCurrentTMProxy(api_key_list[num_worker])
+        #         new_proxy = handleGetNewTMProxy(api_key_list[num_worker])
+        #         current_proxy = handleGetCurrentTMProxy(api_key_list[num_worker])
 
-                if not new_proxy:
-                    self.proxy = current_proxy
-                else:
-                    self.proxy = new_proxy
+        #         if not new_proxy:
+        #             self.proxy = current_proxy
+        #         else:
+        #             self.proxy = new_proxy
                     
-                if ':' in self.proxy:
-                    isGetTMProxyAgain = False
-                else:
-                    isGetTMProxyAgain = True
-        elif self.proxy_type == 1:
-            api_key_tinproxy = self.self_main.proxy_value.toPlainText()
-            api_key_list = api_key_tinproxy.splitlines()
+        #         if ':' in self.proxy:
+        #             isGetTMProxyAgain = False
+        #         else:
+        #             isGetTMProxyAgain = True
+        # elif self.proxy_type == 1:
+        #     api_key_tinproxy = self.self_main.proxy_value.toPlainText()
+        #     api_key_list = api_key_tinproxy.splitlines()
 
-            new_proxy = handleGetNewTinProxy(api_key_list[num_worker])
-            current_proxy = handleGetCurrentTinProxy(api_key_list[num_worker])
+        #     new_proxy = handleGetNewTinProxy(api_key_list[num_worker])
+        #     current_proxy = handleGetCurrentTinProxy(api_key_list[num_worker])
 
-            if not new_proxy:
-                self.proxy = current_proxy
-            else:
-                self.proxy = new_proxy
-        else:
-            get_list_proxy = self.self_main.proxy_value.toPlainText()
-            proxys = get_list_proxy.splitlines()
-            self.proxy = proxys[num_worker]
+        #     if not new_proxy:
+        #         self.proxy = current_proxy
+        #     else:
+        #         self.proxy = new_proxy
+        # else:
+        #     get_list_proxy = self.self_main.proxy_value.toPlainText()
+        #     proxys = get_list_proxy.splitlines()
+        #     self.proxy = proxys[num_worker]
 
-        print("Proxy: ",  self.proxy)
+        # print("Proxy: ",  self.proxy)
 
-        self.profile_id = handleCreateProfile(self)
+        # self.profile_id = handleCreateProfile(self)
 
-        print("profile_id: ", self.profile_id)
+        # print("profile_id: ", self.profile_id)
             
         self.options.add_argument(
             f"--force-device-scale-factor={chrome_percent_zoom}"
@@ -267,12 +264,11 @@ class AutomationThread(QThread):
         self.options.add_argument('--disable-gpu-shader-disk-cache')
 
         self.options.add_argument("--disable-blink-features=AutomationControlled")
-        self.options.add_argument(f"user-agent={random_user_agent}")
-        self.options.add_argument(
-            f"--user-data-dir={self.path_profile_gologin}/{self.profile_id}/Default"
-        )
+        # self.options.add_argument(
+        #     f"--user-data-dir={self.path_profile_gologin}/{self.profile_id}/Default"
+        # )
         
-        self.options.add_argument(f"--proxy-server={self.proxy}")
+        # self.options.add_argument(f"--proxy-server={self.proxy}")
 
         self.driver = webdriver.Chrome(options=self.options)
         AutomationThread.drivers_list.append(self.driver)
@@ -296,7 +292,7 @@ class AutomationThread(QThread):
                     self.password_account = "Abc1234@"
 
 
-            if  self.isAutoBuyMail:
+            if self.isAutoBuyMail:
                 if self.is_restart:
                     if not self.username_restart or not self.password_restart:
                         self.mail = handleAutoBuyHotmail()
