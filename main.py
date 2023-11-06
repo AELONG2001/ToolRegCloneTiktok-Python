@@ -29,10 +29,6 @@ class MainWindow(QMainWindow):
         )
 
         if result == QMessageBox.StandardButton.Yes:
-            # self.ui_self.stop_all_threads = True
-            # for thread in self.ui_self.chrome_threads:
-            #     thread.stop()
-
             event.accept()
         else:
             event.ignore()
