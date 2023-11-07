@@ -1,23 +1,18 @@
 {
     "key": "B539435591E4FB5B",
     "machine_code": "bf2aa4bee397a5ba7d1227eba82ef816138676404a0308e061d8e3e4c4cb411f",
-    "num_threads": 5,
+    "num_threads": 1,
     "url_mail": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
     "captcha_key": "08f8b0f0b3aff156866a811508e2bb2e",
     "proxys": [
-        "c8f86a6404dab4c4bce0e5834178a682",
-        "a957e576c0032f591fcbcee89941d87e",
-        "64919a4666bffe81f755d5ff6947de28",
-        "c8f86a6404dab4c4bce0e5834178a682",
-        "a957e576c0032f591fcbcee89941d87e",
-        "64919a4666bffe81f755d5ff6947de28",
-        "c8f86a6404dab4c4bce0e5834178a682",
-        "a957e576c0032f591fcbcee89941d87e",
-        "64919a4666bffe81f755d5ff6947de28",
-        "64919a4666bffe81f755d5ff6947de28"
+        "7aaedb09c8a7f9b9fcd895d99d52d70a",
+        "41b11b1b031e6b54ef7ad61958f1332f",
+        "d3e56d59ef366c0ac4ec00af1c79e7e4",
+        "3dcd1f1c3cfdc83b159e4ee432461d3c",
+        "a873011daabc4dc97f682380bd7964e6"
     ],
-    "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTJjZmRmZGQ2Nzc1YzU2NTU1MDU4MDQiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTJjZmU3MDcwNmFmOTM0MzFhMmFjZmUifQ.rPkXpNhE0km2rV5IfOOiiTHyGlnuQerpz42IIlaj8pY",
-    "url_mail_check": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/hotmail.txt",
+    "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTQ5ZDU5YTE4YTFiZjRmMjkxMzRjNWEiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTQ5ZTE2N2M1ODNkMDU4ZDhhNGQyNzAifQ._b7n7A3LNydmljnpNew6nJD9hHYK2X6XQWNbSdP05Lk",
+    "url_mail_check": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
     "proxy_type": 1,
     "chrome_percent_zoom": 0.75,
     "password_account": "",
@@ -27,6 +22,7 @@
     "typeExportAccount": 1,
     "chromeValueDelay": 3,
     "is_chrome_count": 10,
-    "api_value_hotmailbox": "",
-    "url_avatar": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus"
+    "api_value_hotmailbox": "919cadef6eb94c3d83a6b312c49b66ed",
+    "url_avatar": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus",
+    "captcha_type": 2
 }

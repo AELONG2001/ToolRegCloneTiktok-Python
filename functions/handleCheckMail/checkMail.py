@@ -21,13 +21,13 @@ class EmailCheckerTaskSignals(QObject):
 class EmailCheckerTask(QRunnable):
     def __init__(self, username, password):
         super().__init__()
-        self.username = username
-        self.password = password
+        self.username_mail = username
+        self.password_mail = password
         self.signals = EmailCheckerTaskSignals()
 
     def run(self):
-        _, _, status = handleCheckMailApi(self.username, self.password)
-        self.signals.result_signal.emit(self.username, self.password, status)
+        _, _, status = handleCheckMailApi(self.username_mail, self.password_mail)
+        self.signals.result_signal.emit(self.username_mail, self.password_mail, status)
 
 def checkMail(
     self, fileNameCheck

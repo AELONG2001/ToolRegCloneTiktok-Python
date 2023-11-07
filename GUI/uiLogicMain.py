@@ -13,6 +13,7 @@ from GUI.uiMain import uiMain
 from GUI.translateUi import translateUi
 
 import json
+import datetime
 
 class Ui_ToolRegCloneTiktok(QObject):
     def __init__(self, data):
@@ -39,7 +40,7 @@ class Ui_ToolRegCloneTiktok(QObject):
         self.re_start_timer.timeout.connect(self.restart_thread)
 
         self.update_progress_dialog = UpdateProgressDialog(self)
-        self.stop_progress_dialog = StopProgressDialog()
+        self.stop_progress_dialog = StopProgressDialog(self)
 
     def setupUi(self, ToolRegCloneTiktok):
         uiMain(self, ToolRegCloneTiktok)
@@ -61,6 +62,7 @@ class Ui_ToolRegCloneTiktok(QObject):
 
         input_file_path = data["url_mail"]
         output_file_path = "data/output.txt"
+        current_date = datetime.date.today().strftime("%d/%m/%Y")
         chrome_count = self.chrome_setting_line_value.value()
         captcha_type = self.captcha_type.currentIndex()
         captcha_key = self.captcha_key.text()
@@ -75,6 +77,7 @@ class Ui_ToolRegCloneTiktok(QObject):
             thread,
             input_file_path,
             output_file_path,
+            current_date,
             chrome_count,
             captcha_type,
             captcha_key,

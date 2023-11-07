@@ -14,6 +14,12 @@ def stopAutomation(self):
     )
 
     if result == QMessageBox.StandardButton.Yes:
+        self.stop_progress_dialog.show()
+        self.stop_progress_dialog.set_progress(0)
+        self.stop_progress_dialog.set_progress_text("Đang tiến hành stop...")
+        QCoreApplication.processEvents()
+        QCoreApplication.processEvents()
+
         self.stop_all_threads = True
         for thread in self.chrome_threads:
             if AutomationThread.num_quit == len(AutomationThread.drivers_list):

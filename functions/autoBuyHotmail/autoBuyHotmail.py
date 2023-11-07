@@ -1,12 +1,12 @@
 import requests
 
-def handleAutoBuyHotmail():
+def handleAutoBuyHotmail(api_key):
     try:
         isBuyMailAgain = True
         email_password = ""
         while isBuyMailAgain:
             params = {
-                "apikey": "919cadef6eb94c3d83a6b312c49b66ed",
+                "apikey": f"{api_key}",
                 "mailcode": "HOTMAIL",
                 "quantity": 1
             }
@@ -15,15 +15,16 @@ def handleAutoBuyHotmail():
             data = response.json()
 
             if "Message" in data:
-                if data["Message"] == "Số dư tài khoản không đủ":
+                if data["Message"] == "Bạn đã mua hàng thành công":
+                    email = data["Data"]["Emails"][0]["Email"]
+                    password = data["Data"]["Emails"][0]["Password"]
+                    email_password = f"{email}|{password}"
                     isBuyMailAgain = False
-                    email_password = ""
+                elif data["Message"] == "Tồn trên hệ thống không đủ":
+                    isBuyMailAgain = True
                 else:
-                    if data["Message"] == "Bạn đã mua hàng thành công":
-                        email = data["Data"]["Emails"][0]["Email"]
-                        password = data["Data"]["Emails"][0]["Password"]
-                        email_password = f"{email}|{password}"
-                        isBuyMailAgain = False
+                   isBuyMailAgain = False
+                   email_password = ""    
             else:
                 isBuyMailAgain = True
 

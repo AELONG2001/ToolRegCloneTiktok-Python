@@ -134,9 +134,7 @@ def handleCreateProfile(self):
                         "string"
                     ]
                 }
-        response = requests.post(url, headers=headers, json=body)
-        profile = response.json()
-        
+        profile = requests.post(url, headers=headers, json=body).json()        
         return profile["id"]
 
     except requests.exceptions.RequestException as e:

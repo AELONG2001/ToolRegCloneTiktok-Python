@@ -74,6 +74,7 @@ class AutomationThread(QThread):
         num_threads,
         input_file_path,
         output_file_path,
+        current_date,
         chrome_count ,
         captcha_type,
         captcha_key,
@@ -81,6 +82,7 @@ class AutomationThread(QThread):
         random_password_account,
         chrome_percent_zoom,
         path_profile_gologin,
+        api_key_hotmailbox,
         is_upload_avatar,
         data_queue,
         username_restart = "",
@@ -92,6 +94,7 @@ class AutomationThread(QThread):
         self.num_threads = num_threads
         self.input_file_path = input_file_path
         self.output_file_path = output_file_path
+        self.current_date = current_date
         self.chrome_count = chrome_count
         self.captcha_type = captcha_type
         self.captcha_key = captcha_key
@@ -99,6 +102,7 @@ class AutomationThread(QThread):
         self.random_password_account = random_password_account
         self.chrome_percent_zoom = chrome_percent_zoom
         self.path_profile_gologin = path_profile_gologin
+        self.api_key_hotmailbox = api_key_hotmailbox
         self.is_upload_avatar = is_upload_avatar
         self.data_queue = data_queue
         self.username_restart = username_restart
@@ -135,14 +139,14 @@ class AutomationThread(QThread):
             exists = False
             for line in existing_data:
                 parts = line.strip().split('|')
-                if len(parts) >= 1 and self.username == parts[0]:
+                if len(parts) >= 1 and self.username_mail == parts[0]:
                     exists = True
                     break
 
             # check if data not exist
             if not exists:
                 with open(self.input_file_path, "a") as file:
-                    file.write(f"{self.username}|{self.password}\n")
+                    file.write(f"{self.username_mail}|{self.password_mail}\n")
         else:
             # open file output
             with open(self.output_file_path, "r") as file:
@@ -152,88 +156,94 @@ class AutomationThread(QThread):
             exists = False
             for line in existing_data:
                 parts = line.strip().split('|')
-                if len(parts) >= 1 and self.username == parts[0]:
+                if len(parts) >= 1 and self.username_mail == parts[0]:
                     exists = True
                     break
 
             # check if data not exist
             if not exists:
+                wait(2, 4)
+                pageContent = self.driver.page_source
+                if '"nickName":"' in pageContent:
+                    try:
+                        userId = pageContent.split('"nickName":"')[1].split('"')[0]
+                    except IndexError:
+                        userId = ""
+                else:
+                    userId = ""
                 cookies = self.driver.get_cookies()
                 cookies_string = ";".join(
                     [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
                 )
-                account = f"{self.username}|{self.password_account}|{self.password}|{cookies_string}"
+                if userId:
+                    account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                else:
+                    account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
                 wait(1, 2)
                 with open(self.output_file_path, "a") as f:
                     f.write(account + "\n")
 
-        self.self_main.stop_progress_dialog.show()
-        QCoreApplication.processEvents()
-
         if hasattr(self, "driver"):
-            self.driver.quit()
             AutomationThread.num_quit += 1
-
+            self.driver.quit()
+        
         total_threads = len(self.self_main.chrome_threads)
         completed_threads = AutomationThread.num_quit
-        percent_complete = (completed_threads / total_threads) * 100
-
+        percent_complete = int((completed_threads / total_threads) * 100)
+        
         self.self_main.stop_progress_dialog.set_progress(percent_complete)
         self.self_main.stop_progress_dialog.set_progress_text(
             f"Đã dừng {completed_threads} luồng"
         )
 
         QCoreApplication.processEvents()
-
     def run(self):
         print("run")
         num_worker = self.num_threads
         chrome_percent_zoom = self.chrome_percent_zoom
-        
-
 
         num_chrome_a_row = int(self.chrome_count)
 
         # check type proxys
-        # if self.proxy_type == 0:
-        #     isGetTMProxyAgain = True
-        #     while isGetTMProxyAgain:
-        #         api_key_tmproxy = self.self_main.proxy_value.toPlainText()
-        #         api_key_list = api_key_tmproxy.splitlines()
+        if self.proxy_type == 0:
+            isGetTMProxyAgain = True
+            while isGetTMProxyAgain:
+                api_key_tmproxy = self.self_main.proxy_value.toPlainText()
+                api_key_list = api_key_tmproxy.splitlines()
 
-        #         new_proxy = handleGetNewTMProxy(api_key_list[num_worker])
-        #         current_proxy = handleGetCurrentTMProxy(api_key_list[num_worker])
+                new_proxy = handleGetNewTMProxy(api_key_list[num_worker])
+                current_proxy = handleGetCurrentTMProxy(api_key_list[num_worker])
 
-        #         if not new_proxy:
-        #             self.proxy = current_proxy
-        #         else:
-        #             self.proxy = new_proxy
+                if not new_proxy:
+                    self.proxy = current_proxy
+                else:
+                    self.proxy = new_proxy
                     
-        #         if ':' in self.proxy:
-        #             isGetTMProxyAgain = False
-        #         else:
-        #             isGetTMProxyAgain = True
-        # elif self.proxy_type == 1:
-        #     api_key_tinproxy = self.self_main.proxy_value.toPlainText()
-        #     api_key_list = api_key_tinproxy.splitlines()
+                if ':' in self.proxy:
+                    isGetTMProxyAgain = False
+                else:
+                    isGetTMProxyAgain = True
+        elif self.proxy_type == 1:
+            api_key_tinproxy = self.self_main.proxy_value.toPlainText()
+            api_key_list = api_key_tinproxy.splitlines()
 
-        #     new_proxy = handleGetNewTinProxy(api_key_list[num_worker])
-        #     current_proxy = handleGetCurrentTinProxy(api_key_list[num_worker])
+            new_proxy = handleGetNewTinProxy(api_key_list[num_worker])
+            current_proxy = handleGetCurrentTinProxy(api_key_list[num_worker])
 
-        #     if not new_proxy:
-        #         self.proxy = current_proxy
-        #     else:
-        #         self.proxy = new_proxy
-        # else:
-        #     get_list_proxy = self.self_main.proxy_value.toPlainText()
-        #     proxys = get_list_proxy.splitlines()
-        #     self.proxy = proxys[num_worker]
+            if not new_proxy:
+                self.proxy = current_proxy
+            else:
+                self.proxy = new_proxy
+        else:
+            get_list_proxy = self.self_main.proxy_value.toPlainText()
+            proxys = get_list_proxy.splitlines()
+            self.proxy = proxys[num_worker]
 
-        # print("Proxy: ",  self.proxy)
+        print("Proxy: ",  self.proxy)
 
-        # self.profile_id = handleCreateProfile(self)
+        self.profile_id = handleCreateProfile(self)
 
-        # print("profile_id: ", self.profile_id)
+        print("profile_id: ", self.profile_id)
             
         self.options.add_argument(
             f"--force-device-scale-factor={chrome_percent_zoom}"
@@ -264,11 +274,11 @@ class AutomationThread(QThread):
         self.options.add_argument('--disable-gpu-shader-disk-cache')
 
         self.options.add_argument("--disable-blink-features=AutomationControlled")
-        # self.options.add_argument(
-        #     f"--user-data-dir={self.path_profile_gologin}/{self.profile_id}/Default"
-        # )
+        self.options.add_argument(
+            f"--user-data-dir={self.path_profile_gologin}/{self.profile_id}/Default"
+        )
         
-        # self.options.add_argument(f"--proxy-server={self.proxy}")
+        self.options.add_argument(f"--proxy-server={self.proxy}")
 
         self.driver = webdriver.Chrome(options=self.options)
         AutomationThread.drivers_list.append(self.driver)
@@ -295,36 +305,36 @@ class AutomationThread(QThread):
             if self.isAutoBuyMail:
                 if self.is_restart:
                     if not self.username_restart or not self.password_restart:
-                        self.mail = handleAutoBuyHotmail()
+                        self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
                         print("Mail: ", self.mail)
-                        self.username, self.password =  self.mail.split("|")
+                        self.username_mail, self.password_mail =  self.mail.split("|")
                     else:
-                        self.username = self.username_restart
-                        self.password = self.password_restart
+                        self.username_mail = self.username_restart
+                        self.password_mail = self.password_restart
                 else:
-                    self.mail = handleAutoBuyHotmail()
+                    self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
                     print("Mail: ", self.mail)
-                    self.username, self.password =  self.mail.split("|")
+                    self.username_mail, self.password_mail =  self.mail.split("|")
             else:
                 if self.is_restart:
                     if not self.username_restart or not self.password_restart:
-                        self.username, self.password = self.data_queue.get()
+                        self.username_mail, self.password_mail = self.data_queue.get()
                         with open(self.input_file_path, 'r') as file:
                             lines = file.readlines()
 
-                        new_lines = [line for line in lines if not line.startswith(f"{self.username}|{self.password}")]
+                        new_lines = [line for line in lines if not line.startswith(f"{self.username_mail}|{self.password_mail}")]
 
                         with open(self.input_file_path, 'w') as file:
                             file.writelines(new_lines)
                     else:
-                        self.username = self.username_restart
-                        self.password = self.password_restart
+                        self.username_mail = self.username_restart
+                        self.password_mail = self.password_restart
                 else:
-                    self.username, self.password = self.data_queue.get()
+                    self.username_mail, self.password_mail = self.data_queue.get()
                     with open(self.input_file_path, 'r') as file:
                         lines = file.readlines()
 
-                    new_lines = [line for line in lines if not line.startswith(f"{self.username}|{self.password}")]
+                    new_lines = [line for line in lines if not line.startswith(f"{self.username_mail}|{self.password_mail}")]
 
                     with open(self.input_file_path, 'w') as file:
                         file.writelines(new_lines)
@@ -333,10 +343,10 @@ class AutomationThread(QThread):
             self.current_row_count = self.self_main.table_account_info.rowCount()
             self.self_main.table_account_info.setRowCount(self.current_row_count + 1)
             self.self_main.table_account_info.setItem(
-                self.current_row_count, 0, QTableWidgetItem(self.username)
+                self.current_row_count, 0, QTableWidgetItem(self.username_mail)
             )
             self.self_main.table_account_info.setItem(
-                self.current_row_count, 1, QTableWidgetItem(self.password)
+                self.current_row_count, 1, QTableWidgetItem(self.password_mail)
             )
             # else:
             #     if hasattr(self, "driver"):
@@ -360,7 +370,7 @@ class AutomationThread(QThread):
                 # print("Lỗi mạng hoặc trang không thể truy cập:")
                 # # wait(1, 2)
                 # # with open(self.input_file_path, "a") as file:
-                # #     file.write(f"{self.username}|{self.password}\n")
+                # #     file.write(f"{self.username_mail}|{self.password_mail}\n")
                 # self.driver.quit()
                 # handleDeleteProfile(self.profile_id)
                 # self.self_main.table_account_info.setItem(
@@ -368,7 +378,7 @@ class AutomationThread(QThread):
                 #     3,
                 #     QTableWidgetItem("Bị chặn, đợi restart lại..."),
                 # )
-                # self.self_main.restart_thread(self.num_threads, self.username, self.password)
+                # self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
 
 
             handleSelectMonth(self)
@@ -404,7 +414,7 @@ class AutomationThread(QThread):
                 # print("Lỗi mạng hoặc trang không thể truy cập:")
                 # # wait(1, 2)
                 # # with open(self.input_file_path, "a") as file:
-                # #     file.write(f"{self.username}|{self.password}\n")
+                # #     file.write(f"{self.username_mail}|{self.password_mail}\n")
                 # self.driver.quit()
                 # handleDeleteProfile(self.profile_id)
                 # self.self_main.table_account_info.setItem(

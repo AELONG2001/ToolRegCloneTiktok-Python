@@ -55,7 +55,7 @@ def handleSelectMonth(self):
             print("Không tìm thấy monthSelectElement sau khoảng thời gian chờ")
             # wait(1, 2)
             # with open(self.input_file_path, "a") as file:
-            #     file.write(f"{self.username}|{self.password}\n")
+            #     file.write(f"{self.username_mail}|{self.password_mail}\n")
             self.driver.quit()
             handleDeleteProfile(self.profile_id)
             self.self_main.table_account_info.setItem(
@@ -63,7 +63,7 @@ def handleSelectMonth(self):
                 3,
                 QTableWidgetItem("Bị chặn, đợi restart lại... 1"),
             )
-            self.self_main.restart_thread(self.num_threads, self.username, self.password)
+            self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
 
     
 

@@ -81,7 +81,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 # wait(1, 2)
                 # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username}|{self.password}\n")
+                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
                 self.driver.quit()
                 handleDeleteProfile(self.profile_id)
                 self.self_main.table_account_info.setItem(
@@ -89,7 +89,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
                     3,
                     QTableWidgetItem("Bị chặn, đợi restart lại... 6"),
                 )
-                self.self_main.restart_thread(self.num_threads, self.username, self.password)
+                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
             else:
                 return
 
@@ -113,7 +113,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 # wait(1, 2)
                 # with open(self.input_file_path, "a") as file:
-                #         file.write(f"{self.username}|{self.password}\n")
+                #         file.write(f"{self.username_mail}|{self.password_mail}\n")
                 self.driver.quit()
                 handleDeleteProfile(self.profile_id)
                 self.self_main.table_account_info.setItem(
@@ -121,7 +121,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
                         3,
                         QTableWidgetItem("Bị chặn, đợi restart lại... 7"),
                     )
-                self.self_main.restart_thread(self.num_threads, self.username, self.password)
+                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
             else:
                return
 
@@ -147,7 +147,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
             print("Lỗi trong quá trình thực hiện chuỗi hành động")
             # wait(1, 2)
             # with open(self.input_file_path, "a") as file:
-            #     file.write(f"{self.username}|{self.password}\n")
+            #     file.write(f"{self.username_mail}|{self.password_mail}\n")
             self.driver.quit()
             handleDeleteProfile(self.profile_id)
             self.self_main.table_account_info.setItem(
@@ -155,7 +155,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
                 3,
                 QTableWidgetItem("Bị chặn, đợi restart lại... 8"),
             )
-            self.self_main.restart_thread(self.num_threads, self.username, self.password)
+            self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
 
         wait(2, 3)
         submitCaptcha = self.driver.find_element(
@@ -182,7 +182,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
             if emailElement[0].value_of_css_property("color") == "rgba(255, 76, 58, 1)":
                 wait(1, 2)
                 with open("data/account_created.txt", "a") as file:
-                    file.write(f"{self.username}|{self.password}\n")
+                    file.write(f"{self.username_mail}|{self.password_mail}\n")
                 self.driver.quit()
                 handleDeleteProfile(self.profile_id)
                 self.self_main.table_account_info.setItem(

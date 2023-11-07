@@ -3,10 +3,20 @@ from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
 class StopProgressDialog(QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self, self_main):
+        super().__init__()
+        self.self_main = self_main
+
         self.setWindowTitle("Quá trình này có thể mất thời gian...")
         self.setFixedSize(300, 100)
+
+        icon = QIcon()
+        icon.addPixmap(
+            QPixmap(".\\icons/logo_tiktok.png"),
+            QIcon.Mode.Normal,
+            QIcon.State.Off,
+        )
+        self.setWindowIcon(icon)
 
         layout = QVBoxLayout()
         self.progress_label = QLabel("Quá trình này có thể mất thời gian...")

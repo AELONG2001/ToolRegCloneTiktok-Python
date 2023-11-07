@@ -19,8 +19,8 @@ def handleGetCodeFromMail(self):
         isCode = True
         while  attempts < max_attempts and isCode and not self.stop_flag:
             params = {
-                "mail": self.username,
-                "pass": self.password,
+                "mail": self.username_mail,
+                "pass": self.password_mail,
                 "type": "tiktok"
             }
 
@@ -36,7 +36,7 @@ def handleGetCodeFromMail(self):
 
             if data["content"] == "Invalid email or password or IMAP disabled":
                 with open("data/invalid_mail.txt", "a") as file:
-                    file.write(f"{self.username}|{self.password}\n")
+                    file.write(f"{self.username_mail}|{self.password_mail}\n")
                 self.driver.quit()
                 handleDeleteProfile(self.profile_id)
                 self.self_main.table_account_info.setItem(
@@ -62,7 +62,7 @@ def handleGetCodeFromMail(self):
         if attempts >= max_attempts:
             # wait(1, 2)
             # with open("data/mail_getcode_again.txt", "a") as file:
-            #         file.write(f"{self.username}|{self.password}\n")
+            #         file.write(f"{self.username_mail}|{self.password_mail}\n")
            
             self.driver.quit()
             handleDeleteProfile(self.profile_id)
@@ -71,7 +71,7 @@ def handleGetCodeFromMail(self):
                 3,
                 QTableWidgetItem("Bị chặn, đợi restart lại... 5"),
             )
-            self.self_main.restart_thread(self.num_threads, self.username, self.password)
+            self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
 
 
     except requests.exceptions.RequestException as e:

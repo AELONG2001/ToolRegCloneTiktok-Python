@@ -9,7 +9,6 @@ from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import NoSuchElementException
 import os
 import json
-import datetime
 
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
     handleResolveCaptchaRotateObjectAChi,
@@ -35,7 +34,6 @@ from utils.utils import random_number
 
 
 def handleUploadAvatar(self):
-    current_date = datetime.date.today().strftime("%d/%m/%Y")
     wait(2, 4)
     is_list_avtart_default = True
 
@@ -67,7 +65,10 @@ def handleUploadAvatar(self):
             cookies_string = ";".join(
                 [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
             )
-            account = f"{userId}|{self.password_account}|{self.username}|{self.password}|{cookies_string}|{current_date}"
+            if userId:
+                account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+            else:
+                account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
             with open(self.output_file_path, "a") as f:
                 f.write(account + "\n")
             self.is_restart = False
@@ -77,7 +78,10 @@ def handleUploadAvatar(self):
         cookies_string = ";".join(
             [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
         )
-        account = f"{userId}|{self.password_account}|{self.username}|{self.password}|{cookies_string}|{current_date}"
+        if userId:
+            account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        else:
+            account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
         with open(self.output_file_path, "a") as f:
             f.write(account + "\n")
         print("Không thể truy cập với user_id này")
@@ -96,7 +100,10 @@ def handleUploadAvatar(self):
     cookies_string = ";".join(
         [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
     )
-    account = f"{userId}|{self.password_account}|{self.username}|{self.password}|{cookies_string}|{current_date}"
+    if userId:
+        account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+    else:
+        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
 
     # insert account
     with open(self.output_file_path, "a") as f:

@@ -82,7 +82,7 @@ def handleResolveCaptchaSliderObjectAChi(self):
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 # wait(1, 2)
                 # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username}|{self.password}\n")
+                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
                 self.driver.quit()
                 handleDeleteProfile(self.profile_id)
                 self.self_main.table_account_info.setItem(
@@ -90,7 +90,7 @@ def handleResolveCaptchaSliderObjectAChi(self):
                     3,
                     QTableWidgetItem("Bị chặn, đợi restart lại... 14"),
                 )
-                self.self_main.restart_thread(self.num_threads, self.username, self.password)
+                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
             else:
                 return
 
@@ -119,7 +119,7 @@ def handleResolveCaptchaSliderObjectAChi(self):
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 # wait(1, 2)
                 # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username}|{self.password}\n")
+                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
                 self.driver.quit()
                 handleDeleteProfile(self.profile_id)
                 self.self_main.table_account_info.setItem(
@@ -127,7 +127,7 @@ def handleResolveCaptchaSliderObjectAChi(self):
                     3,
                     QTableWidgetItem("Bị chặn, đợi restart lại... 15"),
                 )
-                self.self_main.restart_thread(self.num_threads, self.username, self.password)
+                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
             else:
                 return
 
@@ -165,7 +165,7 @@ def handleResolveCaptchaSliderObjectAChi(self):
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 # wait(1, 2)
                 # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username}|{self.password}\n")
+                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
                 self.driver.quit()
                 handleDeleteProfile(self.profile_id)
                 self.self_main.table_account_info.setItem(
@@ -173,7 +173,7 @@ def handleResolveCaptchaSliderObjectAChi(self):
                     3,
                     QTableWidgetItem("Bị chặn, đợi restart lại... 16"),
                 )
-                self.self_main.restart_thread(self.num_threads, self.username, self.password)
+                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
             else:
                 return
 
