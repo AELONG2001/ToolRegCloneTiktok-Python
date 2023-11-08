@@ -34,6 +34,7 @@ from utils.utils import random_number
 
 
 def handleUploadAvatar(self):
+    self.self_main.table_account_info.scrollToBottom()
     wait(2, 4)
     is_list_avtart_default = True
 

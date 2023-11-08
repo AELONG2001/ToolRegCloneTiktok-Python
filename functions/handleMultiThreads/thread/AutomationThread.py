@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from selenium import webdriver
+from selenium_authenticated_proxy import SeleniumAuthenticatedProxy
 from selenium.common.exceptions import WebDriverException
 import math
 from time import sleep
@@ -234,10 +235,17 @@ class AutomationThread(QThread):
                 self.proxy = current_proxy
             else:
                 self.proxy = new_proxy
-        else:
+        elif self.proxy_type == 2 or self.proxy_type == 3:
+            type_ip_port = self.self_main.proxy_value_ip_port.isChecked()
+
             get_list_proxy = self.self_main.proxy_value.toPlainText()
             proxys = get_list_proxy.splitlines()
-            self.proxy = proxys[num_worker]
+
+            if type_ip_port:
+                self.proxy = proxys[num_worker]
+            else:
+                ip,port,user_proxy,password_proxy = proxys[num_worker].split(":")
+                self.proxy = f"{user_proxy}:{password_proxy}:{ip}:{port}"
 
         print("Proxy: ",  self.proxy)
 
@@ -278,7 +286,16 @@ class AutomationThread(QThread):
             f"--user-data-dir={self.path_profile_gologin}/{self.profile_id}/Default"
         )
         
-        self.options.add_argument(f"--proxy-server={self.proxy}")
+        # self.options.add_argument(f"--proxy-server={self.proxy}")
+
+        if self.proxy_type == 2:
+            proxy_helper = SeleniumAuthenticatedProxy(proxy_url=f"http://{self.proxy}")
+        elif self.proxy_type == 3:
+            proxy_helper = SeleniumAuthenticatedProxy(proxy_url=f"socks5://{self.proxy}")
+        else:
+            proxy_helper = SeleniumAuthenticatedProxy(proxy_url=f"http://{self.proxy}")
+
+        proxy_helper.enrich_chrome_options(self.options)
 
         self.driver = webdriver.Chrome(options=self.options)
         AutomationThread.drivers_list.append(self.driver)
@@ -293,6 +310,7 @@ class AutomationThread(QThread):
         self.isAutoBuyMail = self.self_main.api_hotmailbox_value.text()
         
         while not self.stop_flag:
+            self.self_main.table_account_info.scrollToBottom()
             if self.random_password_account:
                 self.password_account = generate_password()
             else:
@@ -347,6 +365,9 @@ class AutomationThread(QThread):
             )
             self.self_main.table_account_info.setItem(
                 self.current_row_count, 1, QTableWidgetItem(self.password_mail)
+            )
+            self.self_main.table_account_info.setItem(
+                self.current_row_count, 2, QTableWidgetItem(self.proxy)
             )
             # else:
             #     if hasattr(self, "driver"):

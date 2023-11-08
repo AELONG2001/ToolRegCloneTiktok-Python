@@ -102,7 +102,7 @@ def handleResolveCaptchaSliderObjectOmo(self):
         base64Data = base64.b64encode(response.content).decode("utf-8")
 
         result = handleCreateJobGetCaptchaSliderObjectOmo(
-            self.captcha_key, self, base64Data, widthCaptcha, self.current_row_count
+            self, base64Data, widthCaptcha
         )
         print("result: ", result)
 

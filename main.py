@@ -57,6 +57,4 @@ if __name__ == "__main__":
     else:
         check_key_user.show()
 
-   
-    
     sys.exit(app.exec())

@@ -7,6 +7,7 @@ from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import StaleElementReferenceException
 
 def handleSubmitAccount(self):
+    self.self_main.table_account_info.scrollToBottom()
     isSubmitAccount = True
     max_attempts = 10
     attempts = 0

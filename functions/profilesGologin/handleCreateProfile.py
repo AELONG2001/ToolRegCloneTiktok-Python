@@ -9,10 +9,10 @@ def handleCreateProfile(self):
     password_proxy = ""
     if len(self.proxy.split(":")) > 2:
         get_proxy = self.proxy.split(":")
-        ip = get_proxy[0]
-        port = get_proxy[1]
-        username_proxy = get_proxy[2]
-        password_proxy = get_proxy[3]
+        ip = get_proxy[2]
+        port = get_proxy[3]
+        username_proxy = get_proxy[0]
+        password_proxy = get_proxy[1]
     else:
        if ':' in self.proxy:
             ip, port = self.proxy.split(":")

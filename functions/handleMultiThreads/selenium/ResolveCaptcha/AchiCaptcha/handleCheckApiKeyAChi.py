@@ -1,6 +1,6 @@
 import requests
 
-def handleCheckApiKeyChi(api_key):
+def handleCheckApiKeyAChi(api_key):
     url = "http://api.achicaptcha.com/createTask"
     body = {
         "clientKey": f"{api_key}",

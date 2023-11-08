@@ -2,6 +2,7 @@ import os
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
+import json
 
 def uiMain(self, ToolRegCloneTiktok):
     ToolRegCloneTiktok.setObjectName("ToolRegCloneTiktok")
@@ -72,15 +73,6 @@ def uiMain(self, ToolRegCloneTiktok):
         "color:#fff;\n" "background-color: rgb(19, 170, 24);"
     )
     self.export_account.setObjectName("export_account")
-    self.check_proxy = QPushButton(parent=self.home)
-    self.check_proxy.setGeometry(QRect(1150, 420, 61, 31))
-    self.check_proxy.setStyleSheet(
-        'font: 700 10pt "Segoe UI";\n'
-        "color: #fff;\n"
-        "background-color:rgb(64, 170, 15);\n"
-        ""
-    )
-    self.check_proxy.setObjectName("import_proxy")
     self.stop_button = QPushButton(parent=self.home)
     self.stop_button.setGeometry(QRect(110, 10, 91, 24))
     self.stop_button.setStyleSheet("background-color: rgba(0, 0, 0, 0.2);")
@@ -101,7 +93,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.threads.setObjectName("threads")
     self.table_account_info = QTableWidget(parent=self.home)
     self.table_account_info.setEnabled(True)
-    self.table_account_info.setGeometry(QRect(10, 60, 881, 391))
+    self.table_account_info.setGeometry(QRect(10, 60, 860, 391))
     self.table_account_info.setAutoFillBackground(False)
     self.table_account_info.setLineWidth(1)
     self.table_account_info.setVerticalScrollBarPolicy(
@@ -174,30 +166,58 @@ def uiMain(self, ToolRegCloneTiktok):
 
    
     self.list_proxy = QLabel(parent=self.home)
-    self.list_proxy.setGeometry(QRect(920, 50, 61, 41))
+    self.list_proxy.setGeometry(QRect(900, 50, 61, 41))
     self.list_proxy.setStyleSheet('font: 700 10pt "Segoe UI";')
     self.list_proxy.setObjectName("list_proxy")
     self.proxy_type = QComboBox(parent=self.home)
-    self.proxy_type.setGeometry(QRect(970, 60, 121, 22))
+    self.proxy_type.setGeometry(QRect(950, 60, 121, 22))
     self.proxy_type.setObjectName("proxy_type")
     self.proxy_type.addItem("")
     self.proxy_type.addItem("")
     self.proxy_type.addItem("")
     self.proxy_type.addItem("")
     self.proxy_value = QPlainTextEdit(parent=self.home)
-    self.proxy_value.setGeometry(QRect(920, 90, 211, 361))
+    self.proxy_value.setGeometry(QRect(900, 90, 211, 361))
     self.proxy_value.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
     self.proxy_value.setPlainText("")
+    self.proxy_value_ip_port =QRadioButton(parent=self.home)
+    self.proxy_value_ip_port.setGeometry(QRect(1120, 380, 60, 31))
+    self.proxy_value_ip_port.setStyleSheet("font: 10pt \"Segoe UI\";")
+    self.proxy_value_ip_port.setObjectName("proxy_value_ip_port")
+    self.proxy_value_ip_port.setChecked(True)
+    self.proxy_value_ip_port_user_pass =QRadioButton(parent=self.home)
+    self.proxy_value_ip_port_user_pass.setGeometry(QRect(1120, 400, 124, 31))
+    self.proxy_value_ip_port_user_pass.setStyleSheet("font: 10pt \"Segoe UI\";")
+    self.proxy_value_ip_port_user_pass.setObjectName("proxy_value_ip_port_user_pass")
+    self.check_proxy = QPushButton(parent=self.home)
+    self.check_proxy.setGeometry(QRect(1125, 420, 60, 31))
+    self.check_proxy.setStyleSheet(
+        'font: 700 10pt "Segoe UI";\n'
+        "color: #fff;\n"
+        "background-color:rgb(64, 170, 15);\n"
+        ""
+    )
+    self.check_proxy.setObjectName("import_proxy")
 
     if self.current_version == self.latest_version:
         self.update_label.hide()
         self.update_button.hide()
     else:
-        self.table_account_info.setGeometry(QRect(10, 100, 881, 391))
-        self.list_proxy.setGeometry(QRect(920, 85, 61, 41))
-        self.proxy_type.setGeometry(QRect(970, 95, 121, 22))
-        self.proxy_value.setGeometry(QRect(920, 130, 211, 361))
-        self.check_proxy.setGeometry(QRect(1150, 460, 61, 31))
+        self.table_account_info.setGeometry(QRect(10, 100, 860, 391))
+        self.list_proxy.setGeometry(QRect(900, 85, 61, 41))
+        self.proxy_type.setGeometry(QRect(950, 95, 121, 22))
+        self.proxy_value.setGeometry(QRect(900, 130, 211, 361))
+        self.check_proxy.setGeometry(QRect(1125, 460, 61, 31))
+
+    with open("configs_account.json", "r") as json_file:
+            data = json.load(json_file)
+
+    if data["proxy_type"] == 3 or data["proxy_type"] == 4:
+        self.proxy_value_ip_port.setVisible(True)
+        self.proxy_value_ip_port_user_pass.setVisible(True)
+    else:
+        self.proxy_value_ip_port.setVisible(False)
+        self.proxy_value_ip_port_user_pass.setVisible(False)
 
     self.link_facebook = QLabel(parent=self.home)
     self.link_facebook.setGeometry(QRect(50, 490, 301, 31))
@@ -310,25 +330,25 @@ def uiMain(self, ToolRegCloneTiktok):
     self.api_hotmailbox_value.setStyleSheet("font: 10pt \"Segoe UI\";")
     self.api_hotmailbox_value.setObjectName("api_hotmailbox_value")
     self.export_account_format =QLabel(parent=self.setting_tool)
-    self.export_account_format.setGeometry(QRect(800, 30, 161, 21))
+    self.export_account_format.setGeometry(QRect(780, 30, 161, 21))
     self.export_account_format.setObjectName("export_account_format")
     self.export_account_format_value =QComboBox(parent=self.setting_tool)
-    self.export_account_format_value.setGeometry(QRect(970, 30, 231, 22))
+    self.export_account_format_value.setGeometry(QRect(950, 30, 250, 22))
     self.export_account_format_value.setStyleSheet("font: 9pt \"Segoe UI\";")
     self.export_account_format_value.setObjectName("export_account_format_value")
     self.export_account_format_value.addItem("")
     self.export_account_format_value.addItem("")
     self.export_account_format_value.addItem("")
     self.is_upload_avatar =QLabel(parent=self.setting_tool)
-    self.is_upload_avatar.setGeometry(QRect(800, 70, 101, 16))
+    self.is_upload_avatar.setGeometry(QRect(780, 70, 101, 16))
     self.is_upload_avatar.setObjectName("is_upload_avatar")
     self.is_upload_avatar_yes =QRadioButton(parent=self.setting_tool)
-    self.is_upload_avatar_yes.setGeometry(QRect(900, 70, 41, 21))
+    self.is_upload_avatar_yes.setGeometry(QRect(880, 70, 41, 21))
     self.is_upload_avatar_yes.setStyleSheet("font: 10pt \"Segoe UI\";")
     self.is_upload_avatar_yes.setObjectName("is_upload_avatar_yes")
     self.is_upload_avatar_yes.setChecked(True)
     self.is_upload_avatar_no =QRadioButton(parent=self.setting_tool)
-    self.is_upload_avatar_no.setGeometry(QRect(950, 70, 71, 21))
+    self.is_upload_avatar_no.setGeometry(QRect(920, 70, 71, 21))
     self.is_upload_avatar_no.setStyleSheet("font: 10pt \"Segoe UI\";")
     self.is_upload_avatar_no.setObjectName("is_upload_avatar_no")
     self.file_mail_check = QPushButton(parent=self.settings)
@@ -398,7 +418,8 @@ def uiMain(self, ToolRegCloneTiktok):
     self.captcha_type.currentTextChanged.connect(self.getCaptchaType)
     self.captcha_key.textChanged.connect(self.getCaptchaKey)
     self.export_account.clicked.connect(self.exportAccount)
-    self.check_proxy.clicked.connect(self.importProxy)
+    self.proxy_value.textChanged.connect(self.importProxy)
+    self.check_proxy.clicked.connect(self.checkProxy)
     self.password_reg_account_value.textChanged.connect(self.getDefaultPassword)
     self.random_password_account.toggled.connect(self.checkRandomPassword)
     self.chrome_setting_line_value.valueChanged.connect(self.getIsChromeCount)

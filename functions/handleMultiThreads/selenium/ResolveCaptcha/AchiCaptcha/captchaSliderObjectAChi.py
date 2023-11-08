@@ -104,7 +104,7 @@ def handleResolveCaptchaSliderObjectAChi(self):
         base64Data = base64.b64encode(response.content).decode("utf-8")
 
         result = handleCreateJobGetCaptchaSliderObjectAChi(
-            self.captcha_key, self, base64Data, self.current_row_count
+            self, base64Data
         )
         print("result: ", result)
 

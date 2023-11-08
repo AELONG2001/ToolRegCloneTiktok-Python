@@ -70,6 +70,7 @@ class Ui_ToolRegCloneTiktok(QObject):
         random_password_account = self.random_password_account.isChecked()
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
         path_profile_gologin = self.path_gologin_value.text()
+        api_key_hotmailbox = data["api_value_hotmailbox"]
         is_upload_avatar = self.is_upload_avatar_yes.isChecked()
         
         self.chrome_threads[thread] = AutomationThread(
@@ -85,6 +86,7 @@ class Ui_ToolRegCloneTiktok(QObject):
             random_password_account,
             chrome_percent_zoom,
             path_profile_gologin,
+            api_key_hotmailbox,
             is_upload_avatar,
             self.data_queue,
             username,
@@ -119,6 +121,9 @@ class Ui_ToolRegCloneTiktok(QObject):
 
     def importProxy(self):
         self.automation_controller.importProxy()
+    
+    def checkProxy(self):
+        self.automation_controller.checkProxy()
 
     def getDefaultPassword(self):
         self.automation_controller.getDefaultPassword()

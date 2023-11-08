@@ -1,10 +1,11 @@
 from PySide6.QtWidgets import *
 from functions.handleInputFileMail.getMailContent import getMailContent
 from functions.handleMultiThreads.thread.AutomationThread import AutomationThread
+from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.handleCheckApiKeyAChi import handleCheckApiKeyAChi
+from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo import handleCheckApiKeyOmo
 from functions.profilesGologin.handleCheckTokenGologin import handleCheckTokenGologin
 from functions.autoBuyHotmail.handleCheckBalance import handleCheckBalance
-from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.handleCheckApiKeyChi import handleCheckApiKeyChi
-from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo import handleCheckApiKeyOmo
+
 import os
 import json
 import datetime
@@ -32,7 +33,7 @@ def startAutomation(self):
             return
         else:
             if data["captcha_type"] == 1:
-                response_api_achi = handleCheckApiKeyChi(data["captcha_key"])
+                response_api_achi = handleCheckApiKeyAChi(data["captcha_key"])
 
                 if "errorDescription" in response_api_achi and response_api_achi["errorDescription"] == "client key not correct":
                     QMessageBox.warning(None, "Warning", "Api key AchiCaptcha không chính xác.Vui lòng kiểm tra lại")
@@ -48,7 +49,7 @@ def startAutomation(self):
                     QMessageBox.warning(None, "Warning", "Api key OmoCaptcha không chính xác.Vui lòng kiểm tra lại")
                     return
                 
-                if "balance" in response_api_omo and int(response_api_omo["balance"]) == 0:
+                if "balance" in response_api_omo and response_api_omo["balance"] == "0.00000":
                     QMessageBox.warning(None, "Warning", "Tài khoản OmoCaptcha đã hết tiền.Vui lòng kiểm tra lại")
                     return
 

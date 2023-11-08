@@ -5,11 +5,7 @@
     "url_mail": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
     "captcha_key": "08f8b0f0b3aff156866a811508e2bb2e",
     "proxys": [
-        "7aaedb09c8a7f9b9fcd895d99d52d70a",
-        "41b11b1b031e6b54ef7ad61958f1332f",
-        "d3e56d59ef366c0ac4ec00af1c79e7e4",
-        "3dcd1f1c3cfdc83b159e4ee432461d3c",
-        "a873011daabc4dc97f682380bd7964e6"
+        "90ce883cf564b454a82f5158c762d57c"
     ],
     "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTQ5ZDU5YTE4YTFiZjRmMjkxMzRjNWEiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTQ5ZTE2N2M1ODNkMDU4ZDhhNGQyNzAifQ._b7n7A3LNydmljnpNew6nJD9hHYK2X6XQWNbSdP05Lk",
     "url_mail_check": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
@@ -24,5 +20,5 @@
     "is_chrome_count": 10,
     "api_value_hotmailbox": "919cadef6eb94c3d83a6b312c49b66ed",
     "url_avatar": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus",
-    "captcha_type": 2
+    "captcha_type": 1
 }

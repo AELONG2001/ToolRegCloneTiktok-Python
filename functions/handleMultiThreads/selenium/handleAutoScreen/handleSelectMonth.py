@@ -9,8 +9,9 @@ from functions.profilesGologin.handleDeleteProfile import (
 
 
 def handleSelectMonth(self):
+    self.self_main.table_account_info.scrollToBottom()
     self.self_main.table_account_info.setItem(
-            self.current_row_count, 3, QTableWidgetItem("Bắt đầu reg...")
+        self.current_row_count, 3, QTableWidgetItem("Bắt đầu reg...")
     )
 
     try:
@@ -64,6 +65,7 @@ def handleSelectMonth(self):
                 QTableWidgetItem("Bị chặn, đợi restart lại... 1"),
             )
             self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+            
 
     
 

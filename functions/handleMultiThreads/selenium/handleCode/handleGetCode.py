@@ -6,6 +6,7 @@ from functions.profilesGologin.handleDeleteProfile import (
 
 
 def handleGetCode(self):
+    self.self_main.table_account_info.scrollToBottom()
     try:
         
         max_attempts = 5  # Số lần tối đa xuất hiện checkDectect trước khi khởi động lại self.thread

@@ -6,6 +6,8 @@ from functions.handleMultiThreads.thread.startAutomation import startAutomation
 from functions.handleMultiThreads.thread.stopAutomation import stopAutomation
 from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
 from functions.handleCheckMail.checkMail import checkMail
+from functions.proxy.TMProxy.handleCheckKeyTmProxy import handleCheckKeyTmProxy
+from functions.proxy.TMProxy.handleGetNewTMProxyToCheckExpired import handleGetNewTMProxyToCheckExpired
 import os
 import json
 import re
@@ -186,18 +188,36 @@ class AutomationController:
 
     def getProxyType(self):
         proxy_type = self.ui_instance.proxy_type.currentIndex()
+        if proxy_type == 2 or proxy_type == 3:
+            self.ui_instance.proxy_value_ip_port.setVisible(True)
+            self.ui_instance.proxy_value_ip_port_user_pass.setVisible(True)
+        else:
+            self.ui_instance.proxy_value_ip_port.setVisible(False)
+            self.ui_instance.proxy_value_ip_port_user_pass.setVisible(False)
+
         handleSaveDataInputUser("proxy_type", proxy_type + 1)
 
     def importProxy(self):
         proxy_text = self.ui_instance.proxy_value.toPlainText()
         proxy_list = proxy_text.splitlines()
 
-        for row, proxy in enumerate(proxy_list):
-            self.ui_instance.table_account_info.setItem(
-                row, 2, QTableWidgetItem(proxy.strip())
-            )
-
         handleSaveDataInputUser("proxys", proxy_list)
+
+    def checkProxy(self):
+        api_key_tmproxy = self.ui_instance.proxy_value.toPlainText()
+        api_key_list = api_key_tmproxy.splitlines()
+
+        response_api_tm_proxy_check_correct = handleCheckKeyTmProxy(api_key_list)
+        response_api_tm_proxy_check_expired = handleGetNewTMProxyToCheckExpired(api_key_list)
+
+        if response_api_tm_proxy_check_expired:
+           QMessageBox.warning(None, "Warning", f"{response_api_tm_proxy_check_expired}Vui lòng kiểm tra lại")
+
+        if response_api_tm_proxy_check_correct:
+           QMessageBox.warning(None, "Warning", f"{response_api_tm_proxy_check_correct}Vui lòng kiểm tra lại")
+        else:
+            QMessageBox.information(None, "Thông báo", f"Proxy live.Hãy bắt đầu chạy tool")
+        
 
     def getDefaultPassword(self):
         password_account = self.ui_instance.password_reg_account_value.text()

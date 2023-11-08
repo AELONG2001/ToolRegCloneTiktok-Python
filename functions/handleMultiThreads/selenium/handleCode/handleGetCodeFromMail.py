@@ -13,6 +13,7 @@ from functions.profilesGologin.handleDeleteProfile import (
 
 
 def handleGetCodeFromMail(self):
+    self.self_main.table_account_info.scrollToBottom()
     try:
         max_attempts = 5
         attempts = 0
