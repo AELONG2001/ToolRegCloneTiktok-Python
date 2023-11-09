@@ -44,6 +44,7 @@ def handleGetCode(self):
                         QTableWidgetItem("Bị chặn, đợi restart lại... 30"),
                     )
                     self.self_main.restart_thread(self.num_threads, "", "")
+                    return
 
             if checkDectect:
                 attempts += 1
@@ -63,6 +64,7 @@ def handleGetCode(self):
                 QTableWidgetItem("Bị chặn, đợi restart lại... 4"),
             )
             self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+            return
 
     except:
         return

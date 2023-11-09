@@ -89,6 +89,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 20"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                 return
 
@@ -134,6 +135,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 21"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                 return
 
@@ -163,6 +165,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 22"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                 return
 
@@ -194,6 +197,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 23"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                 return
             
@@ -228,6 +232,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 24"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                 return
 

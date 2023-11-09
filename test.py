@@ -4,7 +4,7 @@ from time import sleep
 
 chrome_options = webdriver.ChromeOptions()
 
-proxy_helper = SeleniumAuthenticatedProxy(proxy_url="http://116.96.146.110:22471")
+proxy_helper = SeleniumAuthenticatedProxy(proxy_url="http://jJENO0wvFX:YFvmYcy14f:91.192.81.213:40250")
 
 proxy_helper.enrich_chrome_options(chrome_options)
 

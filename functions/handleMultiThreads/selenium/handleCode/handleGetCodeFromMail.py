@@ -46,6 +46,7 @@ def handleGetCodeFromMail(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại...28"),
                 )
                 self.self_main.restart_thread(self.num_threads, "", "")
+                return
 
             if data["code"]:
                 self.self_main.table_account_info.setItem(
@@ -73,6 +74,7 @@ def handleGetCodeFromMail(self):
                 QTableWidgetItem("Bị chặn, đợi restart lại... 5"),
             )
             self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+            return
 
 
     except requests.exceptions.RequestException as e:

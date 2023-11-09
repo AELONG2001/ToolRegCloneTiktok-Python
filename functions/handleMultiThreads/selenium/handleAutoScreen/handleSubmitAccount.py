@@ -25,6 +25,7 @@ def handleSubmitAccount(self):
                 QTableWidgetItem("Bị chặn, đợi restart lại... 31"),
             )
             self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+            return
 
         submitAccount = self.driver.find_element("css selector", "button[type='submit']")
         try:
@@ -64,6 +65,7 @@ def handleSubmitAccount(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 2"),
                 )
                 self.self_main.restart_thread(self.num_threads, "", "")
+                return
             else:
                 # wait(1, 2)
                 # with open(self.input_file_path, "a") as file:
@@ -76,3 +78,4 @@ def handleSubmitAccount(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 3"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return

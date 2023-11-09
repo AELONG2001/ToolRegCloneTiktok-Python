@@ -5,11 +5,11 @@
     "url_mail": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
     "captcha_key": "08f8b0f0b3aff156866a811508e2bb2e",
     "proxys": [
-        "90ce883cf564b454a82f5158c762d57c"
+        "91.192.81.213:40250:jJENO0wvFX:YFvmYcy14f"
     ],
     "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTQ5ZDU5YTE4YTFiZjRmMjkxMzRjNWEiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTQ5ZTE2N2M1ODNkMDU4ZDhhNGQyNzAifQ._b7n7A3LNydmljnpNew6nJD9hHYK2X6XQWNbSdP05Lk",
     "url_mail_check": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
-    "proxy_type": 1,
+    "proxy_type": 3,
     "chrome_percent_zoom": 0.75,
     "password_account": "",
     "random_password_account": true,

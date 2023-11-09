@@ -1,14 +1,14 @@
+import os
+import json
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
-from utils.utils import wait
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import NoSuchElementException
-import os
-import json
+from utils.utils import wait
 
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
     handleResolveCaptchaRotateObjectAChi,
@@ -47,21 +47,43 @@ def handleUploadAvatar(self):
         is_list_avtart_default = True
         list_avatar_folder = "data/wibus"
     list_avatar = os.listdir(list_avatar_folder)
-
-    wait(2, 4)
-    pageContent = self.driver.page_source
-    if '"nickName":"' in pageContent:
+    
+    if not self.is_skip_new_username:
         try:
-            userId = pageContent.split('"nickName":"')[1].split('"')[0]
-        except IndexError:
+            self.driver.get(f"https://www.tiktok.com/@{self.user_id}")
+        except WebDriverException:
+            account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+            with open(self.output_file_path, "a") as f:
+                f.write(account + "\n")
             return
     else:
-        return
-   
-    try:
-        if userId:
-          self.driver.get(f"https://www.tiktok.com/@{userId}")
+        wait(2, 4)
+        pageContent = self.driver.page_source
+        if '"nickName":"' in pageContent:
+            try:
+                userId = pageContent.split('"nickName":"')[1].split('"')[0]
+            except IndexError:
+                return
         else:
+            return
+   
+        try:
+            if userId:
+                self.driver.get(f"https://www.tiktok.com/@{userId}")
+            else:
+                cookies = self.driver.get_cookies()
+                cookies_string = ";".join(
+                    [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+                )
+                if userId:
+                    account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                else:
+                    account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                with open(self.output_file_path, "a") as f:
+                    f.write(account + "\n")
+                self.is_restart = False
+                return
+        except WebDriverException:
             cookies = self.driver.get_cookies()
             cookies_string = ";".join(
                 [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
@@ -72,40 +94,18 @@ def handleUploadAvatar(self):
                 account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
             with open(self.output_file_path, "a") as f:
                 f.write(account + "\n")
+            print("Không thể truy cập với user_id này")
             self.is_restart = False
             return
-    except WebDriverException:
-        cookies = self.driver.get_cookies()
-        cookies_string = ";".join(
-            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-        )
-        if userId:
-            account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-        else:
-            account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-        with open(self.output_file_path, "a") as f:
-            f.write(account + "\n")
-        print("Không thể truy cập với user_id này")
-        self.is_restart = False
-        return
-
-    
-    # wait(4, 6)
-    # checkCaptcha = self.driver.find_elements("css selector", "#verify-bar-close")
-
-    # if checkCaptcha:
-    #     return
 
     wait(4, 6)
     cookies = self.driver.get_cookies()
     cookies_string = ";".join(
         [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
     )
-    if userId:
-        account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-    else:
-        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
 
+    account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+    
     # insert account
     with open(self.output_file_path, "a") as f:
         f.write(account + "\n")

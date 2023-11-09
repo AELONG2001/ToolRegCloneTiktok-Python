@@ -35,7 +35,6 @@ class MainWindow(QMainWindow):
             
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-   
     check_key_user = CheckKeyUser()
  
     if os.path.exists("configs_account.json"):

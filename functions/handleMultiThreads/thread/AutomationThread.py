@@ -1,11 +1,11 @@
+import re
+import math
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from selenium import webdriver
 from selenium_authenticated_proxy import SeleniumAuthenticatedProxy
 from selenium.common.exceptions import WebDriverException
-import math
-from time import sleep
-from utils.utils import wait, generate_password
+from utils.utils import wait, generate_random_name, generate_password
 
 
 
@@ -111,6 +111,7 @@ class AutomationThread(QThread):
         self.is_restart = is_restart
 
         self.is_running = True
+        self.is_skip_new_username = False
         self.stop_flag = False
         self.accounts = []
         self.password_account = ""
@@ -157,32 +158,37 @@ class AutomationThread(QThread):
             exists = False
             for line in existing_data:
                 parts = line.strip().split('|')
-                if len(parts) >= 1 and self.username_mail == parts[0]:
+                if len(parts) >= 1 and self.username_mail == parts[2]:
                     exists = True
                     break
 
             # check if data not exist
             if not exists:
-                wait(2, 4)
-                pageContent = self.driver.page_source
-                if '"nickName":"' in pageContent:
-                    try:
-                        userId = pageContent.split('"nickName":"')[1].split('"')[0]
-                    except IndexError:
+                if not self.is_skip_new_username:
+                    account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                    with open(self.output_file_path, "a") as f:
+                        f.write(account + "\n")
+                else:
+                    wait(2, 4)
+                    pageContent = self.driver.page_source
+                    if '"nickName":"' in pageContent:
+                        try:
+                            userId = pageContent.split('"nickName":"')[1].split('"')[0]
+                        except IndexError:
+                            userId = ""
+                    else:
                         userId = ""
-                else:
-                    userId = ""
-                cookies = self.driver.get_cookies()
-                cookies_string = ";".join(
-                    [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-                )
-                if userId:
-                    account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                else:
-                    account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                wait(1, 2)
-                with open(self.output_file_path, "a") as f:
-                    f.write(account + "\n")
+                    cookies = self.driver.get_cookies()
+                    cookies_string = ";".join(
+                        [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+                    )
+                    if userId:
+                        account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                    else:
+                        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                    wait(1, 2)
+                    with open(self.output_file_path, "a") as f:
+                        f.write(account + "\n")
 
         if hasattr(self, "driver"):
             AutomationThread.num_quit += 1
@@ -356,6 +362,10 @@ class AutomationThread(QThread):
 
                     with open(self.input_file_path, 'w') as file:
                         file.writelines(new_lines)
+
+            random_userid = generate_random_name(6)
+            transform_usermail = re.match(r"(.+?)@hotmail", self.username_mail).group(1) if re.match(r"(.+?)@hotmail", self.username_mail) else "abc123"
+            self.user_id = f"{transform_usermail}_{random_userid}"
 
             # if len(self.accounts) > 0:
             self.current_row_count = self.self_main.table_account_info.rowCount()

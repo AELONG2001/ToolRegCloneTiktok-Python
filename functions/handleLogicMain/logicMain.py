@@ -154,36 +154,44 @@ class AutomationController:
         handleSaveDataInputUser("captcha_key", captcha_key)
 
     def exportAccount(self):
-      file_path = "data/accounts.txt"     
-      typeExportAccount = self.ui_instance.export_account_format_value.currentIndex()
+        file_path = "data/output.txt"     
+        typeExportAccount = self.ui_instance.export_account_format_value.currentIndex()
 
-      default_file_name = "output.txt"
+        default_file_name = "output.txt"
 
-      if typeExportAccount == 1:
-        default_file_name = "output_without_cookie.txt"
-      elif typeExportAccount == 2:
-        default_file_name = "output_username_password.txt"
+        if typeExportAccount == 1:
+            default_file_name = "output_without_cookie.txt"
+        elif typeExportAccount == 2:
+            default_file_name = "output_username_password.txt"
 
-      file_name, _ = QFileDialog.getSaveFileName(None, "Chọn nơi lưu tệp", default_file_name, "Tệp văn bản (*.txt);;Tất cả các tệp (*)")
- 
-      with open(file_path, "r") as file:
-            accounts =  file.readlines()
+        file_name, _ = QFileDialog.getSaveFileName(None, "Chọn nơi lưu tệp", default_file_name, "Tệp văn bản (*.txt);;Tất cả các tệp (*)")
 
-      if typeExportAccount == 0:
-            selected_data = accounts
-      elif typeExportAccount == 1:
-            selected_data = [line.split("|")[:3] for line in accounts]
-      elif typeExportAccount == 2:
-            selected_data = [line.split("|")[:2] for line in accounts]
-      else:
+        if not file_name:
+            return
+    
+        with open(file_path, "r") as file:
+                accounts =  file.readlines()
+
+        if typeExportAccount == 0:
+                selected_data = accounts
+        elif typeExportAccount == 1:
+                selected_data = [line.split("|")[:4] + line.split("|")[5:] for line in accounts]
+        elif typeExportAccount == 2:
+                selected_data = [line.split("|")[:2] for line in accounts]
+        else:
             return
 
-      with open(file_name, "w") as txtfile:
-            if typeExportAccount in [1, 2]:
+        with open(file_name, "w") as txtfile:
+            if typeExportAccount == 1:
+                for line in selected_data:
+                    txtfile.write("|".join(line))
+            elif typeExportAccount == 2:
                 for line in selected_data:
                     txtfile.write("|".join(line) + "\n")
             else:
                 txtfile.writelines(selected_data)
+
+        QMessageBox.information(None, "Thông báo", "Đã lưu thành công!")
             
 
     def getProxyType(self):
@@ -204,8 +212,8 @@ class AutomationController:
         handleSaveDataInputUser("proxys", proxy_list)
 
     def checkProxy(self):
-        api_key_tmproxy = self.ui_instance.proxy_value.toPlainText()
-        api_key_list = api_key_tmproxy.splitlines()
+        api_key_proxy = self.ui_instance.proxy_value.toPlainText()
+        api_key_list = api_key_proxy.splitlines()
 
         response_api_tm_proxy_check_correct = handleCheckKeyTmProxy(api_key_list)
         response_api_tm_proxy_check_expired = handleGetNewTMProxyToCheckExpired(api_key_list)

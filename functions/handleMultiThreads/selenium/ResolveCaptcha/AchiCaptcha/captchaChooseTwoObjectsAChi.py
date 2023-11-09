@@ -90,6 +90,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 6"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                 return
 
@@ -122,6 +123,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
                         QTableWidgetItem("Bị chặn, đợi restart lại... 7"),
                     )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                return
 
@@ -156,6 +158,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
                 QTableWidgetItem("Bị chặn, đợi restart lại... 8"),
             )
             self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+            return
 
         wait(2, 3)
         submitCaptcha = self.driver.find_element(
@@ -191,6 +194,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 30"),
                 )
                 self.self_main.restart_thread(self.num_threads, "", "")
+                return
 
         
         if checkDectect:

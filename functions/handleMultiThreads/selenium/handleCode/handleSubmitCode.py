@@ -31,6 +31,7 @@ def handleSubmitCode(self, code):
             QTableWidgetItem("Bị chặn, đợi restart lại... 32"),
         )
         self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+        return
     except StaleElementReferenceException:
         self.driver.quit()
         handleDeleteProfile(self.profile_id)
@@ -40,3 +41,4 @@ def handleSubmitCode(self, code):
             QTableWidgetItem("Bị chặn, đợi restart lại... 33"),
         )
         self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+        return

@@ -92,6 +92,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 9"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                 return
 
@@ -139,6 +140,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 10"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                 return
 
@@ -167,6 +169,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 11"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                 return
 
@@ -200,6 +203,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 12"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                 return
         
@@ -234,6 +238,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 13"),
                 )
                 self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+                return
             else:
                 return
 
@@ -265,6 +270,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                     QTableWidgetItem("Bị chặn, đợi restart lại... 30"),
                 )
                 self.self_main.restart_thread(self.num_threads, "", "")
+                return
 
         if checkDectect:
             getCodeElement = self.driver.find_element(
