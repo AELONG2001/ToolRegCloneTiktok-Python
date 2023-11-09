@@ -1,16 +1,11 @@
 import requests
 from PySide6.QtWidgets import *
 from utils.utils import wait
-
 from functions.handleMultiThreads.selenium.handleCode.handleSubmitCode import (
     handleSubmitCode,
 )
-
-from functions.profilesGologin.handleDeleteProfile import (
-    handleDeleteProfile,
-)
-
-
+from functions.handleMultiThreads.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread import handleRestartThreadNewMail
 
 def handleGetCodeFromMail(self):
     self.self_main.table_account_info.scrollToBottom()
@@ -36,17 +31,7 @@ def handleGetCodeFromMail(self):
             print("Data: ", data)
 
             if data["content"] == "Invalid email or password or IMAP disabled":
-                with open("data/invalid_mail.txt", "a") as file:
-                    file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại...28"),
-                )
-                self.self_main.restart_thread(self.num_threads, "", "")
-                return
+               handleRestartThreadNewMail(self)
 
             if data["code"]:
                 self.self_main.table_account_info.setItem(
@@ -62,20 +47,7 @@ def handleGetCodeFromMail(self):
                 attempts += 1
 
         if attempts >= max_attempts:
-            # wait(1, 2)
-            # with open("data/mail_getcode_again.txt", "a") as file:
-            #         file.write(f"{self.username_mail}|{self.password_mail}\n")
-           
-            self.driver.quit()
-            handleDeleteProfile(self.profile_id)
-            self.self_main.table_account_info.setItem(
-                self.current_row_count,
-                3,
-                QTableWidgetItem("Bị chặn, đợi restart lại... 5"),
-            )
-            self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-            return
-
+            handleRestartThread(self)
 
     except requests.exceptions.RequestException as e:
         print(e)

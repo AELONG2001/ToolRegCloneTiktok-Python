@@ -4,10 +4,8 @@ import base64
 from selenium.webdriver.common.action_chains import ActionChains
 from utils.utils import wait
 from functions.handleMultiThreads.selenium.handleCode.handleGetCode import handleGetCode
-from functions.profilesGologin.handleDeleteProfile import (
-    handleDeleteProfile,
-)
-
+from functions.handleMultiThreads.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread import handleRestartThreadNewMail
 
 def getResultCaptchaRotateObjectOmo(self, job_id):
     try:
@@ -78,18 +76,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                # wait(1, 2)
-                # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 20"),
-                )
-                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-                return
+                handleRestartThread(self)
             else:
                 return
 
@@ -124,18 +111,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
             base64DataImgInside = encoded_img_list[1]
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                # wait(1, 2)
-                # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 21"),
-                )
-                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-                return
+                handleRestartThread(self)
             else:
                 return
 
@@ -154,18 +130,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
           x1 = int(result) + 82
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                # wait(1, 2)
-                # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 22"),
-                )
-                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-                return
+                handleRestartThread(self)
             else:
                 return
 
@@ -186,18 +151,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
         if cannotLoadImageCaptcha:
             print("No load image captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                # wait(1, 2)
-                # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 23"),
-                )
-                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-                return
+                handleRestartThread(self)
             else:
                 return
             
@@ -221,18 +175,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                # wait(1, 2)
-                # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 24"),
-                )
-                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-                return
+               handleRestartThread(self)
             else:
                 return
 
@@ -249,6 +192,15 @@ def handleResolveCaptchaRotateObjectOmo(self):
             "xpath",
             '//span[contains(text(), "Maximum number of attempts reached. Try again later.")]',
         )
+        emailElement = self.driver.find_elements("css selector", "input[name='email']")
+
+        if emailElement:
+            if emailElement[0].value_of_css_property("color") == "rgba(255, 76, 58, 1)":
+                wait(1, 2)
+                with open("data/account_created.txt", "a") as file:
+                    file.write(f"{self.username_mail}|{self.password_mail}\n")
+                handleRestartThreadNewMail(self)
+
                 
         if checkDectect:
             getCodeElement = self.driver.find_element(

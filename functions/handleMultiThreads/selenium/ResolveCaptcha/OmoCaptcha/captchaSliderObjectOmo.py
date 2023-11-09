@@ -3,9 +3,7 @@ import requests
 import base64
 from selenium.webdriver.common.action_chains import ActionChains
 from utils.utils import wait
-from functions.profilesGologin.handleDeleteProfile import (
-    handleDeleteProfile,
-)
+from functions.handleMultiThreads.handleRestartThread import handleRestartThread
 
 def getResultCaptchaSliderObjectOmo(self, job_id):
     try:
@@ -80,18 +78,7 @@ def handleResolveCaptchaSliderObjectOmo(self):
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                # wait(1, 2)
-                # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 25"),
-                )
-                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-                return
+                handleRestartThread(self)
             else:
                 return
 
@@ -116,18 +103,7 @@ def handleResolveCaptchaSliderObjectOmo(self):
             x1 = int(result) + 82
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                # wait(1, 2)
-                # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 26"),
-                )
-                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-                return
+                handleRestartThread(self)
             else:
                 return
 
@@ -163,18 +139,7 @@ def handleResolveCaptchaSliderObjectOmo(self):
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                wait(1, 2)
-                # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 27"),
-                )
-                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-                return
+                handleRestartThread(self)
             else:
                 return
 

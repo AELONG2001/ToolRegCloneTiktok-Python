@@ -5,9 +5,9 @@ from utils.utils import wait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import WebDriverException
 from functions.handleMultiThreads.selenium.handleCode.handleGetCode import handleGetCode
-from functions.profilesGologin.handleDeleteProfile import (
-    handleDeleteProfile,
-)
+from functions.handleMultiThreads.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread import handleRestartThreadNewMail
+
 
 def getResultCaptchaChooseTwoObjectsAChi(self, task_id):
     try:
@@ -79,18 +79,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                # wait(1, 2)
-                # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 6"),
-                )
-                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-                return
+               handleRestartThread(self)
             else:
                 return
 
@@ -112,18 +101,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
           [x1, y1, x2, y2] = result.split(",")
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                # wait(1, 2)
-                # with open(self.input_file_path, "a") as file:
-                #         file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                        self.current_row_count,
-                        3,
-                        QTableWidgetItem("Bị chặn, đợi restart lại... 7"),
-                    )
-                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-                return
+                handleRestartThread(self)
             else:
                return
 
@@ -147,18 +125,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
             ).click().perform()
         except WebDriverException:
             print("Lỗi trong quá trình thực hiện chuỗi hành động")
-            # wait(1, 2)
-            # with open(self.input_file_path, "a") as file:
-            #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-            self.driver.quit()
-            handleDeleteProfile(self.profile_id)
-            self.self_main.table_account_info.setItem(
-                self.current_row_count,
-                3,
-                QTableWidgetItem("Bị chặn, đợi restart lại... 8"),
-            )
-            self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-            return
+            handleRestartThread(self)
 
         wait(2, 3)
         submitCaptcha = self.driver.find_element(
@@ -186,17 +153,9 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
                 wait(1, 2)
                 with open("data/account_created.txt", "a") as file:
                     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 30"),
-                )
-                self.self_main.restart_thread(self.num_threads, "", "")
+                handleRestartThreadNewMail(self)
                 return
-
-        
+            
         if checkDectect:
             getCodeElement = self.driver.find_element(
                 "xpath",

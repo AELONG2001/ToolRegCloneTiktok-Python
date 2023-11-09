@@ -122,6 +122,9 @@ class Ui_ToolRegCloneTiktok(QObject):
 
     def importProxy(self):
         self.automation_controller.importProxy()
+
+    def checkIsProxyIpPort(self):
+        self.automation_controller.checkIsProxyIpPort()
     
     def checkProxy(self):
         self.automation_controller.checkProxy()

@@ -2,9 +2,7 @@ from PySide6.QtWidgets import *
 from utils.utils import wait
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import StaleElementReferenceException
-from functions.profilesGologin.handleDeleteProfile import (
-    handleDeleteProfile,
-)
+from functions.handleMultiThreads.handleRestartThread import handleRestartThread
 
 def handleSubmitCode(self, code):
     wait(1, 2)
@@ -23,22 +21,6 @@ def handleSubmitCode(self, code):
     try:
       agreePolicyElement.click()
     except ElementClickInterceptedException:
-        self.driver.quit()
-        handleDeleteProfile(self.profile_id)
-        self.self_main.table_account_info.setItem(
-            self.current_row_count,
-            3,
-            QTableWidgetItem("Bị chặn, đợi restart lại... 32"),
-        )
-        self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-        return
+        handleRestartThread(self)
     except StaleElementReferenceException:
-        self.driver.quit()
-        handleDeleteProfile(self.profile_id)
-        self.self_main.table_account_info.setItem(
-            self.current_row_count,
-            3,
-            QTableWidgetItem("Bị chặn, đợi restart lại... 33"),
-        )
-        self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-        return
+        handleRestartThread(self)

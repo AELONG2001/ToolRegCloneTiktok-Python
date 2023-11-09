@@ -5,11 +5,15 @@
     "url_mail": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
     "captcha_key": "08f8b0f0b3aff156866a811508e2bb2e",
     "proxys": [
-        "91.192.81.213:40250:jJENO0wvFX:YFvmYcy14f"
+        "fa9f9cf6cb21acb7c8b8c778364dc983",
+        "4be9925ebec4c883279db10fd7cb20ac",
+        "2f032c51059c0ad88a227b9f4e9c8a83",
+        "ec834986d8548604e550899c30140652",
+        "e51788e04af507400f0debbd09877677"
     ],
     "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTQ5ZDU5YTE4YTFiZjRmMjkxMzRjNWEiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTQ5ZTE2N2M1ODNkMDU4ZDhhNGQyNzAifQ._b7n7A3LNydmljnpNew6nJD9hHYK2X6XQWNbSdP05Lk",
     "url_mail_check": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
-    "proxy_type": 3,
+    "proxy_type": 1,
     "chrome_percent_zoom": 0.75,
     "password_account": "",
     "random_password_account": true,
@@ -20,5 +24,6 @@
     "is_chrome_count": 10,
     "api_value_hotmailbox": "919cadef6eb94c3d83a6b312c49b66ed",
     "url_avatar": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus",
-    "captcha_type": 1
+    "captcha_type": 1,
+    "is_proxy_ip_port": true
 }

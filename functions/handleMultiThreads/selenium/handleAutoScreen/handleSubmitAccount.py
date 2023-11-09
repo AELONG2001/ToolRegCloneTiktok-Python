@@ -1,10 +1,9 @@
 from PySide6.QtWidgets import *
 from utils.utils import wait
-from functions.profilesGologin.handleDeleteProfile import (
-    handleDeleteProfile,
-)
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import StaleElementReferenceException
+from functions.handleMultiThreads.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread import handleRestartThreadNewMail
 
 def handleSubmitAccount(self):
     self.self_main.table_account_info.scrollToBottom()
@@ -17,15 +16,7 @@ def handleSubmitAccount(self):
         )
         wait(2, 3)
         if self.driver.current_url == "https://www.tiktok.com/login/download-app":
-            self.driver.quit()
-            handleDeleteProfile(self.profile_id)
-            self.self_main.table_account_info.setItem(
-                self.current_row_count,
-                3,
-                QTableWidgetItem("Bị chặn, đợi restart lại... 31"),
-            )
-            self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-            return
+            handleRestartThread(self)
 
         submitAccount = self.driver.find_element("css selector", "button[type='submit']")
         try:
@@ -57,25 +48,6 @@ def handleSubmitAccount(self):
                 wait(1, 2)
                 with open(self.output_file_path, "a") as f:
                     f.write(account + "\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 2"),
-                )
-                self.self_main.restart_thread(self.num_threads, "", "")
-                return
+                handleRestartThreadNewMail(self)
             else:
-                # wait(1, 2)
-                # with open(self.input_file_path, "a") as file:
-                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                self.driver.quit()
-                handleDeleteProfile(self.profile_id)
-                self.self_main.table_account_info.setItem(
-                    self.current_row_count,
-                    3,
-                    QTableWidgetItem("Bị chặn, đợi restart lại... 3"),
-                )
-                self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-                return
+               handleRestartThread(self)

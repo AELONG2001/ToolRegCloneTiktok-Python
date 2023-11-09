@@ -131,6 +131,14 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
            self.proxy_type.setCurrentIndex(data["proxy_type"] - 1)
         else:
            self.proxy_type.setCurrentIndex(0)
+
+        if "is_proxy_ip_port" in data:
+            if data["is_proxy_ip_port"]:
+               self.proxy_value_ip_port.setChecked(True)
+            else:
+              self.proxy_value_ip_port_user_pass.setChecked(True)
+        else:
+            self.proxy_value_ip_port.setChecked(True)
         
         if "password_account" in data:
            self.password_reg_account_value.setText(data["password_account"])

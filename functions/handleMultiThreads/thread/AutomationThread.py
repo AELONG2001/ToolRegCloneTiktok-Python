@@ -379,38 +379,12 @@ class AutomationThread(QThread):
             self.self_main.table_account_info.setItem(
                 self.current_row_count, 2, QTableWidgetItem(self.proxy)
             )
-            # else:
-            #     if hasattr(self, "driver"):
-            #         self.driver.quit()
-            #     QMetaObject.invokeMethod(self, "show_warning")
-            #     self.self_main.stop_button.setEnabled(False)
-            #     self.self_main.stop_button.setStyleSheet(
-            #         "background-color: rgba(0, 0, 0, 0.2);"
-            #     )
-            #     self.self_main.start_button.setEnabled(True)
-            #     self.self_main.start_button.setStyleSheet(
-            #         "color:rgb(255, 252, 252);\n" "background-color:rgb(64, 170, 15)"
-            #     )
-            #     return
 
             try:
                 self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
             except WebDriverException:
                 self.driver.refresh()            
-                self.driver.refresh()             
-                # print("Lỗi mạng hoặc trang không thể truy cập:")
-                # # wait(1, 2)
-                # # with open(self.input_file_path, "a") as file:
-                # #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                # self.driver.quit()
-                # handleDeleteProfile(self.profile_id)
-                # self.self_main.table_account_info.setItem(
-                #     self.current_row_count,
-                #     3,
-                #     QTableWidgetItem("Bị chặn, đợi restart lại..."),
-                # )
-                # self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
-
+                self.driver.refresh()
 
             handleSelectMonth(self)
             handleSelectDay(self)
@@ -441,18 +415,5 @@ class AutomationThread(QThread):
                 self.driver.get("https://www.tiktok.com/logout")
             except WebDriverException:
                 self.driver.refresh()            
-                self.driver.refresh()            
-                # print("Lỗi mạng hoặc trang không thể truy cập:")
-                # # wait(1, 2)
-                # # with open(self.input_file_path, "a") as file:
-                # #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-                # self.driver.quit()
-                # handleDeleteProfile(self.profile_id)
-                # self.self_main.table_account_info.setItem(
-                #     self.current_row_count,
-                #     3,
-                #     QTableWidgetItem("Bị chặn, đợi restart lại..."),
-                # )
-                # self.self_main.restart_thread(self.num_threads, "", "")
             wait(2, 4)
         self.driver.quit()

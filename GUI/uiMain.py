@@ -419,6 +419,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.captcha_key.textChanged.connect(self.getCaptchaKey)
     self.export_account.clicked.connect(self.exportAccount)
     self.proxy_value.textChanged.connect(self.importProxy)
+    self.proxy_value_ip_port.toggled.connect(self.checkIsProxyIpPort)
     self.check_proxy.clicked.connect(self.checkProxy)
     self.password_reg_account_value.textChanged.connect(self.getDefaultPassword)
     self.random_password_account.toggled.connect(self.checkRandomPassword)
