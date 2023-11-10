@@ -2,18 +2,14 @@ import re
 import math
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 from selenium_authenticated_proxy import SeleniumAuthenticatedProxy
 from selenium.common.exceptions import WebDriverException
 from utils.utils import wait, generate_random_name, generate_password
 
-
-
 from functions.profilesGologin.handleCreateProfile import (
     handleCreateProfile,
-)
-from functions.profilesGologin.handleDeleteProfile import (
-    handleDeleteProfile,
 )
 
 from functions.proxy.TMProxy.handleGetNewTMProxy import handleGetNewTMProxy
@@ -23,11 +19,6 @@ from functions.proxy.TinProxy.handleGetNewTinProxy import handleGetNewTinProxy
 from functions.proxy.TinProxy.handleGetCurrentTinProxy import handleGetCurrentTinProxy
 
 from functions.autoBuyHotmail.autoBuyHotmail import handleAutoBuyHotmail
-
-
-from functions.handleInputFileMail.getMailContent import getMailContent
-
-
 from functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth import (
     handleSelectMonth,
 )
@@ -258,7 +249,10 @@ class AutomationThread(QThread):
         self.profile_id = handleCreateProfile(self)
 
         print("profile_id: ", self.profile_id)
-            
+
+        chromedriver_path = ChromeDriverManager().install()
+        
+        self.options.add_argument(f"webdriver.chrome.driver={chromedriver_path}")
         self.options.add_argument(
             f"--force-device-scale-factor={chrome_percent_zoom}"
         )
@@ -330,15 +324,23 @@ class AutomationThread(QThread):
                 if self.is_restart:
                     if not self.username_restart or not self.password_restart:
                         self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
-                        print("Mail: ", self.mail)
-                        self.username_mail, self.password_mail =  self.mail.split("|")
+                        if self.mail:
+                            self.username_mail, self.password_mail =  self.mail.split("|")
+                        else:
+                            QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbox đang không đủ mail hãy đợi một lúc rồi chạy lại.")
+                            self.stop_flag = True
+                            return
                     else:
                         self.username_mail = self.username_restart
                         self.password_mail = self.password_restart
                 else:
                     self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
-                    print("Mail: ", self.mail)
-                    self.username_mail, self.password_mail =  self.mail.split("|")
+                    if self.mail:
+                        self.username_mail, self.password_mail =  self.mail.split("|")
+                    else:
+                        QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbox đang không đủ mail hãy đợi một lúc rồi chạy lại.")
+                        self.stop_flag = True
+                        return
             else:
                 if self.is_restart:
                     if not self.username_restart or not self.password_restart:
@@ -367,7 +369,6 @@ class AutomationThread(QThread):
             transform_usermail = re.match(r"(.+?)@hotmail", self.username_mail).group(1) if re.match(r"(.+?)@hotmail", self.username_mail) else "abc123"
             self.user_id = f"{transform_usermail}_{random_userid}"
 
-            # if len(self.accounts) > 0:
             self.current_row_count = self.self_main.table_account_info.rowCount()
             self.self_main.table_account_info.setRowCount(self.current_row_count + 1)
             self.self_main.table_account_info.setItem(

@@ -6,9 +6,8 @@ from functions.handleMultiThreads.thread.startAutomation import startAutomation
 from functions.handleMultiThreads.thread.stopAutomation import stopAutomation
 from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
 from functions.handleCheckMail.checkMail import checkMail
-from functions.proxy.TMProxy.handleCheckKeyTmProxy import handleCheckKeyTmProxy
-from functions.proxy.TMProxy.handleGetNewTMProxyToCheckExpired import handleGetNewTMProxyToCheckExpired
-from functions.proxy.TinProxy.handleGetNewTinProxyCheckCorrectAndExpired import handleGetNewTinProxyCheckCorrectAndExpired
+from functions.handleCheckProxy.handleCheckProxy import handleCheckProxy
+
 import os
 import json
 import re
@@ -194,7 +193,6 @@ class AutomationController:
 
         QMessageBox.information(None, "Thông báo", "Đã lưu thành công!")
             
-
     def getProxyType(self):
         proxy_type = self.ui_instance.proxy_type.currentIndex()
         if proxy_type == 2 or proxy_type == 3:
@@ -217,30 +215,8 @@ class AutomationController:
         handleSaveDataInputUser("is_proxy_ip_port", proxy_value_ip_port)
 
     def checkProxy(self):
-        proxy_type = self.ui_instance.proxy_type.currentIndex()
-        api_key_proxy = self.ui_instance.proxy_value.toPlainText()
-        api_key_list = api_key_proxy.splitlines()
-
-        if proxy_type == 0:  
-            response_api_tm_proxy_check_correct = handleCheckKeyTmProxy(api_key_list)
-            response_api_tm_proxy_check_expired = handleGetNewTMProxyToCheckExpired(api_key_list)
-
-            if response_api_tm_proxy_check_correct:
-                QMessageBox.warning(None, "Warning", f"{response_api_tm_proxy_check_correct}Vui lòng kiểm tra lại")
-            elif response_api_tm_proxy_check_expired:
-                QMessageBox.warning(None, "Warning", f"{response_api_tm_proxy_check_expired}Vui lòng kiểm tra lại")
-            else:
-                QMessageBox.information(None, "Thông báo", f"Proxy live.Hãy bắt đầu chạy tool")
-                return
-        elif proxy_type == 1:
-            response_api_tin_proxy_check_correct = handleGetNewTinProxyCheckCorrectAndExpired(api_key_list)
-
-            if response_api_tin_proxy_check_correct:
-                QMessageBox.warning(None, "Warning", f"{response_api_tin_proxy_check_correct}Vui lòng kiểm tra lại")
-            else:
-                QMessageBox.information(None, "Thông báo", f"Proxy live.Hãy bắt đầu chạy tool")
-                return
-
+        handleCheckProxy(self.ui_instance)
+        
     def getDefaultPassword(self):
         password_account = self.ui_instance.password_reg_account_value.text()
         handleSaveDataInputUser("password_account", password_account)
@@ -299,6 +275,8 @@ class AutomationController:
         handleSaveDataInputUser("url_mail_check", link_mail_check)
 
     def handleCheckMail(self):
+        self.ui_instance.is_check_mail = True
+        
         if not self.ui_instance.file_mail_check_value.text():
             QMessageBox.warning(None, "Warning", "Vui lòng chọn file cần check")
             return

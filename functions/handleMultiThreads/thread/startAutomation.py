@@ -14,6 +14,10 @@ from queue import Queue
 def startAutomation(self):
     AutomationThread.num_quit = 0
     AutomationThread.drivers_list = []
+
+    if self.is_check_mail:
+        QMessageBox.warning(None, "Warning", "Vui lòng đợi quá trình check mail hoàn thành")
+        return
     
     if os.path.exists("configs_account.json"):
         with open("configs_account.json", "r") as json_file:

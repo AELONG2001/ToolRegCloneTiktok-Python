@@ -1,7 +1,5 @@
 from PySide6.QtWidgets import *
-from functions.profilesGologin.handleDeleteProfile import (
-    handleDeleteProfile,
-)
+from functions.profilesGologin.handleDeleteProfile import handleDeleteProfile
 
 def handleRestartThreadNewMail(self):
     self.driver.quit()

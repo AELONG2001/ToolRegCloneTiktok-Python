@@ -190,7 +190,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value_ip_port_user_pass.setStyleSheet("font: 10pt \"Segoe UI\";")
     self.proxy_value_ip_port_user_pass.setObjectName("proxy_value_ip_port_user_pass")
     self.check_proxy = QPushButton(parent=self.home)
-    self.check_proxy.setGeometry(QRect(1125, 420, 60, 31))
+    self.check_proxy.setGeometry(QRect(1125, 420, 60, 30))
     self.check_proxy.setStyleSheet(
         'font: 700 10pt "Segoe UI";\n'
         "color: #fff;\n"
@@ -198,6 +198,15 @@ def uiMain(self, ToolRegCloneTiktok):
         ""
     )
     self.check_proxy.setObjectName("import_proxy")
+    self.loading_icon_check_proxy = QLabel(parent=self.home)
+    self.loading_icon_check_proxy.setGeometry(QRect(1208, 461, 60, 30))
+    self.loading_icon_check_proxy.setText("abc")
+    relative_path_check_proxy = "icons/loading.gif"
+    absolute_path_check_proxy = os.path.abspath(relative_path_check_proxy)
+    self.loadingMovieCheckProxy = QMovie(absolute_path_check_proxy)
+    self.loading_icon_check_proxy.setMovie(self.loadingMovieCheckProxy)
+    self.loading_icon_check_proxy.setObjectName("loading_icon_check_proxy")
+    self.loading_icon_check_proxy.setVisible(False)
 
     if self.current_version == self.latest_version:
         self.update_label.hide()
@@ -360,7 +369,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.file_mail_check_value.setObjectName("file_mail_check_value")
     self.file_mail_check_value.setReadOnly(True)
     self.btn_check = QPushButton(parent=self.settings)
-    self.btn_check.setGeometry(QRect(430, 240, 120, 24))
+    self.btn_check.setGeometry(QRect(430, 240, 75, 24))
     self.btn_check.setStyleSheet(
         'font: 700 10pt "Segoe UI";\n'
         "color: #fff;\n"
@@ -368,16 +377,15 @@ def uiMain(self, ToolRegCloneTiktok):
         ""
     )
     self.btn_check.setObjectName("btn_check")
-    self.loading_icon = QLabel(parent=self.settings)
-    self.loading_icon.setGeometry(QRect(528, 246, 14, 14))
-    self.loading_icon.setText("abc")
-    relative_path = "icons/loading.gif"
-    absolute_path = os.path.abspath(relative_path)
-    self.loadingMovie = QMovie(absolute_path)
-    self.loading_icon.setMovie(self.loadingMovie)
-    self.loading_icon.setObjectName("loading_icon")
-
-    self.loading_icon.setVisible(False)
+    self.loading_icon_check_mail = QLabel(parent=self.settings)
+    self.loading_icon_check_mail.setGeometry(QRect(528, 246, 14, 14))
+    self.loading_icon_check_mail.setText("abc")
+    relative_path_check_mail = "icons/loading.gif"
+    absolute_path_check_mail = os.path.abspath(relative_path_check_mail)
+    self.loadingMovieCheckMail = QMovie(absolute_path_check_mail)
+    self.loading_icon_check_mail.setMovie(self.loadingMovieCheckMail)
+    self.loading_icon_check_mail.setObjectName("loading_icon_check_mail")
+    self.loading_icon_check_mail.setVisible(False)
     
     self.mail_success = QLabel(parent=self.settings)
     self.mail_success.setGeometry(QRect(580, 240, 100, 16))
@@ -438,7 +446,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.btn_check.clicked.connect(self.handleCheckMail)
 
     self.chrome_threads = []
-    self.max_thread_count = 30
+    self.max_thread_count = 20
     self.threadpool = QThreadPool.globalInstance()
     self.threadpool.setMaxThreadCount(self.max_thread_count)
 
