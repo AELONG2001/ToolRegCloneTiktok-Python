@@ -10,4 +10,3 @@ def handleRestartThreadNewMail(self):
         QTableWidgetItem("Bị chặn, đợi restart lại..."),
     )
     self.self_main.restart_thread(self.num_threads, "", "")
-    return

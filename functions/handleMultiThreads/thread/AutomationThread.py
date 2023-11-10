@@ -319,28 +319,58 @@ class AutomationThread(QThread):
                 else:
                     self.password_account = "Abc1234@"
 
-
             if self.isAutoBuyMail:
-                if self.is_restart:
-                    if not self.username_restart or not self.password_restart:
+                with open(self.input_file_path, 'r') as file:
+                    content = file.read()
+                if content.strip():
+                    if self.is_restart:
+                        if not self.username_restart or not self.password_restart:
+                            # Lấy nội dung mail
+                            self.username_mail, self.password_mail = self.data_queue.get()
+
+                            # update lại file mail
+                            with open(self.input_file_path, 'r') as file:
+                                lines = file.readlines()
+
+                            new_lines = [line for line in lines if not line.startswith(f"{self.username_mail}|{self.password_mail}")]
+
+                            with open(self.input_file_path, 'w') as file:
+                                file.writelines(new_lines)
+                        else:
+                            self.username_mail = self.username_restart
+                            self.password_mail = self.password_restart
+                    else:
+                        self.username_mail, self.password_mail = self.data_queue.get()
+                        with open(self.input_file_path, 'r') as file:
+                            lines = file.readlines()
+
+                        new_lines = [line for line in lines if not line.startswith(f"{self.username_mail}|{self.password_mail}")]
+
+                        with open(self.input_file_path, 'w') as file:
+                            file.writelines(new_lines)
+                else:
+                    if self.is_restart:
+                        if not self.username_restart or not self.password_restart:
+                            self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
+                            print("Mail: ", self.mail)
+                            if self.mail:
+                                self.username_mail, self.password_mail =  self.mail.split("|")
+                            else:
+                                self.stop_flag = True
+                                QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbox đang không đủ mail hãy đợi một lúc rồi chạy lại.")
+                                return
+                        else:
+                            self.username_mail = self.username_restart
+                            self.password_mail = self.password_restart
+                    else:
                         self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
+                        print("Mail: ", self.mail)
                         if self.mail:
                             self.username_mail, self.password_mail =  self.mail.split("|")
                         else:
-                            QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbox đang không đủ mail hãy đợi một lúc rồi chạy lại.")
                             self.stop_flag = True
+                            QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbox đang không đủ mail hãy đợi một lúc rồi chạy lại.")
                             return
-                    else:
-                        self.username_mail = self.username_restart
-                        self.password_mail = self.password_restart
-                else:
-                    self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
-                    if self.mail:
-                        self.username_mail, self.password_mail =  self.mail.split("|")
-                    else:
-                        QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbox đang không đủ mail hãy đợi một lúc rồi chạy lại.")
-                        self.stop_flag = True
-                        return
             else:
                 if self.is_restart:
                     if not self.username_restart or not self.password_restart:

@@ -12,11 +12,11 @@ def handleInsertNewUsername(self):
     inputNewUserName = waitForNavigation.until(
         EC.presence_of_element_located(("css selector", "input[name='new-username']"))
     )
-    # for char in self.user_id:
-    #     inputNewUserName.send_keys(char)
-    #     sleep(0.05)
+    for char in self.user_id:
+        inputNewUserName.send_keys(char)
+        sleep(0.05)
 
-    inputNewUserName.send_keys(self.user_id)
+    # inputNewUserName.send_keys(self.user_id)
 
     wait(4, 6)
     submitNewAccount = self.driver.find_element("css selector", "button[type='submit']")

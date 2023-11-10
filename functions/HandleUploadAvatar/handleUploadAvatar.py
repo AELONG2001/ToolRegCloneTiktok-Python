@@ -34,6 +34,8 @@ from utils.utils import random_number
 
 
 def handleUploadAvatar(self):
+    wait(2, 4)
+    self.driver.get("https://www.tiktok.com")
     self.self_main.table_account_info.scrollToBottom()
     wait(2, 4)
     is_list_avtart_default = True

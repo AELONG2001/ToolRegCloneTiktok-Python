@@ -28,8 +28,6 @@ def handleGetCodeFromMail(self):
             response = requests.get(url, params=params)
             data = response.json()
 
-            print("Data: ", data)
-
             if data["content"] == "Invalid email or password or IMAP disabled":
                handleRestartThreadNewMail(self)
 
