@@ -35,8 +35,8 @@ class Ui_ToolRegCloneTiktok(QObject):
         self.start_timer = QTimer(self)
         self.re_start_timer = QTimer(self)
         
-        self.start_timer.setInterval(5000)
-        self.re_start_timer.setInterval(5000)
+        self.start_timer.setInterval(2000)
+        self.re_start_timer.setInterval(3000)
        
         self.start_timer.timeout.connect(self.start_next_thread)
         self.re_start_timer.timeout.connect(self.restart_thread)
@@ -93,7 +93,7 @@ class Ui_ToolRegCloneTiktok(QObject):
             path_profile_gologin,
             api_key_hotmailbox,
             is_upload_avatar,
-            self.data_queue,
+            # self.data_queue,
             username,
             password,
             True

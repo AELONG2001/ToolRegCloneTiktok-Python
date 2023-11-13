@@ -18,6 +18,7 @@ from functions.proxy.TMProxy.handleGetCurrentTMProxy import handleGetCurrentTMPr
 from functions.proxy.TinProxy.handleGetNewTinProxy import handleGetNewTinProxy
 from functions.proxy.TinProxy.handleGetCurrentTinProxy import handleGetCurrentTinProxy
 
+from functions.handleInputFileMail.getMailContent import getMailContent
 from functions.autoBuyHotmail.autoBuyHotmail import handleAutoBuyHotmail
 from functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth import (
     handleSelectMonth,
@@ -76,7 +77,6 @@ class AutomationThread(QThread):
         path_profile_gologin,
         api_key_hotmailbox,
         is_upload_avatar,
-        data_queue,
         username_restart = "",
         password_restart = "",
         is_restart = False
@@ -96,7 +96,6 @@ class AutomationThread(QThread):
         self.path_profile_gologin = path_profile_gologin
         self.api_key_hotmailbox = api_key_hotmailbox
         self.is_upload_avatar = is_upload_avatar
-        self.data_queue = data_queue
         self.username_restart = username_restart
         self.password_restart = password_restart
         self.is_restart = is_restart
@@ -118,8 +117,13 @@ class AutomationThread(QThread):
         )
 
     def handleGetMailAndUpdateMail(self):
+        with open(self.input_file_path, "r") as f:
+            mail_content = f.read()
+
+        self.accounts = getMailContent(mail_content)
          # Lấy nội dung mail
-        self.username_mail, self.password_mail = self.data_queue.get()
+        # self.username_mail, self.password_mail = self.data_queue.get()
+        self.username_mail, self.password_mail = self.accounts[self.num_threads]
 
         # update lại file mail
         with open(self.input_file_path, 'r') as file:
@@ -197,35 +201,39 @@ class AutomationThread(QThread):
             wait(1, 2)
             # open file input
             with open(self.input_file_path, "r") as file:
-                existing_data = file.readlines()
+                existing_data_input = file.readlines()
 
             # check data file
-            exists = False
-            for line in existing_data:
+            exists_input = False
+            for line in existing_data_input:
                 parts = line.strip().split('|')
                 if len(parts) >= 1 and self.username_mail == parts[0]:
-                    exists = True
+                    exists_input = True
                     break
 
             # check if data not exist
-            if not exists:
-                with open(self.input_file_path, "a") as file:
+            if not exists_input:
+                if existing_data_input[-1].endswith("\n"):
+                    with open(self.input_file_path, "a") as file:
+                        file.write(f"{self.username_mail}|{self.password_mail}\n")
+                else: 
+                  with open(self.input_file_path, "a") as file:
                     file.write(f"\n{self.username_mail}|{self.password_mail}")
         else:
             # open file output
             with open(self.output_file_path, "r") as file:
-                existing_data = file.readlines()
+                existing_data_output = file.readlines()
 
             # check data file
-            exists = False
-            for line in existing_data:
+            exists_output = False
+            for line in existing_data_output:
                 parts = line.strip().split('|')
                 if len(parts) >= 1 and self.username_mail == parts[2]:
-                    exists = True
+                    exists_output = True
                     break
 
             # check if data not exist
-            if not exists:
+            if not exists_output:
                 # if not self.is_skip_new_username:
                 #     account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
                 #     with open(self.output_file_path, "a") as f:
@@ -249,10 +257,14 @@ class AutomationThread(QThread):
                 else:
                     account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
                 wait(1, 2)
-                with open(self.output_file_path, "a") as f:
-                    f.write(f"\n{account}")
+                if existing_data_output[-1].endswith("\n"):
+                    with open(self.output_file_path, "a") as f:
+                        f.write(f"{account}\n")
+                else:
+                    with open(self.output_file_path, "a") as f:
+                        f.write(f"\n{account}")   
 
-        if hasattr(self, "driver") and not self.is_restart:
+        if hasattr(self, "driver"):
             AutomationThread.num_quit += 1
             self.driver.quit()
         

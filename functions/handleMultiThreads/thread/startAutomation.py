@@ -1,5 +1,4 @@
 from PySide6.QtWidgets import *
-from functions.handleInputFileMail.getMailContent import getMailContent
 from functions.handleMultiThreads.thread.AutomationThread import AutomationThread
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.handleCheckApiKeyAChi import handleCheckApiKeyAChi
 from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo import handleCheckApiKeyOmo
@@ -9,7 +8,7 @@ from functions.autoBuyHotmail.handleCheckBalance import handleCheckBalance
 import os
 import json
 import datetime
-from queue import Queue
+# from queue import Queue
 
 def startAutomation(self):
     AutomationThread.num_quit = 0
@@ -102,24 +101,23 @@ def startAutomation(self):
 
     else:
         QMessageBox.warning(None, "Warning", "Vui lòng cập nhập các thông tin cần thiết trước khi bắt đầu chạy tool.\nVD: nhập mail, api captcha key,proxy,token và path của gologin...")
-    
-    # with open(input_file_path, "r") as f:
-    #     mail_content = f.read()
-
-    # accounts = getMailContent(mail_content)
-
-    # if len(accounts) > 0:
+  
     num_threads = self.threads_value.value()
-    # else:
-    #     num_threads = 1
+
+    with open(input_file_path, "r") as file:
+        check_data_input_file = file.readlines()
+
+    non_empty_lines_input = [line.strip() for line in check_data_input_file if line.strip()]
+    with open(input_file_path, 'w') as file:
+        file.write('\n'.join(non_empty_lines_input))
 
     with open(input_file_path, 'r') as file:
         lines = file.readlines()
 
-    self.data_queue = Queue()
-    for line in lines:
-        username, password = line.strip().split('|')
-        self.data_queue.put((username, password))
+    # self.data_queue = Queue()
+    # for line in lines:
+    #     username, password = line.strip().split('|')
+    #     self.data_queue.put((username, password))
 
     chrome_count = self.chrome_setting_line_value.value()
     captcha_type = self.captcha_type.currentIndex()
@@ -153,7 +151,7 @@ def startAutomation(self):
             path_profile_gologin,
             api_key_hotmailbox,
             is_upload_avatar,
-            self.data_queue,
+            # self.data_queue,
         )
         for thread in range(num_threads)
     ]

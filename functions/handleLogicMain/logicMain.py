@@ -154,6 +154,7 @@ class AutomationController:
 
     def exportAccount(self):
         file_path = "data/output.txt"     
+        file_path_backup = "data/output_backup.txt"     
         typeExportAccount = self.ui_instance.export_account_format_value.currentIndex()
 
         default_file_name = "output.txt"
@@ -169,14 +170,30 @@ class AutomationController:
             return
     
         with open(file_path, "r") as file:
-                accounts =  file.readlines()
+            accounts =  file.readlines()
 
+        with open(file_path, "r") as file:
+            full_accounts =  file.read()
+
+        with open(file_path_backup, "w") as file:
+            file.write(full_accounts)
         if typeExportAccount == 0:
-                selected_data = accounts
+            selected_data = accounts
         elif typeExportAccount == 1:
-                selected_data = [line.split("|")[:4] + line.split("|")[5:] for line in accounts]
+            selected_data = []
+            for line in accounts:
+                # check và tìm vị trí chứa cookie
+                if 'msToken=' in line:
+                    data = line.split("|")
+                    index_cookie = next((i for i, part in enumerate(data) if 'msToken=' in part), None)
+                    
+                    if index_cookie is not None:
+                        del data[index_cookie]
+                        selected_data.append(data)
+                else:
+                    selected_data.append(line.split("|"))
         elif typeExportAccount == 2:
-                selected_data = [line.split("|")[:2] for line in accounts]
+            selected_data = [line.split("|")[:2] for line in accounts]
         else:
             return
 

@@ -1,7 +1,7 @@
 {
     "key": "B539435591E4FB5B",
     "machine_code": "bf2aa4bee397a5ba7d1227eba82ef816138676404a0308e061d8e3e4c4cb411f",
-    "num_threads": 21,
+    "num_threads": 5,
     "url_mail": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
     "captcha_key": "08f8b0f0b3aff156866a811508e2bb2e",
     "proxys": [
@@ -14,18 +14,7 @@
         "3ae0a5cd15e204f728ac2e8af5bed917",
         "40cc774531cd6783581e6b2ef386e755",
         "74f1a645f69c1f598869ee9b4e3e8d12",
-        "b0d8948009e4ccaaa0cb6cac6644cf95",
-        "32efa1f60885d927fd3b69ee070eab8f",
-        "be62d762d01f00d629a686910bd4c832",
-        "fcd46d2007fa0023c2cac8c483079abd",
-        "36872179c7e8a8654fe42e8d829f7cc3",
-        "c44bb67d9ded9d05da87af6bff341b62",
-        "d72ca2f52ede67384904975da20a9bf6",
-        "a66a7daf28ab94ce478b55992ce0b460",
-        "0c18dc13b4bf7fdcbf5cd6bf9819fa49",
-        "1a875d5bd0dc079584f94964c54fc9b5",
-        "e39f553ff2655797c87cbe3553c7f0ca",
-        "7cad9e1145c7847e3cfb3aefc15f9c2a"
+        "b0d8948009e4ccaaa0cb6cac6644cf95"
     ],
     "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTQ5ZDU5YTE4YTFiZjRmMjkxMzRjNWEiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTQ5ZTE2N2M1ODNkMDU4ZDhhNGQyNzAifQ._b7n7A3LNydmljnpNew6nJD9hHYK2X6XQWNbSdP05Lk",
     "url_mail_check": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
@@ -35,9 +24,9 @@
     "random_password_account": true,
     "path_gologin": "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles",
     "is_upload_avatar": true,
-    "typeExportAccount": 1,
+    "typeExportAccount": 2,
     "chromeValueDelay": 3,
-    "is_chrome_count": 7,
+    "is_chrome_count": 10,
     "url_avatar": "C:/Users/HD/OneDrive/Documents/WorkSpace/Tools/Python/ToolRegCloneTiktok/data/wibus",
     "captcha_type": 1,
     "is_proxy_ip_port": true

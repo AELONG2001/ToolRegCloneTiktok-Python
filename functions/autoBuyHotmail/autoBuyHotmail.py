@@ -5,7 +5,7 @@ def handleAutoBuyHotmail(api_key):
     try:
         email_password = ""
         params = {
-            "apikey": f"{api_key}",
+            "apikey": f"{api_key.strip()}",
             "mailcode": "HOTMAIL",
             "quantity": 1
         }
