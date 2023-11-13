@@ -2,8 +2,8 @@ from PySide6.QtWidgets import *
 from utils.utils import wait
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import StaleElementReferenceException
-from functions.handleMultiThreads.handleRestartThread import handleRestartThread
-from functions.handleMultiThreads.handleRestartThread import handleRestartThreadNewMail
+from functions.handleMultiThreads.handleRestartThread.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail import handleRestartThreadNewMail
 
 def handleSubmitAccount(self):
     self.self_main.table_account_info.scrollToBottom()

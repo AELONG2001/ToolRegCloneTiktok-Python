@@ -5,8 +5,8 @@ from utils.utils import wait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import WebDriverException
 from functions.handleMultiThreads.selenium.handleCode.handleGetCode import handleGetCode
-from functions.handleMultiThreads.handleRestartThread import handleRestartThread
-from functions.handleMultiThreads.handleRestartThread import handleRestartThreadNewMail
+from functions.handleMultiThreads.handleRestartThread.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail import handleRestartThreadNewMail
 
 
 def getResultCaptchaChooseTwoObjectsAChi(self, task_id):

@@ -3,7 +3,7 @@ from utils.utils import random_number, wait
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from functions.handleMultiThreads.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread.handleRestartThread import handleRestartThread
 
 def handleSelectMonth(self):
     self.self_main.table_account_info.scrollToBottom()

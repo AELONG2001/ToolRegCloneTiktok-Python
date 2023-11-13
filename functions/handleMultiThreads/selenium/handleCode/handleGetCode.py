@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import *
 from utils.utils import wait
-from functions.handleMultiThreads.handleRestartThread import handleRestartThread
-from functions.handleMultiThreads.handleRestartThread import handleRestartThreadNewMail
+from functions.handleMultiThreads.handleRestartThread.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail import handleRestartThreadNewMail
 
 def handleGetCode(self):
     self.self_main.table_account_info.scrollToBottom()

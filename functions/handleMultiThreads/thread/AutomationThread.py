@@ -117,6 +117,77 @@ class AutomationThread(QThread):
             "Vui lòng nhập thêm mail",
         )
 
+    def handleGetMailAndUpdateMail(self):
+         # Lấy nội dung mail
+        self.username_mail, self.password_mail = self.data_queue.get()
+
+        # update lại file mail
+        with open(self.input_file_path, 'r') as file:
+            lines = file.readlines()
+
+        new_lines = [line for line in lines if not line.startswith(f"{self.username_mail}|{self.password_mail}")]
+
+        with open(self.input_file_path, 'w') as file:
+            file.writelines(new_lines)
+
+    def handleGetOldMailAndRestart(self):
+        self.username_mail = self.username_restart
+        self.password_mail = self.password_restart
+
+    def handleAutoBuyMail(self):
+        self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
+        print("Mail: ", self.mail)
+        if self.mail:
+            self.username_mail, self.password_mail =  self.mail.split("|")
+        else:
+            self.stop_flag = True
+            QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbox đang không đủ mail hãy đợi một lúc rồi chạy lại.")
+            return
+        
+    def handleCheckProxy(self):
+        if self.proxy_type == 0:
+            isGetTMProxyAgain = True
+            while isGetTMProxyAgain:
+                api_key_tmproxy = self.self_main.proxy_value.toPlainText()
+                api_key_list = api_key_tmproxy.splitlines()
+
+                new_proxy = handleGetNewTMProxy(api_key_list[self.num_threads])
+                current_proxy = handleGetCurrentTMProxy(api_key_list[self.num_threads])
+
+                if not new_proxy:
+                    self.proxy = current_proxy
+                else:
+                    self.proxy = new_proxy
+                    
+                if ':' in self.proxy:
+                    isGetTMProxyAgain = False
+                else:
+                    isGetTMProxyAgain = True
+        elif self.proxy_type == 1:
+            api_key_tinproxy = self.self_main.proxy_value.toPlainText()
+            api_key_list = api_key_tinproxy.splitlines()
+
+            new_proxy = handleGetNewTinProxy(api_key_list[self.num_threads])
+            current_proxy = handleGetCurrentTinProxy(api_key_list[self.num_threads])
+
+            if not new_proxy:
+                self.proxy = current_proxy
+            else:
+                self.proxy = new_proxy
+        elif self.proxy_type == 2 or self.proxy_type == 3:
+            type_ip_port = self.self_main.proxy_value_ip_port.isChecked()
+
+            get_list_proxy = self.self_main.proxy_value.toPlainText()
+            proxys = get_list_proxy.splitlines()
+
+            if type_ip_port:
+                self.proxy = proxys[self.num_threads]
+            else:
+                ip,port,user_proxy,password_proxy = proxys[self.num_threads].split(":")
+                self.proxy = f"{user_proxy}:{password_proxy}:{ip}:{port}"
+
+        print("Proxy: ",  self.proxy)
+
     def stop(self):
         self.stop_flag = True
         for thread in self.self_main.chrome_threads:
@@ -139,7 +210,7 @@ class AutomationThread(QThread):
             # check if data not exist
             if not exists:
                 with open(self.input_file_path, "a") as file:
-                    file.write(f"{self.username_mail}|{self.password_mail}\n")
+                    file.write(f"\n{self.username_mail}|{self.password_mail}")
         else:
             # open file output
             with open(self.output_file_path, "r") as file:
@@ -155,33 +226,33 @@ class AutomationThread(QThread):
 
             # check if data not exist
             if not exists:
-                if not self.is_skip_new_username:
-                    account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                    with open(self.output_file_path, "a") as f:
-                        f.write(account + "\n")
-                else:
-                    wait(2, 4)
-                    pageContent = self.driver.page_source
-                    if '"nickName":"' in pageContent:
-                        try:
-                            userId = pageContent.split('"nickName":"')[1].split('"')[0]
-                        except IndexError:
-                            userId = ""
-                    else:
+                # if not self.is_skip_new_username:
+                #     account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                #     with open(self.output_file_path, "a") as f:
+                #         f.write(account + "\n")
+                # else:
+                wait(2, 4)
+                pageContent = self.driver.page_source
+                if '"nickName":"' in pageContent:
+                    try:
+                        userId = pageContent.split('"nickName":"')[1].split('"')[0]
+                    except IndexError:
                         userId = ""
-                    cookies = self.driver.get_cookies()
-                    cookies_string = ";".join(
-                        [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-                    )
-                    if userId:
-                        account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                    else:
-                        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                    wait(1, 2)
-                    with open(self.output_file_path, "a") as f:
-                        f.write(account + "\n")
+                else:
+                    userId = ""
+                cookies = self.driver.get_cookies()
+                cookies_string = ";".join(
+                    [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+                )
+                if userId:
+                    account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                else:
+                    account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                wait(1, 2)
+                with open(self.output_file_path, "a") as f:
+                    f.write(f"\n{account}")
 
-        if hasattr(self, "driver"):
+        if hasattr(self, "driver") and not self.is_restart:
             AutomationThread.num_quit += 1
             self.driver.quit()
         
@@ -202,49 +273,7 @@ class AutomationThread(QThread):
 
         num_chrome_a_row = int(self.chrome_count)
 
-        # check type proxys
-        if self.proxy_type == 0:
-            isGetTMProxyAgain = True
-            while isGetTMProxyAgain:
-                api_key_tmproxy = self.self_main.proxy_value.toPlainText()
-                api_key_list = api_key_tmproxy.splitlines()
-
-                new_proxy = handleGetNewTMProxy(api_key_list[num_worker])
-                current_proxy = handleGetCurrentTMProxy(api_key_list[num_worker])
-
-                if not new_proxy:
-                    self.proxy = current_proxy
-                else:
-                    self.proxy = new_proxy
-                    
-                if ':' in self.proxy:
-                    isGetTMProxyAgain = False
-                else:
-                    isGetTMProxyAgain = True
-        elif self.proxy_type == 1:
-            api_key_tinproxy = self.self_main.proxy_value.toPlainText()
-            api_key_list = api_key_tinproxy.splitlines()
-
-            new_proxy = handleGetNewTinProxy(api_key_list[num_worker])
-            current_proxy = handleGetCurrentTinProxy(api_key_list[num_worker])
-
-            if not new_proxy:
-                self.proxy = current_proxy
-            else:
-                self.proxy = new_proxy
-        elif self.proxy_type == 2 or self.proxy_type == 3:
-            type_ip_port = self.self_main.proxy_value_ip_port.isChecked()
-
-            get_list_proxy = self.self_main.proxy_value.toPlainText()
-            proxys = get_list_proxy.splitlines()
-
-            if type_ip_port:
-                self.proxy = proxys[num_worker]
-            else:
-                ip,port,user_proxy,password_proxy = proxys[num_worker].split(":")
-                self.proxy = f"{user_proxy}:{password_proxy}:{ip}:{port}"
-
-        print("Proxy: ",  self.proxy)
+        self.handleCheckProxy()
 
         self.profile_id = handleCreateProfile(self)
 
@@ -325,79 +354,31 @@ class AutomationThread(QThread):
                 if content.strip():
                     if self.is_restart:
                         if not self.username_restart or not self.password_restart:
-                            # Lấy nội dung mail
-                            self.username_mail, self.password_mail = self.data_queue.get()
-
-                            # update lại file mail
-                            with open(self.input_file_path, 'r') as file:
-                                lines = file.readlines()
-
-                            new_lines = [line for line in lines if not line.startswith(f"{self.username_mail}|{self.password_mail}")]
-
-                            with open(self.input_file_path, 'w') as file:
-                                file.writelines(new_lines)
+                            self.handleGetMailAndUpdateMail()
                         else:
-                            self.username_mail = self.username_restart
-                            self.password_mail = self.password_restart
+                            self.handleGetOldMailAndRestart()
                     else:
-                        self.username_mail, self.password_mail = self.data_queue.get()
-                        with open(self.input_file_path, 'r') as file:
-                            lines = file.readlines()
-
-                        new_lines = [line for line in lines if not line.startswith(f"{self.username_mail}|{self.password_mail}")]
-
-                        with open(self.input_file_path, 'w') as file:
-                            file.writelines(new_lines)
+                       self.handleGetMailAndUpdateMail()
                 else:
                     if self.is_restart:
                         if not self.username_restart or not self.password_restart:
-                            self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
-                            print("Mail: ", self.mail)
-                            if self.mail:
-                                self.username_mail, self.password_mail =  self.mail.split("|")
-                            else:
-                                self.stop_flag = True
-                                QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbox đang không đủ mail hãy đợi một lúc rồi chạy lại.")
-                                return
+                            self.handleAutoBuyMail()
                         else:
-                            self.username_mail = self.username_restart
-                            self.password_mail = self.password_restart
+                            self.handleGetOldMailAndRestart()
                     else:
-                        self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
-                        print("Mail: ", self.mail)
-                        if self.mail:
-                            self.username_mail, self.password_mail =  self.mail.split("|")
-                        else:
-                            self.stop_flag = True
-                            QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbox đang không đủ mail hãy đợi một lúc rồi chạy lại.")
-                            return
+                        self.handleAutoBuyMail()
             else:
                 if self.is_restart:
                     if not self.username_restart or not self.password_restart:
-                        self.username_mail, self.password_mail = self.data_queue.get()
-                        with open(self.input_file_path, 'r') as file:
-                            lines = file.readlines()
-
-                        new_lines = [line for line in lines if not line.startswith(f"{self.username_mail}|{self.password_mail}")]
-
-                        with open(self.input_file_path, 'w') as file:
-                            file.writelines(new_lines)
+                        self.handleGetMailAndUpdateMail()
                     else:
-                        self.username_mail = self.username_restart
-                        self.password_mail = self.password_restart
+                        self.handleGetOldMailAndRestart()
                 else:
-                    self.username_mail, self.password_mail = self.data_queue.get()
-                    with open(self.input_file_path, 'r') as file:
-                        lines = file.readlines()
+                    self.handleGetMailAndUpdateMail()
 
-                    new_lines = [line for line in lines if not line.startswith(f"{self.username_mail}|{self.password_mail}")]
-
-                    with open(self.input_file_path, 'w') as file:
-                        file.writelines(new_lines)
-
-            random_userid = generate_random_name(6)
-            transform_usermail = re.match(r"(.+?)@hotmail", self.username_mail).group(1) if re.match(r"(.+?)@hotmail", self.username_mail) else "abc123"
-            self.user_id = f"{transform_usermail}_{random_userid}"
+            random_five_userid = generate_random_name(5)
+            random_ten_userid = generate_random_name(10)
+            self.user_id = f"{random_five_userid}_{random_ten_userid}"
 
             self.current_row_count = self.self_main.table_account_info.rowCount()
             self.self_main.table_account_info.setRowCount(self.current_row_count + 1)

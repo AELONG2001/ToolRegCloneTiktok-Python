@@ -1,7 +1,5 @@
 from PySide6.QtWidgets import *
-from functions.profilesGologin.handleDeleteProfile import (
-    handleDeleteProfile,
-)
+from functions.profilesGologin.handleDeleteProfile import handleDeleteProfile
 
 def handleRestartThread(self):
     self.driver.quit()
@@ -12,3 +10,4 @@ def handleRestartThread(self):
         QTableWidgetItem("Bị chặn, đợi restart lại..."),
     )
     self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
+    return

@@ -4,8 +4,8 @@ from utils.utils import wait
 from functions.handleMultiThreads.selenium.handleCode.handleSubmitCode import (
     handleSubmitCode,
 )
-from functions.handleMultiThreads.handleRestartThread import handleRestartThread
-from functions.handleMultiThreads.handleRestartThread import handleRestartThreadNewMail
+from functions.handleMultiThreads.handleRestartThread.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail import handleRestartThreadNewMail
 
 def handleGetCodeFromMail(self):
     self.self_main.table_account_info.scrollToBottom()
@@ -27,6 +27,8 @@ def handleGetCodeFromMail(self):
             wait(10, 12)
             response = requests.get(url, params=params)
             data = response.json()
+
+            print("Data: ", data)
 
             if data["content"] == "Invalid email or password or IMAP disabled":
                handleRestartThreadNewMail(self)

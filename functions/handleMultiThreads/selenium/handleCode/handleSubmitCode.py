@@ -2,7 +2,7 @@ from PySide6.QtWidgets import *
 from utils.utils import wait
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import StaleElementReferenceException
-from functions.handleMultiThreads.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread.handleRestartThread import handleRestartThread
 
 def handleSubmitCode(self, code):
     wait(1, 2)

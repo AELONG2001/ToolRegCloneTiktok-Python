@@ -72,7 +72,10 @@ class Ui_ToolRegCloneTiktok(QObject):
         random_password_account = self.random_password_account.isChecked()
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
         path_profile_gologin = self.path_gologin_value.text()
-        api_key_hotmailbox = data["api_value_hotmailbox"]
+        if "api_value_hotmailbox" in data:
+            api_key_hotmailbox = data["api_value_hotmailbox"]
+        else:
+            api_key_hotmailbox = ""
         is_upload_avatar = self.is_upload_avatar_yes.isChecked()
         
         self.chrome_threads[thread] = AutomationThread(

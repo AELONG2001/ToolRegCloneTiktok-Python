@@ -218,15 +218,15 @@ def uiMain(self, ToolRegCloneTiktok):
         self.proxy_value.setGeometry(QRect(900, 130, 211, 361))
         self.check_proxy.setGeometry(QRect(1125, 460, 61, 31))
 
-    with open("configs_account.json", "r") as json_file:
-            data = json.load(json_file)
+    # with open("configs_account.json", "r") as json_file:
+    #         data = json.load(json_file)
 
-    if data["proxy_type"] == 3 or data["proxy_type"] == 4:
-        self.proxy_value_ip_port.setVisible(True)
-        self.proxy_value_ip_port_user_pass.setVisible(True)
-    else:
-        self.proxy_value_ip_port.setVisible(False)
-        self.proxy_value_ip_port_user_pass.setVisible(False)
+    # if data["proxy_type"] == 3 or data["proxy_type"] == 4:
+    #     self.proxy_value_ip_port.setVisible(True)
+    #     self.proxy_value_ip_port_user_pass.setVisible(True)
+    # else:
+    #     self.proxy_value_ip_port.setVisible(False)
+    #     self.proxy_value_ip_port_user_pass.setVisible(False)
 
     self.link_facebook = QLabel(parent=self.home)
     self.link_facebook.setGeometry(QRect(50, 490, 301, 31))

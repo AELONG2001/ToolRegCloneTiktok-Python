@@ -34,10 +34,32 @@ from utils.utils import random_number
 
 
 def handleUploadAvatar(self):
-    wait(2, 4)
-    self.driver.get("https://www.tiktok.com")
-    self.self_main.table_account_info.scrollToBottom()
-    wait(2, 4)
+
+    isGetUserIdAgain = True
+    while isGetUserIdAgain:
+        try:
+            waitForNavigation = WebDriverWait(self.driver, 5)
+            waitForNavigation.until(
+            EC.presence_of_element_located(("xpath", '//*[@data-e2e="profile-icon"]'))
+            )
+            isGetUserIdAgain = False
+        except TimeoutException:
+            try:
+                self.driver.get("https://www.tiktok.com")
+                isGetUserIdAgain = True
+            except WebDriverException:
+                cookies = self.driver.get_cookies()
+                cookies_string = ";".join(
+                    [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+                )
+                account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                with open(self.output_file_path, "a") as f:
+                    f.write(account + "\n")
+                isGetUserIdAgain = False
+                self.is_restart = False
+                return
+
+        
     is_list_avtart_default = True
 
     with open("configs_account.json", "r") as json_file:
@@ -50,42 +72,29 @@ def handleUploadAvatar(self):
         list_avatar_folder = "data/wibus"
     list_avatar = os.listdir(list_avatar_folder)
     
-    if not self.is_skip_new_username:
+    # if not self.is_skip_new_username:
+    #     try:
+    #         self.driver.get(f"https://www.tiktok.com/@{self.user_id}")
+    #     except WebDriverException:
+    #         account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+    #         with open(self.output_file_path, "a") as f:
+    #             f.write(account + "\n")
+    #         return
+    # else:
+
+    pageContent = self.driver.page_source
+    if '"nickName":"' in pageContent:
         try:
-            self.driver.get(f"https://www.tiktok.com/@{self.user_id}")
-        except WebDriverException:
-            account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-            with open(self.output_file_path, "a") as f:
-                f.write(account + "\n")
+            userId = pageContent.split('"nickName":"')[1].split('"')[0]
+        except IndexError:
             return
     else:
-        wait(2, 4)
-        pageContent = self.driver.page_source
-        if '"nickName":"' in pageContent:
-            try:
-                userId = pageContent.split('"nickName":"')[1].split('"')[0]
-            except IndexError:
-                return
+        return
+
+    try:
+        if userId:
+            self.driver.get(f"https://www.tiktok.com/@{userId}")
         else:
-            return
-   
-        try:
-            if userId:
-                self.driver.get(f"https://www.tiktok.com/@{userId}")
-            else:
-                cookies = self.driver.get_cookies()
-                cookies_string = ";".join(
-                    [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-                )
-                if userId:
-                    account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                else:
-                    account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                with open(self.output_file_path, "a") as f:
-                    f.write(account + "\n")
-                self.is_restart = False
-                return
-        except WebDriverException:
             cookies = self.driver.get_cookies()
             cookies_string = ";".join(
                 [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
@@ -96,9 +105,22 @@ def handleUploadAvatar(self):
                 account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
             with open(self.output_file_path, "a") as f:
                 f.write(account + "\n")
-            print("Không thể truy cập với user_id này")
             self.is_restart = False
             return
+    except WebDriverException:
+        cookies = self.driver.get_cookies()
+        cookies_string = ";".join(
+            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+        )
+        if userId:
+            account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        else:
+            account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        with open(self.output_file_path, "a") as f:
+            f.write(account + "\n")
+        print("Không thể truy cập với user_id này")
+        self.is_restart = False
+        return
 
     wait(4, 6)
     cookies = self.driver.get_cookies()
@@ -106,7 +128,7 @@ def handleUploadAvatar(self):
         [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
     )
 
-    account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+    account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
     
     # insert account
     with open(self.output_file_path, "a") as f:
@@ -125,7 +147,7 @@ def handleUploadAvatar(self):
             handleResolveCaptchaChooseTwoObjectsOmo(self)
             handleResolveCaptchaSliderObjectOmo(self)
 
-        waitForNavigation = WebDriverWait(self.driver, 100)
+        waitForNavigation = WebDriverWait(self.driver, 60)
         editProfile = waitForNavigation.until(
             EC.presence_of_element_located(("xpath", '//span[text()="Edit profile"]'))
         )
@@ -189,5 +211,3 @@ def handleUploadAvatar(self):
     item.setForeground(green_color)
 
     self.self_main.table_account_info.setItem(self.current_row_count, 3, item)
-
-    wait(2, 4)

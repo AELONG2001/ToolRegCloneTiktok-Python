@@ -4,8 +4,8 @@ import base64
 from selenium.webdriver.common.action_chains import ActionChains
 from utils.utils import wait
 from functions.handleMultiThreads.selenium.handleCode.handleGetCode import handleGetCode
-from functions.handleMultiThreads.handleRestartThread import handleRestartThread
-from functions.handleMultiThreads.handleRestartThread import handleRestartThreadNewMail
+from functions.handleMultiThreads.handleRestartThread.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail import handleRestartThreadNewMail
 
 def getResultCaptchaRotateObjectOmo(self, job_id):
     try:

@@ -3,7 +3,7 @@ import requests
 import base64
 from selenium.webdriver.common.action_chains import ActionChains
 from utils.utils import wait
-from functions.handleMultiThreads.handleRestartThread import handleRestartThread
+from functions.handleMultiThreads.handleRestartThread.handleRestartThread import handleRestartThread
 
 def getResultCaptchaSliderObjectAChi(self, task_id):
     try:
