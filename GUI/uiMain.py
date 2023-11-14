@@ -132,6 +132,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.captcha_type.setGeometry(QRect(860, 10, 101, 21))
     self.captcha_type.addItem("")
     self.captcha_type.addItem("")
+    # self.captcha_type.setCurrentIndex(0)
     self.list_mail = QPushButton(parent=self.home)
     self.list_mail.setGeometry(QRect(590, 10, 121, 24))
     icon3 = QIcon()
@@ -189,24 +190,26 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value_ip_port_user_pass.setGeometry(QRect(1120, 400, 124, 31))
     self.proxy_value_ip_port_user_pass.setStyleSheet("font: 10pt \"Segoe UI\";")
     self.proxy_value_ip_port_user_pass.setObjectName("proxy_value_ip_port_user_pass")
-    self.check_proxy = QPushButton(parent=self.home)
-    self.check_proxy.setGeometry(QRect(1125, 420, 60, 30))
-    self.check_proxy.setStyleSheet(
-        'font: 700 10pt "Segoe UI";\n'
-        "color: #fff;\n"
-        "background-color:rgb(64, 170, 15);\n"
-        ""
-    )
-    self.check_proxy.setObjectName("import_proxy")
-    self.loading_icon_check_proxy = QLabel(parent=self.home)
-    self.loading_icon_check_proxy.setGeometry(QRect(1208, 461, 60, 30))
-    self.loading_icon_check_proxy.setText("abc")
-    relative_path_check_proxy = "icons/loading.gif"
-    absolute_path_check_proxy = os.path.abspath(relative_path_check_proxy)
-    self.loadingMovieCheckProxy = QMovie(absolute_path_check_proxy)
-    self.loading_icon_check_proxy.setMovie(self.loadingMovieCheckProxy)
-    self.loading_icon_check_proxy.setObjectName("loading_icon_check_proxy")
-    self.loading_icon_check_proxy.setVisible(False)
+    self.proxy_value_ip_port.setVisible(False)
+    self.proxy_value_ip_port_user_pass.setVisible(False)
+    # self.check_proxy = QPushButton(parent=self.home)
+    # self.check_proxy.setGeometry(QRect(1125, 420, 60, 30))
+    # self.check_proxy.setStyleSheet(
+    #     'font: 700 10pt "Segoe UI";\n'
+    #     "color: #fff;\n"
+    #     "background-color:rgb(64, 170, 15);\n"
+    #     ""
+    # )
+    # self.check_proxy.setObjectName("import_proxy")
+    # self.loading_icon_check_proxy = QLabel(parent=self.home)
+    # self.loading_icon_check_proxy.setGeometry(QRect(1208, 461, 60, 30))
+    # self.loading_icon_check_proxy.setText("abc")
+    # relative_path_check_proxy = "icons/loading.gif"
+    # absolute_path_check_proxy = os.path.abspath(relative_path_check_proxy)
+    # self.loadingMovieCheckProxy = QMovie(absolute_path_check_proxy)
+    # self.loading_icon_check_proxy.setMovie(self.loadingMovieCheckProxy)
+    # self.loading_icon_check_proxy.setObjectName("loading_icon_check_proxy")
+    # self.loading_icon_check_proxy.setVisible(False)
 
     if self.current_version == self.latest_version:
         self.update_label.hide()
@@ -216,17 +219,18 @@ def uiMain(self, ToolRegCloneTiktok):
         self.list_proxy.setGeometry(QRect(900, 85, 61, 41))
         self.proxy_type.setGeometry(QRect(950, 95, 121, 22))
         self.proxy_value.setGeometry(QRect(900, 130, 211, 361))
-        self.check_proxy.setGeometry(QRect(1125, 460, 61, 31))
+    
+    if os.path.exists("configs_account.json"):
+        with open("configs_account.json", "r") as json_file:
+                data = json.load(json_file)
 
-    # with open("configs_account.json", "r") as json_file:
-    #         data = json.load(json_file)
-
-    # if data["proxy_type"] == 3 or data["proxy_type"] == 4:
-    #     self.proxy_value_ip_port.setVisible(True)
-    #     self.proxy_value_ip_port_user_pass.setVisible(True)
-    # else:
-    #     self.proxy_value_ip_port.setVisible(False)
-    #     self.proxy_value_ip_port_user_pass.setVisible(False)
+        if "proxy_type" in data:
+            if data["proxy_type"] == 3 or data["proxy_type"] == 4:
+                self.proxy_value_ip_port.setVisible(True)
+                self.proxy_value_ip_port_user_pass.setVisible(True)
+            else:
+                self.proxy_value_ip_port.setVisible(False)
+                self.proxy_value_ip_port_user_pass.setVisible(False)
 
     self.link_facebook = QLabel(parent=self.home)
     self.link_facebook.setGeometry(QRect(50, 490, 301, 31))
@@ -428,7 +432,6 @@ def uiMain(self, ToolRegCloneTiktok):
     self.export_account.clicked.connect(self.exportAccount)
     self.proxy_value.textChanged.connect(self.importProxy)
     self.proxy_value_ip_port.toggled.connect(self.checkIsProxyIpPort)
-    self.check_proxy.clicked.connect(self.checkProxy)
     self.password_reg_account_value.textChanged.connect(self.getDefaultPassword)
     self.random_password_account.toggled.connect(self.checkRandomPassword)
     self.chrome_setting_line_value.valueChanged.connect(self.getIsChromeCount)

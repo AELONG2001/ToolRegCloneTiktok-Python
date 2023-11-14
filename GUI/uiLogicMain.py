@@ -24,6 +24,8 @@ class Ui_ToolRegCloneTiktok(QObject):
         self.current_version = "1.0.0"
         self.latest_version = self.data["latest_version"]
         self.remaining_days = self.data["remaining_days"]
+        self.is_start = False
+        self.startAutomation_called = False
         self.is_check_mail = False
         self.stop_flag = False
         self.chrome_threads = []
@@ -129,9 +131,6 @@ class Ui_ToolRegCloneTiktok(QObject):
 
     def checkIsProxyIpPort(self):
         self.automation_controller.checkIsProxyIpPort()
-    
-    def checkProxy(self):
-        self.automation_controller.checkProxy()
 
     def getDefaultPassword(self):
         self.automation_controller.getDefaultPassword()
@@ -169,6 +168,14 @@ class Ui_ToolRegCloneTiktok(QObject):
     def handleCheckMail(self):
         self.automation_controller.handleCheckMail()
 
+    def updateResultCheckInitalValues(self, can_continue, message):
+        if can_continue:
+            self.is_start = True
+            self.start()
+        else:
+            self.is_start = False
+            QMessageBox.warning(None, "Warning", f"{message}")
+
     def updateResultCheckMail(self, username, password, status):
         if status:
             self.mail_success_box.append(f"{username}|{password}")
@@ -204,24 +211,6 @@ class Ui_ToolRegCloneTiktok(QObject):
             msg.setText("Kiểm tra email hoàn thành.")
             msg.setWindowTitle("Thành công")
             msg.exec()
-    def updateResultCheckProxy(self, check_correct, check_expired):
-        if check_correct:
-            QMessageBox.warning(None, "Warning", f"{check_correct}Vui lòng kiểm tra lại")
-        elif check_expired:
-            QMessageBox.warning(None, "Warning", f"{check_expired}Vui lòng kiểm tra lại")
-        else:
-            QMessageBox.information(None, "Thông báo", f"Proxy live.Hãy bắt đầu chạy tool")
-
-        self.start_button.setEnabled(True)
-        self.start_button.setStyleSheet("color:rgb(255, 252, 252); background-color:rgb(64, 170, 15)")        
-        self.check_proxy.setEnabled(True)
-        if self.current_version == self.latest_version:
-            self.check_proxy.setGeometry(QRect(1125, 420, 60, 30))
-        else:
-            self.check_proxy.setGeometry(QRect(1125, 460, 60, 30))
-        self.check_proxy.setText("Check")
-        self.check_proxy.setStyleSheet("color: #fff; background-color: rgb(64, 170, 15)")
-        self.loading_icon_check_proxy.setVisible(False)
 
     def retranslateUi(self, ToolRegCloneTiktok):
         translateUi(self, ToolRegCloneTiktok, self.current_version, self.remaining_days)

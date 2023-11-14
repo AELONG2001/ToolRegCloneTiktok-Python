@@ -8,6 +8,7 @@ from GUI.uiCheckKey import CheckKeyUser
 from GUI.uiLogicMain import Ui_ToolRegCloneTiktok
 from functions.handleCheckKey.handleCheckKey import handleCheckKey
 import json
+
 class MainWindow(QMainWindow):
     def __init__(self, ui_self):
         super().__init__()

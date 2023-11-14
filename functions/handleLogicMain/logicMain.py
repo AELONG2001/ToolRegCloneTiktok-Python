@@ -6,7 +6,6 @@ from functions.handleMultiThreads.thread.startAutomation import startAutomation
 from functions.handleMultiThreads.thread.stopAutomation import stopAutomation
 from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
 from functions.handleCheckMail.checkMail import checkMail
-from functions.handleCheckProxy.handleCheckProxy import handleCheckProxy
 
 import os
 import json
@@ -109,7 +108,7 @@ class AutomationController:
         return bool(password_regex.match(password))
     
     def check_password(self):
-        password_account = self.ui_instance.password_reg_account_value.text()
+        password_account = self.ui_instance.password_reg_account_value.text().strip()
         if self.validate_password(password_account):
             self.ui_instance.check_rule_password_account.setText("")
         else:
@@ -149,7 +148,7 @@ class AutomationController:
         handleSaveDataInputUser("captcha_type", captcha_type + 1)
 
     def getCaptchaKey(self):
-        captcha_key = self.ui_instance.captcha_key.text()
+        captcha_key = self.ui_instance.captcha_key.text().strip()
         handleSaveDataInputUser("captcha_key", captcha_key)
 
     def exportAccount(self):
@@ -221,7 +220,7 @@ class AutomationController:
         handleSaveDataInputUser("proxy_type", proxy_type + 1)
 
     def importProxy(self):
-        proxy_text = self.ui_instance.proxy_value.toPlainText()
+        proxy_text = self.ui_instance.proxy_value.toPlainText().strip()
         proxy_list = proxy_text.splitlines()
 
         handleSaveDataInputUser("proxys", proxy_list)
@@ -229,12 +228,9 @@ class AutomationController:
     def checkIsProxyIpPort(self):
         proxy_value_ip_port = self.ui_instance.proxy_value_ip_port.isChecked()
         handleSaveDataInputUser("is_proxy_ip_port", proxy_value_ip_port)
-
-    def checkProxy(self):
-        handleCheckProxy(self.ui_instance)
         
     def getDefaultPassword(self):
-        password_account = self.ui_instance.password_reg_account_value.text()
+        password_account = self.ui_instance.password_reg_account_value.text().strip()
         handleSaveDataInputUser("password_account", password_account)
 
         if not password_account:
@@ -263,15 +259,15 @@ class AutomationController:
         handleSaveDataInputUser("chromeValueDelay", chromeValueDelay)
 
     def getTokenGologin(self):
-        api_token_gologin = self.ui_instance.api_token_gologin_value.text()
+        api_token_gologin = self.ui_instance.api_token_gologin_value.text().strip()
         handleSaveDataInputUser("api_token_gologin", api_token_gologin)
 
     def getPathGologin(self):
-        path_gologin = self.ui_instance.path_gologin_value.text()
+        path_gologin = self.ui_instance.path_gologin_value.text().strip()
         handleSaveDataInputUser("path_gologin", path_gologin)    
 
     def getValueApiHotmailbox(self):
-        api_value_hotmailbox = self.ui_instance.api_hotmailbox_value.text()
+        api_value_hotmailbox = self.ui_instance.api_hotmailbox_value.text().strip()
         handleSaveDataInputUser("api_value_hotmailbox", api_value_hotmailbox)
 
     def checkIsUploadAvatar(self):
@@ -293,7 +289,7 @@ class AutomationController:
     def handleCheckMail(self):
         self.ui_instance.is_check_mail = True
         
-        if not self.ui_instance.file_mail_check_value.text():
+        if not self.ui_instance.file_mail_check_value.text().strip():
             QMessageBox.warning(None, "Warning", "Vui lòng chọn file cần check")
             return
         
