@@ -79,7 +79,10 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+               isResolveCaptchaAgain = False
+               self.driver.quit()
                handleRestartThread(self)
+               return
             else:
                 return
 
@@ -101,7 +104,10 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
           [x1, y1, x2, y2] = result.split(",")
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                isResolveCaptchaAgain = False
+                self.driver.quit()
                 handleRestartThread(self)
+                return
             else:
                return
 
@@ -125,7 +131,10 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
             ).click().perform()
         except WebDriverException:
             print("Lỗi trong quá trình thực hiện chuỗi hành động")
+            isResolveCaptchaAgain = False
+            self.driver.quit()
             handleRestartThread(self)
+            return
 
         wait(2, 3)
         submitCaptcha = self.driver.find_element(
@@ -153,6 +162,9 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
                 wait(1, 2)
                 with open("data/account_created.txt", "a") as file:
                     file.write(f"{self.username_mail}|{self.password_mail}\n")
+                
+                isResolveCaptchaAgain = False
+                self.driver.quit()
                 handleRestartThreadNewMail(self)
                 return
             

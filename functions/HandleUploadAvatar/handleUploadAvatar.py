@@ -64,9 +64,9 @@ def handleUploadAvatar(self):
 
     with open("configs_account.json", "r") as json_file:
         data = json.load(json_file)
-    if "url_avatar" in data:
+    if "url_avatar" in data and data["url_avatar"]:
         is_list_avtart_default = False
-        list_avatar_folder = data["url_avatar"]     
+        list_avatar_folder = data["url_avatar"]
     else:
         is_list_avtart_default = True
         list_avatar_folder = "data/wibus"

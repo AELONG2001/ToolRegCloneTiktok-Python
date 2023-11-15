@@ -36,13 +36,7 @@ class Ui_ToolRegCloneTiktok(QObject):
 
         self.start_timer = QTimer(self)
         self.re_start_timer = QTimer(self)
-        
-        self.start_timer.setInterval(2000)
-        self.re_start_timer.setInterval(3000)
-       
-        self.start_timer.timeout.connect(self.start_next_thread)
-        self.re_start_timer.timeout.connect(self.restart_thread)
-
+    
         self.update_progress_dialog = UpdateProgressDialog(self)
         self.stop_progress_dialog = StopProgressDialog(self)
 
@@ -60,7 +54,6 @@ class Ui_ToolRegCloneTiktok(QObject):
         self.automation_controller.start_next_thread()
     
     def restart_thread(self, thread, username, password):
-        print("Restart")
         with open("configs_account.json", "r") as json_file:
             data = json.load(json_file)
 
@@ -141,11 +134,11 @@ class Ui_ToolRegCloneTiktok(QObject):
     def getIsChromeCount(self):
         self.automation_controller.getIsChromeCount()
 
-    def getChromePercentZoom(self):
-        self.automation_controller.getChromePercentZoom()
+    def getChromePercentZoom(self, value):
+        self.automation_controller.getChromePercentZoom(value)
 
-    def getChromeValueDelay(self):
-        self.automation_controller.getChromeValueDelay()
+    def getChromeValueDelay(self, value):
+        self.automation_controller.getChromeValueDelay(value)
 
     def getTokenGologin(self):
         self.automation_controller.getTokenGologin()

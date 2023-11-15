@@ -95,6 +95,6 @@ class CheckKeyUser(QMainWindow):
             handleSaveDataInputUser("key", input_key)
             handleSaveDataInputUser("machine_code", self.machine_code)
             QApplication.quit()
-            run("python ./main.py", creationflags=CREATE_NO_WINDOW)
+            run("./ToolRegCloneTiktok.exe", creationflags=CREATE_NO_WINDOW)
         else:
             QMessageBox.critical(self, "Xác nhận key", "Key không đúng hoặc đã hết hạn.\nVui lòng kiểm tra lại", QMessageBox.Ok)

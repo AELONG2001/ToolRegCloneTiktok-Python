@@ -19,6 +19,7 @@ from subprocess import run, CREATE_NO_WINDOW
 class AutomationController:
     def __init__(self, ui_instance):
         self.ui_instance = ui_instance
+
         self.timer_check_password = QTimer()
         self.timer_check_password.timeout.connect(self.check_password)
         self.timer_check_password.setSingleShot(True)  # Đặt chế độ single shot để chỉ chạy một lần
@@ -79,7 +80,7 @@ class AutomationController:
         # move old exe to old version folder
         os.rename(source_file, destination_path)
         os.rename(f"{self.ui_instance.latest_version}/ToolRegCloneTiktok.exe", source_file)
-        shutil.rmtree(f"{self.ui_instance.current_version}")
+        # shutil.rmtree(f"{self.ui_instance.current_version}")
         shutil.rmtree(f"{self.ui_instance.latest_version}")
         QApplication.quit()
         run("./ToolRegCloneTiktok.exe", creationflags=CREATE_NO_WINDOW)
@@ -123,9 +124,11 @@ class AutomationController:
         if value < 1:
             QMessageBox.warning(None, "Warning", "Tối thiểu là 1 luồng")
             self.ui_instance.threads_value.setValue(1)
-        elif value > 50:
-            QMessageBox.warning(None, "Warning", "Tối đa không được vượt quá 50 luồng")
-            self.ui_instance.threads_value.setValue(50)
+        elif value > 90:
+            QMessageBox.warning(None, "Warning", "Tối đa không được vượt quá 90 luồng")
+            self.ui_instance.threads_value.setValue(90)
+            handleSaveDataInputUser("num_threads", 90)
+            return
 
         handleSaveDataInputUser("num_threads", num_threads)
 
@@ -250,12 +253,24 @@ class AutomationController:
         is_chrome_count = self.ui_instance.chrome_setting_line_value.value()
         handleSaveDataInputUser("is_chrome_count", is_chrome_count)
 
-    def getChromePercentZoom(self):
+    def getChromePercentZoom(self, value):
+        # if value < 0.1:
+        #     QMessageBox.warning(None, "Warning", "Giá trị không được nhỏ hơn 0.1")
+        #     self.ui_instance.chrome_percent_zoom_value.setValue(0.1)
+        #     handleSaveDataInputUser("chrome_percent_zoom", 0.1)
+        #     return
+
         chrome_percent_zoom = self.ui_instance.chrome_percent_zoom_value.value()
         handleSaveDataInputUser("chrome_percent_zoom", chrome_percent_zoom)
 
-    def getChromeValueDelay(self):
-        chromeValueDelay = self.ui_instance.chrome_delay_minute_value.value()
+    def getChromeValueDelay(self, value):
+        if value < 1:
+            QMessageBox.warning(None, "Warning", "Giá trị không được nhỏ hơn 1")
+            self.ui_instance.chrome_delay_second_value.setValue(1)
+            handleSaveDataInputUser("chromeValueDelay", 1)
+            return
+
+        chromeValueDelay = self.ui_instance.chrome_delay_second_value.value()
         handleSaveDataInputUser("chromeValueDelay", chromeValueDelay)
 
     def getTokenGologin(self):

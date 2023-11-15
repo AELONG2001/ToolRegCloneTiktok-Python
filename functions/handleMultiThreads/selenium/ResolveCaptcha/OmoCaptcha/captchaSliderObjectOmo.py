@@ -78,7 +78,10 @@ def handleResolveCaptchaSliderObjectOmo(self):
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                isResolveCaptchaAgain = False
+                self.driver.quit()
                 handleRestartThread(self)
+                return
             else:
                 return
 
@@ -103,7 +106,10 @@ def handleResolveCaptchaSliderObjectOmo(self):
             x1 = int(result) + 82
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                isResolveCaptchaAgain = False
+                self.driver.quit()
                 handleRestartThread(self)
+                return
             else:
                 return
 
@@ -139,7 +145,10 @@ def handleResolveCaptchaSliderObjectOmo(self):
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                isResolveCaptchaAgain = False
+                self.driver.quit()
                 handleRestartThread(self)
+                return
             else:
                 return
 

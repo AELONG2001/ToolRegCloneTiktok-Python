@@ -100,6 +100,9 @@ class AutomationThread(QThread):
         self.password_restart = password_restart
         self.is_restart = is_restart
 
+        self.username_mail = ""
+        self.password_mail = ""
+
         self.is_running = True
         self.is_skip_new_username = False
         self.stop_flag = False
@@ -203,66 +206,68 @@ class AutomationThread(QThread):
             with open(self.input_file_path, "r") as file:
                 existing_data_input = file.readlines()
 
-            # check data file
-            exists_input = False
-            for line in existing_data_input:
-                parts = line.strip().split('|')
-                if len(parts) >= 1 and self.username_mail == parts[0]:
-                    exists_input = True
-                    break
+            if existing_data_input:
+                # check data file
+                exists_input = False
+                for line in existing_data_input:
+                    parts = line.strip().split('|')
+                    if len(parts) >= 1 and self.username_mail == parts[0]:
+                        exists_input = True
+                        break
 
-            # check if data not exist
-            if not exists_input:
-                if existing_data_input[-1].endswith("\n"):
-                    with open(self.input_file_path, "a") as file:
-                        file.write(f"{self.username_mail}|{self.password_mail}\n")
-                else: 
-                  with open(self.input_file_path, "a") as file:
-                    file.write(f"\n{self.username_mail}|{self.password_mail}")
+                # check if data not exist
+                if not exists_input:
+                    if existing_data_input[-1].endswith("\n"):
+                        with open(self.input_file_path, "a") as file:
+                            file.write(f"{self.username_mail}|{self.password_mail}\n")
+                    else: 
+                     with open(self.input_file_path, "a") as file:
+                        file.write(f"\n{self.username_mail}|{self.password_mail}")
         else:
             # open file output
             with open(self.output_file_path, "r") as file:
                 existing_data_output = file.readlines()
 
-            # check data file
-            exists_output = False
-            for line in existing_data_output:
-                parts = line.strip().split('|')
-                if len(parts) >= 1 and self.username_mail == parts[2]:
-                    exists_output = True
-                    break
+            if existing_data_output:
+                # check data file
+                exists_output = False
+                for line in existing_data_output:
+                    parts = line.strip().split('|')
+                    if len(parts) >= 1 and self.username_mail == parts[2]:
+                        exists_output = True
+                        break
 
-            # check if data not exist
-            if not exists_output:
-                # if not self.is_skip_new_username:
-                #     account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                #     with open(self.output_file_path, "a") as f:
-                #         f.write(account + "\n")
-                # else:
-                wait(2, 4)
-                pageContent = self.driver.page_source
-                if '"nickName":"' in pageContent:
-                    try:
-                        userId = pageContent.split('"nickName":"')[1].split('"')[0]
-                    except IndexError:
+                # check if data not exist
+                if not exists_output:
+                    # if not self.is_skip_new_username:
+                    #     account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                    #     with open(self.output_file_path, "a") as f:
+                    #         f.write(account + "\n")
+                    # else:
+                    wait(2, 4)
+                    pageContent = self.driver.page_source
+                    if '"nickName":"' in pageContent:
+                        try:
+                            userId = pageContent.split('"nickName":"')[1].split('"')[0]
+                        except IndexError:
+                            userId = ""
+                    else:
                         userId = ""
-                else:
-                    userId = ""
-                cookies = self.driver.get_cookies()
-                cookies_string = ";".join(
-                    [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-                )
-                if userId:
-                    account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                else:
-                    account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                wait(1, 2)
-                if existing_data_output[-1].endswith("\n"):
-                    with open(self.output_file_path, "a") as f:
-                        f.write(f"{account}\n")
-                else:
-                    with open(self.output_file_path, "a") as f:
-                        f.write(f"\n{account}")   
+                    cookies = self.driver.get_cookies()
+                    cookies_string = ";".join(
+                        [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+                    )
+                    if userId:
+                        account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                    else:
+                        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                    wait(1, 2)
+                    if existing_data_output[-1].endswith("\n"):
+                        with open(self.output_file_path, "a") as f:
+                            f.write(f"{account}\n")
+                    else:
+                        with open(self.output_file_path, "a") as f:
+                            f.write(f"\n{account}")   
 
         if hasattr(self, "driver"):
             AutomationThread.num_quit += 1

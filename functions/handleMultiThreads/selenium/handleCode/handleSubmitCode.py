@@ -21,6 +21,10 @@ def handleSubmitCode(self, code):
     try:
       agreePolicyElement.click()
     except ElementClickInterceptedException:
+        self.driver.quit()
         handleRestartThread(self)
+        return
     except StaleElementReferenceException:
+        self.driver.quit()
         handleRestartThread(self)
+        return

@@ -10,13 +10,16 @@ def handleSubmitAccount(self):
     isSubmitAccount = True
     max_attempts = 10
     attempts = 0
-    while attempts < max_attempts and isSubmitAccount and not self.stop_flag:
+    while attempts < max_attempts and isSubmitAccount:
         self.self_main.table_account_info.setItem(
             self.current_row_count, 3, QTableWidgetItem("Đang submit...")
         )
         wait(2, 3)
         if self.driver.current_url == "https://www.tiktok.com/login/download-app":
+            isSubmitAccount = False
+            self.driver.quit()
             handleRestartThread(self)
+            return
 
         submitAccount = self.driver.find_element("css selector", "button[type='submit']")
         try:
@@ -48,6 +51,11 @@ def handleSubmitAccount(self):
                 wait(1, 2)
                 with open(self.output_file_path, "a") as f:
                     f.write(account + "\n")
+                
+                self.driver.quit()
                 handleRestartThreadNewMail(self)
+                return
             else:
+               self.driver.quit()
                handleRestartThread(self)
+               return

@@ -13,7 +13,7 @@ def handleGetCodeFromMail(self):
         max_attempts = 5
         attempts = 0
         isCode = True
-        while  attempts < max_attempts and isCode and not self.stop_flag:
+        while attempts < max_attempts and isCode:
             params = {
                 "mail": self.username_mail,
                 "pass": self.password_mail,
@@ -31,7 +31,15 @@ def handleGetCodeFromMail(self):
             print("Data: ", data)
 
             if data["content"] == "Invalid email or password or IMAP disabled":
+               self.self_main.table_account_info.setItem(
+                self.current_row_count, 3, QTableWidgetItem("hotmail đã bị block...")
+               )
+               print("Restart invalid mail")
+               attempts = 0
+               isCode = False
+               self.driver.quit()
                handleRestartThreadNewMail(self)
+               return
 
             if data["code"]:
                 self.self_main.table_account_info.setItem(
@@ -47,7 +55,9 @@ def handleGetCodeFromMail(self):
                 attempts += 1
 
         if attempts >= max_attempts:
+            self.driver.quit()
             handleRestartThread(self)
+            return
 
     except requests.exceptions.RequestException as e:
         print(e)

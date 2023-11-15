@@ -9,8 +9,9 @@ def handleGetCode(self):
         
         max_attempts = 5  # Số lần tối đa xuất hiện checkDectect trước khi khởi động lại self.thread
         attempts = 0
+        is_get_code_again = True
 
-        while  attempts < max_attempts and not self.stop_flag:
+        while attempts < max_attempts and is_get_code_again:
             wait(4, 6)
             getCodeElement = self.driver.find_element(
                 "xpath", '//*[@data-e2e="send-code-button"]'
@@ -34,16 +35,26 @@ def handleGetCode(self):
                     wait(1, 2)
                     with open("data/account_created.txt", "a") as file:
                         file.write(f"{self.username_mail}|{self.password_mail}\n")
+                    
+                    attempts = 0
+                    is_get_code_again = False
+
+                    self.driver.quit()
                     handleRestartThreadNewMail(self)
+                    return
 
             if checkDectect:
+                is_get_code_again = True
                 attempts += 1
             else:
+                is_get_code_again = False
                 attempts = 0
 
         # Nếu đã thực hiện đủ số lần tối đa, khởi động lại self.thread
         if attempts >= max_attempts:
+            self.driver.quit()
             handleRestartThread(self)
+            return
 
     except:
         return

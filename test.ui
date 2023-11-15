@@ -641,7 +641,7 @@ font: 11pt &quot;Sans Serif Collection&quot;;</string>
         <string>Tỉ lệ Zoom chrome:</string>
        </property>
       </widget>
-      <widget class="QLabel" name="chrome_delay_minute">
+      <widget class="QLabel" name="chrome_delay_seconed">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -829,7 +829,7 @@ font: 11pt &quot;Sans Serif Collection&quot;;</string>
         <number>1</number>
        </property>
       </widget>
-      <widget class="QSpinBox" name="chrome_delay_minute_value">
+      <widget class="QSpinBox" name="chrome_delay_second_value">
        <property name="geometry">
         <rect>
          <x>280</x>

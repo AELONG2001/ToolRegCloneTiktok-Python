@@ -79,4 +79,13 @@ def startAutomation(self):
             )
             for thread in range(num_threads)
         ]
+
+        secondTimer = self.chrome_delay_second_value.value()
+        
+        self.start_timer.setInterval(secondTimer * 1000)
+        self.re_start_timer.setInterval((secondTimer * 1000) + 2000)
+       
+        self.start_timer.timeout.connect(self.start_next_thread)
+        self.re_start_timer.timeout.connect(self.restart_thread)
+
         self.start_next_thread()

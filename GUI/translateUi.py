@@ -39,16 +39,19 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.proxy_type.setItemText(2, _translate("ToolRegCloneTiktok", "HTTP Proxy"))
    self.proxy_type.setItemText(3, _translate("ToolRegCloneTiktok", "SOCKS5 Proxy"))
 
-   self.list_mail.setText(_translate("ToolRegCloneTiktok", " List mail"))
+   self.list_mail.setText(_translate("ToolRegCloneTiktok", "Nhập mail"))
    self.export_account.setText(_translate("ToolRegCloneTiktok", "Xuất tài khoản"))
    self.update_label.setText(_translate("ToolRegCloneTiktok", "Đã có phiên bản mới, cập nhập ngay...."))
    self.update_button.setText(_translate("ToolRegCloneTiktok", "Cập nhập"))
    self.list_proxy.setText(_translate("ToolRegCloneTiktok", "Proxys:"))
    # self.hotline.setText(_translate("ToolRegCloneTiktok", "Hotline:"))
    # self.phone.setText(_translate("ToolRegCloneTiktok", "037.527.0513"))
-   #  self.copyright.setText(
-   #      _translate("ToolRegCloneTiktok", "© Bản quyền thuộc về longsoftware.vn")
-   #  )
+   self.hint.setText(
+        _translate("ToolRegCloneTiktok", "Tool chạy ổn định khi mạng ok + số luồng chạy phù hợp với cấu hình máy")
+   )
+   self.copyright.setText(
+        _translate("ToolRegCloneTiktok", "© Bản quyền thuộc về longsoftware.vn")
+   )
    #  self.link_facebook.setText(
    #      _translate("ToolRegCloneTiktok", "https://www.facebook.com/longkata2001")
    #  )
@@ -70,10 +73,10 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
 
 
    self.file_mail_check.setText(
-      _translate("ToolRegCloneTiktok", "File Mail cần check")
+      _translate("ToolRegCloneTiktok", "Nhập Mail cần check")
    )
-   self.chrome_delay_minute.setText(
-      _translate("ToolRegCloneTiktok", "Số phút delay sau mỗi thread:")
+   self.chrome_delay_seconed.setText(
+      _translate("ToolRegCloneTiktok", "Số giây delay sau mỗi thread:")
    )
    self.api_token_gologin.setText(_translate("ToolRegCloneTiktok", "API Token Gologin:"))
    self.path_gologin.setText(_translate("ToolRegCloneTiktok", "Path Gologin:"))
@@ -86,11 +89,12 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.is_upload_avatar_yes.setText(_translate("ToolRegCloneTiktok", "Có"))
    self.is_upload_avatar_no.setText(_translate("ToolRegCloneTiktok", "Không"))
    self.btn_check.setText(_translate("ToolRegCloneTiktok", "Check"))
+   self.note_mail.setText(_translate("ToolRegCloneTiktok", "Chú ý: Mail Live sẽ được tự thêm vào file mail"))
    self.mail_success.setText(_translate("ToolRegCloneTiktok", "Live Mail:"))
    self.mail_failed.setText(_translate("ToolRegCloneTiktok", "Die Mail"))
    self.ToolRegCloneTiktok.setTabText(
       self.ToolRegCloneTiktok.indexOf(self.settings),
-      _translate("ToolRegCloneTiktok", "Settings"),
+      _translate("ToolRegCloneTiktok", "Cài đặt"),
    )
 
    with open("configs_account.json", "r") as json_file:
@@ -163,9 +167,9 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
       self.chrome_percent_zoom_value.setValue(0.37)
 
    if "chromeValueDelay" in data:
-      self.chrome_delay_minute_value.setValue(data["chromeValueDelay"])
+      self.chrome_delay_second_value.setValue(data["chromeValueDelay"])
    else:
-      self.chrome_delay_minute_value.setValue(3)
+      self.chrome_delay_second_value.setValue(3)
 
    if "api_token_gologin" in data:
       self.api_token_gologin_value.setText(data["api_token_gologin"])

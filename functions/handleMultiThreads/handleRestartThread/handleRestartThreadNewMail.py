@@ -2,7 +2,6 @@ from PySide6.QtWidgets import *
 from functions.profilesGologin.handleDeleteProfile import handleDeleteProfile
 
 def handleRestartThreadNewMail(self):
-    self.driver.quit()
     handleDeleteProfile(self.profile_id)
     self.self_main.table_account_info.setItem(
         self.current_row_count,

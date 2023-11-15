@@ -48,7 +48,7 @@ def handleCreateJobGetCaptchaRotateObjectOmo(
 def handleResolveCaptchaRotateObjectOmo(self):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
-    while isResolveCaptchaAgain and not self.stop_flag:
+    while isResolveCaptchaAgain:
         wait(4, 6)
         captchaElements = self.driver.find_elements(
             "css selector", ".captcha_verify_slide--button"
@@ -76,7 +76,10 @@ def handleResolveCaptchaRotateObjectOmo(self):
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                isResolveCaptchaAgain = False
+                self.driver.quit()
                 handleRestartThread(self)
+                return
             else:
                 return
 
@@ -111,7 +114,10 @@ def handleResolveCaptchaRotateObjectOmo(self):
             base64DataImgInside = encoded_img_list[1]
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                isResolveCaptchaAgain = False
+                self.driver.quit()
                 handleRestartThread(self)
+                return
             else:
                 return
 
@@ -130,7 +136,10 @@ def handleResolveCaptchaRotateObjectOmo(self):
           x1 = int(result) + 82
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                isResolveCaptchaAgain = False
+                self.driver.quit()
                 handleRestartThread(self)
+                return
             else:
                 return
 
@@ -151,7 +160,10 @@ def handleResolveCaptchaRotateObjectOmo(self):
         if cannotLoadImageCaptcha:
             print("No load image captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                isResolveCaptchaAgain = False
+                self.driver.quit()
                 handleRestartThread(self)
+                return
             else:
                 return
             
@@ -175,7 +187,10 @@ def handleResolveCaptchaRotateObjectOmo(self):
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+               isResolveCaptchaAgain = False
+               self.driver.quit()
                handleRestartThread(self)
+               return
             else:
                 return
 
@@ -199,7 +214,11 @@ def handleResolveCaptchaRotateObjectOmo(self):
                 wait(1, 2)
                 with open("data/account_created.txt", "a") as file:
                     file.write(f"{self.username_mail}|{self.password_mail}\n")
+                    
+                isResolveCaptchaAgain = False
+                self.driver.quit()
                 handleRestartThreadNewMail(self)
+                return
 
                 
         if checkDectect:
