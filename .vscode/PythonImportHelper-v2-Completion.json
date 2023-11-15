@@ -1,0 +1,2455 @@
+[
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QFileDialog",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLineEdit",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "setEnableStartButton",
+        "importPath": "functions.handleActiveButton.setEnableStartButton",
+        "description": "functions.handleActiveButton.setEnableStartButton",
+        "isExtraImport": true,
+        "detail": "functions.handleActiveButton.setEnableStartButton",
+        "documentation": {}
+    },
+    {
+        "label": "setEnableStartButton",
+        "importPath": "functions.handleActiveButton.setEnableStartButton",
+        "description": "functions.handleActiveButton.setEnableStartButton",
+        "isExtraImport": true,
+        "detail": "functions.handleActiveButton.setEnableStartButton",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckApiKeyAChi",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.handleCheckApiKeyAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.handleCheckApiKeyAChi",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.handleCheckApiKeyAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckApiKeyOmo",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckKeyTmProxy",
+        "importPath": "functions.proxy.TMProxy.handleCheckKeyTmProxy",
+        "description": "functions.proxy.TMProxy.handleCheckKeyTmProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TMProxy.handleCheckKeyTmProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTMProxyToCheckExpired",
+        "importPath": "functions.proxy.TMProxy.handleGetNewTMProxyToCheckExpired",
+        "description": "functions.proxy.TMProxy.handleGetNewTMProxyToCheckExpired",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TMProxy.handleGetNewTMProxyToCheckExpired",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTinProxyCheckCorrect",
+        "importPath": "functions.proxy.TinProxy.handleGetNewTinProxyCheckCorrect",
+        "description": "functions.proxy.TinProxy.handleGetNewTinProxyCheckCorrect",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TinProxy.handleGetNewTinProxyCheckCorrect",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTinProxyCheckExpired",
+        "importPath": "functions.proxy.TinProxy.handleGetNewTinProxyCheckExpired",
+        "description": "functions.proxy.TinProxy.handleGetNewTinProxyCheckExpired",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TinProxy.handleGetNewTinProxyCheckExpired",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckTokenGologin",
+        "importPath": "functions.profilesGologin.handleCheckTokenGologin",
+        "description": "functions.profilesGologin.handleCheckTokenGologin",
+        "isExtraImport": true,
+        "detail": "functions.profilesGologin.handleCheckTokenGologin",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckBalance",
+        "importPath": "functions.autoBuyHotmail.handleCheckBalance",
+        "description": "functions.autoBuyHotmail.handleCheckBalance",
+        "isExtraImport": true,
+        "detail": "functions.autoBuyHotmail.handleCheckBalance",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckInstock",
+        "importPath": "functions.autoBuyHotmail.handleCheckInstock",
+        "description": "functions.autoBuyHotmail.handleCheckInstock",
+        "isExtraImport": true,
+        "detail": "functions.autoBuyHotmail.handleCheckInstock",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "machineid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "machineid",
+        "description": "machineid",
+        "detail": "machineid",
+        "documentation": {}
+    },
+    {
+        "label": "handleSaveDataInputUser",
+        "importPath": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "description": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "isExtraImport": true,
+        "detail": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "documentation": {}
+    },
+    {
+        "label": "handleSaveDataInputUser",
+        "importPath": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "description": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "isExtraImport": true,
+        "detail": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "documentation": {}
+    },
+    {
+        "label": "startAutomation",
+        "importPath": "functions.handleMultiThreads.thread.startAutomation",
+        "description": "functions.handleMultiThreads.thread.startAutomation",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.thread.startAutomation",
+        "documentation": {}
+    },
+    {
+        "label": "stopAutomation",
+        "importPath": "functions.handleMultiThreads.thread.stopAutomation",
+        "description": "functions.handleMultiThreads.thread.stopAutomation",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.thread.stopAutomation",
+        "documentation": {}
+    },
+    {
+        "label": "selectAvatarFolder",
+        "importPath": "functions.handleOpenFolder.handleOpenListAvatar",
+        "description": "functions.handleOpenFolder.handleOpenListAvatar",
+        "isExtraImport": true,
+        "detail": "functions.handleOpenFolder.handleOpenListAvatar",
+        "documentation": {}
+    },
+    {
+        "label": "checkMail",
+        "importPath": "functions.handleCheckMail.checkMail",
+        "description": "functions.handleCheckMail.checkMail",
+        "isExtraImport": true,
+        "detail": "functions.handleCheckMail.checkMail",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.request",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.request",
+        "description": "urllib.request",
+        "detail": "urllib.request",
+        "documentation": {}
+    },
+    {
+        "label": "zipfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "zipfile",
+        "description": "zipfile",
+        "detail": "zipfile",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "run",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "CREATE_NO_WINDOW",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "run",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "CREATE_NO_WINDOW",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "handleDeleteProfile",
+        "importPath": "functions.profilesGologin.handleDeleteProfile",
+        "description": "functions.profilesGologin.handleDeleteProfile",
+        "isExtraImport": true,
+        "detail": "functions.profilesGologin.handleDeleteProfile",
+        "documentation": {}
+    },
+    {
+        "label": "handleDeleteProfile",
+        "importPath": "functions.profilesGologin.handleDeleteProfile",
+        "description": "functions.profilesGologin.handleDeleteProfile",
+        "isExtraImport": true,
+        "detail": "functions.profilesGologin.handleDeleteProfile",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "random_number",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "random_number",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "random_number",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "generate_random_name",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "generate_password",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "random_number",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "generate_random_name",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "generate_random_name",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "Keys",
+        "importPath": "selenium.webdriver.common.keys",
+        "description": "selenium.webdriver.common.keys",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.keys",
+        "documentation": {}
+    },
+    {
+        "label": "sleep",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "sleep",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "ElementClickInterceptedException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "StaleElementReferenceException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "ElementClickInterceptedException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "StaleElementReferenceException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "ElementClickInterceptedException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "NoSuchElementException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThreadNewMail",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThreadNewMail",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThreadNewMail",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThreadNewMail",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThreadNewMail",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThreadNewMail",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThreadNewMail",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleSubmitCode",
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleSubmitCode",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleSubmitCode",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleSubmitCode",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCode",
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCode",
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCode",
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCode",
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCode",
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "ChromeDriverManager",
+        "importPath": "webdriver_manager.chrome",
+        "description": "webdriver_manager.chrome",
+        "isExtraImport": true,
+        "detail": "webdriver_manager.chrome",
+        "documentation": {}
+    },
+    {
+        "label": "webdriver",
+        "importPath": "selenium",
+        "description": "selenium",
+        "isExtraImport": true,
+        "detail": "selenium",
+        "documentation": {}
+    },
+    {
+        "label": "SeleniumAuthenticatedProxy",
+        "importPath": "selenium_authenticated_proxy",
+        "description": "selenium_authenticated_proxy",
+        "isExtraImport": true,
+        "detail": "selenium_authenticated_proxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateProfile",
+        "importPath": "functions.profilesGologin.handleCreateProfile",
+        "description": "functions.profilesGologin.handleCreateProfile",
+        "isExtraImport": true,
+        "detail": "functions.profilesGologin.handleCreateProfile",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTMProxy",
+        "importPath": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "description": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCurrentTMProxy",
+        "importPath": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "description": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTinProxy",
+        "importPath": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "description": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCurrentTinProxy",
+        "importPath": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "description": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "documentation": {}
+    },
+    {
+        "label": "getMailContent",
+        "importPath": "functions.handleInputFileMail.getMailContent",
+        "description": "functions.handleInputFileMail.getMailContent",
+        "isExtraImport": true,
+        "detail": "functions.handleInputFileMail.getMailContent",
+        "documentation": {}
+    },
+    {
+        "label": "handleAutoBuyHotmail",
+        "importPath": "functions.autoBuyHotmail.autoBuyHotmail",
+        "description": "functions.autoBuyHotmail.autoBuyHotmail",
+        "isExtraImport": true,
+        "detail": "functions.autoBuyHotmail.autoBuyHotmail",
+        "documentation": {}
+    },
+    {
+        "label": "handleSelectMonth",
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
+        "documentation": {}
+    },
+    {
+        "label": "handleSelectDay",
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectDay",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectDay",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectDay",
+        "documentation": {}
+    },
+    {
+        "label": "handleSelectYear",
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectYear",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectYear",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectYear",
+        "documentation": {}
+    },
+    {
+        "label": "handleInputUserNameAndPassword",
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInputUserNameAndPassword",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInputUserNameAndPassword",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInputUserNameAndPassword",
+        "documentation": {}
+    },
+    {
+        "label": "handleSubmitAccount",
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSubmitAccount",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSubmitAccount",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSubmitAccount",
+        "documentation": {}
+    },
+    {
+        "label": "handleInsertNewUsername",
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInsertNewUsername",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInsertNewUsername",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInsertNewUsername",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCodeFromMail",
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleGetCodeFromMail",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleGetCodeFromMail",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleGetCodeFromMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaRotateObjectOmo",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaRotateObjectOmo",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaChooseTwoObjectsOmo",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaChooseTwoObjectsOmo",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaRotateObjectAChi",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaRotateObjectAChi",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaChooseTwoObjectsAChi",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaChooseTwoObjectsAChi",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleUploadAvatar",
+        "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "description": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "isExtraImport": true,
+        "detail": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "documentation": {}
+    },
+    {
+        "label": "setDisableStartButton",
+        "importPath": "functions.handleActiveButton.setDisableStartButton",
+        "description": "functions.handleActiveButton.setDisableStartButton",
+        "isExtraImport": true,
+        "detail": "functions.handleActiveButton.setDisableStartButton",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckInitialValues",
+        "importPath": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "description": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "isExtraImport": true,
+        "detail": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "documentation": {}
+    },
+    {
+        "label": "AutomationThread",
+        "importPath": "functions.handleMultiThreads.thread.AutomationThread",
+        "description": "functions.handleMultiThreads.thread.AutomationThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.thread.AutomationThread",
+        "documentation": {}
+    },
+    {
+        "label": "AutomationThread",
+        "importPath": "functions.handleMultiThreads.thread.AutomationThread",
+        "description": "functions.handleMultiThreads.thread.AutomationThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.thread.AutomationThread",
+        "documentation": {}
+    },
+    {
+        "label": "AutomationThread",
+        "importPath": "functions.handleMultiThreads.thread.AutomationThread",
+        "description": "functions.handleMultiThreads.thread.AutomationThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.thread.AutomationThread",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaSliderObjectAChi",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaSliderObjectOmo",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetMachineCode",
+        "importPath": "functions.handleCheckKey.handleGetMachineCode",
+        "description": "functions.handleCheckKey.handleGetMachineCode",
+        "isExtraImport": true,
+        "detail": "functions.handleCheckKey.handleGetMachineCode",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckKey",
+        "importPath": "functions.handleCheckKey.handleCheckKey",
+        "description": "functions.handleCheckKey.handleCheckKey",
+        "isExtraImport": true,
+        "detail": "functions.handleCheckKey.handleCheckKey",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckKey",
+        "importPath": "functions.handleCheckKey.handleCheckKey",
+        "description": "functions.handleCheckKey.handleCheckKey",
+        "isExtraImport": true,
+        "detail": "functions.handleCheckKey.handleCheckKey",
+        "documentation": {}
+    },
+    {
+        "label": "webbrowser",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "webbrowser",
+        "description": "webbrowser",
+        "detail": "webbrowser",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateProgressDialog",
+        "importPath": "GUI.uiUpdateVersion",
+        "description": "GUI.uiUpdateVersion",
+        "isExtraImport": true,
+        "detail": "GUI.uiUpdateVersion",
+        "documentation": {}
+    },
+    {
+        "label": "StopProgressDialog",
+        "importPath": "GUI.uiStopThread",
+        "description": "GUI.uiStopThread",
+        "isExtraImport": true,
+        "detail": "GUI.uiStopThread",
+        "documentation": {}
+    },
+    {
+        "label": "AutomationController",
+        "importPath": "functions.handleLogicMain.logicMain",
+        "description": "functions.handleLogicMain.logicMain",
+        "isExtraImport": true,
+        "detail": "functions.handleLogicMain.logicMain",
+        "documentation": {}
+    },
+    {
+        "label": "uiMain",
+        "importPath": "GUI.uiMain",
+        "description": "GUI.uiMain",
+        "isExtraImport": true,
+        "detail": "GUI.uiMain",
+        "documentation": {}
+    },
+    {
+        "label": "translateUi",
+        "importPath": "GUI.translateUi",
+        "description": "GUI.translateUi",
+        "isExtraImport": true,
+        "detail": "GUI.translateUi",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "string",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "string",
+        "description": "string",
+        "detail": "string",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "CheckKeyUser",
+        "importPath": "GUI.uiCheckKey",
+        "description": "GUI.uiCheckKey",
+        "isExtraImport": true,
+        "detail": "GUI.uiCheckKey",
+        "documentation": {}
+    },
+    {
+        "label": "Ui_ToolRegCloneTiktok",
+        "importPath": "GUI.uiLogicMain",
+        "description": "GUI.uiLogicMain",
+        "isExtraImport": true,
+        "detail": "GUI.uiLogicMain",
+        "documentation": {}
+    },
+    {
+        "label": "handleAutoBuyHotmail",
+        "kind": 2,
+        "importPath": "functions.autoBuyHotmail.autoBuyHotmail",
+        "description": "functions.autoBuyHotmail.autoBuyHotmail",
+        "peekOfCode": "def handleAutoBuyHotmail(api_key):\n    try:\n        email_password = \"\"\n        params = {\n            \"apikey\": f\"{api_key.strip()}\",\n            \"mailcode\": \"HOTMAIL\",\n            \"quantity\": 1\n        }\n        response = requests.get(\"https://api.hotmailbox.me/mail/buy\", params=params).json()\n        if \"Message\" in response and response[\"Message\"] == \"Bạn đã mua hàng thành công\":",
+        "detail": "functions.autoBuyHotmail.autoBuyHotmail",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckBalance",
+        "kind": 2,
+        "importPath": "functions.autoBuyHotmail.handleCheckBalance",
+        "description": "functions.autoBuyHotmail.handleCheckBalance",
+        "peekOfCode": "def handleCheckBalance(apikey):\n    url = \"https://api.hotmailbox.me/user/balance\"\n    params = {\n        \"apikey\": f\"{apikey}\",\n    }\n    response = requests.get(url, params=params).json()\n    return response",
+        "detail": "functions.autoBuyHotmail.handleCheckBalance",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckInstock",
+        "kind": 2,
+        "importPath": "functions.autoBuyHotmail.handleCheckInstock",
+        "description": "functions.autoBuyHotmail.handleCheckInstock",
+        "peekOfCode": "def handleCheckInstock(apikey):\n    url = \"https://api.hotmailbox.me/mail/currentstock\"\n    params = {\n        \"apikey\": f\"{apikey}\",\n    }\n    response = requests.get(url, params=params).json()\n    if \"Data\" not in response:\n        return 0\n    return response[\"Data\"][0][\"Instock\"]",
+        "detail": "functions.autoBuyHotmail.handleCheckInstock",
+        "documentation": {}
+    },
+    {
+        "label": "setDisableStartButton",
+        "kind": 2,
+        "importPath": "functions.handleActiveButton.setDisableStartButton",
+        "description": "functions.handleActiveButton.setDisableStartButton",
+        "peekOfCode": "def setDisableStartButton(self):\n    self.start_button.setEnabled(False)\n    self.start_button.setStyleSheet(\"background-color: rgba(0, 0, 0, 0.2)\")\n    self.stop_button.setEnabled(True)\n    self.stop_button.setStyleSheet(\n        \"color:rgb(255, 252, 252);\\n\" \"background-color:rgb(255, 0, 0)\"\n    )",
+        "detail": "functions.handleActiveButton.setDisableStartButton",
+        "documentation": {}
+    },
+    {
+        "label": "setEnableStartButton",
+        "kind": 2,
+        "importPath": "functions.handleActiveButton.setEnableStartButton",
+        "description": "functions.handleActiveButton.setEnableStartButton",
+        "peekOfCode": "def setEnableStartButton(self):\n    self.stop_button.setEnabled(False)\n    self.stop_button.setStyleSheet(\"background-color: rgba(0, 0, 0, 0.2)\")\n    self.start_button.setEnabled(True)\n    self.start_button.setStyleSheet(\n        \"color:rgb(255, 252, 252); background-color:rgb(64, 170, 15)\"\n    )",
+        "detail": "functions.handleActiveButton.setEnableStartButton",
+        "documentation": {}
+    },
+    {
+        "label": "InitalValuesCheckerTaskSignals",
+        "kind": 6,
+        "importPath": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "description": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "peekOfCode": "class InitalValuesCheckerTaskSignals(QObject):\n    result_signal = Signal(bool, str)\nclass InitalValuesCheckerTask(QRunnable):\n    def __init__(self, ui_instance):\n        super().__init__()\n        self.ui_instance = ui_instance\n        self.signals = InitalValuesCheckerTaskSignals()\n    def run(self):\n        message = \"\"\n        if self.ui_instance.is_check_mail:",
+        "detail": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "documentation": {}
+    },
+    {
+        "label": "InitalValuesCheckerTask",
+        "kind": 6,
+        "importPath": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "description": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "peekOfCode": "class InitalValuesCheckerTask(QRunnable):\n    def __init__(self, ui_instance):\n        super().__init__()\n        self.ui_instance = ui_instance\n        self.signals = InitalValuesCheckerTaskSignals()\n    def run(self):\n        message = \"\"\n        if self.ui_instance.is_check_mail:\n            message = \"Vui lòng đợi quá trình check mail hoàn thành\"\n            setEnableStartButton(self.ui_instance)",
+        "detail": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckInitialValues",
+        "kind": 2,
+        "importPath": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "description": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "peekOfCode": "def handleCheckInitialValues(self):\n    task = InitalValuesCheckerTask(self)\n    task.signals.result_signal.connect(self.updateResultCheckInitalValues)\n    self.threadpool.start(task)",
+        "detail": "functions.handleCheckInitialValues.handleCheckInitialValues",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckKey",
+        "kind": 2,
+        "importPath": "functions.handleCheckKey.handleCheckKey",
+        "description": "functions.handleCheckKey.handleCheckKey",
+        "peekOfCode": "def handleCheckKey(key, serial_number):\n    body = {\n        \"key\": key,\n        \"machine_code\": serial_number\n    }\n    data = requests.post(\"https://longsoftware.vn/api.php\", body).json()\n    print(\"data: \", data)\n    return data",
+        "detail": "functions.handleCheckKey.handleCheckKey",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetMachineCode",
+        "kind": 2,
+        "importPath": "functions.handleCheckKey.handleGetMachineCode",
+        "description": "functions.handleCheckKey.handleGetMachineCode",
+        "peekOfCode": "def handleGetMachineCode():\n      return machineid.hashed_id(\"ToolRegCloneTiktok\")",
+        "detail": "functions.handleCheckKey.handleGetMachineCode",
+        "documentation": {}
+    },
+    {
+        "label": "EmailCheckerTaskSignals",
+        "kind": 6,
+        "importPath": "functions.handleCheckMail.checkMail",
+        "description": "functions.handleCheckMail.checkMail",
+        "peekOfCode": "class EmailCheckerTaskSignals(QObject):\n    result_signal = Signal(str, str, bool)\nclass EmailCheckerTask(QRunnable):\n    def __init__(self, username, password):\n        super().__init__()\n        self.username_mail = username\n        self.password_mail = password\n        self.signals = EmailCheckerTaskSignals()\n    def run(self):\n        _, _, status = handleCheckMailApi(self.username_mail, self.password_mail)",
+        "detail": "functions.handleCheckMail.checkMail",
+        "documentation": {}
+    },
+    {
+        "label": "EmailCheckerTask",
+        "kind": 6,
+        "importPath": "functions.handleCheckMail.checkMail",
+        "description": "functions.handleCheckMail.checkMail",
+        "peekOfCode": "class EmailCheckerTask(QRunnable):\n    def __init__(self, username, password):\n        super().__init__()\n        self.username_mail = username\n        self.password_mail = password\n        self.signals = EmailCheckerTaskSignals()\n    def run(self):\n        _, _, status = handleCheckMailApi(self.username_mail, self.password_mail)\n        self.signals.result_signal.emit(self.username_mail, self.password_mail, status)\ndef checkMail(",
+        "detail": "functions.handleCheckMail.checkMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckMailApi",
+        "kind": 2,
+        "importPath": "functions.handleCheckMail.checkMail",
+        "description": "functions.handleCheckMail.checkMail",
+        "peekOfCode": "def handleCheckMailApi(username, password):\n    url = f\"https://tools.dongvanfb.net/api/check_mail\"\n    params = {\n        \"mail\": username,\n        \"pass\": password\n    }\n    response = requests.get(url, params=params)\n    data = response.json()\n    return (username, password, data.get(\"status\", False))\nclass EmailCheckerTaskSignals(QObject):",
+        "detail": "functions.handleCheckMail.checkMail",
+        "documentation": {}
+    },
+    {
+        "label": "checkMail",
+        "kind": 2,
+        "importPath": "functions.handleCheckMail.checkMail",
+        "description": "functions.handleCheckMail.checkMail",
+        "peekOfCode": "def checkMail(\n    self, fileNameCheck\n):\n    self.mail_success.setText(f\"Live Mail (0):\")\n    self.mail_failed.setText(f\"Die Mail (0):\")\n    self.mail_success_box.clear()\n    self.mail_failed_box.clear()\n    self.success_mail_count = 0\n    self.failed_mail_count = 0\n    total_email_count = 0",
+        "detail": "functions.handleCheckMail.checkMail",
+        "documentation": {}
+    },
+    {
+        "label": "getMailContent",
+        "kind": 2,
+        "importPath": "functions.handleInputFileMail.getMailContent",
+        "description": "functions.handleInputFileMail.getMailContent",
+        "peekOfCode": "def getMailContent(mail_content):\n    accounts = []\n    for line in mail_content.splitlines():\n        if \"|\" in line:\n            username, password = line.split(\"|\", 1)\n            accounts.append((username.strip(), password.strip()))\n    return accounts",
+        "detail": "functions.handleInputFileMail.getMailContent",
+        "documentation": {}
+    },
+    {
+        "label": "readMailFile",
+        "kind": 2,
+        "importPath": "functions.handleInputFileMail.readMailFile",
+        "description": "functions.handleInputFileMail.readMailFile",
+        "peekOfCode": "def readMailFile(file_path):\n    with open(file_path, \"r\") as file:\n        mail_content = file.read()\n        return mail_content",
+        "detail": "functions.handleInputFileMail.readMailFile",
+        "documentation": {}
+    },
+    {
+        "label": "AutomationController",
+        "kind": 6,
+        "importPath": "functions.handleLogicMain.logicMain",
+        "description": "functions.handleLogicMain.logicMain",
+        "peekOfCode": "class AutomationController:\n    def __init__(self, ui_instance):\n        self.ui_instance = ui_instance\n        self.timer_check_password = QTimer()\n        self.timer_check_password.timeout.connect(self.check_password)\n        self.timer_check_password.setSingleShot(True)  # Đặt chế độ single shot để chỉ chạy một lần\n    def update(self):\n        self.ui_instance.is_update = True\n        self.ui_instance.update_progress_dialog.show()\n        QCoreApplication.processEvents()",
+        "detail": "functions.handleLogicMain.logicMain",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "peekOfCode": "def handleRestartThread(self):\n    handleDeleteProfile(self.profile_id)\n    self.self_main.table_account_info.setItem(\n        self.current_row_count,\n        3,\n        QTableWidgetItem(\"Bị chặn, đợi restart lại...\"),\n    )\n    self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)\n    return",
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThreadNewMail",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "peekOfCode": "def handleRestartThreadNewMail(self):\n    handleDeleteProfile(self.profile_id)\n    self.self_main.table_account_info.setItem(\n        self.current_row_count,\n        3,\n        QTableWidgetItem(\"Bị chặn, đợi restart lại...\"),\n    )\n    self.self_main.restart_thread(self.num_threads, \"\", \"\")\n    return",
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleInputUserNameAndPassword",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInputUserNameAndPassword",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInputUserNameAndPassword",
+        "peekOfCode": "def handleInputUserNameAndPassword(self):\n    self.self_main.table_account_info.scrollToBottom()\n    if self.username_mail is not None:\n        wait(2, 4)\n        emailElement = self.driver.find_element(\"css selector\", \"input[name='email']\")\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang nhập email...\")\n        )\n        emailElement.send_keys(self.username_mail)\n        wait(2, 4)",
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInputUserNameAndPassword",
+        "documentation": {}
+    },
+    {
+        "label": "handleInsertNewUsername",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInsertNewUsername",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInsertNewUsername",
+        "peekOfCode": "def handleInsertNewUsername(self):\n    self.self_main.table_account_info.scrollToBottom()\n    # waitForNavigation = WebDriverWait(self.driver, 100)\n    # inputNewUserName = waitForNavigation.until(\n    #     EC.presence_of_element_located((\"css selector\", \"input[name='new-username']\"))\n    # )\n    # for char in self.user_id:\n    #     inputNewUserName.send_keys(char)\n    #     sleep(0.3)\n    # # inputNewUserName.send_keys(self.user_id)",
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInsertNewUsername",
+        "documentation": {}
+    },
+    {
+        "label": "handleSelectDay",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectDay",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectDay",
+        "peekOfCode": "def handleSelectDay(self):\n    self.self_main.table_account_info.scrollToBottom()\n    wait(4, 6)\n    daySelectElement = self.driver.find_element(\n        \"xpath\", '//*[@aria-label=\"Day. Double-tap for more options\"]'\n    )\n    daySelectElement.click()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Đang chọn ngày...\")\n    )",
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectDay",
+        "documentation": {}
+    },
+    {
+        "label": "handleSelectMonth",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
+        "peekOfCode": "def handleSelectMonth(self):\n    self.self_main.table_account_info.scrollToBottom()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Bắt đầu reg...\")\n    )\n    # try:\n    #     waitForNavigation = WebDriverWait(self.driver, 10)\n    #     emailSelectElement = waitForNavigation.until(\n    #             EC.presence_of_element_located(\n    #                 (\"xpath\", '//*[@data-list-item-value=\"email\"]')",
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
+        "documentation": {}
+    },
+    {
+        "label": "handleSelectYear",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectYear",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectYear",
+        "peekOfCode": "def handleSelectYear(self):\n    self.self_main.table_account_info.scrollToBottom()\n    yearSelectElement = self.driver.find_element(\n        \"xpath\", '//*[@aria-label=\"Year. Double-tap for more options\"]'\n    )\n    yearSelectElement.click()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Đang chọn năm...\")\n    )\n    wait(4, 6)",
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectYear",
+        "documentation": {}
+    },
+    {
+        "label": "handleSubmitAccount",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSubmitAccount",
+        "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSubmitAccount",
+        "peekOfCode": "def handleSubmitAccount(self):\n    self.self_main.table_account_info.scrollToBottom()\n    isSubmitAccount = True\n    max_attempts = 10\n    attempts = 0\n    while attempts < max_attempts and isSubmitAccount:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang submit...\")\n        )\n        wait(2, 3)",
+        "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSubmitAccount",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCode",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "peekOfCode": "def handleGetCode(self):\n    self.self_main.table_account_info.scrollToBottom()\n    try:\n        max_attempts = 5  # Số lần tối đa xuất hiện checkDectect trước khi khởi động lại self.thread\n        attempts = 0\n        is_get_code_again = True\n        while attempts < max_attempts and is_get_code_again:\n            wait(4, 6)\n            getCodeElement = self.driver.find_element(\n                \"xpath\", '//*[@data-e2e=\"send-code-button\"]'",
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCodeFromMail",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleGetCodeFromMail",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleGetCodeFromMail",
+        "peekOfCode": "def handleGetCodeFromMail(self):\n    self.self_main.table_account_info.scrollToBottom()\n    try:\n        max_attempts = 5\n        attempts = 0\n        isCode = True\n        while attempts < max_attempts and isCode:\n            params = {\n                \"mail\": self.username_mail,\n                \"pass\": self.password_mail,",
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleGetCodeFromMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleSubmitCode",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleSubmitCode",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleSubmitCode",
+        "peekOfCode": "def handleSubmitCode(self, code):\n    wait(1, 2)\n    inputCodeElement = self.driver.find_element(\n        \"xpath\", '//input[@placeholder=\"Enter 6-digit code\"]'\n    )\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Đang nhập code...\")\n    )\n    inputCodeElement.send_keys(code)\n    wait(1, 2)",
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleSubmitCode",
+        "documentation": {}
+    },
+    {
+        "label": "getResultCaptchaChooseTwoObjectsAChi",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "peekOfCode": "def getResultCaptchaChooseTwoObjectsAChi(self, task_id):\n    try:\n        body = {\n            \"clientKey\": self.captcha_key,\n            \"taskId\": task_id,\n        }\n        response = requests.post(\"http://api.achicaptcha.com/getTaskResult\", json=body)\n        data = response.json()\n        return data[\"solution\"]\n    except requests.exceptions.RequestException as e:",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateJobGetCaptchaChooseTwoObjectsAChi",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "peekOfCode": "def handleCreateJobGetCaptchaChooseTwoObjectsAChi(\n    self, base64\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        body = {",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaChooseTwoObjectsAChi",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "peekOfCode": "def handleResolveCaptchaChooseTwoObjectsAChi(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(4, 6)\n        captchaElements = self.driver.find_elements(\"css selector\", \"#captcha-verify-image\")\n        isNotCaptchaChooseTwoObjects = self.driver.find_elements(\"css selector\", \".secsdk-captcha-drag-icon\")\n        if not isCheckResolveCaptchaAgain and captchaElements:\n            self.self_main.table_account_info.setItem(\n                self.current_row_count,",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
+        "documentation": {}
+    },
+    {
+        "label": "getResultCaptchaRotateObjectAChi",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "peekOfCode": "def getResultCaptchaRotateObjectAChi(self, task_id):\n    try:\n        body = {\n            \"clientKey\": self.captcha_key,\n            \"taskId\": task_id,\n        }\n        response = requests.post(\"http://api.achicaptcha.com/getTaskResult\", json=body)\n        data = response.json()\n        return data[\"solution\"]\n    except requests.exceptions.RequestException as e:",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateJobGetCaptchaRotateObjectAChi",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "peekOfCode": "def handleCreateJobGetCaptchaRotateObjectAChi(\n    self, base64DataImgInside, base64DataImgOutside\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        body = {",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaRotateObjectAChi",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "peekOfCode": "def handleResolveCaptchaRotateObjectAChi(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(4, 6)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \".captcha_verify_slide--button\"\n        )\n        isNotCaptchaRotate = self.driver.find_elements(\n            \"css selector\", \"#captcha-verify-image\"",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
+        "documentation": {}
+    },
+    {
+        "label": "getResultCaptchaSliderObjectAChi",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "peekOfCode": "def getResultCaptchaSliderObjectAChi(self, task_id):\n    try:\n        body = {\n            \"clientKey\": self.captcha_key,\n            \"taskId\": task_id,\n        }\n        response = requests.post(\"http://api.achicaptcha.com/getTaskResult\", json=body)\n        data = response.json()\n        return data[\"solution\"]\n    except requests.exceptions.RequestException as e:",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateJobGetCaptchaSliderObjectAChi",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "peekOfCode": "def handleCreateJobGetCaptchaSliderObjectAChi(\n    self, base64\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        body = {",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaSliderObjectAChi",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "peekOfCode": "def handleResolveCaptchaSliderObjectAChi(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(4, 6)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \"#captcha-verify-image\"\n        )\n        if not isCheckResolveCaptchaAgain and captchaElements:\n            self.self_main.table_account_info.setItem(",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckApiKeyAChi",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.handleCheckApiKeyAChi",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.handleCheckApiKeyAChi",
+        "peekOfCode": "def handleCheckApiKeyAChi(api_key):\n    url = \"http://api.achicaptcha.com/createTask\"\n    body = {\n        \"clientKey\": f\"{api_key}\",\n        \"task\": {\n            \"type\": \"TiktokCaptchaTask\",\n            \"subType\": \"2\",\n            \"image\":\"\"\n        }\n    }",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.handleCheckApiKeyAChi",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateJobGetHcaptcha",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.Hcaptcha.handleResolveHcaptcha",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.Hcaptcha.handleResolveHcaptcha",
+        "peekOfCode": "def handleCreateJobGetHcaptcha(\n    self, base64, current_row_count\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        headers: {",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.Hcaptcha.handleResolveHcaptcha",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveHcaptcha",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.Hcaptcha.handleResolveHcaptcha",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.Hcaptcha.handleResolveHcaptcha",
+        "peekOfCode": "def handleResolveHcaptcha(self, thread, driver):\n    pass",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.Hcaptcha.handleResolveHcaptcha",
+        "documentation": {}
+    },
+    {
+        "label": "getResultCaptchaChooseTwoObjectsOmo",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "peekOfCode": "def getResultCaptchaChooseTwoObjectsOmo(self, job_id):\n    try:\n        body = {\n            \"api_token\": self.captcha_key,\n            \"job_id\": job_id,\n        }\n        response = requests.post(\"https://omocaptcha.com/api/getJobResult\", json=body)\n        data = response.json()\n        return data[\"result\"]\n    except requests.exceptions.RequestException as e:",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateJobGetCaptchaChooseTwoObjectsOmo",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "peekOfCode": "def handleCreateJobGetCaptchaChooseTwoObjectsOmo(self, base64, width, height):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang đợi kết quả captcha...\")\n        )\n        body = {\n            \"api_token\": self.captcha_key,\n            \"data\": {\n                \"type_job_id\": \"22\",\n                \"image_base64\": base64,",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaChooseTwoObjectsOmo",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "peekOfCode": "def handleResolveCaptchaChooseTwoObjectsOmo(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(2, 4)\n        captchaElements = self.driver.find_elements(\"css selector\", \"#captcha-verify-image\")\n        isNotCaptchaChooseTwoObjects = self.driver.find_elements(\"css selector\", \".secsdk-captcha-drag-icon\")\n        if not isCheckResolveCaptchaAgain and captchaElements:\n            self.self_main.table_account_info.setItem(\n                self.current_row_count, 3, QTableWidgetItem(\"Có catpcha đợi giải...\")",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
+        "documentation": {}
+    },
+    {
+        "label": "getResultCaptchaRotateObjectOmo",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "peekOfCode": "def getResultCaptchaRotateObjectOmo(self, job_id):\n    try:\n        body = {\n            \"api_token\": self.captcha_key,\n            \"job_id\": job_id,\n        }\n        response = requests.post(\"https://omocaptcha.com/api/getJobResult\", json=body)\n        data = response.json()\n        return data[\"result\"]\n    except requests.exceptions.RequestException as e:",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateJobGetCaptchaRotateObjectOmo",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "peekOfCode": "def handleCreateJobGetCaptchaRotateObjectOmo(\n    self, base64DataImgInside, base64DataImgOutside\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang đợi kết quả captcha...\")\n        )\n        body = {\n            \"api_token\": self.captcha_key,\n            \"data\": {",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaRotateObjectOmo",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "peekOfCode": "def handleResolveCaptchaRotateObjectOmo(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(4, 6)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \".captcha_verify_slide--button\"\n        )\n        isNotCaptchaRotate = self.driver.find_elements(\n            \"css selector\", \"#captcha-verify-image\"",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
+        "documentation": {}
+    },
+    {
+        "label": "getResultCaptchaSliderObjectOmo",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "peekOfCode": "def getResultCaptchaSliderObjectOmo(self, job_id):\n    try:\n        body = {\n            \"api_token\": self.captcha_key,\n            \"job_id\": job_id,\n        }\n        response = requests.post(\"https://omocaptcha.com/api/getJobResult\", json=body)\n        data = response.json()\n        return data[\"result\"]\n    except requests.exceptions.RequestException as e:",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateJobGetCaptchaSliderObjectOmo",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "peekOfCode": "def handleCreateJobGetCaptchaSliderObjectOmo(\n    self, base64, width\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        body = {",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaSliderObjectOmo",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "peekOfCode": "def handleResolveCaptchaSliderObjectOmo(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(4, 6)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \"#captcha-verify-image\"\n        )\n        if not isCheckResolveCaptchaAgain and captchaElements:\n            self.self_main.table_account_info.setItem(",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckApiKeyOmo",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo",
+        "peekOfCode": "def handleCheckApiKeyOmo(api_key):\n    try:\n        url = \"https://omocaptcha.com/api/getBalance\"\n        body = {\n            \"api_token\": f\"{api_key}\",\n        }\n        response = requests.post(url, json=body).json()\n        return response\n    except requests.exceptions.RequestException:\n        return \"api key not correct\"",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo",
+        "documentation": {}
+    },
+    {
+        "label": "AutomationThread",
+        "kind": 6,
+        "importPath": "functions.handleMultiThreads.thread.AutomationThread",
+        "description": "functions.handleMultiThreads.thread.AutomationThread",
+        "peekOfCode": "class AutomationThread(QThread):\n    def __init__(\n        self,\n        self_main,\n        num_threads,\n        input_file_path,\n        output_file_path,\n        current_date,\n        chrome_count ,\n        captcha_type,",
+        "detail": "functions.handleMultiThreads.thread.AutomationThread",
+        "documentation": {}
+    },
+    {
+        "label": "startAutomation",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.thread.startAutomation",
+        "description": "functions.handleMultiThreads.thread.startAutomation",
+        "peekOfCode": "def startAutomation(self):\n    setDisableStartButton(self)\n    if not self.startAutomation_called:\n        handleCheckInitialValues(self)\n        if not self.is_start:\n            return\n        self.startAutomation_called = True\n        AutomationThread.num_quit = 0\n        AutomationThread.drivers_list = []\n        with open(\"configs_account.json\", \"r\") as json_file:",
+        "detail": "functions.handleMultiThreads.thread.startAutomation",
+        "documentation": {}
+    },
+    {
+        "label": "stopAutomation",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.thread.stopAutomation",
+        "description": "functions.handleMultiThreads.thread.stopAutomation",
+        "peekOfCode": "def stopAutomation(self):\n    result = QMessageBox.question(\n        None,\n        \"Xác nhận dừng\",\n        \"Bạn có chắc chắn muốn dừng không.Điều này có thể gây mất mát dữ liệu?\",\n        QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,\n        QMessageBox.StandardButton.No,\n    )\n    if result == QMessageBox.StandardButton.Yes:\n        self.stop_progress_dialog.show()",
+        "detail": "functions.handleMultiThreads.thread.stopAutomation",
+        "documentation": {}
+    },
+    {
+        "label": "selectAvatarFolder",
+        "kind": 2,
+        "importPath": "functions.handleOpenFolder.handleOpenListAvatar",
+        "description": "functions.handleOpenFolder.handleOpenListAvatar",
+        "peekOfCode": "def selectAvatarFolder():\n    options = QFileDialog.Options()\n    options |= QFileDialog.ReadOnly\n    folder = QFileDialog.getExistingDirectory(\n        None,\n        \"Select Avatar Folder\",\n        \"\",\n        QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks,\n    )\n    return folder",
+        "detail": "functions.handleOpenFolder.handleOpenListAvatar",
+        "documentation": {}
+    },
+    {
+        "label": "handleSaveDataInputUser",
+        "kind": 2,
+        "importPath": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "description": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "peekOfCode": "def handleSaveDataInputUser(key, value):\n    # Kiểm tra sự tồn tại của tệp JSON\n    if os.path.exists(\"configs_account.json\"):\n        try:\n            # Đọc dữ liệu từ tệp JSON hiện có\n            with open(\"configs_account.json\", \"r\") as json_file:\n                data = json.load(json_file)\n        except json.JSONDecodeError:\n            data = {}\n    else:",
+        "detail": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "documentation": {}
+    },
+    {
+        "label": "handleUploadAvatar",
+        "kind": 2,
+        "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "description": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "peekOfCode": "def handleUploadAvatar(self):\n    isGetUserIdAgain = True\n    while isGetUserIdAgain:\n        try:\n            waitForNavigation = WebDriverWait(self.driver, 5)\n            waitForNavigation.until(\n            EC.presence_of_element_located((\"xpath\", '//*[@data-e2e=\"profile-icon\"]'))\n            )\n            isGetUserIdAgain = False\n        except TimeoutException:",
+        "detail": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckTokenGologin",
+        "kind": 2,
+        "importPath": "functions.profilesGologin.handleCheckTokenGologin",
+        "description": "functions.profilesGologin.handleCheckTokenGologin",
+        "peekOfCode": "def handleCheckTokenGologin(token):\n    url = \"https://api.gologin.com/user\"\n    headers = {\n        \"Authorization\": f\"Bearer {token}\",\n        \"Content-Type\": \"application/json\",\n    }\n    response = requests.get(url, headers=headers).json()\n    return response",
+        "detail": "functions.profilesGologin.handleCheckTokenGologin",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateProfile",
+        "kind": 2,
+        "importPath": "functions.profilesGologin.handleCreateProfile",
+        "description": "functions.profilesGologin.handleCreateProfile",
+        "peekOfCode": "def handleCreateProfile(self):\n    random_name = generate_random_name()\n    username_proxy = \"\"\n    password_proxy = \"\"\n    if len(self.proxy.split(\":\")) > 2:\n        get_proxy = self.proxy.split(\":\")\n        ip = get_proxy[2]\n        port = get_proxy[3]\n        username_proxy = get_proxy[0]\n        password_proxy = get_proxy[1]",
+        "detail": "functions.profilesGologin.handleCreateProfile",
+        "documentation": {}
+    },
+    {
+        "label": "handleDeleteProfile",
+        "kind": 2,
+        "importPath": "functions.profilesGologin.handleDeleteProfile",
+        "description": "functions.profilesGologin.handleDeleteProfile",
+        "peekOfCode": "def handleDeleteProfile(profile_id):\n    try:\n        with open(\"configs_account.json\", \"r\") as json_file:\n           data = json.load(json_file)\n        api_token_gologin = data[\"api_token_gologin\"]\n        url = f\"https://api.gologin.com/browser/{profile_id}\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_token_gologin}\",\n            \"Content-Type\": \"application/json\",\n        }",
+        "detail": "functions.profilesGologin.handleDeleteProfile",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCurrentTinProxy",
+        "kind": 2,
+        "importPath": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "description": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "peekOfCode": "def handleGetCurrentTinProxy(api_key):\n    url = \"https://api.tinproxy.com/proxy/get-current-proxy\"\n    params = {\n        \"api_key\": api_key.strip()\n    }\n    response = requests.get(url, params=params)\n    data = response.json()\n    https = data[\"data\"][\"http_ipv4\"]\n    return https",
+        "detail": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTinProxy",
+        "kind": 2,
+        "importPath": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "description": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "peekOfCode": "def handleGetNewTinProxy(api_key):\n    url = \"https://api.tinproxy.com/proxy/get-new-proxy\"\n    params = {\n        \"api_key\": api_key.strip()\n    }\n    response = requests.get(url, params=params)\n    data = response.json()\n    https = data[\"data\"][\"http_ipv4\"]\n    return https",
+        "detail": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTinProxyCheckCorrect",
+        "kind": 2,
+        "importPath": "functions.proxy.TinProxy.handleGetNewTinProxyCheckCorrect",
+        "description": "functions.proxy.TinProxy.handleGetNewTinProxyCheckCorrect",
+        "peekOfCode": "def handleGetNewTinProxyCheckCorrect(api_list_key):\n    url = \"https://api.tinproxy.com/proxy/get-new-proxy\"\n    str_err = \"\"\n    for api_key in api_list_key:\n        response = requests.get(url, params={\"api_key\": api_key}).json()\n        if \"error\" in response and response[\"error\"] == \"API Key không hợp lệ\":\n            str_err += f\"Api Key {api_key} của TinProxy không chính xác\\n\"\n    return str_err",
+        "detail": "functions.proxy.TinProxy.handleGetNewTinProxyCheckCorrect",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTinProxyCheckExpired",
+        "kind": 2,
+        "importPath": "functions.proxy.TinProxy.handleGetNewTinProxyCheckExpired",
+        "description": "functions.proxy.TinProxy.handleGetNewTinProxyCheckExpired",
+        "peekOfCode": "def handleGetNewTinProxyCheckExpired(api_list_key):\n    url = \"https://api.tinproxy.com/proxy/get-new-proxy\"\n    str_err = \"\"\n    for api_key in api_list_key:\n        response = requests.get(url, params={\"api_key\": api_key}).json()\n        if \"error\" in response and response[\"error\"] == \"API Key hết hạn, vui lòng gia hạn\":\n            str_err += f\"Api Key {api_key} của TinProxy đã hết hạn\\n\"\n    return str_err",
+        "detail": "functions.proxy.TinProxy.handleGetNewTinProxyCheckExpired",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckKeyTmProxy",
+        "kind": 2,
+        "importPath": "functions.proxy.TMProxy.handleCheckKeyTmProxy",
+        "description": "functions.proxy.TMProxy.handleCheckKeyTmProxy",
+        "peekOfCode": "def handleCheckKeyTmProxy(list_api_key):\n    url = \"https://tmproxy.com/api/proxy/stats\"\n    str_err = \"\"\n    for api_key in list_api_key:\n        response = requests.post(url, json={\"api_key\": f\"{api_key}\"}).json()\n        if \"message\" in response and response[\"message\"] == \"API không tồn tại\":\n            str_err += f\"Api Key {api_key} của TMProxy không chính xác\\n\"\n    return str_err",
+        "detail": "functions.proxy.TMProxy.handleCheckKeyTmProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCurrentTMProxy",
+        "kind": 2,
+        "importPath": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "description": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "peekOfCode": "def handleGetCurrentTMProxy(api_key):\n    url = \"https://tmproxy.com/api/proxy/get-current-proxy\"\n    response = requests.post(url, json={\"api_key\": f\"{api_key.strip()}\"})\n    data = response.json()\n    https = data[\"data\"][\"https\"]\n    return https",
+        "detail": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTMProxy",
+        "kind": 2,
+        "importPath": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "description": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "peekOfCode": "def handleGetNewTMProxy(api_key):\n    url = \"https://tmproxy.com/api/proxy/get-new-proxy\"\n    response = requests.post(url, json={\"api_key\": f\"{api_key.strip()}\"})\n    data = response.json()\n    https = data[\"data\"][\"https\"]\n    return https",
+        "detail": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTMProxyToCheckExpired",
+        "kind": 2,
+        "importPath": "functions.proxy.TMProxy.handleGetNewTMProxyToCheckExpired",
+        "description": "functions.proxy.TMProxy.handleGetNewTMProxyToCheckExpired",
+        "peekOfCode": "def handleGetNewTMProxyToCheckExpired(list_api_key):\n    url = \"https://tmproxy.com/api/proxy/get-new-proxy\"\n    str_err = \"\"\n    for api_key in list_api_key:\n        response = requests.post(url, json={\"api_key\": f\"{api_key}\"}).json()\n        if \"message\" in response and response[\"message\"] == \"Gói Hết hạn\":\n            str_err += f\"Api Key {api_key} của TMProxy đã hết hạn\\n\"\n    return str_err",
+        "detail": "functions.proxy.TMProxy.handleGetNewTMProxyToCheckExpired",
+        "documentation": {}
+    },
+    {
+        "label": "translateUi",
+        "kind": 2,
+        "importPath": "GUI.translateUi",
+        "description": "GUI.translateUi",
+        "peekOfCode": "def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):\n   _translate = QCoreApplication.translate\n   ToolRegCloneTiktok.setWindowTitle(\n      _translate(\"ToolRegCloneTiktok\", f\"ToolRegCloneTiktok - {current_version} (Còn {remaining_days} ngày)\")\n   )\n   self.mail_value.setText(_translate(\"ToolRegCloneTiktok\", \"\"))\n   self.list_avatar.setText(_translate(\"ToolRegCloneTiktok\", \" Folder Avatar\"))\n   self.start_button.setWhatsThis(\n      _translate(\n         \"ToolRegCloneTiktok\", \"<html><head/><body><p><br/></p></body></html>\"",
+        "detail": "GUI.translateUi",
+        "documentation": {}
+    },
+    {
+        "label": "CheckKeyUser",
+        "kind": 6,
+        "importPath": "GUI.uiCheckKey",
+        "description": "GUI.uiCheckKey",
+        "peekOfCode": "class CheckKeyUser(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.machine_code = handleGetMachineCode()\n        self.setWindowTitle(\"ToolRegCloneTiktok\")\n        self.setGeometry(0, 0, 450, 250)\n        screen_geometry = QGuiApplication.primaryScreen().geometry()\n        x = (screen_geometry.width() - self.width()) / 2\n        y = (screen_geometry.height() - self.height()) / 2\n        self.move(x, y)",
+        "detail": "GUI.uiCheckKey",
+        "documentation": {}
+    },
+    {
+        "label": "Ui_ToolRegCloneTiktok",
+        "kind": 6,
+        "importPath": "GUI.uiLogicMain",
+        "description": "GUI.uiLogicMain",
+        "peekOfCode": "class Ui_ToolRegCloneTiktok(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.0\"\n        self.latest_version = self.data[\"latest_version\"]\n        self.remaining_days = self.data[\"remaining_days\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "detail": "GUI.uiLogicMain",
+        "documentation": {}
+    },
+    {
+        "label": "uiMain",
+        "kind": 2,
+        "importPath": "GUI.uiMain",
+        "description": "GUI.uiMain",
+        "peekOfCode": "def uiMain(self, ToolRegCloneTiktok):\n    ToolRegCloneTiktok.setObjectName(\"ToolRegCloneTiktok\")\n    ToolRegCloneTiktok.resize(1256, 546)\n    self.centralwidget = QWidget(parent=ToolRegCloneTiktok)\n    self.centralwidget.setObjectName(\"centralwidget\")\n    self.ToolRegCloneTiktok = QTabWidget(parent=self.centralwidget)\n    self.ToolRegCloneTiktok.setGeometry(QRect(0, 0, 1301, 1079))\n    self.ToolRegCloneTiktok.setObjectName(\"ToolRegCloneTiktok\")\n    screen_geometry = QGuiApplication.primaryScreen().geometry()\n    x = (screen_geometry.width() - ToolRegCloneTiktok.width()) / 2",
+        "detail": "GUI.uiMain",
+        "documentation": {}
+    },
+    {
+        "label": "StopProgressDialog",
+        "kind": 6,
+        "importPath": "GUI.uiStopThread",
+        "description": "GUI.uiStopThread",
+        "peekOfCode": "class StopProgressDialog(QDialog):\n    def __init__(self, self_main):\n        super().__init__()\n        self.self_main = self_main\n        self.setWindowTitle(\"Quá trình này có thể mất thời gian...\")\n        self.setFixedSize(300, 100)\n        icon = QIcon()\n        icon.addPixmap(\n            QPixmap(\".\\\\icons/logo_tiktok.png\"),\n            QIcon.Mode.Normal,",
+        "detail": "GUI.uiStopThread",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateProgressDialog",
+        "kind": 6,
+        "importPath": "GUI.uiUpdateVersion",
+        "description": "GUI.uiUpdateVersion",
+        "peekOfCode": "class UpdateProgressDialog(QDialog):\n    def __init__(self, self_main, parent=None):\n        super().__init__(parent)\n        self.self_main = self_main\n        self.setWindowTitle(\"Version update\")\n        self.setFixedSize(300, 150)\n        icon = QIcon()\n        icon.addPixmap(\n            QPixmap(\".\\\\icons/logo_tiktok.png\"),\n            QIcon.Mode.Normal,",
+        "detail": "GUI.uiUpdateVersion",
+        "documentation": {}
+    },
+    {
+        "label": "random_number",
+        "kind": 2,
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "peekOfCode": "def random_number(min_num, max_num):\n    return random.randint(min_num, max_num)\ndef wait(min_time, max_time):\n    delay = random.uniform(min_time, max_time)\n    sleep(delay)\ndef generate_random_name(length=10):\n    characters = string.ascii_letters + string.digits\n    random_name = ''.join(random.choices(characters, k=length))\n    return random_name\ndef generate_password():",
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "kind": 2,
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "peekOfCode": "def wait(min_time, max_time):\n    delay = random.uniform(min_time, max_time)\n    sleep(delay)\ndef generate_random_name(length=10):\n    characters = string.ascii_letters + string.digits\n    random_name = ''.join(random.choices(characters, k=length))\n    return random_name\ndef generate_password():\n    # Dãy ký tự chứa các chữ in hoa, chữ thường, số và ký tự đặc biệt\n    uppercase_letters = string.ascii_uppercase",
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "generate_random_name",
+        "kind": 2,
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "peekOfCode": "def generate_random_name(length=10):\n    characters = string.ascii_letters + string.digits\n    random_name = ''.join(random.choices(characters, k=length))\n    return random_name\ndef generate_password():\n    # Dãy ký tự chứa các chữ in hoa, chữ thường, số và ký tự đặc biệt\n    uppercase_letters = string.ascii_uppercase\n    lowercase_letters = string.ascii_lowercase\n    digits = string.digits\n    special_characters = \"@\"  # Chọn ký tự đặc biệt là '@' hoặc '.'",
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "generate_password",
+        "kind": 2,
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "peekOfCode": "def generate_password():\n    # Dãy ký tự chứa các chữ in hoa, chữ thường, số và ký tự đặc biệt\n    uppercase_letters = string.ascii_uppercase\n    lowercase_letters = string.ascii_lowercase\n    digits = string.digits\n    special_characters = \"@\"  # Chọn ký tự đặc biệt là '@' hoặc '.'\n    # Tạo một mật khẩu ngẫu nhiên có ít nhất một ký tự của mỗi loại\n    password = (\n        random.choice(uppercase_letters) +\n        random.choice(lowercase_letters) +",
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "MainWindow",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class MainWindow(QMainWindow):\n    def __init__(self, ui_self):\n        super().__init__()\n        self.ui_self = ui_self\n        self.ui_self.is_update = False\n    def closeEvent(self, event):\n        if self.ui_self.is_update:\n            event.accept()\n            return\n        result = QMessageBox.question(",
+        "detail": "main",
+        "documentation": {}
+    }
+]
