@@ -1,7 +1,7 @@
 import os
 import json
 
-def handleSaveDataInputUser(key, value):
+def handleSaveDataInputUser(kzlsfw, value):
     # Kiểm tra sự tồn tại của tệp JSON
     if os.path.exists("configs_account.json"):
         try:
@@ -13,8 +13,7 @@ def handleSaveDataInputUser(key, value):
     else:
         data = {}  # Tạo một dictionary mới nếu tệp chưa tồn tại
 
-    # Thêm hoặc cập nhật cặp key-value vào dictionary
-    data[f"{key}"] = value
+    data[f"{kzlsfw}"] = value
 
     # Ghi lại toàn bộ dictionary vào tệp JSON
     with open("configs_account.json", "w") as json_file:

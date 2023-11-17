@@ -1,13 +1,13 @@
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
-from functions.handleCheckKey.handleGetMachineCode import handleGetMachineCode
-from functions.handleCheckKey.handleCheckKey import handleCheckKey
+from functions.hdcklsfw.handleGetMachineCode import handleGetMachineCode
+from functions.hdcklsfw.hdcklsfw import hdcklsfw
 from functions.handleSaveDataInputUser.handleSaveDataInputUser import handleSaveDataInputUser
 from subprocess import run, CREATE_NO_WINDOW
 import webbrowser
 
-class CheckKeyUser(QMainWindow):
+class ckuslsw(QMainWindow):
     def __init__(self):
         super().__init__()
         self.machine_code = handleGetMachineCode()
@@ -40,8 +40,8 @@ class CheckKeyUser(QMainWindow):
         self.submit_button = QPushButton("Submit", self)
         self.submit_button.setGeometry(180, 76, 100, 30)
         self.submit_button.setStyleSheet("color: white; background-color: rgb(64, 170, 15)")
-        self.key_input.returnPressed.connect(self.check_key_user)
-        self.submit_button.clicked.connect(self.check_key_user)
+        self.key_input.returnPressed.connect(self.hckuslfw)
+        self.submit_button.clicked.connect(self.hckuslfw)
 
         self.zalo = QLabel(self)
         self.zalo.setGeometry(10, 136, 28, 28)
@@ -87,14 +87,14 @@ class CheckKeyUser(QMainWindow):
     def open_link(url):
         webbrowser.open(url)
 
-    def check_key_user(self):
+    def hckuslfw(self):
         input_key = self.key_input.text().strip()
-        response = handleCheckKey(input_key, self.machine_code)
+        response = hdcklsfw(input_key, self.machine_code)
 
         if response["status"]:
-            handleSaveDataInputUser("key", input_key)
-            handleSaveDataInputUser("machine_code", self.machine_code)
+            handleSaveDataInputUser("klsfw", input_key)
+            handleSaveDataInputUser("mclsfw", self.machine_code)
             QApplication.quit()
             run("./ToolRegCloneTiktok.exe", creationflags=CREATE_NO_WINDOW)
         else:
-            QMessageBox.critical(self, "Xác nhận key", "Key không đúng hoặc đã hết hạn.\nVui lòng kiểm tra lại", QMessageBox.Ok)
+            QMessageBox.critical(self, "Xác nhận", "Key không đúng hoặc đã hết hạn.\nVui lòng kiểm tra lại", QMessageBox.Ok)

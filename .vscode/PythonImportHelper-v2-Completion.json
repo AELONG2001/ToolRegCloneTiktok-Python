@@ -570,15 +570,6 @@
         "documentation": {}
     },
     {
-        "label": "machineid",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "machineid",
-        "description": "machineid",
-        "detail": "machineid",
-        "documentation": {}
-    },
-    {
         "label": "handleSaveDataInputUser",
         "importPath": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
         "description": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
@@ -1635,27 +1626,36 @@
         "documentation": {}
     },
     {
+        "label": "machineid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "machineid",
+        "description": "machineid",
+        "detail": "machineid",
+        "documentation": {}
+    },
+    {
         "label": "handleGetMachineCode",
-        "importPath": "functions.handleCheckKey.handleGetMachineCode",
-        "description": "functions.handleCheckKey.handleGetMachineCode",
+        "importPath": "functions.hdcklsfw.handleGetMachineCode",
+        "description": "functions.hdcklsfw.handleGetMachineCode",
         "isExtraImport": true,
-        "detail": "functions.handleCheckKey.handleGetMachineCode",
+        "detail": "functions.hdcklsfw.handleGetMachineCode",
         "documentation": {}
     },
     {
-        "label": "handleCheckKey",
-        "importPath": "functions.handleCheckKey.handleCheckKey",
-        "description": "functions.handleCheckKey.handleCheckKey",
+        "label": "hdcklsfw",
+        "importPath": "functions.hdcklsfw.hdcklsfw",
+        "description": "functions.hdcklsfw.hdcklsfw",
         "isExtraImport": true,
-        "detail": "functions.handleCheckKey.handleCheckKey",
+        "detail": "functions.hdcklsfw.hdcklsfw",
         "documentation": {}
     },
     {
-        "label": "handleCheckKey",
-        "importPath": "functions.handleCheckKey.handleCheckKey",
-        "description": "functions.handleCheckKey.handleCheckKey",
+        "label": "hdcklsfw",
+        "importPath": "functions.hdcklsfw.hdcklsfw",
+        "description": "functions.hdcklsfw.hdcklsfw",
         "isExtraImport": true,
-        "detail": "functions.handleCheckKey.handleCheckKey",
+        "detail": "functions.hdcklsfw.hdcklsfw",
         "documentation": {}
     },
     {
@@ -1735,7 +1735,7 @@
         "documentation": {}
     },
     {
-        "label": "CheckKeyUser",
+        "label": "ckuslsw",
         "importPath": "GUI.uiCheckKey",
         "description": "GUI.uiCheckKey",
         "isExtraImport": true,
@@ -1743,7 +1743,7 @@
         "documentation": {}
     },
     {
-        "label": "Ui_ToolRegCloneTiktok",
+        "label": "utrclttlsfw",
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
         "isExtraImport": true,
@@ -1820,24 +1820,6 @@
         "description": "functions.handleCheckInitialValues.handleCheckInitialValues",
         "peekOfCode": "def handleCheckInitialValues(self):\n    task = InitalValuesCheckerTask(self)\n    task.signals.result_signal.connect(self.updateResultCheckInitalValues)\n    self.threadpool.start(task)",
         "detail": "functions.handleCheckInitialValues.handleCheckInitialValues",
-        "documentation": {}
-    },
-    {
-        "label": "handleCheckKey",
-        "kind": 2,
-        "importPath": "functions.handleCheckKey.handleCheckKey",
-        "description": "functions.handleCheckKey.handleCheckKey",
-        "peekOfCode": "def handleCheckKey(key, serial_number):\n    body = {\n        \"key\": key,\n        \"machine_code\": serial_number\n    }\n    data = requests.post(\"https://longsoftware.vn/api.php\", body).json()\n    print(\"data: \", data)\n    return data",
-        "detail": "functions.handleCheckKey.handleCheckKey",
-        "documentation": {}
-    },
-    {
-        "label": "handleGetMachineCode",
-        "kind": 2,
-        "importPath": "functions.handleCheckKey.handleGetMachineCode",
-        "description": "functions.handleCheckKey.handleGetMachineCode",
-        "peekOfCode": "def handleGetMachineCode():\n      return machineid.hashed_id(\"ToolRegCloneTiktok\")",
-        "detail": "functions.handleCheckKey.handleGetMachineCode",
         "documentation": {}
     },
     {
@@ -2241,7 +2223,7 @@
         "kind": 2,
         "importPath": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
         "description": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
-        "peekOfCode": "def handleSaveDataInputUser(key, value):\n    # Kiểm tra sự tồn tại của tệp JSON\n    if os.path.exists(\"configs_account.json\"):\n        try:\n            # Đọc dữ liệu từ tệp JSON hiện có\n            with open(\"configs_account.json\", \"r\") as json_file:\n                data = json.load(json_file)\n        except json.JSONDecodeError:\n            data = {}\n    else:",
+        "peekOfCode": "def handleSaveDataInputUser(kzlsfw, value):\n    # Kiểm tra sự tồn tại của tệp JSON\n    if os.path.exists(\"configs_account.json\"):\n        try:\n            # Đọc dữ liệu từ tệp JSON hiện có\n            with open(\"configs_account.json\", \"r\") as json_file:\n                data = json.load(json_file)\n        except json.JSONDecodeError:\n            data = {}\n    else:",
         "detail": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
         "documentation": {}
     },
@@ -2252,6 +2234,24 @@
         "description": "functions.HandleUploadAvatar.handleUploadAvatar",
         "peekOfCode": "def handleUploadAvatar(self):\n    isGetUserIdAgain = True\n    while isGetUserIdAgain:\n        try:\n            waitForNavigation = WebDriverWait(self.driver, 5)\n            waitForNavigation.until(\n            EC.presence_of_element_located((\"xpath\", '//*[@data-e2e=\"profile-icon\"]'))\n            )\n            isGetUserIdAgain = False\n        except TimeoutException:",
         "detail": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetMachineCode",
+        "kind": 2,
+        "importPath": "functions.hdcklsfw.handleGetMachineCode",
+        "description": "functions.hdcklsfw.handleGetMachineCode",
+        "peekOfCode": "def handleGetMachineCode():\n      return machineid.hashed_id(\"ToolRegCloneTiktok\")",
+        "detail": "functions.hdcklsfw.handleGetMachineCode",
+        "documentation": {}
+    },
+    {
+        "label": "hdcklsfw",
+        "kind": 2,
+        "importPath": "functions.hdcklsfw.hdcklsfw",
+        "description": "functions.hdcklsfw.hdcklsfw",
+        "peekOfCode": "def hdcklsfw(klsfw, mclsfw):\n    body = {\n        \"klsfw\": klsfw,\n        \"mclsfw\": mclsfw\n    }\n    data = requests.post(\"https://longsoftware.vn/api.php\", body).json()\n    print(\"data: \", data)\n    return data",
+        "detail": "functions.hdcklsfw.hdcklsfw",
         "documentation": {}
     },
     {
@@ -2363,20 +2363,20 @@
         "documentation": {}
     },
     {
-        "label": "CheckKeyUser",
+        "label": "ckuslsw",
         "kind": 6,
         "importPath": "GUI.uiCheckKey",
         "description": "GUI.uiCheckKey",
-        "peekOfCode": "class CheckKeyUser(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.machine_code = handleGetMachineCode()\n        self.setWindowTitle(\"ToolRegCloneTiktok\")\n        self.setGeometry(0, 0, 450, 250)\n        screen_geometry = QGuiApplication.primaryScreen().geometry()\n        x = (screen_geometry.width() - self.width()) / 2\n        y = (screen_geometry.height() - self.height()) / 2\n        self.move(x, y)",
+        "peekOfCode": "class ckuslsw(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.machine_code = handleGetMachineCode()\n        self.setWindowTitle(\"ToolRegCloneTiktok\")\n        self.setGeometry(0, 0, 450, 250)\n        screen_geometry = QGuiApplication.primaryScreen().geometry()\n        x = (screen_geometry.width() - self.width()) / 2\n        y = (screen_geometry.height() - self.height()) / 2\n        self.move(x, y)",
         "detail": "GUI.uiCheckKey",
         "documentation": {}
     },
     {
-        "label": "Ui_ToolRegCloneTiktok",
+        "label": "utrclttlsfw",
         "kind": 6,
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
-        "peekOfCode": "class Ui_ToolRegCloneTiktok(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.0\"\n        self.latest_version = self.data[\"latest_version\"]\n        self.remaining_days = self.data[\"remaining_days\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.0\"\n        self.latest_version = self.data[\"latest_version\"]\n        self.remaining_days = self.data[\"remaining_days\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
         "detail": "GUI.uiLogicMain",
         "documentation": {}
     },
@@ -2444,11 +2444,11 @@
         "documentation": {}
     },
     {
-        "label": "MainWindow",
+        "label": "hmlsfw",
         "kind": 6,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "class MainWindow(QMainWindow):\n    def __init__(self, ui_self):\n        super().__init__()\n        self.ui_self = ui_self\n        self.ui_self.is_update = False\n    def closeEvent(self, event):\n        if self.ui_self.is_update:\n            event.accept()\n            return\n        result = QMessageBox.question(",
+        "peekOfCode": "class hmlsfw(QMainWindow):\n    def __init__(self, ui_self):\n        super().__init__()\n        self.ui_self = ui_self\n        self.ui_self.is_update = False\n    def closeEvent(self, event):\n        if self.ui_self.is_update:\n            event.accept()\n            return\n        result = QMessageBox.question(",
         "detail": "main",
         "documentation": {}
     }

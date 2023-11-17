@@ -1,22 +1,15 @@
 {
-    "key": "B539435591E4FB5B",
-    "machine_code": "bf2aa4bee397a5ba7d1227eba82ef816138676404a0308e061d8e3e4c4cb411f",
-    "url_mail": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
-    "captcha_key": "08f8b0f0b3aff156866a811508e2bb2e",
-    "proxys": [
-        "d85e72081e799cde9a32ff20c1dff9db",
-        "bbbe0a40bb5bd3faf79e0b0b79009a63",
-        "12fc234fd537755b7cf735261e52a5b8",
-        "03038b48316697a454d332f0e3163760",
-        "467511da57b9dc491d802820016c2a62"
-    ],
-    "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTUwMzQ4ZDA2NDNkOTM2YjlkOTI4YWQiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTUwMzYxYzgyYTFiMDdkOGM4Y2ZhZmUifQ.RUs3vAtK0XaI3-PNUPy1l_oZqJZHzo6rQZNSeJl4CxU",
-    "num_threads": 5,
-    "is_upload_avatar": true,
-    "path_gologin": "C:/Users/HD/AppData/Local/Temp/GoLogin/profiles",
-    "url_mail_check": "",
-    "chromeValueDelay": 1,
+    "klsfw": "B539435591E4FB5B",
+    "mclsfw": "bf2aa4bee397a5ba7d1227eba82ef816138676404a0308e061d8e3e4c4cb411f",
+    "url_avatar": "",
+    "url_mail": "",
+    "proxy_type": 1,
+    "is_proxy_ip_port": false,
+    "url_mail_check": "C:/Users/HD/Downloads/ToolRegCloneTiktok/data/hotmail.txt",
+    "typeExportAccount": 3,
     "is_chrome_count": 10,
-    "chrome_percent_zoom": 0.38,
-    "url_avatar": ""
+    "chromeValueDelay": 3,
+    "chrome_percent_zoom": 0.0,
+    "random_password_account": true,
+    "password_account": ""
 }

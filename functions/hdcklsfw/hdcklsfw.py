@@ -1,9 +1,9 @@
 import requests
 
-def handleCheckKey(key, serial_number):
+def hdcklsfw(klsfw, mclsfw):
     body = {
-        "key": key,
-        "machine_code": serial_number
+        "klsfw": klsfw,
+        "mclsfw": mclsfw
     }
 
     data = requests.post("https://longsoftware.vn/api.php", body).json()

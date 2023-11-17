@@ -16,7 +16,7 @@ from utils.utils import wait, generate_random_name
 import json
 import datetime
 
-class Ui_ToolRegCloneTiktok(QObject):
+class utrclttlsfw(QObject):
     def __init__(self, data):
         super().__init__()
 

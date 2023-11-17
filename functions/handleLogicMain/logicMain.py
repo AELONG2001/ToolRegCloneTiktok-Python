@@ -179,6 +179,10 @@ class AutomationController:
 
         with open(file_path_backup, "w") as file:
             file.write(full_accounts)
+
+        with open(file_path, "w") as file:
+            file.write("")
+        
         if typeExportAccount == 0:
             selected_data = accounts
         elif typeExportAccount == 1:

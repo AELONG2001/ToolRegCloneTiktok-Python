@@ -75,10 +75,27 @@ def handleResolveCaptchaRotateObjectAChi(self):
         noInternetCaptcha = self.driver.find_elements(
                 "xpath",
                 '//div[contains(text(), "No internet connection. Please try again.")]',
-            )
+        )
+        
+        cannotLoadImageCaptcha = self.driver.find_elements(
+                "xpath",
+                '//div[contains(text(), "Couldn’t load image. Refresh to try again.")]',
+        )
         
         if noInternetCaptcha:
             print("No internet captcha")
+            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+                isResolveCaptchaAgain = False
+                self.driver.quit()
+                handleRestartThread(self)
+                return
+            else:
+                return
+        
+       
+        
+        if cannotLoadImageCaptcha:
+            print("No load image captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
                 self.driver.quit()

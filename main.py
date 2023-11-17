@@ -4,12 +4,12 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-from GUI.uiCheckKey import CheckKeyUser
-from GUI.uiLogicMain import Ui_ToolRegCloneTiktok
-from functions.handleCheckKey.handleCheckKey import handleCheckKey
+from GUI.uiCheckKey import ckuslsw
+from GUI.uiLogicMain import utrclttlsfw
+from functions.hdcklsfw.hdcklsfw import hdcklsfw
 import json
 
-class MainWindow(QMainWindow):
+class hmlsfw(QMainWindow):
     def __init__(self, ui_self):
         super().__init__()
         self.ui_self = ui_self
@@ -35,25 +35,25 @@ class MainWindow(QMainWindow):
             
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    check_key_user = CheckKeyUser()
+    ackuslsfw = ckuslsw()
  
     if os.path.exists("configs_account.json"):
         with open("configs_account.json", "r") as json_file:
             data = json.load(json_file)
 
-        key = data["key"]
-        machine_code = data["machine_code"]
+        klsfw = data["klsfw"]
+        mclsfw = data["mclsfw"]
 
-        response = handleCheckKey(key, machine_code)
+        response = hdcklsfw(klsfw, mclsfw)
 
         if response["status"]:
-            ui = Ui_ToolRegCloneTiktok(response)
-            ToolRegCloneTiktok = MainWindow(ui)
-            ui.setupUi(ToolRegCloneTiktok)
-            ToolRegCloneTiktok.show()
+            ui = utrclttlsfw(response)
+            trgclttlsfw = hmlsfw(ui)
+            ui.setupUi(trgclttlsfw)
+            trgclttlsfw.show()
         else:
-            check_key_user.show()
+            ackuslsfw.show()
     else:
-        check_key_user.show()
+        ackuslsfw.show()
 
     sys.exit(app.exec())
