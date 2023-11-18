@@ -7,7 +7,7 @@ import json
 def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    _translate = QCoreApplication.translate
    ToolRegCloneTiktok.setWindowTitle(
-      _translate("ToolRegCloneTiktok", f"ToolRegCloneTiktok - {current_version} (Còn {remaining_days} ngày)")
+      _translate("ToolRegCloneTiktok", f"ToolRegCloneTiktok - {current_version} - By Long Software (Còn {remaining_days} ngày)")
    )
    self.mail_value.setText(_translate("ToolRegCloneTiktok", ""))
    self.list_avatar.setText(_translate("ToolRegCloneTiktok", " Folder Avatar"))

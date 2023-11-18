@@ -1736,10 +1736,10 @@
     },
     {
         "label": "ckuslsw",
-        "importPath": "GUI.uiCheckKey",
-        "description": "GUI.uiCheckKey",
+        "importPath": "GUI.uckuslsfw",
+        "description": "GUI.uckuslsfw",
         "isExtraImport": true,
-        "detail": "GUI.uiCheckKey",
+        "detail": "GUI.uckuslsfw",
         "documentation": {}
     },
     {
@@ -2358,17 +2358,17 @@
         "kind": 2,
         "importPath": "GUI.translateUi",
         "description": "GUI.translateUi",
-        "peekOfCode": "def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):\n   _translate = QCoreApplication.translate\n   ToolRegCloneTiktok.setWindowTitle(\n      _translate(\"ToolRegCloneTiktok\", f\"ToolRegCloneTiktok - {current_version} (Còn {remaining_days} ngày)\")\n   )\n   self.mail_value.setText(_translate(\"ToolRegCloneTiktok\", \"\"))\n   self.list_avatar.setText(_translate(\"ToolRegCloneTiktok\", \" Folder Avatar\"))\n   self.start_button.setWhatsThis(\n      _translate(\n         \"ToolRegCloneTiktok\", \"<html><head/><body><p><br/></p></body></html>\"",
+        "peekOfCode": "def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):\n   _translate = QCoreApplication.translate\n   ToolRegCloneTiktok.setWindowTitle(\n      _translate(\"ToolRegCloneTiktok\", f\"ToolRegCloneTiktok - {current_version} - By Long Software (Còn {remaining_days} ngày)\")\n   )\n   self.mail_value.setText(_translate(\"ToolRegCloneTiktok\", \"\"))\n   self.list_avatar.setText(_translate(\"ToolRegCloneTiktok\", \" Folder Avatar\"))\n   self.start_button.setWhatsThis(\n      _translate(\n         \"ToolRegCloneTiktok\", \"<html><head/><body><p><br/></p></body></html>\"",
         "detail": "GUI.translateUi",
         "documentation": {}
     },
     {
         "label": "ckuslsw",
         "kind": 6,
-        "importPath": "GUI.uiCheckKey",
-        "description": "GUI.uiCheckKey",
+        "importPath": "GUI.uckuslsfw",
+        "description": "GUI.uckuslsfw",
         "peekOfCode": "class ckuslsw(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.machine_code = handleGetMachineCode()\n        self.setWindowTitle(\"ToolRegCloneTiktok\")\n        self.setGeometry(0, 0, 450, 250)\n        screen_geometry = QGuiApplication.primaryScreen().geometry()\n        x = (screen_geometry.width() - self.width()) / 2\n        y = (screen_geometry.height() - self.height()) / 2\n        self.move(x, y)",
-        "detail": "GUI.uiCheckKey",
+        "detail": "GUI.uckuslsfw",
         "documentation": {}
     },
     {
@@ -2446,10 +2446,10 @@
     {
         "label": "hmlsfw",
         "kind": 6,
-        "importPath": "main",
-        "description": "main",
+        "importPath": "mplictlsfw",
+        "description": "mplictlsfw",
         "peekOfCode": "class hmlsfw(QMainWindow):\n    def __init__(self, ui_self):\n        super().__init__()\n        self.ui_self = ui_self\n        self.ui_self.is_update = False\n    def closeEvent(self, event):\n        if self.ui_self.is_update:\n            event.accept()\n            return\n        result = QMessageBox.question(",
-        "detail": "main",
+        "detail": "mplictlsfw",
         "documentation": {}
     }
 ]
