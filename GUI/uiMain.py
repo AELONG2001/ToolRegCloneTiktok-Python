@@ -181,6 +181,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value.setGeometry(QRect(900, 90, 211, 361))
     self.proxy_value.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
     self.proxy_value.setPlainText("")
+    self.proxy_value.setPlaceholderText("Mỗi Api key một dòng")
     self.proxy_value_ip_port =QRadioButton(parent=self.home)
     self.proxy_value_ip_port.setGeometry(QRect(1120, 380, 60, 31))
     self.proxy_value_ip_port.setStyleSheet("font: 10pt \"Segoe UI\";")
@@ -391,7 +392,7 @@ def uiMain(self, ToolRegCloneTiktok):
     )
     self.btn_check.setObjectName("btn_check")
     self.loading_icon_check_mail = QLabel(parent=self.settings)
-    self.loading_icon_check_mail.setGeometry(QRect(528, 246, 14, 14))
+    self.loading_icon_check_mail.setGeometry(QRect(538, 246, 14, 14))
     self.loading_icon_check_mail.setText("abc")
     relative_path_check_mail = "icons/loading.gif"
     absolute_path_check_mail = os.path.abspath(relative_path_check_mail)

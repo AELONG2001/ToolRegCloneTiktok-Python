@@ -2446,10 +2446,10 @@
     {
         "label": "hmlsfw",
         "kind": 6,
-        "importPath": "mplictlsfw",
-        "description": "mplictlsfw",
+        "importPath": "mplctlsfw",
+        "description": "mplctlsfw",
         "peekOfCode": "class hmlsfw(QMainWindow):\n    def __init__(self, ui_self):\n        super().__init__()\n        self.ui_self = ui_self\n        self.ui_self.is_update = False\n    def closeEvent(self, event):\n        if self.ui_self.is_update:\n            event.accept()\n            return\n        result = QMessageBox.question(",
-        "detail": "mplictlsfw",
+        "detail": "mplctlsfw",
         "documentation": {}
     }
 ]

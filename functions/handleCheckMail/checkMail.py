@@ -57,7 +57,7 @@ def checkMail(
     self.total_email_count = total_email_count
     self.btn_check.setEnabled(False)
     self.btn_check.setText("Đang check")
-    self.btn_check.setGeometry(QRect(430, 240, 120, 24))
+    self.btn_check.setGeometry(QRect(440, 240, 120, 24))
     self.btn_check.setStyleSheet("background-color: rgba(0, 0, 0, 0.2);")
     self.loading_icon_check_mail.setVisible(True)
     self.loadingMovieCheckMail.start()

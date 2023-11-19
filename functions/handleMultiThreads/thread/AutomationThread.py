@@ -329,7 +329,7 @@ class AutomationThread(QThread):
 
         self.options.add_argument("--disable-blink-features=AutomationControlled")
         self.options.add_argument(
-            f"--user-data-dir={self.path_profile_gologin}/{self.profile_id}/Default"
+            fr"--user-data-dir={self.path_profile_gologin}\{self.profile_id}\Default"
         )
         
         # self.options.add_argument(f"--proxy-server={self.proxy}")

@@ -218,9 +218,11 @@ class AutomationController:
     def getProxyType(self):
         proxy_type = self.ui_instance.proxy_type.currentIndex()
         if proxy_type == 2 or proxy_type == 3:
+            self.ui_instance.proxy_value.setPlaceholderText("Mỗi proxy một dòng")
             self.ui_instance.proxy_value_ip_port.setVisible(True)
             self.ui_instance.proxy_value_ip_port_user_pass.setVisible(True)
         else:
+            self.ui_instance.proxy_value.setPlaceholderText("Mỗi Api key một dòng")
             self.ui_instance.proxy_value_ip_port.setVisible(False)
             self.ui_instance.proxy_value_ip_port_user_pass.setVisible(False)
 
