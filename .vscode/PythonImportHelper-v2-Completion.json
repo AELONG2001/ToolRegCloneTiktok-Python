@@ -217,14 +217,6 @@
         "documentation": {}
     },
     {
-        "label": "QLineEdit",
-        "importPath": "PySide6.QtWidgets",
-        "description": "PySide6.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PySide6.QtWidgets",
-        "documentation": {}
-    },
-    {
         "label": "*",
         "importPath": "PySide6.QtWidgets",
         "description": "PySide6.QtWidgets",
@@ -294,6 +286,150 @@
         "description": "PySide6.QtWidgets",
         "isExtraImport": true,
         "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
         "documentation": {}
     },
     {
@@ -1890,7 +2026,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
         "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
-        "peekOfCode": "def handleRestartThread(self):\n    handleDeleteProfile(self.profile_id)\n    self.self_main.table_account_info.setItem(\n        self.current_row_count,\n        3,\n        QTableWidgetItem(\"Bị chặn, đợi restart lại...\"),\n    )\n    self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)\n    return",
+        "peekOfCode": "def handleRestartThread(self):\n    handleDeleteProfile(self.profile_id)\n    self.self_main.table_account_info.setItem(\n        self.current_row_count,\n        3,\n        QTableWidgetItem(\"Bị chặn, đợi restart lại...\"),\n    )\n    QCoreApplication.processEvents()\n    self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)\n    return",
         "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
         "documentation": {}
     },
@@ -1899,7 +2035,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
         "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
-        "peekOfCode": "def handleRestartThreadNewMail(self):\n    handleDeleteProfile(self.profile_id)\n    self.self_main.table_account_info.setItem(\n        self.current_row_count,\n        3,\n        QTableWidgetItem(\"Bị chặn, đợi restart lại...\"),\n    )\n    self.self_main.restart_thread(self.num_threads, \"\", \"\")\n    return",
+        "peekOfCode": "def handleRestartThreadNewMail(self):\n    handleDeleteProfile(self.profile_id)\n    self.self_main.table_account_info.setItem(\n        self.current_row_count,\n        3,\n        QTableWidgetItem(\"Bị chặn, đợi restart lại...\"),\n    )\n    QCoreApplication.processEvents()\n    self.self_main.restart_thread(self.num_threads, \"\", \"\")\n    return",
         "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
         "documentation": {}
     },
@@ -1908,7 +2044,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInputUserNameAndPassword",
         "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInputUserNameAndPassword",
-        "peekOfCode": "def handleInputUserNameAndPassword(self):\n    self.self_main.table_account_info.scrollToBottom()\n    if self.username_mail is not None:\n        wait(2, 4)\n        emailElement = self.driver.find_element(\"css selector\", \"input[name='email']\")\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang nhập email...\")\n        )\n        emailElement.send_keys(self.username_mail)\n        wait(2, 4)",
+        "peekOfCode": "def handleInputUserNameAndPassword(self):\n    self.self_main.table_account_info.scrollToBottom()\n    if self.username_mail is not None:\n        wait(2, 4)\n        emailElement = self.driver.find_element(\"css selector\", \"input[name='email']\")\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang nhập email...\")\n        )\n        QCoreApplication.processEvents()\n        emailElement.send_keys(self.username_mail)",
         "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleInputUserNameAndPassword",
         "documentation": {}
     },
@@ -1935,7 +2071,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
         "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
-        "peekOfCode": "def handleSelectMonth(self):\n    self.self_main.table_account_info.scrollToBottom()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Bắt đầu reg...\")\n    )\n    # try:\n    #     waitForNavigation = WebDriverWait(self.driver, 10)\n    #     emailSelectElement = waitForNavigation.until(\n    #             EC.presence_of_element_located(\n    #                 (\"xpath\", '//*[@data-list-item-value=\"email\"]')",
+        "peekOfCode": "def handleSelectMonth(self):\n    self.self_main.table_account_info.scrollToBottom()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Bắt đầu reg...\")\n    )\n    QCoreApplication.processEvents()\n    # try:\n    #     waitForNavigation = WebDriverWait(self.driver, 10)\n    #     emailSelectElement = waitForNavigation.until(\n    #             EC.presence_of_element_located(",
         "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
         "documentation": {}
     },
@@ -1944,7 +2080,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectYear",
         "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectYear",
-        "peekOfCode": "def handleSelectYear(self):\n    self.self_main.table_account_info.scrollToBottom()\n    yearSelectElement = self.driver.find_element(\n        \"xpath\", '//*[@aria-label=\"Year. Double-tap for more options\"]'\n    )\n    yearSelectElement.click()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Đang chọn năm...\")\n    )\n    wait(4, 6)",
+        "peekOfCode": "def handleSelectYear(self):\n    self.self_main.table_account_info.scrollToBottom()\n    yearSelectElement = self.driver.find_element(\n        \"xpath\", '//*[@aria-label=\"Year. Double-tap for more options\"]'\n    )\n    yearSelectElement.click()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Đang chọn năm...\")\n    )\n    QCoreApplication.processEvents()",
         "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectYear",
         "documentation": {}
     },
@@ -1953,7 +2089,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSubmitAccount",
         "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSubmitAccount",
-        "peekOfCode": "def handleSubmitAccount(self):\n    self.self_main.table_account_info.scrollToBottom()\n    isSubmitAccount = True\n    max_attempts = 10\n    attempts = 0\n    while attempts < max_attempts and isSubmitAccount:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang submit...\")\n        )\n        wait(2, 3)",
+        "peekOfCode": "def handleSubmitAccount(self):\n    self.self_main.table_account_info.scrollToBottom()\n    isSubmitAccount = True\n    max_attempts = 10\n    attempts = 0\n    while attempts < max_attempts and isSubmitAccount:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang submit...\")\n        )\n        QCoreApplication.processEvents()",
         "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSubmitAccount",
         "documentation": {}
     },
@@ -1980,7 +2116,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.handleCode.handleSubmitCode",
         "description": "functions.handleMultiThreads.selenium.handleCode.handleSubmitCode",
-        "peekOfCode": "def handleSubmitCode(self, code):\n    wait(1, 2)\n    inputCodeElement = self.driver.find_element(\n        \"xpath\", '//input[@placeholder=\"Enter 6-digit code\"]'\n    )\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Đang nhập code...\")\n    )\n    inputCodeElement.send_keys(code)\n    wait(1, 2)",
+        "peekOfCode": "def handleSubmitCode(self, code):\n    wait(1, 2)\n    inputCodeElement = self.driver.find_element(\n        \"xpath\", '//input[@placeholder=\"Enter 6-digit code\"]'\n    )\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Đang nhập code...\")\n    )\n    QCoreApplication.processEvents()\n    inputCodeElement.send_keys(code)",
         "detail": "functions.handleMultiThreads.selenium.handleCode.handleSubmitCode",
         "documentation": {}
     },
@@ -1998,7 +2134,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
-        "peekOfCode": "def handleCreateJobGetCaptchaChooseTwoObjectsAChi(\n    self, base64\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        body = {",
+        "peekOfCode": "def handleCreateJobGetCaptchaChooseTwoObjectsAChi(\n    self, base64\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        QCoreApplication.processEvents()",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
         "documentation": {}
     },
@@ -2025,7 +2161,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
-        "peekOfCode": "def handleCreateJobGetCaptchaRotateObjectAChi(\n    self, base64DataImgInside, base64DataImgOutside\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        body = {",
+        "peekOfCode": "def handleCreateJobGetCaptchaRotateObjectAChi(\n    self, base64DataImgInside, base64DataImgOutside\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        QCoreApplication.processEvents()",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
         "documentation": {}
     },
@@ -2052,7 +2188,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
-        "peekOfCode": "def handleCreateJobGetCaptchaSliderObjectAChi(\n    self, base64\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        body = {",
+        "peekOfCode": "def handleCreateJobGetCaptchaSliderObjectAChi(\n    self, base64\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        QCoreApplication.processEvents()",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
         "documentation": {}
     },
@@ -2079,7 +2215,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.Hcaptcha.handleResolveHcaptcha",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.Hcaptcha.handleResolveHcaptcha",
-        "peekOfCode": "def handleCreateJobGetHcaptcha(\n    self, base64, current_row_count\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        headers: {",
+        "peekOfCode": "def handleCreateJobGetHcaptcha(\n    self, base64, current_row_count\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        QCoreApplication.processEvents()",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.Hcaptcha.handleResolveHcaptcha",
         "documentation": {}
     },
@@ -2106,7 +2242,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
-        "peekOfCode": "def handleCreateJobGetCaptchaChooseTwoObjectsOmo(self, base64, width, height):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang đợi kết quả captcha...\")\n        )\n        body = {\n            \"api_token\": self.captcha_key,\n            \"data\": {\n                \"type_job_id\": \"22\",\n                \"image_base64\": base64,",
+        "peekOfCode": "def handleCreateJobGetCaptchaChooseTwoObjectsOmo(self, base64, width, height):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang đợi kết quả captcha...\")\n        )\n        QCoreApplication.processEvents()\n        body = {\n            \"api_token\": self.captcha_key,\n            \"data\": {\n                \"type_job_id\": \"22\",",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
         "documentation": {}
     },
@@ -2133,7 +2269,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
-        "peekOfCode": "def handleCreateJobGetCaptchaRotateObjectOmo(\n    self, base64DataImgInside, base64DataImgOutside\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang đợi kết quả captcha...\")\n        )\n        body = {\n            \"api_token\": self.captcha_key,\n            \"data\": {",
+        "peekOfCode": "def handleCreateJobGetCaptchaRotateObjectOmo(\n    self, base64DataImgInside, base64DataImgOutside\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang đợi kết quả captcha...\")\n        )\n        QCoreApplication.processEvents()\n        body = {\n            \"api_token\": self.captcha_key,",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
         "documentation": {}
     },
@@ -2160,7 +2296,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
-        "peekOfCode": "def handleCreateJobGetCaptchaSliderObjectOmo(\n    self, base64, width\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        body = {",
+        "peekOfCode": "def handleCreateJobGetCaptchaSliderObjectOmo(\n    self, base64, width\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        QCoreApplication.processEvents()",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
         "documentation": {}
     },
@@ -2214,7 +2350,7 @@
         "kind": 2,
         "importPath": "functions.handleOpenFolder.handleOpenListAvatar",
         "description": "functions.handleOpenFolder.handleOpenListAvatar",
-        "peekOfCode": "def selectAvatarFolder():\n    options = QFileDialog.Options()\n    options |= QFileDialog.ReadOnly\n    folder = QFileDialog.getExistingDirectory(\n        None,\n        \"Select Avatar Folder\",\n        \"\",\n        QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks,\n    )\n    return folder",
+        "peekOfCode": "def selectAvatarFolder():\n    dialog = QFileDialog()\n    dialog.setFileMode(QFileDialog.Directory)\n    if dialog.exec_():\n        selected_folder = dialog.selectedFiles()[0]\n        return selected_folder",
         "detail": "functions.handleOpenFolder.handleOpenListAvatar",
         "documentation": {}
     },
@@ -2232,7 +2368,7 @@
         "kind": 2,
         "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
         "description": "functions.HandleUploadAvatar.handleUploadAvatar",
-        "peekOfCode": "def handleUploadAvatar(self):\n    isGetUserIdAgain = True\n    while isGetUserIdAgain:\n        try:\n            waitForNavigation = WebDriverWait(self.driver, 5)\n            waitForNavigation.until(\n            EC.presence_of_element_located((\"xpath\", '//*[@data-e2e=\"profile-icon\"]'))\n            )\n            isGetUserIdAgain = False\n        except TimeoutException:",
+        "peekOfCode": "def handleUploadAvatar(self):\n    isGetUserIdAgain = True\n    while isGetUserIdAgain:\n        try:\n            waitForNavigation = WebDriverWait(self.driver, 10)\n            waitForNavigation.until(\n            EC.presence_of_element_located((\"xpath\", '//*[@data-e2e=\"profile-icon\"]'))\n            )\n            isGetUserIdAgain = False\n        except TimeoutException:",
         "detail": "functions.HandleUploadAvatar.handleUploadAvatar",
         "documentation": {}
     },

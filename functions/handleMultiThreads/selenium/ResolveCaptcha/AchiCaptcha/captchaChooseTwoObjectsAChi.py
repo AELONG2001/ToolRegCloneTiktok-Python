@@ -1,6 +1,7 @@
 import requests
 import base64
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 from utils.utils import wait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import WebDriverException
@@ -32,6 +33,7 @@ def handleCreateJobGetCaptchaChooseTwoObjectsAChi(
             3,
             QTableWidgetItem("Đang đợi kết quả captcha..."),
         )
+        QCoreApplication.processEvents()
         body = {
             "clientKey": self.captcha_key,
             "task": {
@@ -64,6 +66,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
                 3,
                 QTableWidgetItem("Có catpcha đợi giải..."),
             )
+            QCoreApplication.processEvents()
 
         if not captchaElements or isNotCaptchaChooseTwoObjects:
            return

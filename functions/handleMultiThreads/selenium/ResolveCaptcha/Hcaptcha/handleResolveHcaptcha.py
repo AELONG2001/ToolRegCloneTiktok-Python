@@ -1,5 +1,6 @@
 import requests
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 from utils.utils import wait
 
 def handleCreateJobGetHcaptcha(
@@ -11,6 +12,7 @@ def handleCreateJobGetHcaptcha(
             3,
             QTableWidgetItem("Đang đợi kết quả captcha..."),
         )
+        QCoreApplication.processEvents()
 
         headers: {
             "Content-Type": "application/json",

@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 import requests
 import base64
 from selenium.webdriver.common.action_chains import ActionChains
@@ -28,6 +29,7 @@ def handleCreateJobGetCaptchaRotateObjectOmo(
         self.self_main.table_account_info.setItem(
             self.current_row_count, 3, QTableWidgetItem("Đang đợi kết quả captcha...")
         )
+        QCoreApplication.processEvents()
         body = {
             "api_token": self.captcha_key,
             "data": {
@@ -60,6 +62,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
             self.self_main.table_account_info.setItem(
                 self.current_row_count, 3, QTableWidgetItem("Có catpcha đợi giải...")
             )
+            QCoreApplication.processEvents()
 
         # Nếu không có captcha thì return và lấy code
         if not captchaElements or isNotCaptchaRotate:
@@ -166,6 +169,7 @@ def handleResolveCaptchaRotateObjectOmo(self):
         self.self_main.table_account_info.setItem(
             self.current_row_count, 3, QTableWidgetItem("Đang thực hiện giải captcha đợi xíu...")
         )
+        QCoreApplication.processEvents()
 
         wait(3, 4)
         cannotLoadImageCaptcha = self.driver.find_elements(

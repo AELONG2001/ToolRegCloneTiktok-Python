@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 import requests
 import base64
 from selenium.webdriver.common.action_chains import ActionChains
@@ -28,6 +29,7 @@ def handleCreateJobGetCaptchaSliderObjectOmo(
             3,
             QTableWidgetItem("Đang đợi kết quả captcha..."),
         )
+        QCoreApplication.processEvents()
         body = {
             "api_token": self.captcha_key,
             "data": {
@@ -60,6 +62,7 @@ def handleResolveCaptchaSliderObjectOmo(self):
                 3,
                 QTableWidgetItem("Có catpcha đợi giải..."),
             )
+            QCoreApplication.processEvents()
 
         if not captchaElements:
            return
@@ -122,6 +125,7 @@ def handleResolveCaptchaSliderObjectOmo(self):
             3,
             QTableWidgetItem("Đang thực hiện giải captcha đợi xíu..."),
         )
+        QCoreApplication.processEvents()
         action_chains.move_to_element(dragIcon).perform()
         action_chains.click_and_hold().perform()
 

@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 from utils.utils import wait
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import StaleElementReferenceException
@@ -12,6 +13,7 @@ def handleSubmitCode(self, code):
     self.self_main.table_account_info.setItem(
         self.current_row_count, 3, QTableWidgetItem("Đang nhập code...")
     )
+    QCoreApplication.processEvents()
     inputCodeElement.send_keys(code)
 
     wait(1, 2)

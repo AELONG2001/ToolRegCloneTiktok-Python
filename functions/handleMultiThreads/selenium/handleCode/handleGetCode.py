@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 from utils.utils import wait
 from functions.handleMultiThreads.handleRestartThread.handleRestartThread import handleRestartThread
 from functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail import handleRestartThreadNewMail
@@ -19,6 +20,7 @@ def handleGetCode(self):
             self.self_main.table_account_info.setItem(
                 self.current_row_count, 3, QTableWidgetItem("Ấn nút send code...")
             )
+            QCoreApplication.processEvents()
             getCodeElement.click()
             getCodeElement.click()
 

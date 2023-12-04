@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 from utils.utils import wait
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import StaleElementReferenceException
@@ -14,6 +15,7 @@ def handleSubmitAccount(self):
         self.self_main.table_account_info.setItem(
             self.current_row_count, 3, QTableWidgetItem("Đang submit...")
         )
+        QCoreApplication.processEvents()
         wait(2, 3)
         if self.driver.current_url == "https://www.tiktok.com/login/download-app":
             isSubmitAccount = False

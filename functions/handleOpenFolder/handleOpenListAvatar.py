@@ -1,13 +1,9 @@
-from PySide6.QtWidgets import QFileDialog, QLineEdit
+from PySide6.QtWidgets import QFileDialog
 
 
 def selectAvatarFolder():
-    options = QFileDialog.Options()
-    options |= QFileDialog.ReadOnly
-    folder = QFileDialog.getExistingDirectory(
-        None,
-        "Select Avatar Folder",
-        "",
-        QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks,
-    )
-    return folder
+    dialog = QFileDialog()
+    dialog.setFileMode(QFileDialog.Directory)
+    if dialog.exec_():
+        selected_folder = dialog.selectedFiles()[0]
+        return selected_folder

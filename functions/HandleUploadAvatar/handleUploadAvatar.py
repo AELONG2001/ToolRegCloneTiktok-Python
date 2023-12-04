@@ -2,6 +2,7 @@ import os
 import json
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
+from PySide6.QtCore import *
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import WebDriverException
@@ -38,7 +39,7 @@ def handleUploadAvatar(self):
     isGetUserIdAgain = True
     while isGetUserIdAgain:
         try:
-            waitForNavigation = WebDriverWait(self.driver, 5)
+            waitForNavigation = WebDriverWait(self.driver, 10)
             waitForNavigation.until(
             EC.presence_of_element_located(("xpath", '//*[@data-e2e="profile-icon"]'))
             )
@@ -59,7 +60,6 @@ def handleUploadAvatar(self):
                 self.is_restart = False
                 return
 
-        
     is_list_avtart_default = True
 
     with open("configs_account.json", "r") as json_file:
@@ -163,6 +163,7 @@ def handleUploadAvatar(self):
     self.self_main.table_account_info.setItem(
         self.current_row_count, 3, QTableWidgetItem("Đang upload avatar...")
     )
+    QCoreApplication.processEvents()
 
     wait(2, 4)
     inputUploadAvatar = self.driver.find_elements("css selector", "input[type='file']")
@@ -205,9 +206,11 @@ def handleUploadAvatar(self):
     self.self_main.table_account_info.setItem(
         self.current_row_count, 3, QTableWidgetItem("upload avatar thành công...")
     )
+    QCoreApplication.processEvents()
 
     item = QTableWidgetItem("Tạo tài khoản thành công...")
     green_color = QColor(64, 170, 15)
     item.setForeground(green_color)
 
     self.self_main.table_account_info.setItem(self.current_row_count, 3, item)
+    QCoreApplication.processEvents()

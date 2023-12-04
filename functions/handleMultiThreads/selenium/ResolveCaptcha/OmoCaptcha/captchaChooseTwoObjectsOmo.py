@@ -1,6 +1,7 @@
 import requests
 import base64
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 from utils.utils import wait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import WebDriverException
@@ -27,6 +28,7 @@ def handleCreateJobGetCaptchaChooseTwoObjectsOmo(self, base64, width, height):
         self.self_main.table_account_info.setItem(
             self.current_row_count, 3, QTableWidgetItem("Đang đợi kết quả captcha...")
         )
+        QCoreApplication.processEvents()
         body = {
             "api_token": self.captcha_key,
             "data": {
@@ -57,6 +59,7 @@ def handleResolveCaptchaChooseTwoObjectsOmo(self):
             self.self_main.table_account_info.setItem(
                 self.current_row_count, 3, QTableWidgetItem("Có catpcha đợi giải...")
             )
+            QCoreApplication.processEvents()
 
         # Nếu không có captcha thì return và lấy code
         if not captchaElements or isNotCaptchaChooseTwoObjects:

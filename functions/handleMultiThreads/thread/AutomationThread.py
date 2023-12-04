@@ -440,9 +440,6 @@ class AutomationThread(QThread):
                 handleUploadAvatar(self)
 
             wait(4, 6)
-            try:
-                self.driver.get("https://www.tiktok.com/logout")
-            except WebDriverException:
-                self.driver.refresh()            
-            wait(2, 4)
+            self.driver.delete_all_cookies()
+            self.driver.refresh()
         self.driver.quit()

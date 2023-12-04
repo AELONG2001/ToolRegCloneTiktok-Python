@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 from utils.utils import wait
 
 
@@ -10,6 +11,7 @@ def handleInputUserNameAndPassword(self):
         self.self_main.table_account_info.setItem(
             self.current_row_count, 3, QTableWidgetItem("Đang nhập email...")
         )
+        QCoreApplication.processEvents()
         emailElement.send_keys(self.username_mail)
 
         wait(2, 4)
@@ -17,4 +19,5 @@ def handleInputUserNameAndPassword(self):
         self.self_main.table_account_info.setItem(
             self.current_row_count, 3, QTableWidgetItem("Đang nhập password...")
         )
+        QCoreApplication.processEvents()
         passwordElement.send_keys(self.password_account)

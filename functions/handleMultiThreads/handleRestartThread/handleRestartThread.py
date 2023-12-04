@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 from functions.profilesGologin.handleDeleteProfile import handleDeleteProfile
 
 def handleRestartThread(self):
@@ -8,5 +9,6 @@ def handleRestartThread(self):
         3,
         QTableWidgetItem("Bị chặn, đợi restart lại..."),
     )
+    QCoreApplication.processEvents()
     self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)
     return

@@ -1,5 +1,6 @@
 import requests
 from PySide6.QtWidgets import *
+from PySide6.QtCore import *
 from utils.utils import wait
 from functions.handleMultiThreads.selenium.handleCode.handleSubmitCode import (
     handleSubmitCode,
@@ -24,6 +25,7 @@ def handleGetCodeFromMail(self):
             self.self_main.table_account_info.setItem(
                 self.current_row_count, 3, QTableWidgetItem("Đang lấy code...")
             )
+            QCoreApplication.processEvents()
             wait(10, 12)
             response = requests.get(url, params=params)
             data = response.json()
@@ -34,6 +36,7 @@ def handleGetCodeFromMail(self):
                self.self_main.table_account_info.setItem(
                 self.current_row_count, 3, QTableWidgetItem("hotmail đã bị block...")
                )
+               QCoreApplication.processEvents()
                print("Restart invalid mail")
                attempts = 0
                isCode = False
@@ -47,6 +50,7 @@ def handleGetCodeFromMail(self):
                     3,
                     QTableWidgetItem("Đã lấy được code đợi nhập..."),
                 )
+                QCoreApplication.processEvents()
                 isCode = False
                 attempts = 0
                 handleSubmitCode(self, data["code"])

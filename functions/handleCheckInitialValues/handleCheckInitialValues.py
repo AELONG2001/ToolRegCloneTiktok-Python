@@ -33,7 +33,7 @@ class InitalValuesCheckerTask(QRunnable):
         with open("configs_account.json", "r") as json_file:
             data = json.load(json_file)
 
-        if not "url_mail" in data or not data["url_mail"]:
+        if not "url_mail" in data or not data["url_mail"] and not data["api_value_hotmailbox"]:
             message = "Vui lòng nhập mail"
             setEnableStartButton(self.ui_instance)
             self.signals.result_signal.emit(False, message)
