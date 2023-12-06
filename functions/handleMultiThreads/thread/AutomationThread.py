@@ -436,8 +436,18 @@ class AutomationThread(QThread):
             
             handleSubmitAccount(self)
             handleInsertNewUsername(self)
+
             if self.is_upload_avatar:
                 handleUploadAvatar(self)
+            else:
+                wait(4, 6)
+                cookies = self.driver.get_cookies()
+                cookies_string = ";".join(
+                    [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+                )
+                account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                with open(self.output_file_path, "a") as f:
+                    f.write(account + "\n")
 
             wait(4, 6)
             self.driver.delete_all_cookies()

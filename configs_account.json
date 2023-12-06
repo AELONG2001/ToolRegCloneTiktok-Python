@@ -4,17 +4,17 @@
     "captcha_key": "ad460c6106c4ff09d393b671873a7367",
     "url_mail": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/hotmail.txt",
     "proxys": [
-        "5fc48ee285448f78d18875506502d569",
-        "ac82701e3c7fb29d94f36a093b12cc9f"
+        "d61e4ff3666e5b637701cee755d66e4e"
     ],
-    "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTY2OTcwOGIxNDE0MzI2MzMwZTkwNTkiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTY2OTcyNmU2MjEzN2E3OGRiMTExZTcifQ.9LqAO6l9zhTZ4DzuGByNUDVFer_zJDHyvzdBtEECQKU",
+    "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTcwMTM5OTI4NjU4ZGI1ZGFiZjBlMjgiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTcwMTNiNDlhMGViZGY3NmE4NGM4YWIifQ.BFVAJ_6b2-9UlgpVyjQ76jf_KvXsMhqaJ4hv-2axvz0",
     "api_value_hotmailbox": "",
-    "num_threads": 2,
+    "num_threads": 1,
     "proxy_type": 1,
     "password_account": "",
     "random_password_account": true,
     "path_gologin": "C:\\Users\\HD\\AppData\\Local\\Temp\\GoLogin\\profiles",
     "url_mail_check": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/hotmail.txt",
     "chrome_percent_zoom": 0.75,
-    "url_avatar": null
+    "url_avatar": null,
+    "is_upload_avatar": false
 }
