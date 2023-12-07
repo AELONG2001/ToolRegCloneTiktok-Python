@@ -295,6 +295,10 @@ class AutomationController:
         is_upload_avatar = self.ui_instance.is_upload_avatar_yes.isChecked()
         handleSaveDataInputUser("is_upload_avatar", is_upload_avatar)
 
+    def getRegCountryType(self):
+        type_reg_country = self.ui_instance.type_reg_country.currentIndex()
+        handleSaveDataInputUser("type_reg_country", type_reg_country + 1)
+
     def getTypeExportAccount(self):
         typeExportAccount = self.ui_instance.export_account_format_value.currentIndex()
         handleSaveDataInputUser("typeExportAccount", typeExportAccount + 1)

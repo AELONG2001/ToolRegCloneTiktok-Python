@@ -9,7 +9,7 @@ from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import NoSuchElementException
-from utils.utils import wait
+from utils.utils import wait, generate_random_name
 
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
     handleResolveCaptchaRotateObjectAChi,
@@ -71,16 +71,6 @@ def handleUploadAvatar(self):
         is_list_avtart_default = True
         list_avatar_folder = "data/wibus"
     list_avatar = os.listdir(list_avatar_folder)
-    
-    # if not self.is_skip_new_username:
-    #     try:
-    #         self.driver.get(f"https://www.tiktok.com/@{self.user_id}")
-    #     except WebDriverException:
-    #         account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-    #         with open(self.output_file_path, "a") as f:
-    #             f.write(account + "\n")
-    #         return
-    # else:
 
     pageContent = self.driver.page_source
     if '"nickName":"' in pageContent:
@@ -99,41 +89,20 @@ def handleUploadAvatar(self):
             cookies_string = ";".join(
                 [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
             )
-            if userId:
-                account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-            else:
-                account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+            account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
             with open(self.output_file_path, "a") as f:
                 f.write(account + "\n")
-            self.is_restart = False
             return
     except WebDriverException:
         cookies = self.driver.get_cookies()
         cookies_string = ";".join(
             [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
         )
-        if userId:
-            account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-        else:
-            account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
         with open(self.output_file_path, "a") as f:
             f.write(account + "\n")
-        print("Không thể truy cập với user_id này")
-        self.is_restart = False
         return
 
-    wait(4, 6)
-    cookies = self.driver.get_cookies()
-    cookies_string = ";".join(
-        [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-    )
-
-    account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-    
-    # insert account
-    with open(self.output_file_path, "a") as f:
-        f.write(account + "\n")
-    
     self.is_restart = False
     
     try:
@@ -155,9 +124,23 @@ def handleUploadAvatar(self):
         editProfile.click()
     except TimeoutException:
         print("Không tìm thấy Edit profile sau khoảng thời gian chờ")
+        cookies = self.driver.get_cookies()
+        cookies_string = ";".join(
+            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+        )
+        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        with open(self.output_file_path, "a") as f:
+            f.write(account + "\n")
         return
     except ElementClickInterceptedException:
         print("Không tìm thấy Edit profile sau khoảng thời gian chờ")
+        cookies = self.driver.get_cookies()
+        cookies_string = ";".join(
+            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+        )
+        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        with open(self.output_file_path, "a") as f:
+            f.write(account + "\n")
         return
 
     self.self_main.table_account_info.setItem(
@@ -182,6 +165,13 @@ def handleUploadAvatar(self):
                 )
         
     else:
+        cookies = self.driver.get_cookies()
+        cookies_string = ";".join(
+            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+        )
+        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        with open(self.output_file_path, "a") as f:
+            f.write(account + "\n")
         return
 
     wait(4, 6)
@@ -192,15 +182,56 @@ def handleUploadAvatar(self):
             self.driver.execute_script("arguments[0].scrollIntoView();", applyAvatarBtn)
         applyAvatarBtn.click()
     except NoSuchElementException:
+        cookies = self.driver.get_cookies()
+        cookies_string = ";".join(
+            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+        )
+        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        with open(self.output_file_path, "a") as f:
+            f.write(account + "\n")
         return
-        
+    
+    wait(4, 6)
+    userNameRandom = f"{self.username_mail.split('@')[0]}_{generate_random_name(5)}"
+    editUserName = self.driver.find_element("xpath", '//*[@placeholder="Username"]')
+    editUserName.clear()
+    wait(1, 2)
+    editUserName.send_keys(userNameRandom)
+
+    wait(4, 6)
+    editName = self.driver.find_element("xpath", '//*[@placeholder="Name"]')
+    editName.clear()
+    wait(1, 2)
+    editName.send_keys(userNameRandom)
 
     wait(4, 6)
     saveElement = self.driver.find_element("xpath", '//*[@data-e2e="edit-profile-save"]')
+    
     try:
         saveElement.click()
+        wait(4, 6)
+        confirmChangeUser = self.driver.find_element("xpath", '//*[@data-e2e="set-username-popup-confirm"]')
+        confirmChangeUser.click()
+        wait(4, 6)
+        cookies = self.driver.get_cookies()
+        cookies_string = ";".join(
+            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+        )
+
+        account = f"{userNameRandom}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        
+        # insert account
+        with open(self.output_file_path, "a") as f:
+            f.write(account + "\n")
     except ElementClickInterceptedException:
         print("không tìm thấy saveElement")
+        cookies = self.driver.get_cookies()
+        cookies_string = ";".join(
+            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+        )
+        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        with open(self.output_file_path, "a") as f:
+            f.write(account + "\n")
         return
     
     self.self_main.table_account_info.setItem(

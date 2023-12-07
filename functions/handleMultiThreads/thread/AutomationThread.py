@@ -76,6 +76,7 @@ class AutomationThread(QThread):
         chrome_percent_zoom,
         path_profile_gologin,
         api_key_hotmailbox,
+        type_reg_country,
         is_upload_avatar,
         username_restart = "",
         password_restart = "",
@@ -95,6 +96,7 @@ class AutomationThread(QThread):
         self.chrome_percent_zoom = chrome_percent_zoom
         self.path_profile_gologin = path_profile_gologin
         self.api_key_hotmailbox = api_key_hotmailbox
+        self.type_reg_country = type_reg_country
         self.is_upload_avatar = is_upload_avatar
         self.username_restart = username_restart
         self.password_restart = password_restart

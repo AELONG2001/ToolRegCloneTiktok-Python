@@ -56,7 +56,10 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
-        wait(4, 6)
+        if self.type_reg_country == 0:
+            wait(4, 6)
+        else:
+            wait(14, 16)
         captchaElements = self.driver.find_elements("css selector", "#captcha-verify-image")
         isNotCaptchaChooseTwoObjects = self.driver.find_elements("css selector", ".secsdk-captcha-drag-icon")
         

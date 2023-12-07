@@ -4,17 +4,20 @@
     "captcha_key": "ad460c6106c4ff09d393b671873a7367",
     "url_mail": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/hotmail.txt",
     "proxys": [
-        "d61e4ff3666e5b637701cee755d66e4e"
+        "15.204.238.117:30004",
+        "15.204.238.117:30005"
     ],
     "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTcwMTM5OTI4NjU4ZGI1ZGFiZjBlMjgiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTcwMTNiNDlhMGViZGY3NmE4NGM4YWIifQ.BFVAJ_6b2-9UlgpVyjQ76jf_KvXsMhqaJ4hv-2axvz0",
     "api_value_hotmailbox": "",
-    "num_threads": 1,
-    "proxy_type": 1,
+    "num_threads": 2,
+    "proxy_type": 3,
     "password_account": "",
     "random_password_account": true,
     "path_gologin": "C:\\Users\\HD\\AppData\\Local\\Temp\\GoLogin\\profiles",
     "url_mail_check": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/hotmail.txt",
     "chrome_percent_zoom": 0.75,
     "url_avatar": null,
-    "is_upload_avatar": false
+    "is_upload_avatar": true,
+    "type_reg_country": 2,
+    "captcha_type": 1
 }

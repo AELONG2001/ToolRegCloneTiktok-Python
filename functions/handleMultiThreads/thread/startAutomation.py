@@ -55,6 +55,7 @@ def startAutomation(self):
             api_key_hotmailbox = data["api_value_hotmailbox"]
         else:
             api_key_hotmailbox = ""
+        type_reg_country = self.type_reg_country.currentIndex()
         is_upload_avatar = self.is_upload_avatar_yes.isChecked()
 
         self.thread_index = 0
@@ -74,6 +75,7 @@ def startAutomation(self):
                 chrome_percent_zoom,
                 path_profile_gologin,
                 api_key_hotmailbox,
+                type_reg_country,
                 is_upload_avatar,
                 # self.data_queue,
             )

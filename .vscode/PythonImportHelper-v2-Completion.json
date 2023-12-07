@@ -1031,6 +1031,14 @@
         "documentation": {}
     },
     {
+        "label": "generate_random_name",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
         "label": "random_number",
         "importPath": "utils.utils",
         "description": "utils.utils",
@@ -2143,7 +2151,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
-        "peekOfCode": "def handleResolveCaptchaChooseTwoObjectsAChi(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(4, 6)\n        captchaElements = self.driver.find_elements(\"css selector\", \"#captcha-verify-image\")\n        isNotCaptchaChooseTwoObjects = self.driver.find_elements(\"css selector\", \".secsdk-captcha-drag-icon\")\n        if not isCheckResolveCaptchaAgain and captchaElements:\n            self.self_main.table_account_info.setItem(\n                self.current_row_count,",
+        "peekOfCode": "def handleResolveCaptchaChooseTwoObjectsAChi(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        if self.type_reg_country == 0:\n            wait(4, 6)\n        else:\n            wait(14, 16)\n        captchaElements = self.driver.find_elements(\"css selector\", \"#captcha-verify-image\")\n        isNotCaptchaChooseTwoObjects = self.driver.find_elements(\"css selector\", \".secsdk-captcha-drag-icon\")",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi",
         "documentation": {}
     },
@@ -2170,7 +2178,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
-        "peekOfCode": "def handleResolveCaptchaRotateObjectAChi(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(4, 6)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \".captcha_verify_slide--button\"\n        )\n        isNotCaptchaRotate = self.driver.find_elements(\n            \"css selector\", \"#captcha-verify-image\"",
+        "peekOfCode": "def handleResolveCaptchaRotateObjectAChi(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        if self.type_reg_country == 0:\n            wait(4, 6)\n        else:\n            wait(14, 16)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \".captcha_verify_slide--button\"",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi",
         "documentation": {}
     },
@@ -2197,7 +2205,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
-        "peekOfCode": "def handleResolveCaptchaSliderObjectAChi(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(4, 6)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \"#captcha-verify-image\"\n        )\n        if not isCheckResolveCaptchaAgain and captchaElements:\n            self.self_main.table_account_info.setItem(",
+        "peekOfCode": "def handleResolveCaptchaSliderObjectAChi(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        if self.type_reg_country == 0:\n            wait(4, 6)\n        else:\n            wait(14, 16)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \"#captcha-verify-image\"",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaSliderObjectAChi",
         "documentation": {}
     },
@@ -2251,7 +2259,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
-        "peekOfCode": "def handleResolveCaptchaChooseTwoObjectsOmo(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(2, 4)\n        captchaElements = self.driver.find_elements(\"css selector\", \"#captcha-verify-image\")\n        isNotCaptchaChooseTwoObjects = self.driver.find_elements(\"css selector\", \".secsdk-captcha-drag-icon\")\n        if not isCheckResolveCaptchaAgain and captchaElements:\n            self.self_main.table_account_info.setItem(\n                self.current_row_count, 3, QTableWidgetItem(\"Có catpcha đợi giải...\")",
+        "peekOfCode": "def handleResolveCaptchaChooseTwoObjectsOmo(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        if self.type_reg_country == 0:\n            wait(4, 6)\n        else:\n            wait(14, 16)\n        captchaElements = self.driver.find_elements(\"css selector\", \"#captcha-verify-image\")\n        isNotCaptchaChooseTwoObjects = self.driver.find_elements(\"css selector\", \".secsdk-captcha-drag-icon\")",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaChooseTwoObjectsOmo",
         "documentation": {}
     },
@@ -2278,7 +2286,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
-        "peekOfCode": "def handleResolveCaptchaRotateObjectOmo(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(4, 6)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \".captcha_verify_slide--button\"\n        )\n        isNotCaptchaRotate = self.driver.find_elements(\n            \"css selector\", \"#captcha-verify-image\"",
+        "peekOfCode": "def handleResolveCaptchaRotateObjectOmo(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        if self.type_reg_country == 0:\n            wait(4, 6)\n        else:\n            wait(14, 16)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \".captcha_verify_slide--button\"",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaRotateObjectOmo",
         "documentation": {}
     },
@@ -2305,7 +2313,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
-        "peekOfCode": "def handleResolveCaptchaSliderObjectOmo(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        wait(4, 6)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \"#captcha-verify-image\"\n        )\n        if not isCheckResolveCaptchaAgain and captchaElements:\n            self.self_main.table_account_info.setItem(",
+        "peekOfCode": "def handleResolveCaptchaSliderObjectOmo(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        if self.type_reg_country == 0:\n            wait(4, 6)\n        else:\n            wait(14, 16)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \"#captcha-verify-image\"",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
         "documentation": {}
     },

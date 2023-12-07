@@ -88,6 +88,9 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.is_upload_avatar.setText(_translate("ToolRegCloneTiktok", "Upload avatar:"))
    self.is_upload_avatar_yes.setText(_translate("ToolRegCloneTiktok", "Có"))
    self.is_upload_avatar_no.setText(_translate("ToolRegCloneTiktok", "Không"))
+   self.type_reg_country_label.setText(_translate("ToolRegCloneTiktok", "Chọn nước Reg:"))
+   self.type_reg_country.setItemText(0, _translate("ToolRegCloneTiktok", "Việt Nam"))
+   self.type_reg_country.setItemText(1, _translate("ToolRegCloneTiktok", "US"))
    self.btn_check.setText(_translate("ToolRegCloneTiktok", "Check"))
    self.note_mail.setText(_translate("ToolRegCloneTiktok", "Chú ý: Mail Live sẽ được tự thêm vào file mail"))
    self.mail_success.setText(_translate("ToolRegCloneTiktok", "Live Mail:"))
@@ -193,6 +196,11 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
          self.is_upload_avatar_no.setChecked(True)
    else:
       self.is_upload_avatar_yes.setChecked(True)
+
+   if "type_reg_country" in data:
+      self.type_reg_country.setCurrentIndex(data["type_reg_country"] - 1)
+   else:
+      self.type_reg_country.setCurrentIndex(0)
 
    if "typeExportAccount" in data:
       self.export_account_format_value.setCurrentIndex(data["typeExportAccount"] - 1)

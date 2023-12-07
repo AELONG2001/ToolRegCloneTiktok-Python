@@ -16,17 +16,21 @@ def handleSubmitCode(self, code):
     QCoreApplication.processEvents()
     inputCodeElement.send_keys(code)
 
-    wait(1, 2)
-    agreePolicyElement = self.driver.find_element(
-        "css selector", "label[for='email-consent']"
-    )
-    try:
-      agreePolicyElement.click()
-    except ElementClickInterceptedException:
-        self.driver.quit()
-        handleRestartThread(self)
-        return
-    except StaleElementReferenceException:
-        self.driver.quit()
-        handleRestartThread(self)
+    print("CheckTypeRegCountry: ", self.type_reg_country)
+    if self.type_reg_country == 0:
+        wait(1, 2)
+        agreePolicyElement = self.driver.find_element(
+            "css selector", "label[for='email-consent']"
+        )
+        try:
+            agreePolicyElement.click()
+        except ElementClickInterceptedException:
+            self.driver.quit()
+            handleRestartThread(self)
+            return
+        except StaleElementReferenceException:
+            self.driver.quit()
+            handleRestartThread(self)
+            return
+    else:
         return

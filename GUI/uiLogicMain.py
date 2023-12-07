@@ -151,6 +151,9 @@ class utrclttlsfw(QObject):
 
     def checkIsUploadAvatar(self):
         self.automation_controller.checkIsUploadAvatar()
+
+    def getRegCountryType(self):
+        self.automation_controller.getRegCountryType()
     
     def getTypeExportAccount(self):
         self.automation_controller.getTypeExportAccount()
