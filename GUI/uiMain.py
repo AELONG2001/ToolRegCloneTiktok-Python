@@ -263,25 +263,56 @@ def uiMain(self, ToolRegCloneTiktok):
     self.password_reg_account = QLabel(parent=self.settings)
     self.password_reg_account.setGeometry(QRect(20, 20, 151, 21))
     self.password_reg_account.setStyleSheet(
-        'font: 700 10pt "Segoe UI";\n' 'font: 11pt "Sans Serif Collection";'
+        'font: 600 10pt "Segoe UI";'
     )
     self.password_reg_account.setObjectName("password_reg_account")
     self.password_reg_account_value = QLineEdit(parent=self.settings)
-    self.password_reg_account_value.setGeometry(QRect(170, 20, 405, 21))
-    self.password_reg_account_value.setPlaceholderText("Mật khẩu phải bao gồm ít nhất 8 ký tự bao gồm chữ, số và ký tự đặc biệt,...")
+    self.password_reg_account_value.setGeometry(QRect(160, 20, 180, 21))
+    self.password_reg_account_value.setPlaceholderText("8 ký tự chữ, số và ký tự đặc biệt")
     self.password_reg_account_value.setObjectName("check_rule_password_account")
     self.check_rule_password_account = QLabel(parent=self.settings)
-    self.check_rule_password_account.setGeometry(QRect(170, 40, 405, 21))
+    self.check_rule_password_account.setGeometry(QRect(160, 40, 260, 21))
     self.check_rule_password_account.setStyleSheet(
         'color: "#d93025"'
     )
     self.check_rule_password_account.setObjectName("check_rule_password_account")
     self.check_rule_password_account.setText("")
     self.random_password_account = QCheckBox(parent=self.settings)
-    self.random_password_account.setGeometry(QRect(585, 20, 72, 20))
+    self.random_password_account.setGeometry(QRect(354, 22, 72, 20))
     self.random_password_account.setStyleSheet("font: 600 10pt \"Segoe UI\";")
     self.random_password_account.setObjectName("random_password_account")
     self.random_password_account.setChecked(True)
+    self.is_change_username = QLabel(parent=self.settings)
+    self.is_change_username.setGeometry(QRect(500, 20, 100, 21))
+    self.is_change_username.setStyleSheet(
+        'font: 600 10pt "Segoe UI";'
+    )
+    self.is_change_username.setObjectName("is_change_username")
+    self.is_change_username_check = QCheckBox(parent=self.settings)
+    self.is_change_username_check.setGeometry(QRect(596, 22, 72, 20))
+    self.is_change_username_check.setStyleSheet("font: 600 10pt \"Segoe UI\";")
+    self.is_change_username_check.setObjectName("is_change_username_check")
+    self.is_change_username_check.setChecked(True)
+    self.is_change_username_by_file = QLabel(parent=self.settings)
+    self.is_change_username_by_file.setGeometry(QRect(680, 20, 150, 21))
+    self.is_change_username_by_file.setStyleSheet(
+        'font: 600 10pt "Segoe UI";'
+    )
+    self.is_change_username_by_file.setObjectName("is_change_username_by_file")
+    self.list_username = QPushButton(parent=self.settings)
+    self.list_username.setGeometry(QRect(832, 20, 121, 24))
+    icon3 = QIcon()
+    icon3.addPixmap(
+        QPixmap(".\\icons/txt-file.png"),
+        QIcon.Mode.Normal,
+        QIcon.State.Off,
+    )
+    self.list_username.setIcon(icon3)
+    self.list_username.setObjectName("list_username")
+    self.list_username_value = QLineEdit(parent=self.settings)
+    self.list_username_value.setGeometry(QRect(960, 21, 150, 21))
+    self.list_username_value.setReadOnly(True)
+    self.list_username_value.setObjectName("list_username_value")
     self.label = QLabel(parent=self.settings)
     self.label.setGeometry(QRect(20, 70, 49, 16))
     self.label.setObjectName("label")
@@ -341,6 +372,8 @@ def uiMain(self, ToolRegCloneTiktok):
     self.export_account_format_value.setGeometry(QRect(950, 30, 250, 22))
     self.export_account_format_value.setStyleSheet("font: 9pt \"Segoe UI\";")
     self.export_account_format_value.setObjectName("export_account_format_value")
+    self.export_account_format_value.addItem("")
+    self.export_account_format_value.addItem("")
     self.export_account_format_value.addItem("")
     self.export_account_format_value.addItem("")
     self.export_account_format_value.addItem("")
@@ -438,6 +471,8 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value_ip_port.toggled.connect(self.checkIsProxyIpPort)
     self.password_reg_account_value.textChanged.connect(self.getDefaultPassword)
     self.random_password_account.toggled.connect(self.checkRandomPassword)
+    self.is_change_username_check.toggled.connect(self.checkChangeUsername)
+    self.list_username.clicked.connect(self.inputFileUsername)
     self.chrome_setting_line_value.valueChanged.connect(self.getIsChromeCount)
     self.chrome_percent_zoom_value.valueChanged.connect(self.getChromePercentZoom)
     self.chrome_delay_second_value.valueChanged.connect(self.getChromeValueDelay)

@@ -9,15 +9,18 @@
     "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTcwMTM5OTI4NjU4ZGI1ZGFiZjBlMjgiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTcwMTNiNDlhMGViZGY3NmE4NGM4YWIifQ.BFVAJ_6b2-9UlgpVyjQ76jf_KvXsMhqaJ4hv-2axvz0",
     "api_value_hotmailbox": "",
     "num_threads": 2,
-    "proxy_type": 2,
     "password_account": "",
     "random_password_account": true,
     "path_gologin": "C:\\Users\\HD\\AppData\\Local\\Temp\\GoLogin\\profiles",
     "url_mail_check": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/hotmail.txt",
     "chrome_percent_zoom": 0.75,
-    "url_avatar": null,
-    "is_upload_avatar": true,
+    "url_avatar": "C:/Users/HD/Downloads/girls",
     "type_reg_country": 1,
-    "captcha_type": 1,
-    "url_mail": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/hotmail.txt"
+    "captcha_type": 0,
+    "url_mail": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/hotmail.txt",
+    "typeExportAccount": 2,
+    "is_change_username_check": true,
+    "is_upload_avatar": true,
+    "url_username": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/username.txt",
+    "proxy_type": 1
 }

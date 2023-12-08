@@ -151,7 +151,7 @@ class InitalValuesCheckerTask(QRunnable):
             if "proxys" in data:
                 proxy_type = self.ui_instance.proxy_type.currentIndex()
                 api_key_list = data["proxys"]
-                 
+                                 
                 if proxy_type == 0:
                     response_api_tm_proxy_check_correct = handleCheckKeyTmProxy(api_key_list)
                     if response_api_tm_proxy_check_correct:
@@ -166,23 +166,23 @@ class InitalValuesCheckerTask(QRunnable):
                         setEnableStartButton(self.ui_instance)
                         self.signals.result_signal.emit(False, message)
                         return
-                elif proxy_type == 2:
-                    response_api_tin_proxy_check_correct = handleGetNewTinProxyCheckCorrect(api_key_list)
-                    if response_api_tin_proxy_check_correct:
-                        message = response_api_tin_proxy_check_correct
-                        setEnableStartButton(self.ui_instance)
-                        self.signals.result_signal.emit(False, message)
-                        return
+                # elif proxy_type == 1:
+                    # response_api_tin_proxy_check_correct = handleGetNewTinProxyCheckCorrect(api_key_list)
+                    # if response_api_tin_proxy_check_correct:
+                    #     message = response_api_tin_proxy_check_correct
+                    #     setEnableStartButton(self.ui_instance)
+                    #     self.signals.result_signal.emit(False, message)
+                    #     return
                     
-                    response_api_tin_proxy_check_expired = handleGetNewTinProxyCheckExpired(api_key_list)
-                    if response_api_tin_proxy_check_expired:
-                        message = response_api_tin_proxy_check_expired
-                        setEnableStartButton(self.ui_instance)
-                        self.signals.result_signal.emit(False, message)
-                        return
+                    # response_api_tin_proxy_check_expired = handleGetNewTinProxyCheckExpired(api_key_list)
+                    # if response_api_tin_proxy_check_expired:
+                    #     message = response_api_tin_proxy_check_expired
+                    #     setEnableStartButton(self.ui_instance)
+                    #     self.signals.result_signal.emit(False, message)
+                    #     return
 
-                    self.signals.result_signal.emit(False, message)
-                    return
+                    # self.signals.result_signal.emit(False, message)
+                    # return
         self.signals.result_signal.emit(True, message)
        
 

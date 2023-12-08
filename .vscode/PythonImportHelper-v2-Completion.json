@@ -2448,7 +2448,7 @@
         "kind": 2,
         "importPath": "functions.proxy.TinProxy.handleGetNewTinProxyCheckCorrect",
         "description": "functions.proxy.TinProxy.handleGetNewTinProxyCheckCorrect",
-        "peekOfCode": "def handleGetNewTinProxyCheckCorrect(api_list_key):\n    url = \"https://api.tinproxy.com/proxy/get-new-proxy\"\n    str_err = \"\"\n    for api_key in api_list_key:\n        response = requests.get(url, params={\"api_key\": api_key}).json()\n        if \"error\" in response and response[\"error\"] == \"API Key không hợp lệ\":\n            str_err += f\"Api Key {api_key} của TinProxy không chính xác\\n\"\n    return str_err",
+        "peekOfCode": "def handleGetNewTinProxyCheckCorrect(api_list_key):\n    url = \"https://api.tinproxy.com/proxy/get-new-proxy\"\n    str_err = \"\"\n    for api_key in api_list_key:\n        response = requests.get(url, params={\"api_key\": api_key}).json()\n        print(\"response: \", response)\n        if \"error\" in response and response[\"error\"] == \"API Key không hợp lệ\":\n            str_err += f\"Api Key {api_key} của TinProxy không chính xác\\n\"\n    return str_err",
         "detail": "functions.proxy.TinProxy.handleGetNewTinProxyCheckCorrect",
         "documentation": {}
     },
@@ -2520,7 +2520,7 @@
         "kind": 6,
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
-        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.4\"\n        self.latest_version = self.data[\"latest_version\"]\n        self.remaining_days = self.data[\"remaining_days\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.6\"\n        self.latest_version = self.data[\"latest_version\"]\n        self.remaining_days = self.data[\"remaining_days\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
         "detail": "GUI.uiLogicMain",
         "documentation": {}
     },

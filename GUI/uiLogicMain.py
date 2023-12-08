@@ -21,7 +21,7 @@ class utrclttlsfw(QObject):
         super().__init__()
 
         self.data = data
-        self.current_version = "1.0.4"
+        self.current_version = "1.0.6"
         self.latest_version = self.data["latest_version"]
         self.remaining_days = self.data["remaining_days"]
         self.is_start = False
@@ -130,6 +130,12 @@ class utrclttlsfw(QObject):
 
     def checkRandomPassword(self):
         self.automation_controller.checkRandomPassword()
+
+    def checkChangeUsername(self):
+        self.automation_controller.checkChangeUsername()
+        
+    def inputFileUsername(self):
+        self.automation_controller.inputFileUsername()
 
     def getIsChromeCount(self):
         self.automation_controller.getIsChromeCount()

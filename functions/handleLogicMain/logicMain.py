@@ -115,7 +115,7 @@ class AutomationController:
         else:
             random_password_account = self.ui_instance.random_password_account.isChecked()
             if not random_password_account:
-                self.ui_instance.check_rule_password_account.setText("Mật khẩu phải bao gồm ít nhất 8 ký tự bao gồm chữ, số và ký tự đặc biệt")
+                self.ui_instance.check_rule_password_account.setText("phải bao gồm 8 ký tự chữ, số và ký tự đặc biệt")
 
 
     def checkThreadsValue(self, value):
@@ -139,16 +139,16 @@ class AutomationController:
         handleSaveDataInputUser("url_avatar", link_avatar)
 
     def inputMail(self):
-        link_mail = self.ui_instance.fileName = QFileDialog.getOpenFileName(
+        link_mail = QFileDialog.getOpenFileName(
             None, "Open File", "", "(*.txt)"
         )[0]
-        self.ui_instance.mail_value.setText(self.ui_instance.fileName)
+        self.ui_instance.mail_value.setText(link_mail)
 
         handleSaveDataInputUser("url_mail", link_mail)
 
     def getCaptchaType(self):
         captcha_type = self.ui_instance.captcha_type.currentIndex()
-        handleSaveDataInputUser("captcha_type", captcha_type + 1)
+        handleSaveDataInputUser("captcha_type", captcha_type)
 
     def getCaptchaKey(self):
         captcha_key = self.ui_instance.captcha_key.text().strip()
@@ -164,6 +164,10 @@ class AutomationController:
         if typeExportAccount == 1:
             default_file_name = "output_without_cookie.txt"
         elif typeExportAccount == 2:
+            default_file_name = "output_without_date.txt"
+        elif typeExportAccount == 3:
+            default_file_name = "output_without_cookie_without_date.txt"
+        elif typeExportAccount == 4:
             default_file_name = "output_username_password.txt"
 
         file_name, _ = QFileDialog.getSaveFileName(None, "Chọn nơi lưu tệp", default_file_name, "Tệp văn bản (*.txt);;Tất cả các tệp (*)")
@@ -199,20 +203,40 @@ class AutomationController:
                 else:
                     selected_data.append(line.split("|"))
         elif typeExportAccount == 2:
+            selected_data = []
+            for line in accounts:
+                data = line.split("|")
+                del data[len(data) - 1]
+                selected_data.append(data)
+        elif typeExportAccount == 3:
+            selected_data = []
+            for line in accounts:
+                # check và tìm vị trí chứa cookie
+                if 'msToken=' in line:
+                    data = line.split("|")
+                    index_cookie = next((i for i, part in enumerate(data) if 'msToken=' in part), None)
+                    
+                    if index_cookie is not None:
+                        del data[len(data) - 1]
+                        del data[index_cookie]
+                        selected_data.append(data)
+                else:
+                    data = line.split("|")
+                    del data[len(data) - 1]
+                    selected_data.append(data)
+        elif typeExportAccount == 4:
             selected_data = [line.split("|")[:2] for line in accounts]
-        else:
-            return
 
         with open(file_name, "w") as txtfile:
-            if typeExportAccount == 1:
+            if typeExportAccount == 0:
+                txtfile.writelines(selected_data)
+            elif typeExportAccount == 1:
                 for line in selected_data:
                     txtfile.write("|".join(line))
-            elif typeExportAccount == 2:
+            elif typeExportAccount == 2 or typeExportAccount == 3 or typeExportAccount == 4:
                 for line in selected_data:
                     txtfile.write("|".join(line) + "\n")
-            else:
-                txtfile.writelines(selected_data)
-
+                    
         QMessageBox.information(None, "Thông báo", "Đã lưu thành công!")
             
     def getProxyType(self):
@@ -226,7 +250,7 @@ class AutomationController:
             self.ui_instance.proxy_value_ip_port.setVisible(False)
             self.ui_instance.proxy_value_ip_port_user_pass.setVisible(False)
 
-        handleSaveDataInputUser("proxy_type", proxy_type + 1)
+        handleSaveDataInputUser("proxy_type", proxy_type)
 
     def importProxy(self):
         proxy_text = self.ui_instance.proxy_value.toPlainText().strip()
@@ -255,16 +279,23 @@ class AutomationController:
             self.ui_instance.check_rule_password_account.setText("")
         handleSaveDataInputUser("random_password_account", random_password_account)
 
+    def checkChangeUsername(self):
+        is_change_username_check = self.ui_instance.is_change_username_check.isChecked()
+        handleSaveDataInputUser("is_change_username_check", is_change_username_check)
+
+    def inputFileUsername(self):
+        link_username = QFileDialog.getOpenFileName(
+            None, "Open File", "", "(*.txt)"
+        )[0]
+        self.ui_instance.list_username_value.setText(link_username)
+
+        handleSaveDataInputUser("url_username", link_username)
+
     def getIsChromeCount(self):
         is_chrome_count = self.ui_instance.chrome_setting_line_value.value()
         handleSaveDataInputUser("is_chrome_count", is_chrome_count)
 
-    def getChromePercentZoom(self, value):
-        # if value < 0.1:
-        #     QMessageBox.warning(None, "Warning", "Giá trị không được nhỏ hơn 0.1")
-        #     self.ui_instance.chrome_percent_zoom_value.setValue(0.1)
-        #     handleSaveDataInputUser("chrome_percent_zoom", 0.1)
-        #     return
+    def getChromePercentZoom(self):
 
         chrome_percent_zoom = self.ui_instance.chrome_percent_zoom_value.value()
         handleSaveDataInputUser("chrome_percent_zoom", chrome_percent_zoom)
@@ -297,11 +328,11 @@ class AutomationController:
 
     def getRegCountryType(self):
         type_reg_country = self.ui_instance.type_reg_country.currentIndex()
-        handleSaveDataInputUser("type_reg_country", type_reg_country + 1)
+        handleSaveDataInputUser("type_reg_country", type_reg_country)
 
     def getTypeExportAccount(self):
         typeExportAccount = self.ui_instance.export_account_format_value.currentIndex()
-        handleSaveDataInputUser("typeExportAccount", typeExportAccount + 1)
+        handleSaveDataInputUser("typeExportAccount", typeExportAccount)
 
     def inputMailCheck(self):
         link_mail_check = self.ui_instance.fileNameCheck = QFileDialog.getOpenFileName(

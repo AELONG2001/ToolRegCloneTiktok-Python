@@ -5,6 +5,7 @@ def handleGetNewTinProxyCheckCorrect(api_list_key):
     str_err = ""
     for api_key in api_list_key:
         response = requests.get(url, params={"api_key": api_key}).json()
+        print("response: ", response)
         if "error" in response and response["error"] == "API Key không hợp lệ":
             str_err += f"Api Key {api_key} của TinProxy không chính xác\n"
 

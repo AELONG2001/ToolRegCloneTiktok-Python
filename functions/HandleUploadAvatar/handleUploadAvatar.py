@@ -77,8 +77,22 @@ def handleUploadAvatar(self):
         try:
             userId = pageContent.split('"nickName":"')[1].split('"')[0]
         except IndexError:
+            cookies = self.driver.get_cookies()
+            cookies_string = ";".join(
+                [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+            )
+            account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+            with open(self.output_file_path, "a") as f:
+                f.write(account + "\n")
             return
     else:
+        cookies = self.driver.get_cookies()
+        cookies_string = ";".join(
+            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+        )
+        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        with open(self.output_file_path, "a") as f:
+            f.write(account + "\n")
         return
 
     try:
@@ -191,20 +205,46 @@ def handleUploadAvatar(self):
             f.write(account + "\n")
         return
     
-    wait(4, 6)
-    userNameRandom = f"{generate_random_name(8)}_{generate_random_name(6)}"
-    editUserName = self.driver.find_element("xpath", '//*[@placeholder="Username"]')
-    editUserName.clear()
-    editUserName.clear()
-    wait(4, 6)
-    editUserName.send_keys(userNameRandom)
+    is_random_name = self.self_main.is_change_username_check.isChecked()
+    with open("configs_account.json", "r") as json_file:
+        data = json.load(json_file)
 
-    wait(4, 6)
-    editName = self.driver.find_element("xpath", '//*[@placeholder="Name"]')
-    editName.clear()
-    editName.clear()
-    wait(4, 6)
-    editName.send_keys(userNameRandom)
+    if "url_username" in data and data["url_username"]:
+        with open(data["url_username"], "r") as f:
+            list_username = f.read()
+
+    if is_random_name:
+        if "url_username" in data and data["url_username"]:
+            wait(4, 6)
+            usernames= list_username.split("|")
+            userNameRandomByFile = f"{usernames[random_number(0, len(usernames) - 1)]}_{generate_random_name(6)}"
+            editUserName = self.driver.find_element("xpath", '//*[@placeholder="Username"]')
+            editUserName.clear()
+            editUserName.clear()
+            wait(4, 6)
+            editUserName.send_keys(userNameRandomByFile)
+
+            wait(4, 6)
+            editName = self.driver.find_element("xpath", '//*[@placeholder="Name"]')
+            editName.clear()
+            editName.clear()
+            wait(4, 6)
+            editName.send_keys(userNameRandomByFile)
+        else:
+            wait(4, 6)
+            userNameRandom = f"{generate_random_name(8)}_{generate_random_name(8)}"
+            editUserName = self.driver.find_element("xpath", '//*[@placeholder="Username"]')
+            editUserName.clear()
+            editUserName.clear()
+            wait(4, 6)
+            editUserName.send_keys(userNameRandom)
+
+            wait(4, 6)
+            editName = self.driver.find_element("xpath", '//*[@placeholder="Name"]')
+            editName.clear()
+            editName.clear()
+            wait(4, 6)
+            editName.send_keys(userNameRandom)
 
     wait(4, 6)
     saveElement = self.driver.find_element("xpath", '//*[@data-e2e="edit-profile-save"]')
@@ -212,15 +252,24 @@ def handleUploadAvatar(self):
     try:
         saveElement.click()
         wait(4, 6)
-        confirmChangeUser = self.driver.find_element("xpath", '//*[@data-e2e="set-username-popup-confirm"]')
-        confirmChangeUser.click()
+
+        if is_random_name:
+            confirmChangeUser = self.driver.find_element("xpath", '//*[@data-e2e="set-username-popup-confirm"]')
+            confirmChangeUser.click()
+
         wait(4, 6)
         cookies = self.driver.get_cookies()
         cookies_string = ";".join(
             [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
         )
-
-        account = f"{userNameRandom}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        
+        if is_random_name:
+            if "url_username" in data and data["url_username"]:
+               account = f"{userNameRandomByFile}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+            else:
+               account = f"{userNameRandom}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        else:
+           account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
         
         # insert account
         with open(self.output_file_path, "a") as f:

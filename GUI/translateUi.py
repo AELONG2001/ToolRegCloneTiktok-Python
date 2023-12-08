@@ -52,9 +52,6 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.copyright.setText(
         _translate("ToolRegCloneTiktok", "© Bản quyền thuộc về longsoftware.vn")
    )
-   #  self.link_facebook.setText(
-   #      _translate("ToolRegCloneTiktok", "https://www.facebook.com/longkata2001")
-   #  )
    self.ToolRegCloneTiktok.setTabText(
       self.ToolRegCloneTiktok.indexOf(self.home),
       _translate("ToolRegCloneTiktok", "Home"),
@@ -63,6 +60,14 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
       _translate("ToolRegCloneTiktok", "Mật khẩu account reg:")
    )
    self.random_password_account.setText(_translate("ToolRegCloneTiktok", "random"))
+   self.is_change_username.setText(
+      _translate("ToolRegCloneTiktok", "Đổi tên khi reg")
+   )
+   self.is_change_username_by_file.setText(
+      _translate("ToolRegCloneTiktok", "Đổi tên khi reg theo file:")
+   )
+   self.list_username.setText(_translate("ToolRegCloneTiktok", "Nhập file"))
+   self.list_username_value.setText(_translate("ToolRegCloneTiktok", ""))
    self.setting_tool.setTitle(_translate("ToolRegCloneTiktok", "Thiết lập thông số"))
    self.chrome_setting_line.setText(
       _translate("ToolRegCloneTiktok", "Số chrome trên 1 dòng:")
@@ -84,7 +89,9 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.export_account_format.setText(_translate("ToolRegCloneTiktok", "Định dạng xuất accounts:"))
    self.export_account_format_value.setItemText(0, _translate("ToolRegCloneTiktok", "id | pass | mail | passMail | coookie | date"))
    self.export_account_format_value.setItemText(1, _translate("ToolRegCloneTiktok", "id | pass | mail | passMail | date"))
-   self.export_account_format_value.setItemText(2, _translate("ToolRegCloneTiktok", "id | pass"))
+   self.export_account_format_value.setItemText(2, _translate("ToolRegCloneTiktok", "id | pass | mail | passMail | cookie"))
+   self.export_account_format_value.setItemText(3, _translate("ToolRegCloneTiktok", "id | pass | mail | passMail"))
+   self.export_account_format_value.setItemText(4, _translate("ToolRegCloneTiktok", "id | pass"))
    self.is_upload_avatar.setText(_translate("ToolRegCloneTiktok", "Upload avatar:"))
    self.is_upload_avatar_yes.setText(_translate("ToolRegCloneTiktok", "Có"))
    self.is_upload_avatar_no.setText(_translate("ToolRegCloneTiktok", "Không"))
@@ -119,7 +126,7 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
       self.mail_value.setText("")
 
    if "captcha_type" in data:
-      self.captcha_type.setCurrentIndex(data["captcha_type"] - 1)
+      self.captcha_type.setCurrentIndex(data["captcha_type"])
    else:
       self.captcha_type.setCurrentIndex(0)
 
@@ -134,7 +141,7 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
       self.proxy_value.setPlainText("")
 
    if "proxy_type" in data:
-      self.proxy_type.setCurrentIndex(data["proxy_type"] - 1)
+      self.proxy_type.setCurrentIndex(data["proxy_type"])
    else:
       self.proxy_type.setCurrentIndex(0)
 
@@ -158,6 +165,20 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
          self.random_password_account.setChecked(False)
    else:
       self.random_password_account.setChecked(True)
+
+   if "is_change_username_check" in data:
+      if data["is_change_username_check"]:
+         self.is_change_username_check.setChecked(True)
+      else:
+         self.is_change_username_check.setChecked(False)
+   else:
+      self.is_change_username_check.setChecked(True)
+
+   if "url_username" in data:
+      self.list_username_value.setText(data["url_username"])
+   else:
+      self.list_username_value.setText("")
+
 
    if "is_chrome_count" in data:
       self.chrome_setting_line_value.setValue(data["is_chrome_count"])
@@ -198,12 +219,12 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
       self.is_upload_avatar_yes.setChecked(True)
 
    if "type_reg_country" in data:
-      self.type_reg_country.setCurrentIndex(data["type_reg_country"] - 1)
+      self.type_reg_country.setCurrentIndex(data["type_reg_country"])
    else:
       self.type_reg_country.setCurrentIndex(0)
 
    if "typeExportAccount" in data:
-      self.export_account_format_value.setCurrentIndex(data["typeExportAccount"] - 1)
+      self.export_account_format_value.setCurrentIndex(data["typeExportAccount"])
    else:
       self.export_account_format_value.setCurrentIndex(0)
 
