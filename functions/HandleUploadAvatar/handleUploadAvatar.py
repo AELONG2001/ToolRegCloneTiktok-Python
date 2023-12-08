@@ -192,16 +192,18 @@ def handleUploadAvatar(self):
         return
     
     wait(4, 6)
-    userNameRandom = f"{self.username_mail.split('@')[0]}_{generate_random_name(5)}"
+    userNameRandom = f"{generate_random_name(8)}_{generate_random_name(6)}"
     editUserName = self.driver.find_element("xpath", '//*[@placeholder="Username"]')
     editUserName.clear()
-    wait(1, 2)
+    editUserName.clear()
+    wait(4, 6)
     editUserName.send_keys(userNameRandom)
 
     wait(4, 6)
     editName = self.driver.find_element("xpath", '//*[@placeholder="Name"]')
     editName.clear()
-    wait(1, 2)
+    editName.clear()
+    wait(4, 6)
     editName.send_keys(userNameRandom)
 
     wait(4, 6)

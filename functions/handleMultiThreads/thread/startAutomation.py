@@ -24,7 +24,11 @@ def startAutomation(self):
         # input user have to includes mail
         if "url_mail" in data:
             input_file_path = data["url_mail"]
-            output_file_path = "data/output.txt"
+        else:
+            input_file_path = "data/hotmail.txt"
+        
+        output_file_path = "data/output.txt"
+
     
         num_threads = self.threads_value.value()
 

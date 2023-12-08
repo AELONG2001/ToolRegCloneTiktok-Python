@@ -33,11 +33,12 @@ class InitalValuesCheckerTask(QRunnable):
         with open("configs_account.json", "r") as json_file:
             data = json.load(json_file)
 
-        if not "url_mail" in data or not data["url_mail"] and not data["api_value_hotmailbox"]:
-            message = "Vui lòng nhập mail"
-            setEnableStartButton(self.ui_instance)
-            self.signals.result_signal.emit(False, message)
-            return
+        if not "url_mail" in data or not data["url_mail"]:
+            if not data["api_value_hotmailbox"]:
+                message = "Vui lòng nhập mail"
+                setEnableStartButton(self.ui_instance)
+                self.signals.result_signal.emit(False, message)
+                return
 
         # input user have to includes captcha_key
         if not "captcha_key" in data or not data["captcha_key"]:
@@ -150,7 +151,7 @@ class InitalValuesCheckerTask(QRunnable):
             if "proxys" in data:
                 proxy_type = self.ui_instance.proxy_type.currentIndex()
                 api_key_list = data["proxys"]
-
+                 
                 if proxy_type == 0:
                     response_api_tm_proxy_check_correct = handleCheckKeyTmProxy(api_key_list)
                     if response_api_tm_proxy_check_correct:
@@ -165,7 +166,7 @@ class InitalValuesCheckerTask(QRunnable):
                         setEnableStartButton(self.ui_instance)
                         self.signals.result_signal.emit(False, message)
                         return
-                elif proxy_type == 1:
+                elif proxy_type == 2:
                     response_api_tin_proxy_check_correct = handleGetNewTinProxyCheckCorrect(api_key_list)
                     if response_api_tin_proxy_check_correct:
                         message = response_api_tin_proxy_check_correct

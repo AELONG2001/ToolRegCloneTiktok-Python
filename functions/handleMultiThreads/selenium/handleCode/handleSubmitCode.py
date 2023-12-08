@@ -16,7 +16,6 @@ def handleSubmitCode(self, code):
     QCoreApplication.processEvents()
     inputCodeElement.send_keys(code)
 
-    print("CheckTypeRegCountry: ", self.type_reg_country)
     if self.type_reg_country == 0:
         wait(1, 2)
         agreePolicyElement = self.driver.find_element(
