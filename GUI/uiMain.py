@@ -193,7 +193,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value_ip_port_user_pass.setObjectName("proxy_value_ip_port_user_pass")
     self.proxy_value_ip_port.setVisible(False)
     self.proxy_value_ip_port_user_pass.setVisible(False)
-    self.proxy_value_ip_port_user_pass.setDisabled(True)
+    # self.proxy_value_ip_port_user_pass.setDisabled(True)
     self.hint = QLabel(parent=self.home)
     self.hint.setGeometry(QRect(10, 465, 500, 16))
     self.hint.setStyleSheet('font: 700 10pt "Segoe UI";')
@@ -240,7 +240,7 @@ def uiMain(self, ToolRegCloneTiktok):
                 data = json.load(json_file)
 
         if "proxy_type" in data:
-            if data["proxy_type"] == 3 or data["proxy_type"] == 4:
+            if data["proxy_type"] == 2 or data["proxy_type"] == 3:
                 self.proxy_value_ip_port.setVisible(True)
                 self.proxy_value_ip_port_user_pass.setVisible(True)
             else:

@@ -1143,6 +1143,22 @@
         "documentation": {}
     },
     {
+        "label": "sleep",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "sleep",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
         "label": "TimeoutException",
         "importPath": "selenium.common.exceptions",
         "description": "selenium.common.exceptions",
@@ -1502,6 +1518,22 @@
         "description": "webdriver_manager.chrome",
         "isExtraImport": true,
         "detail": "webdriver_manager.chrome",
+        "documentation": {}
+    },
+    {
+        "label": "webdriver",
+        "importPath": "selenium",
+        "description": "selenium",
+        "isExtraImport": true,
+        "detail": "selenium",
+        "documentation": {}
+    },
+    {
+        "label": "webdriver",
+        "importPath": "selenium",
+        "description": "selenium",
+        "isExtraImport": true,
+        "detail": "selenium",
         "documentation": {}
     },
     {
@@ -1895,6 +1927,47 @@
         "documentation": {}
     },
     {
+        "label": "Thread",
+        "importPath": "threading",
+        "description": "threading",
+        "isExtraImport": true,
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "pyautogui",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pyautogui",
+        "description": "pyautogui",
+        "detail": "pyautogui",
+        "documentation": {}
+    },
+    {
+        "label": "Options",
+        "importPath": "selenium.webdriver.chrome.options",
+        "description": "selenium.webdriver.chrome.options",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.chrome.options",
+        "documentation": {}
+    },
+    {
+        "label": "Options",
+        "importPath": "selenium.webdriver.chrome.options",
+        "description": "selenium.webdriver.chrome.options",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.chrome.options",
+        "documentation": {}
+    },
+    {
+        "label": "print_function",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
         "label": "handleAutoBuyHotmail",
         "kind": 2,
         "importPath": "functions.autoBuyHotmail.autoBuyHotmail",
@@ -2079,7 +2152,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
         "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
-        "peekOfCode": "def handleSelectMonth(self):\n    self.self_main.table_account_info.scrollToBottom()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Bắt đầu reg...\")\n    )\n    QCoreApplication.processEvents()\n    # try:\n    #     waitForNavigation = WebDriverWait(self.driver, 10)\n    #     emailSelectElement = waitForNavigation.until(\n    #             EC.presence_of_element_located(",
+        "peekOfCode": "def handleSelectMonth(self):\n    self.self_main.table_account_info.scrollToBottom()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Bắt đầu reg...\")\n    )\n    QCoreApplication.processEvents()\n    try:\n        waitForNavigation = WebDriverWait(self.driver, 30)\n        monthSelectElement = waitForNavigation.until(\n            EC.presence_of_element_located(",
         "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
         "documentation": {}
     },
@@ -2372,6 +2445,24 @@
         "documentation": {}
     },
     {
+        "label": "handleInsertCookieAndWriteAccount",
+        "kind": 2,
+        "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "description": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "peekOfCode": "def handleInsertCookieAndWriteAccount(self):\n    cookies = self.driver.get_cookies()\n    cookies_string = \";\".join(\n        [f\"{cookie['name']}={cookie['value']}\" for cookie in cookies]\n    )\n    account = f\"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}\"\n    with open(self.output_file_path, \"a\") as f:\n        f.write(account + \"\\n\")\ndef showSuccessAccount(self):\n    item = QTableWidgetItem(\"Tạo tài khoản thành công...\")",
+        "detail": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "documentation": {}
+    },
+    {
+        "label": "showSuccessAccount",
+        "kind": 2,
+        "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "description": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "peekOfCode": "def showSuccessAccount(self):\n    item = QTableWidgetItem(\"Tạo tài khoản thành công...\")\n    green_color = QColor(64, 170, 15)\n    item.setForeground(green_color)\n    self.self_main.table_account_info.setItem(self.current_row_count, 3, item)\n    QCoreApplication.processEvents()\ndef handleUploadAvatar(self):\n    isGetUserIdAgain = True\n    while isGetUserIdAgain:\n        try:",
+        "detail": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "documentation": {}
+    },
+    {
         "label": "handleUploadAvatar",
         "kind": 2,
         "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
@@ -2594,6 +2685,114 @@
         "description": "mplctlsfw",
         "peekOfCode": "class hmlsfw(QMainWindow):\n    def __init__(self, ui_self):\n        super().__init__()\n        self.ui_self = ui_self\n        self.ui_self.is_update = False\n    def closeEvent(self, event):\n        if self.ui_self.is_update:\n            event.accept()\n            return\n        result = QMessageBox.question(",
         "detail": "mplctlsfw",
+        "documentation": {}
+    },
+    {
+        "label": "enter_proxy_auth",
+        "kind": 2,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "def enter_proxy_auth(proxy_username, proxy_password):\n    sleep(1)\n    pyautogui.typewrite(proxy_username)\n    pyautogui.press('tab')\n    pyautogui.typewrite(proxy_password)\n    pyautogui.press('enter')\ndef open_a_page(driver, url):\n    driver.get(url)\nThread(target=open_a_page, args=(driver, \"https://www.tiktok.com/signup/phone-or-email/email\")).start()\nThread(target=enter_proxy_auth, args=(proxy_username, proxy_password)).start()",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "open_a_page",
+        "kind": 2,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "def open_a_page(driver, url):\n    driver.get(url)\nThread(target=open_a_page, args=(driver, \"https://www.tiktok.com/signup/phone-or-email/email\")).start()\nThread(target=enter_proxy_auth, args=(proxy_username, proxy_password)).start()\nsleep(100000)",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "hostname",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "hostname = \"rp.proxyscrape.com\"\nport = \"6060\"\nproxy_username = \"33v7bu4ahf7ultp-country-us-session-8z2x1mev4b-lifetime-10\"\nproxy_password = \"x97zud5m4en4q5f\"\nchrome_options = Options()\nchrome_options.add_argument('--proxy-server={}'.format(hostname + \":\" + port))\ndriver = webdriver.Chrome(options=chrome_options)\ndef enter_proxy_auth(proxy_username, proxy_password):\n    sleep(1)\n    pyautogui.typewrite(proxy_username)",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "port",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "port = \"6060\"\nproxy_username = \"33v7bu4ahf7ultp-country-us-session-8z2x1mev4b-lifetime-10\"\nproxy_password = \"x97zud5m4en4q5f\"\nchrome_options = Options()\nchrome_options.add_argument('--proxy-server={}'.format(hostname + \":\" + port))\ndriver = webdriver.Chrome(options=chrome_options)\ndef enter_proxy_auth(proxy_username, proxy_password):\n    sleep(1)\n    pyautogui.typewrite(proxy_username)\n    pyautogui.press('tab')",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "proxy_username",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "proxy_username = \"33v7bu4ahf7ultp-country-us-session-8z2x1mev4b-lifetime-10\"\nproxy_password = \"x97zud5m4en4q5f\"\nchrome_options = Options()\nchrome_options.add_argument('--proxy-server={}'.format(hostname + \":\" + port))\ndriver = webdriver.Chrome(options=chrome_options)\ndef enter_proxy_auth(proxy_username, proxy_password):\n    sleep(1)\n    pyautogui.typewrite(proxy_username)\n    pyautogui.press('tab')\n    pyautogui.typewrite(proxy_password)",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "proxy_password",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "proxy_password = \"x97zud5m4en4q5f\"\nchrome_options = Options()\nchrome_options.add_argument('--proxy-server={}'.format(hostname + \":\" + port))\ndriver = webdriver.Chrome(options=chrome_options)\ndef enter_proxy_auth(proxy_username, proxy_password):\n    sleep(1)\n    pyautogui.typewrite(proxy_username)\n    pyautogui.press('tab')\n    pyautogui.typewrite(proxy_password)\n    pyautogui.press('enter')",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "chrome_options",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "chrome_options = Options()\nchrome_options.add_argument('--proxy-server={}'.format(hostname + \":\" + port))\ndriver = webdriver.Chrome(options=chrome_options)\ndef enter_proxy_auth(proxy_username, proxy_password):\n    sleep(1)\n    pyautogui.typewrite(proxy_username)\n    pyautogui.press('tab')\n    pyautogui.typewrite(proxy_password)\n    pyautogui.press('enter')\ndef open_a_page(driver, url):",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "driver",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "driver = webdriver.Chrome(options=chrome_options)\ndef enter_proxy_auth(proxy_username, proxy_password):\n    sleep(1)\n    pyautogui.typewrite(proxy_username)\n    pyautogui.press('tab')\n    pyautogui.typewrite(proxy_password)\n    pyautogui.press('enter')\ndef open_a_page(driver, url):\n    driver.get(url)\nThread(target=open_a_page, args=(driver, \"https://www.tiktok.com/signup/phone-or-email/email\")).start()",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "create_proxyauth_extension",
+        "kind": 2,
+        "importPath": "test2",
+        "description": "test2",
+        "peekOfCode": "def create_proxyauth_extension(proxy_host, proxy_port,\n                               proxy_username, proxy_password,\n                               scheme='http', plugin_path=None):\n    \"\"\"Proxy Auth Extension\n    args:\n        proxy_host (str): domain or ip address, ie proxy.domain.com\n        proxy_port (int): port\n        proxy_username (str): auth username\n        proxy_password (str): auth password\n    kwargs:",
+        "detail": "test2",
+        "documentation": {}
+    },
+    {
+        "label": "proxyauth_plugin_path",
+        "kind": 5,
+        "importPath": "test2",
+        "description": "test2",
+        "peekOfCode": "proxyauth_plugin_path = create_proxyauth_extension(\n    proxy_host = \"rp.proxyscrape.com\",\n    proxy_port = \"6060\",\n    proxy_username = \"33v7bu4ahf7ultp-country-us-session-8z2x1mev4b-lifetime-10\",\n    proxy_password = \"x97zud5m4en4q5f\"\n)\nco = Options()\nco.add_argument(\"--start-maximized\")\nco.add_extension(proxyauth_plugin_path)\ndriver = webdriver.Chrome(options=co)",
+        "detail": "test2",
+        "documentation": {}
+    },
+    {
+        "label": "co",
+        "kind": 5,
+        "importPath": "test2",
+        "description": "test2",
+        "peekOfCode": "co = Options()\nco.add_argument(\"--start-maximized\")\nco.add_extension(proxyauth_plugin_path)\ndriver = webdriver.Chrome(options=co)\ndriver.get(\"https://www.youtube.com/\")\nsleep(1000000)",
+        "detail": "test2",
+        "documentation": {}
+    },
+    {
+        "label": "driver",
+        "kind": 5,
+        "importPath": "test2",
+        "description": "test2",
+        "peekOfCode": "driver = webdriver.Chrome(options=co)\ndriver.get(\"https://www.youtube.com/\")\nsleep(1000000)",
+        "detail": "test2",
         "documentation": {}
     }
 ]

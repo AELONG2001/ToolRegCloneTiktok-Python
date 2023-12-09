@@ -33,6 +33,22 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSlid
 
 from utils.utils import random_number
 
+def handleInsertCookieAndWriteAccount(self):
+    cookies = self.driver.get_cookies()
+    cookies_string = ";".join(
+        [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+    )
+    account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+    with open(self.output_file_path, "a") as f:
+        f.write(account + "\n")
+
+def showSuccessAccount(self):
+    item = QTableWidgetItem("Tạo tài khoản thành công...")
+    green_color = QColor(64, 170, 15)
+    item.setForeground(green_color)
+
+    self.self_main.table_account_info.setItem(self.current_row_count, 3, item)
+    QCoreApplication.processEvents()
 
 def handleUploadAvatar(self):
 
@@ -49,13 +65,8 @@ def handleUploadAvatar(self):
                 self.driver.get("https://www.tiktok.com")
                 isGetUserIdAgain = True
             except WebDriverException:
-                cookies = self.driver.get_cookies()
-                cookies_string = ";".join(
-                    [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-                )
-                account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                with open(self.output_file_path, "a") as f:
-                    f.write(account + "\n")
+                handleInsertCookieAndWriteAccount(self)
+                showSuccessAccount(self)
                 isGetUserIdAgain = False
                 self.is_restart = False
                 return
@@ -77,44 +88,24 @@ def handleUploadAvatar(self):
         try:
             userId = pageContent.split('"nickName":"')[1].split('"')[0]
         except IndexError:
-            cookies = self.driver.get_cookies()
-            cookies_string = ";".join(
-                [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-            )
-            account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-            with open(self.output_file_path, "a") as f:
-                f.write(account + "\n")
+            handleInsertCookieAndWriteAccount(self)
+            showSuccessAccount(self)
             return
     else:
-        cookies = self.driver.get_cookies()
-        cookies_string = ";".join(
-            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-        )
-        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-        with open(self.output_file_path, "a") as f:
-            f.write(account + "\n")
+        handleInsertCookieAndWriteAccount(self)
+        showSuccessAccount(self)
         return
 
     try:
         if userId:
             self.driver.get(f"https://www.tiktok.com/@{userId}")
         else:
-            cookies = self.driver.get_cookies()
-            cookies_string = ";".join(
-                [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-            )
-            account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-            with open(self.output_file_path, "a") as f:
-                f.write(account + "\n")
+            handleInsertCookieAndWriteAccount(self)
+            showSuccessAccount(self)
             return
     except WebDriverException:
-        cookies = self.driver.get_cookies()
-        cookies_string = ";".join(
-            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-        )
-        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-        with open(self.output_file_path, "a") as f:
-            f.write(account + "\n")
+        handleInsertCookieAndWriteAccount(self)
+        showSuccessAccount(self)
         return
 
     self.is_restart = False
@@ -137,24 +128,12 @@ def handleUploadAvatar(self):
        
         editProfile.click()
     except TimeoutException:
-        print("Không tìm thấy Edit profile sau khoảng thời gian chờ")
-        cookies = self.driver.get_cookies()
-        cookies_string = ";".join(
-            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-        )
-        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-        with open(self.output_file_path, "a") as f:
-            f.write(account + "\n")
+        handleInsertCookieAndWriteAccount(self)
+        showSuccessAccount(self)
         return
     except ElementClickInterceptedException:
-        print("Không tìm thấy Edit profile sau khoảng thời gian chờ")
-        cookies = self.driver.get_cookies()
-        cookies_string = ";".join(
-            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-        )
-        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-        with open(self.output_file_path, "a") as f:
-            f.write(account + "\n")
+        handleInsertCookieAndWriteAccount(self)
+        showSuccessAccount(self)
         return
 
     self.self_main.table_account_info.setItem(
@@ -179,13 +158,8 @@ def handleUploadAvatar(self):
                 )
         
     else:
-        cookies = self.driver.get_cookies()
-        cookies_string = ";".join(
-            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-        )
-        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-        with open(self.output_file_path, "a") as f:
-            f.write(account + "\n")
+        handleInsertCookieAndWriteAccount(self)
+        showSuccessAccount(self)
         return
 
     wait(4, 6)
@@ -196,13 +170,8 @@ def handleUploadAvatar(self):
             self.driver.execute_script("arguments[0].scrollIntoView();", applyAvatarBtn)
         applyAvatarBtn.click()
     except NoSuchElementException:
-        cookies = self.driver.get_cookies()
-        cookies_string = ";".join(
-            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-        )
-        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-        with open(self.output_file_path, "a") as f:
-            f.write(account + "\n")
+        handleInsertCookieAndWriteAccount(self)
+        showSuccessAccount(self)
         return
     
     is_random_name = self.self_main.is_change_username_check.isChecked()
@@ -276,23 +245,12 @@ def handleUploadAvatar(self):
             f.write(account + "\n")
     except ElementClickInterceptedException:
         print("không tìm thấy saveElement")
-        cookies = self.driver.get_cookies()
-        cookies_string = ";".join(
-            [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-        )
-        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-        with open(self.output_file_path, "a") as f:
-            f.write(account + "\n")
+        handleInsertCookieAndWriteAccount(self)
+        showSuccessAccount(self)
         return
     
     self.self_main.table_account_info.setItem(
         self.current_row_count, 3, QTableWidgetItem("upload avatar thành công...")
     )
     QCoreApplication.processEvents()
-
-    item = QTableWidgetItem("Tạo tài khoản thành công...")
-    green_color = QColor(64, 170, 15)
-    item.setForeground(green_color)
-
-    self.self_main.table_account_info.setItem(self.current_row_count, 3, item)
-    QCoreApplication.processEvents()
+    showSuccessAccount(self)

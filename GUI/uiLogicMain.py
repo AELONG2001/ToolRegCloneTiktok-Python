@@ -140,8 +140,8 @@ class utrclttlsfw(QObject):
     def getIsChromeCount(self):
         self.automation_controller.getIsChromeCount()
 
-    def getChromePercentZoom(self, value):
-        self.automation_controller.getChromePercentZoom(value)
+    def getChromePercentZoom(self):
+        self.automation_controller.getChromePercentZoom()
 
     def getChromeValueDelay(self, value):
         self.automation_controller.getChromeValueDelay(value)
