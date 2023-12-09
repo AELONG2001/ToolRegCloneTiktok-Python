@@ -141,7 +141,7 @@ def handleUploadAvatar(self):
     )
     QCoreApplication.processEvents()
 
-    wait(2, 4)
+    wait(4, 6)
     inputUploadAvatar = self.driver.find_elements("css selector", "input[type='file']")
     if inputUploadAvatar:
             if is_list_avtart_default:
@@ -150,11 +150,11 @@ def handleUploadAvatar(self):
 
                 path_avatar_default_origin = absolute_path
                 inputUploadAvatar[0].send_keys(
-                    f"{path_avatar_default_origin}/{list_avatar[random_number(0, len(list_avatar) - 1)]}"
+                    f"{path_avatar_default_origin}/{list_avatar[random_number(0, len(list_avatar) - 2)]}"
                 )
             else:
                 inputUploadAvatar[0].send_keys(
-                    f"{list_avatar_folder}/{list_avatar[random_number(0, len(list_avatar) - 1)]}"
+                    f"{list_avatar_folder}/{list_avatar[random_number(0, len(list_avatar) - 2)]}"
                 )
         
     else:
@@ -163,12 +163,12 @@ def handleUploadAvatar(self):
         return
 
     wait(4, 6)
-    applyAvatarBtn = self.driver.find_element("xpath", '//button[text()="Apply"]')
+    applyAvatarBtn = self.driver.find_elements("xpath", '//button[text()="Apply"]')
     try:
-        if not applyAvatarBtn.is_displayed():
+        if not applyAvatarBtn[0].is_displayed():
             # Sử dụng JavaScript để cuộn trang đến vị trí của phần tử
-            self.driver.execute_script("arguments[0].scrollIntoView();", applyAvatarBtn)
-        applyAvatarBtn.click()
+            self.driver.execute_script("arguments[0].scrollIntoView();", applyAvatarBtn[0])
+        applyAvatarBtn[0].click()
     except NoSuchElementException:
         handleInsertCookieAndWriteAccount(self)
         showSuccessAccount(self)
@@ -186,40 +186,40 @@ def handleUploadAvatar(self):
         if "url_username" in data and data["url_username"]:
             wait(4, 6)
             usernames= list_username.split("|")
-            userNameRandomByFile = f"{usernames[random_number(0, len(usernames) - 1)]}_{generate_random_name(6)}"
-            editUserName = self.driver.find_element("xpath", '//*[@placeholder="Username"]')
-            editUserName.clear()
-            editUserName.clear()
+            userNameRandomByFile = f"{usernames[random_number(0, len(usernames) - 1)]}_{generate_random_name(8)}"
+            editUserName = self.driver.find_elements("xpath", '//*[@placeholder="Username"]')
+            editUserName[0].clear()
+            editUserName[0].clear()
             wait(4, 6)
-            editUserName.send_keys(userNameRandomByFile)
+            editUserName[0].send_keys(userNameRandomByFile)
 
             wait(4, 6)
-            editName = self.driver.find_element("xpath", '//*[@placeholder="Name"]')
-            editName.clear()
-            editName.clear()
+            editName = self.driver.find_elements("xpath", '//*[@placeholder="Name"]')
+            editName[0].clear()
+            editName[0].clear()
             wait(4, 6)
-            editName.send_keys(userNameRandomByFile)
+            editName[0].send_keys(userNameRandomByFile)
         else:
             wait(4, 6)
             userNameRandom = f"{generate_random_name(8)}_{generate_random_name(8)}"
-            editUserName = self.driver.find_element("xpath", '//*[@placeholder="Username"]')
-            editUserName.clear()
-            editUserName.clear()
+            editUserName[0] = self.driver.find_elements("xpath", '//*[@placeholder="Username"]')
+            editUserName[0].clear()
+            editUserName[0].clear()
             wait(4, 6)
-            editUserName.send_keys(userNameRandom)
+            editUserName[0].send_keys(userNameRandom)
 
             wait(4, 6)
-            editName = self.driver.find_element("xpath", '//*[@placeholder="Name"]')
-            editName.clear()
-            editName.clear()
+            editName = self.driver.find_elements("xpath", '//*[@placeholder="Name"]')
+            editName[0].clear()
+            editName[0].clear()
             wait(4, 6)
-            editName.send_keys(userNameRandom)
+            editName[0].send_keys(userNameRandom)
 
     wait(4, 6)
-    saveElement = self.driver.find_element("xpath", '//*[@data-e2e="edit-profile-save"]')
+    saveElement = self.driver.find_elements("xpath", '//*[@data-e2e="edit-profile-save"]')
     
     try:
-        saveElement.click()
+        saveElement[0].click()
         wait(4, 6)
 
         if is_random_name:

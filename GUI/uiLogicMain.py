@@ -21,7 +21,7 @@ class utrclttlsfw(QObject):
         super().__init__()
 
         self.data = data
-        self.current_version = "1.0.6"
+        self.current_version = "1.0.8"
         self.latest_version = self.data["latest_version"]
         self.remaining_days = self.data["remaining_days"]
         self.is_start = False
@@ -71,6 +71,7 @@ class utrclttlsfw(QObject):
             api_key_hotmailbox = data["api_value_hotmailbox"]
         else:
             api_key_hotmailbox = ""
+        type_reg_country = self.type_reg_country.currentIndex()
         is_upload_avatar = self.is_upload_avatar_yes.isChecked()
         
         self.chrome_threads[thread] = AutomationThread(
@@ -87,8 +88,8 @@ class utrclttlsfw(QObject):
             chrome_percent_zoom,
             path_profile_gologin,
             api_key_hotmailbox,
+            type_reg_country,
             is_upload_avatar,
-            # self.data_queue,
             username,
             password,
             True

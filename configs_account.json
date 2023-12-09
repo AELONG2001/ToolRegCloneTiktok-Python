@@ -1,7 +1,7 @@
 {
     "klsfw": "B12117E49C41C",
     "mclsfw": "bf2aa4bee397a5ba7d1227eba82ef816138676404a0308e061d8e3e4c4cb411f",
-    "captcha_key": "0b9923c44d4d8d5d2fea856dcd7c3b0e",
+    "captcha_key": "36ca2975dbe933d81f248bbe713e7cb6",
     "proxys": [
         "94Hpb0mpOyqKNY7kFxGQvw8Ve0Qp0IXz",
         "1BvKdjgSS3aRaIeS5uT5rKd9vCnQmttr",
@@ -14,12 +14,12 @@
     "random_password_account": true,
     "path_gologin": "C:\\Users\\HD\\AppData\\Local\\Temp\\GoLogin\\profiles",
     "url_mail_check": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/hotmail.txt",
-    "chrome_percent_zoom": 0.75,
+    "chrome_percent_zoom": 0.37,
     "url_avatar": "C:/Users/HD/Downloads/girls",
     "type_reg_country": 0,
     "captcha_type": 0,
     "url_mail": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/hotmail.txt",
-    "typeExportAccount": 2,
+    "typeExportAccount": 3,
     "is_change_username_check": true,
     "is_upload_avatar": true,
     "url_username": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/username.txt",

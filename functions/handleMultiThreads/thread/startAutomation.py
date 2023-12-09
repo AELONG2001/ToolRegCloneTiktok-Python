@@ -81,7 +81,6 @@ def startAutomation(self):
                 api_key_hotmailbox,
                 type_reg_country,
                 is_upload_avatar,
-                # self.data_queue,
             )
             for thread in range(num_threads)
         ]

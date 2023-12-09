@@ -1,4 +1,3 @@
-import re
 import math
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
@@ -7,6 +6,7 @@ from selenium import webdriver
 from selenium_authenticated_proxy import SeleniumAuthenticatedProxy
 from selenium.common.exceptions import WebDriverException
 from utils.utils import wait, generate_random_name, generate_password
+from functions.profilesGologin.handleDeleteProfile import handleDeleteProfile
 
 from functions.profilesGologin.handleCreateProfile import (
     handleCreateProfile,
@@ -201,6 +201,8 @@ class AutomationThread(QThread):
         self.stop_flag = True
         for thread in self.self_main.chrome_threads:
             thread.terminate()
+
+        handleDeleteProfile(self.profile_id)
 
         if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
             wait(1, 2)
