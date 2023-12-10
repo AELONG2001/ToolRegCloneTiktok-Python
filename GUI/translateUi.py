@@ -19,7 +19,6 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.start_button.setText(_translate("ToolRegCloneTiktok", "Bắt đầu"))
    self.proxy_value_ip_port.setText(_translate("ToolRegCloneTiktok", "ip:port"))
    self.proxy_value_ip_port_user_pass.setText(_translate("ToolRegCloneTiktok", "ip:port:user:pass"))
-   # self.check_proxy.setText(_translate("ToolRegCloneTiktok", "Check"))
    self.stop_button.setText(_translate("ToolRegCloneTiktok", "Kết thúc"))
    self.threads.setText(_translate("ToolRegCloneTiktok", "Số luồng:"))
    self.table_account_info.setSortingEnabled(False)
@@ -44,8 +43,6 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.update_label.setText(_translate("ToolRegCloneTiktok", "Đã có phiên bản mới, cập nhập ngay...."))
    self.update_button.setText(_translate("ToolRegCloneTiktok", "Cập nhập"))
    self.list_proxy.setText(_translate("ToolRegCloneTiktok", "Proxys:"))
-   # self.hotline.setText(_translate("ToolRegCloneTiktok", "Hotline:"))
-   # self.phone.setText(_translate("ToolRegCloneTiktok", "037.527.0513"))
    self.hint.setText(
         _translate("ToolRegCloneTiktok", "Tool chạy ổn định khi mạng ok + số luồng chạy phù hợp với cấu hình máy")
    )
@@ -62,6 +59,9 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.random_password_account.setText(_translate("ToolRegCloneTiktok", "random"))
    self.is_change_username.setText(
       _translate("ToolRegCloneTiktok", "Đổi tên khi reg")
+   )
+   self.change_theme.setText(
+      _translate("ToolRegCloneTiktok", "DarkMode")
    )
    self.is_change_username_by_file.setText(
       _translate("ToolRegCloneTiktok", "Đổi tên khi reg theo file:")
@@ -178,6 +178,17 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
       self.list_username_value.setText(data["url_username"])
    else:
       self.list_username_value.setText("")
+
+   if "darkmode" in data:
+      if data["darkmode"]:
+        self.change_theme_switch_off.setVisible(False)
+        self.change_theme_switch_on.setVisible(True)
+      else:
+        self.change_theme_switch_off.setVisible(True)
+        self.change_theme_switch_on.setVisible(False)
+   else:
+      self.change_theme_switch_off.setVisible(True)
+      self.change_theme_switch_on.setVisible(False)
 
 
    if "is_chrome_count" in data:

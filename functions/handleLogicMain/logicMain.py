@@ -6,6 +6,8 @@ from functions.handleMultiThreads.thread.startAutomation import startAutomation
 from functions.handleMultiThreads.thread.stopAutomation import stopAutomation
 from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
 from functions.handleCheckMail.checkMail import checkMail
+from GUI.darkMode import darkMode
+from GUI.lightMode import lightMode
 
 import os
 import json
@@ -241,7 +243,6 @@ class AutomationController:
             
     def getProxyType(self):
         proxy_type = self.ui_instance.proxy_type.currentIndex()
-        print("proxy_type: ", proxy_type)
         if proxy_type == 2 or proxy_type == 3:
             self.ui_instance.proxy_value.setPlaceholderText("Mỗi proxy một dòng")
             self.ui_instance.proxy_value_ip_port.setVisible(True)
@@ -291,6 +292,16 @@ class AutomationController:
         self.ui_instance.list_username_value.setText(link_username)
 
         handleSaveDataInputUser("url_username", link_username)
+
+    def handleShowDarkMode(self, event):
+        darkMode(self.ui_instance)
+        handleSaveDataInputUser("darkmode", True)
+
+    def handleHideDarkMode(self, event):
+        self.ui_instance.change_theme_switch_on.setVisible(False)
+        self.ui_instance.change_theme_switch_off.setVisible(True)
+        lightMode(self.ui_instance)
+        handleSaveDataInputUser("darkmode", False)
 
     def getIsChromeCount(self):
         is_chrome_count = self.ui_instance.chrome_setting_line_value.value()

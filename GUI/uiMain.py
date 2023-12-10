@@ -2,9 +2,15 @@ import os
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
+from GUI.darkMode import darkMode
+from GUI.lightMode import lightMode
 import json
 
 def uiMain(self, ToolRegCloneTiktok):
+    if os.path.exists("configs_account.json"):
+        with open("configs_account.json", "r") as json_file:
+                data = json.load(json_file)
+
     ToolRegCloneTiktok.setObjectName("ToolRegCloneTiktok")
     ToolRegCloneTiktok.resize(1256, 546)
     self.centralwidget = QWidget(parent=ToolRegCloneTiktok)
@@ -64,11 +70,15 @@ def uiMain(self, ToolRegCloneTiktok):
     font.setBold(True)
     font.setStrikeOut(False)
     font.setKerning(False)
+    self.threads = QLabel(parent=self.home)
+    self.threads.setGeometry(QRect(210, 10, 70, 21))
+    self.threads.setStyleSheet('font: 600 11pt "Segoe UI";')
+    self.threads.setObjectName("threads")
     self.threads_value.setFont(font)
     self.threads_value.setProperty("value", 1)
     self.threads_value.setObjectName("threads_value")
     self.export_account = QPushButton(parent=self.home)
-    self.export_account.setGeometry(QRect(1536, 80, 75, 21))
+    self.export_account.setGeometry(QRect(1536, 80, 90, 21))
     self.export_account.setStyleSheet(
         "color:#fff;\n" "background-color: rgb(19, 170, 24);"
     )
@@ -87,10 +97,6 @@ def uiMain(self, ToolRegCloneTiktok):
     )
     self.stop_button.setIcon(icon2)
     self.stop_button.setObjectName("stop_button")
-    self.threads = QLabel(parent=self.home)
-    self.threads.setGeometry(QRect(210, 10, 80, 21))
-    self.threads.setStyleSheet('font: 600 11pt "Segoe UI";')
-    self.threads.setObjectName("threads")
     self.table_account_info = QTableWidget(parent=self.home)
     self.table_account_info.setEnabled(True)
     self.table_account_info.setGeometry(QRect(10, 60, 860, 391))
@@ -132,7 +138,6 @@ def uiMain(self, ToolRegCloneTiktok):
     self.captcha_type.setGeometry(QRect(860, 10, 101, 21))
     self.captcha_type.addItem("")
     self.captcha_type.addItem("")
-    # self.captcha_type.setCurrentIndex(0)
     self.list_mail = QPushButton(parent=self.home)
     self.list_mail.setGeometry(QRect(590, 10, 121, 24))
     icon3 = QIcon()
@@ -234,11 +239,6 @@ def uiMain(self, ToolRegCloneTiktok):
         self.hint.setGeometry(QRect(10, 500, 500, 16))
         self.copyright.setGeometry(QRect(790, 500, 250, 16))
 
-    
-    if os.path.exists("configs_account.json"):
-        with open("configs_account.json", "r") as json_file:
-                data = json.load(json_file)
-
         if "proxy_type" in data:
             if data["proxy_type"] == 2 or data["proxy_type"] == 3:
                 self.proxy_value_ip_port.setVisible(True)
@@ -283,24 +283,24 @@ def uiMain(self, ToolRegCloneTiktok):
     self.random_password_account.setObjectName("random_password_account")
     self.random_password_account.setChecked(True)
     self.is_change_username = QLabel(parent=self.settings)
-    self.is_change_username.setGeometry(QRect(500, 20, 100, 21))
+    self.is_change_username.setGeometry(QRect(510, 20, 100, 21))
     self.is_change_username.setStyleSheet(
         'font: 600 10pt "Segoe UI";'
     )
     self.is_change_username.setObjectName("is_change_username")
     self.is_change_username_check = QCheckBox(parent=self.settings)
-    self.is_change_username_check.setGeometry(QRect(596, 22, 72, 20))
+    self.is_change_username_check.setGeometry(QRect(606, 22, 72, 20))
     self.is_change_username_check.setStyleSheet("font: 600 10pt \"Segoe UI\";")
     self.is_change_username_check.setObjectName("is_change_username_check")
     self.is_change_username_check.setChecked(True)
     self.is_change_username_by_file = QLabel(parent=self.settings)
-    self.is_change_username_by_file.setGeometry(QRect(680, 20, 150, 21))
+    self.is_change_username_by_file.setGeometry(QRect(676, 20, 150, 21))
     self.is_change_username_by_file.setStyleSheet(
         'font: 600 10pt "Segoe UI";'
     )
     self.is_change_username_by_file.setObjectName("is_change_username_by_file")
     self.list_username = QPushButton(parent=self.settings)
-    self.list_username.setGeometry(QRect(832, 20, 121, 24))
+    self.list_username.setGeometry(QRect(828, 20, 121, 24))
     icon3 = QIcon()
     icon3.addPixmap(
         QPixmap(".\\icons/txt-file.png"),
@@ -310,12 +310,30 @@ def uiMain(self, ToolRegCloneTiktok):
     self.list_username.setIcon(icon3)
     self.list_username.setObjectName("list_username")
     self.list_username_value = QLineEdit(parent=self.settings)
-    self.list_username_value.setGeometry(QRect(960, 21, 150, 21))
+    self.list_username_value.setGeometry(QRect(956, 21, 120, 21))
     self.list_username_value.setReadOnly(True)
     self.list_username_value.setObjectName("list_username_value")
-    self.label = QLabel(parent=self.settings)
-    self.label.setGeometry(QRect(20, 70, 49, 16))
-    self.label.setObjectName("label")
+    self.change_theme = QLabel(parent=self.settings)
+    self.change_theme.setGeometry(QRect(1108, 20, 100, 21))
+    self.change_theme.setStyleSheet(
+        'font: 600 10pt "Segoe UI";'
+    )
+    self.change_theme_switch_off = QLabel(parent=self.settings)
+    pixmap_switch_off = QPixmap('.\\icons/switch-off.png')
+    self.change_theme_switch_off.setPixmap(pixmap_switch_off)
+    self.change_theme_switch_off.setObjectName("change_theme_switch_off")
+    self.change_theme_switch_off.setGeometry(QRect(1178, 21, 102, 21))
+    self.change_theme_switch_off.setCursor(Qt.PointingHandCursor)
+    self.change_theme_switch_on = QLabel(parent=self.settings)
+    pixmap_switch_on = QPixmap('.\\icons/switch-on.png')
+    self.change_theme_switch_on.setPixmap(pixmap_switch_on)
+    self.change_theme_switch_on.setObjectName("change_theme_switch_on")
+    self.change_theme_switch_on.setGeometry(QRect(1178, 21, 102, 21))
+    self.change_theme_switch_on.setCursor(Qt.PointingHandCursor)
+    self.change_theme_switch_on.setVisible(False)
+    self.setting_title = QLabel(parent=self.settings)
+    self.setting_title.setGeometry(QRect(20, 70, 49, 16))
+    self.setting_title.setObjectName("label")
     self.setting_tool = QGroupBox(parent=self.settings)
     self.setting_tool.setGeometry(QRect(20, 70, 1221, 151))
     self.setting_tool.setStyleSheet('font: 600 10pt "Segoe UI";')
@@ -469,10 +487,15 @@ def uiMain(self, ToolRegCloneTiktok):
     self.export_account.clicked.connect(self.exportAccount)
     self.proxy_value.textChanged.connect(self.importProxy)
     self.proxy_value_ip_port.toggled.connect(self.checkIsProxyIpPort)
+    self.proxy_type.currentTextChanged.connect(self.getProxyType)
+
+    # handle logic tab 2
     self.password_reg_account_value.textChanged.connect(self.getDefaultPassword)
     self.random_password_account.toggled.connect(self.checkRandomPassword)
     self.is_change_username_check.toggled.connect(self.checkChangeUsername)
     self.list_username.clicked.connect(self.inputFileUsername)
+    self.change_theme_switch_off.mousePressEvent = lambda event: self.handleShowDarkMode(event)
+    self.change_theme_switch_on.mousePressEvent = lambda event: self.handleHideDarkMode(event)
     self.chrome_setting_line_value.valueChanged.connect(self.getIsChromeCount)
     self.chrome_percent_zoom_value.valueChanged.connect(self.getChromePercentZoom)
     self.chrome_delay_second_value.valueChanged.connect(self.getChromeValueDelay)
@@ -482,9 +505,6 @@ def uiMain(self, ToolRegCloneTiktok):
     self.is_upload_avatar_yes.toggled.connect(self.checkIsUploadAvatar)
     self.type_reg_country.currentTextChanged.connect(self.getRegCountryType)
     self.export_account_format_value.currentTextChanged.connect(self.getTypeExportAccount)
-    self.proxy_type.currentTextChanged.connect(self.getProxyType)
-
-    # handle logic tab 2
     self.file_mail_check.clicked.connect(self.inputMailCheck)
     self.btn_check.clicked.connect(self.handleCheckMail)
 
@@ -499,3 +519,11 @@ def uiMain(self, ToolRegCloneTiktok):
     self.table_account_info.setColumnWidth(1, 120)
     self.table_account_info.setColumnWidth(2, 220)
     self.table_account_info.setColumnWidth(3, 280)
+
+    if "darkmode" in data:
+      if data["darkmode"]:
+        darkMode(self)
+      else:
+        lightMode(self)
+    else:
+      lightMode(self)

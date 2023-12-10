@@ -1,110 +1,54 @@
-from __future__ import print_function
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
+import sys
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from time import sleep
+class MyWidget(QWidget):
+    def __init__(self):
+        super().__init__()
 
+        self.init_ui()
 
-def create_proxyauth_extension(proxy_host, proxy_port,
-                               proxy_username, proxy_password,
-                               scheme='http', plugin_path=None):
-    """Proxy Auth Extension
+    def init_ui(self):
+        # Tạo một QTabWidget
+        tab_widget = QTabWidget(self)
 
-    args:
-        proxy_host (str): domain or ip address, ie proxy.domain.com
-        proxy_port (int): port
-        proxy_username (str): auth username
-        proxy_password (str): auth password
-    kwargs:
-        scheme (str): proxy scheme, default http
-        plugin_path (str): absolute path of the extension       
+        # Tạo các tab
+        self.home = QWidget()
+        self.setting = QWidget()
 
-    return str -> plugin_path
-    """
-    import string
-    import zipfile
+        # Tạo một QVBoxLayout cho mỗi tab và thêm các phần tử vào đó
+        home_layout = QVBoxLayout(self.home)
+        home_label = QLabel("Hello, this is the home tab!", self.home)
+        home_layout.addWidget(home_label)
+        self.home.setLayout(home_layout)
 
-    if plugin_path is None:
-        plugin_path = 'vimm_chrome_proxyauth_plugin.zip'
+        setting_layout = QVBoxLayout(self.setting)
+        setting_label = QLabel("Hello, this is the setting tab!", self.setting)
+        setting_layout.addWidget(setting_label)
+        self.setting.setLayout(setting_layout)
 
-    manifest_json = """
-    {
-        "version": "1.0.0",
-        "manifest_version": 2,
-        "name": "Chrome Proxy",
-        "permissions": [
-            "proxy",
-            "tabs",
-            "unlimitedStorage",
-            "storage",
-            "<all_urls>",
-            "webRequest",
-            "webRequestBlocking"
-        ],
-        "background": {
-            "scripts": ["background.js"]
-        },
-        "minimum_chrome_version":"22.0.0"
-    }
-    """
+        # Thêm các tab vào QTabWidget
+        tab_widget.addTab(self.home, "Home")
+        tab_widget.addTab(self.setting, "Setting")
 
-    background_js = string.Template(
-    """
-    var config = {
-            mode: "fixed_servers",
-            rules: {
-              singleProxy: {
-                scheme: "${scheme}",
-                host: "${host}",
-                port: parseInt(${port})
-              },
-              bypassList: ["foobar.com"]
-            }
-          };
+        # Đặt màu nền cho tiêu đề của từng tab
+        self.set_tab_header_background_color(tab_widget, 0, "#green")  # Màu nền cho tab Home
+        self.set_tab_header_background_color(tab_widget, 1, "#green")  # Màu nền cho tab Setting
 
-    chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
+        # Hiển thị QTabWidget
+        tab_widget.show()
 
-    function callbackFn(details) {
-        return {
-            authCredentials: {
-                username: "${username}",
-                password: "${password}"
-            }
-        };
-    }
+    def set_tab_header_background_color(self, tab_widget, index, color):
+        # Kiểm tra index hợp lệ
+        if 0 <= index < tab_widget.count():
+            # Truy cập QTabBar và đặt màu nền cho tiêu đề tab tại index
+            tab_bar = tab_widget.findChild(QTabBar)
+            if tab_bar:
+                tab_bar.setStyleSheet(f'QTabBar::tab:{index} {{ background-color: {color}; }}')
 
-    chrome.webRequest.onAuthRequired.addListener(
-                callbackFn,
-                {urls: ["<all_urls>"]},
-                ['blocking']
-    );
-    """
-    ).substitute(
-        host=proxy_host,
-        port=proxy_port,
-        username=proxy_username,
-        password=proxy_password,
-        scheme=scheme,
-    )
-    with zipfile.ZipFile(plugin_path, 'w') as zp:
-        zp.writestr("manifest.json", manifest_json)
-        zp.writestr("background.js", background_js)
-
-    return plugin_path
-
-proxyauth_plugin_path = create_proxyauth_extension(
-    proxy_host = "rp.proxyscrape.com",
-    proxy_port = "6060",
-    proxy_username = "33v7bu4ahf7ultp-country-us-session-8z2x1mev4b-lifetime-10",
-    proxy_password = "x97zud5m4en4q5f"
-)
-
-
-co = Options()
-co.add_argument("--start-maximized")
-co.add_extension(proxyauth_plugin_path)
-
-
-driver = webdriver.Chrome(options=co)
-driver.get("https://www.youtube.com/")
-sleep(1000000)
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = MyWidget()
+    window.show()
+    sys.exit(app.exec())

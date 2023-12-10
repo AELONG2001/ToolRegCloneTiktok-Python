@@ -3,10 +3,10 @@ from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
-from selenium_authenticated_proxy import SeleniumAuthenticatedProxy
 from selenium.common.exceptions import WebDriverException
 from utils.utils import wait, generate_random_name, generate_password
 from functions.profilesGologin.handleDeleteProfile import handleDeleteProfile
+from functions.proxy.Authentication.AuthenticationForProxy import create_proxyauth_extension
 
 from functions.profilesGologin.handleCreateProfile import (
     handleCreateProfile,
@@ -126,7 +126,7 @@ class AutomationThread(QThread):
             mail_content = f.read()
 
         self.accounts = getMailContent(mail_content)
-         # Lấy nội dung mail
+        # Lấy nội dung mail
         # self.username_mail, self.password_mail = self.data_queue.get()
         self.username_mail, self.password_mail = self.accounts[self.num_threads]
 
@@ -184,16 +184,24 @@ class AutomationThread(QThread):
             else:
                 self.proxy = new_proxy
         elif self.proxy_type == 2 or self.proxy_type == 3:
-            type_ip_port = self.self_main.proxy_value_ip_port.isChecked()
+            self.type_ip_port = self.self_main.proxy_value_ip_port.isChecked()
 
             get_list_proxy = self.self_main.proxy_value.toPlainText()
             proxys = get_list_proxy.splitlines()
 
-            if type_ip_port:
+            if self.type_ip_port:
                 self.proxy = proxys[self.num_threads]
             else:
                 ip,port,user_proxy,password_proxy = proxys[self.num_threads].split(":")
-                self.proxy = f"{user_proxy}:{password_proxy}:{ip}:{port}"
+                self.proxy = f"{ip}:{port}:{user_proxy}:{password_proxy}"
+
+
+                self.proxy_auth = create_proxyauth_extension(
+                    proxy_host = ip,
+                    proxy_port = port,
+                    proxy_username = user_proxy,
+                    proxy_password = password_proxy
+                )
 
         print("Proxy: ",  self.proxy)
 
@@ -336,16 +344,19 @@ class AutomationThread(QThread):
             fr"--user-data-dir={self.path_profile_gologin}\{self.profile_id}\Default"
         )
         
-        # self.options.add_argument(f"--proxy-server={self.proxy}")
-
         if self.proxy_type == 2:
-            proxy_helper = SeleniumAuthenticatedProxy(proxy_url=f"http://{self.proxy}")
+            if self.type_ip_port:
+                self.options.add_argument(f"--proxy-server=http://{self.proxy}")
+            else:
+                self.options.add_extension(self.proxy_auth)
         elif self.proxy_type == 3:
-            proxy_helper = SeleniumAuthenticatedProxy(proxy_url=f"socks5://{self.proxy}")
+            if self.type_ip_port:
+                self.options.add_argument(f"--proxy-server=socks5://{self.proxy}")
+            else:
+                self.options.add_extension(self.proxy_auth)
         else:
-            proxy_helper = SeleniumAuthenticatedProxy(proxy_url=f"http://{self.proxy}")
+            self.options.add_argument(f"--proxy-server=http://{self.proxy}")
 
-        proxy_helper.enrich_chrome_options(self.options)
 
         self.driver = webdriver.Chrome(options=self.options)
         AutomationThread.drivers_list.append(self.driver)

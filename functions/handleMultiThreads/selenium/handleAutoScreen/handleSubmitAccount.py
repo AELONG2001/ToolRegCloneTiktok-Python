@@ -49,8 +49,12 @@ def handleSubmitAccount(self):
             wait(2, 3)
             if self.driver.current_url != "https://www.tiktok.com/signup/phone-or-email/email":
                 print("Tài khoản đã được tạo rồi")
-                account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{self.current_date}"
                 wait(1, 2)
+                cookies = self.driver.get_cookies()
+                cookies_string = ";".join(
+                    [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+                )
+                account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
                 with open(self.output_file_path, "a") as f:
                     f.write(account + "\n")
                 

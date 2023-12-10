@@ -290,10 +290,19 @@
     },
     {
         "label": "*",
-        "importPath": "PySide6.QtCore",
-        "description": "PySide6.QtCore",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
         "isExtraImport": true,
-        "detail": "PySide6.QtCore",
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
@@ -526,6 +535,30 @@
         "description": "PySide6.QtCore",
         "isExtraImport": true,
         "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
         "documentation": {}
     },
     {
@@ -697,15 +730,6 @@
         "documentation": {}
     },
     {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
         "label": "handleSaveDataInputUser",
         "importPath": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
         "description": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
@@ -751,6 +775,38 @@
         "description": "functions.handleCheckMail.checkMail",
         "isExtraImport": true,
         "detail": "functions.handleCheckMail.checkMail",
+        "documentation": {}
+    },
+    {
+        "label": "darkMode",
+        "importPath": "GUI.darkMode",
+        "description": "GUI.darkMode",
+        "isExtraImport": true,
+        "detail": "GUI.darkMode",
+        "documentation": {}
+    },
+    {
+        "label": "darkMode",
+        "importPath": "GUI.darkMode",
+        "description": "GUI.darkMode",
+        "isExtraImport": true,
+        "detail": "GUI.darkMode",
+        "documentation": {}
+    },
+    {
+        "label": "lightMode",
+        "importPath": "GUI.lightMode",
+        "description": "GUI.lightMode",
+        "isExtraImport": true,
+        "detail": "GUI.lightMode",
+        "documentation": {}
+    },
+    {
+        "label": "lightMode",
+        "importPath": "GUI.lightMode",
+        "description": "GUI.lightMode",
+        "isExtraImport": true,
+        "detail": "GUI.lightMode",
         "documentation": {}
     },
     {
@@ -1151,14 +1207,6 @@
         "documentation": {}
     },
     {
-        "label": "sleep",
-        "importPath": "time",
-        "description": "time",
-        "isExtraImport": true,
-        "detail": "time",
-        "documentation": {}
-    },
-    {
         "label": "TimeoutException",
         "importPath": "selenium.common.exceptions",
         "description": "selenium.common.exceptions",
@@ -1529,19 +1577,11 @@
         "documentation": {}
     },
     {
-        "label": "webdriver",
-        "importPath": "selenium",
-        "description": "selenium",
+        "label": "create_proxyauth_extension",
+        "importPath": "functions.proxy.Authentication.AuthenticationForProxy",
+        "description": "functions.proxy.Authentication.AuthenticationForProxy",
         "isExtraImport": true,
-        "detail": "selenium",
-        "documentation": {}
-    },
-    {
-        "label": "SeleniumAuthenticatedProxy",
-        "importPath": "selenium_authenticated_proxy",
-        "description": "selenium_authenticated_proxy",
-        "isExtraImport": true,
-        "detail": "selenium_authenticated_proxy",
+        "detail": "functions.proxy.Authentication.AuthenticationForProxy",
         "documentation": {}
     },
     {
@@ -1919,22 +1959,6 @@
         "documentation": {}
     },
     {
-        "label": "print_function",
-        "importPath": "__future__",
-        "description": "__future__",
-        "isExtraImport": true,
-        "detail": "__future__",
-        "documentation": {}
-    },
-    {
-        "label": "Options",
-        "importPath": "selenium.webdriver.chrome.options",
-        "description": "selenium.webdriver.chrome.options",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.chrome.options",
-        "documentation": {}
-    },
-    {
         "label": "handleAutoBuyHotmail",
         "kind": 2,
         "importPath": "functions.autoBuyHotmail.autoBuyHotmail",
@@ -1966,7 +1990,7 @@
         "kind": 2,
         "importPath": "functions.handleActiveButton.setDisableStartButton",
         "description": "functions.handleActiveButton.setDisableStartButton",
-        "peekOfCode": "def setDisableStartButton(self):\n    self.start_button.setEnabled(False)\n    self.start_button.setStyleSheet(\"background-color: rgba(0, 0, 0, 0.2)\")\n    self.stop_button.setEnabled(True)\n    self.stop_button.setStyleSheet(\n        \"color:rgb(255, 252, 252);\\n\" \"background-color:rgb(255, 0, 0)\"\n    )",
+        "peekOfCode": "def setDisableStartButton(self):\n   with open(\"configs_account.json\", \"r\") as json_file:\n      data = json.load(json_file)\n   self.start_button.setEnabled(False)\n   self.stop_button.setEnabled(True)\n   if \"darkmode\" in data:\n      if data[\"darkmode\"]:\n         self.start_button.setStyleSheet(\"color: #fff; background-color: #636e72;\")\n         self.stop_button.setStyleSheet(\n            \"color:rgb(255, 252, 252);\\n\" \"background-color:rgb(255, 0, 0)\"",
         "detail": "functions.handleActiveButton.setDisableStartButton",
         "documentation": {}
     },
@@ -1975,7 +1999,7 @@
         "kind": 2,
         "importPath": "functions.handleActiveButton.setEnableStartButton",
         "description": "functions.handleActiveButton.setEnableStartButton",
-        "peekOfCode": "def setEnableStartButton(self):\n    self.stop_button.setEnabled(False)\n    self.stop_button.setStyleSheet(\"background-color: rgba(0, 0, 0, 0.2)\")\n    self.start_button.setEnabled(True)\n    self.start_button.setStyleSheet(\n        \"color:rgb(255, 252, 252); background-color:rgb(64, 170, 15)\"\n    )",
+        "peekOfCode": "def setEnableStartButton(self):\n    with open(\"configs_account.json\", \"r\") as json_file:\n      data = json.load(json_file)\n    self.stop_button.setEnabled(False)\n    self.start_button.setEnabled(True)\n    if \"darkmode\" in data:\n      if data[\"darkmode\"]:\n        self.start_button.setStyleSheet(\n            \"color:rgb(255, 252, 252); background-color:rgb(64, 170, 15)\"\n        )",
         "detail": "functions.handleActiveButton.setEnableStartButton",
         "documentation": {}
     },
@@ -2038,7 +2062,7 @@
         "kind": 2,
         "importPath": "functions.handleCheckMail.checkMail",
         "description": "functions.handleCheckMail.checkMail",
-        "peekOfCode": "def checkMail(\n    self, fileNameCheck\n):\n    self.mail_success.setText(f\"Live Mail (0):\")\n    self.mail_failed.setText(f\"Die Mail (0):\")\n    self.mail_success_box.clear()\n    self.mail_failed_box.clear()\n    self.success_mail_count = 0\n    self.failed_mail_count = 0\n    total_email_count = 0",
+        "peekOfCode": "def checkMail(\n    self, fileNameCheck\n):\n    is_dark_mode = self.change_theme_switch_on.isVisible()\n    self.mail_success.setText(f\"Live Mail (0):\")\n    self.mail_failed.setText(f\"Die Mail (0):\")\n    self.mail_success_box.clear()\n    self.mail_failed_box.clear()\n    self.success_mail_count = 0\n    self.failed_mail_count = 0",
         "detail": "functions.handleCheckMail.checkMail",
         "documentation": {}
     },
@@ -2470,7 +2494,7 @@
         "kind": 2,
         "importPath": "functions.profilesGologin.handleCreateProfile",
         "description": "functions.profilesGologin.handleCreateProfile",
-        "peekOfCode": "def handleCreateProfile(self):\n    random_name = generate_random_name()\n    username_proxy = \"\"\n    password_proxy = \"\"\n    if len(self.proxy.split(\":\")) > 2:\n        get_proxy = self.proxy.split(\":\")\n        ip = get_proxy[2]\n        port = get_proxy[3]\n        username_proxy = get_proxy[0]\n        password_proxy = get_proxy[1]",
+        "peekOfCode": "def handleCreateProfile(self):\n    random_name = generate_random_name()\n    username_proxy = \"\"\n    password_proxy = \"\"\n    if len(self.proxy.split(\":\")) > 2:\n        get_proxy = self.proxy.split(\":\")\n        ip = get_proxy[0]\n        port = get_proxy[1]\n        username_proxy = get_proxy[2]\n        password_proxy = get_proxy[3]",
         "detail": "functions.profilesGologin.handleCreateProfile",
         "documentation": {}
     },
@@ -2481,6 +2505,15 @@
         "description": "functions.profilesGologin.handleDeleteProfile",
         "peekOfCode": "def handleDeleteProfile(profile_id):\n    try:\n        with open(\"configs_account.json\", \"r\") as json_file:\n           data = json.load(json_file)\n        api_token_gologin = data[\"api_token_gologin\"]\n        url = f\"https://api.gologin.com/browser/{profile_id}\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_token_gologin}\",\n            \"Content-Type\": \"application/json\",\n        }",
         "detail": "functions.profilesGologin.handleDeleteProfile",
+        "documentation": {}
+    },
+    {
+        "label": "create_proxyauth_extension",
+        "kind": 2,
+        "importPath": "functions.proxy.Authentication.AuthenticationForProxy",
+        "description": "functions.proxy.Authentication.AuthenticationForProxy",
+        "peekOfCode": "def create_proxyauth_extension(proxy_host, proxy_port,\n    proxy_username, proxy_password,\n    scheme='http', plugin_path=None):\n    import string\n    import zipfile\n    if plugin_path is None:\n        plugin_path = 'vimm_chrome_proxyauth_plugin.zip'\n    manifest_json = \"\"\"\n    {\n        \"version\": \"1.0.0\",",
+        "detail": "functions.proxy.Authentication.AuthenticationForProxy",
         "documentation": {}
     },
     {
@@ -2556,6 +2589,24 @@
         "documentation": {}
     },
     {
+        "label": "darkMode",
+        "kind": 2,
+        "importPath": "GUI.darkMode",
+        "description": "GUI.darkMode",
+        "peekOfCode": "def darkMode(self):\n    background_element_dark_mode = \"#636e72\"\n    self.change_theme_switch_off.setVisible(False)\n    self.change_theme_switch_on.setVisible(True)\n    self.stop_button.setStyleSheet(f\"color: #000; background-color: {background_element_dark_mode}\")\n    self.threads_value.setStyleSheet(f\"color: #fff; background-color: {background_element_dark_mode}\")\n    self.table_account_info.setStyleSheet(f\"color: green; background-color: #dfe6e9\")\n    self.list_avatar.setStyleSheet(f\"color: #fff; background-color: {background_element_dark_mode}\")\n    self.avatar_value.setStyleSheet(f\"color: #fff; background-color: {background_element_dark_mode}\")\n    self.list_mail.setStyleSheet(f\"color: #fff; background-color: {background_element_dark_mode}\")",
+        "detail": "GUI.darkMode",
+        "documentation": {}
+    },
+    {
+        "label": "lightMode",
+        "kind": 2,
+        "importPath": "GUI.lightMode",
+        "description": "GUI.lightMode",
+        "peekOfCode": "def lightMode(self):\n    background_element_dark_mode = \"#fff\"\n    border_element_dark_mode = \"#636e72\"\n    self.change_theme_switch_on.setVisible(False)\n    self.change_theme_switch_off.setVisible(True)\n    self.stop_button.setStyleSheet(f\"color: #000; background-color: rgba(0, 0, 0, 0.2)\")\n    self.random_password_account.setStyleSheet(\"color: #000\")\n    self.is_upload_avatar_yes.setStyleSheet(\"color: #000\")\n    self.is_upload_avatar_no.setStyleSheet(\"color: #000\")\n    self.setting_tool.setStyleSheet(\"color: #000\")",
+        "detail": "GUI.lightMode",
+        "documentation": {}
+    },
+    {
         "label": "translateUi",
         "kind": 2,
         "importPath": "GUI.translateUi",
@@ -2578,7 +2629,7 @@
         "kind": 6,
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
-        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.8\"\n        self.latest_version = self.data[\"latest_version\"]\n        self.remaining_days = self.data[\"remaining_days\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.10\"\n        self.latest_version = self.data[\"latest_version\"]\n        self.remaining_days = self.data[\"remaining_days\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
         "detail": "GUI.uiLogicMain",
         "documentation": {}
     },
@@ -2587,7 +2638,7 @@
         "kind": 2,
         "importPath": "GUI.uiMain",
         "description": "GUI.uiMain",
-        "peekOfCode": "def uiMain(self, ToolRegCloneTiktok):\n    ToolRegCloneTiktok.setObjectName(\"ToolRegCloneTiktok\")\n    ToolRegCloneTiktok.resize(1256, 546)\n    self.centralwidget = QWidget(parent=ToolRegCloneTiktok)\n    self.centralwidget.setObjectName(\"centralwidget\")\n    self.ToolRegCloneTiktok = QTabWidget(parent=self.centralwidget)\n    self.ToolRegCloneTiktok.setGeometry(QRect(0, 0, 1301, 1079))\n    self.ToolRegCloneTiktok.setObjectName(\"ToolRegCloneTiktok\")\n    screen_geometry = QGuiApplication.primaryScreen().geometry()\n    x = (screen_geometry.width() - ToolRegCloneTiktok.width()) / 2",
+        "peekOfCode": "def uiMain(self, ToolRegCloneTiktok):\n    if os.path.exists(\"configs_account.json\"):\n        with open(\"configs_account.json\", \"r\") as json_file:\n                data = json.load(json_file)\n    ToolRegCloneTiktok.setObjectName(\"ToolRegCloneTiktok\")\n    ToolRegCloneTiktok.resize(1256, 546)\n    self.centralwidget = QWidget(parent=ToolRegCloneTiktok)\n    self.centralwidget.setObjectName(\"centralwidget\")\n    self.ToolRegCloneTiktok = QTabWidget(parent=self.centralwidget)\n    self.ToolRegCloneTiktok.setGeometry(QRect(0, 0, 1301, 1079))",
         "detail": "GUI.uiMain",
         "documentation": {}
     },
@@ -2655,38 +2706,11 @@
         "documentation": {}
     },
     {
-        "label": "create_proxyauth_extension",
-        "kind": 2,
+        "label": "MyWidget",
+        "kind": 6,
         "importPath": "test",
         "description": "test",
-        "peekOfCode": "def create_proxyauth_extension(proxy_host, proxy_port,\n                               proxy_username, proxy_password,\n                               scheme='http', plugin_path=None):\n    \"\"\"Proxy Auth Extension\n    args:\n        proxy_host (str): domain or ip address, ie proxy.domain.com\n        proxy_port (int): port\n        proxy_username (str): auth username\n        proxy_password (str): auth password\n    kwargs:",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "proxyauth_plugin_path",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "proxyauth_plugin_path = create_proxyauth_extension(\n    proxy_host = \"rp.proxyscrape.com\",\n    proxy_port = \"6060\",\n    proxy_username = \"33v7bu4ahf7ultp-country-us-session-8z2x1mev4b-lifetime-10\",\n    proxy_password = \"x97zud5m4en4q5f\"\n)\nco = Options()\nco.add_argument(\"--start-maximized\")\nco.add_extension(proxyauth_plugin_path)\ndriver = webdriver.Chrome(options=co)",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "co",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "co = Options()\nco.add_argument(\"--start-maximized\")\nco.add_extension(proxyauth_plugin_path)\ndriver = webdriver.Chrome(options=co)\ndriver.get(\"https://www.youtube.com/\")\nsleep(1000000)",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "driver",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "driver = webdriver.Chrome(options=co)\ndriver.get(\"https://www.youtube.com/\")\nsleep(1000000)",
+        "peekOfCode": "class MyWidget(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.init_ui()\n    def init_ui(self):\n        # Tạo một QTabWidget\n        tab_widget = QTabWidget(self)\n        # Tạo các tab\n        self.home = QWidget()\n        self.setting = QWidget()",
         "detail": "test",
         "documentation": {}
     }

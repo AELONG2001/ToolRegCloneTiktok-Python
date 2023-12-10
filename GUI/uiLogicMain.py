@@ -21,7 +21,7 @@ class utrclttlsfw(QObject):
         super().__init__()
 
         self.data = data
-        self.current_version = "1.0.8"
+        self.current_version = "1.0.10"
         self.latest_version = self.data["latest_version"]
         self.remaining_days = self.data["remaining_days"]
         self.is_start = False
@@ -137,6 +137,12 @@ class utrclttlsfw(QObject):
         
     def inputFileUsername(self):
         self.automation_controller.inputFileUsername()
+
+    def handleShowDarkMode(self, event):
+        self.automation_controller.handleShowDarkMode(event)
+
+    def handleHideDarkMode(self, event):
+        self.automation_controller.handleHideDarkMode(event)
 
     def getIsChromeCount(self):
         self.automation_controller.getIsChromeCount()

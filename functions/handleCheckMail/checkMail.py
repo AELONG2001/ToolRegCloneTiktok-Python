@@ -32,6 +32,7 @@ class EmailCheckerTask(QRunnable):
 def checkMail(
     self, fileNameCheck
 ):
+    is_dark_mode = self.change_theme_switch_on.isVisible()
     self.mail_success.setText(f"Live Mail (0):")
     self.mail_failed.setText(f"Die Mail (0):")
 
@@ -58,7 +59,10 @@ def checkMail(
     self.btn_check.setEnabled(False)
     self.btn_check.setText("Đang check")
     self.btn_check.setGeometry(QRect(440, 240, 120, 24))
-    self.btn_check.setStyleSheet("background-color: rgba(0, 0, 0, 0.2);")
+    if is_dark_mode:
+        self.btn_check.setStyleSheet("color: #fff; background-color: #636e72;")
+    else:
+        self.btn_check.setStyleSheet("color: #000; background-color: rgba(0, 0, 0, 0.2);")
     self.loading_icon_check_mail.setVisible(True)
     self.loadingMovieCheckMail.start()
 

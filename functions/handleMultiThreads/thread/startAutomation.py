@@ -39,8 +39,8 @@ def startAutomation(self):
         with open(input_file_path, 'w') as file:
             file.write('\n'.join(non_empty_lines_input))
 
-        with open(input_file_path, 'r') as file:
-            lines = file.readlines()
+        # with open(input_file_path, 'r') as file:
+        #     lines = file.readlines()
 
         # self.data_queue = Queue()
         # for line in lines:
