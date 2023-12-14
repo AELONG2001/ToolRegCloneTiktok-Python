@@ -265,7 +265,10 @@ def handleUploadAvatar(self):
             else:
                account = f"{userNameRandom}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
         else:
-           account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+           if userId:
+               account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+           else:
+               account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
         
         # insert account
         with open(self.output_file_path, "a") as f:

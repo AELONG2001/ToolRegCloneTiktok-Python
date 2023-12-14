@@ -44,9 +44,10 @@ if __name__ == "__main__":
         klsfw = data["klsfw"]
         mclsfw = data["mclsfw"]
 
-        response = hdcklsfw(klsfw, mclsfw)
+        response_text = hdcklsfw(klsfw, mclsfw)
+        response = json.loads(response_text)
 
-        if response["status"]:
+        if response["sfad23sewf32ewdds47rfd"]:
             ui = utrclttlsfw(response)
             trgclttlsfw = hmlsfw(ui)
             ui.setupUi(trgclttlsfw)

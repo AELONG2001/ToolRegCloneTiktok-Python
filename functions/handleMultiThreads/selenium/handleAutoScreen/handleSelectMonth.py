@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from functions.handleMultiThreads.handleRestartThread.handleRestartThread import handleRestartThread
+from time import sleep
 
 def handleSelectMonth(self):
     self.self_main.table_account_info.scrollToBottom()
@@ -12,6 +13,13 @@ def handleSelectMonth(self):
         self.current_row_count, 3, QTableWidgetItem("Bắt đầu reg...")
     )
     QCoreApplication.processEvents()
+
+    # wait(4, 6)
+    # acceptCookie = self.driver.find_elements("css selector", '.button-wrapper')
+    # print("acceptCookie: ", acceptCookie)
+    # if acceptCookie:
+    #     acceptCookie[0].click()
+    
 
     try:
         waitForNavigation = WebDriverWait(self.driver, 30)

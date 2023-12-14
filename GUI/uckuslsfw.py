@@ -6,6 +6,7 @@ from functions.hdcklsfw.hdcklsfw import hdcklsfw
 from functions.handleSaveDataInputUser.handleSaveDataInputUser import handleSaveDataInputUser
 from subprocess import run, CREATE_NO_WINDOW
 import webbrowser
+import json
 
 class ckuslsw(QMainWindow):
     def __init__(self):
@@ -89,9 +90,10 @@ class ckuslsw(QMainWindow):
 
     def hckuslfw(self):
         input_key = self.key_input.text().strip()
-        response = hdcklsfw(input_key, self.machine_code)
-
-        if response["status"]:
+        response_text = hdcklsfw(input_key, self.machine_code)
+        response = json.loads(response_text)
+        
+        if response["sfad23sewf32ewdds47rfd"]:
             handleSaveDataInputUser("klsfw", input_key)
             handleSaveDataInputUser("mclsfw", self.machine_code)
             QApplication.quit()

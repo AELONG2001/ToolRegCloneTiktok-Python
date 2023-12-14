@@ -289,14 +289,6 @@
         "documentation": {}
     },
     {
-        "label": "*",
-        "importPath": "PySide6.QtWidgets",
-        "description": "PySide6.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PySide6.QtWidgets",
-        "documentation": {}
-    },
-    {
         "label": "json",
         "kind": 6,
         "isExtraImport": true,
@@ -543,22 +535,6 @@
         "description": "PySide6.QtCore",
         "isExtraImport": true,
         "detail": "PySide6.QtCore",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "PySide6.QtCore",
-        "description": "PySide6.QtCore",
-        "isExtraImport": true,
-        "detail": "PySide6.QtCore",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "PySide6.QtGui",
-        "description": "PySide6.QtGui",
-        "isExtraImport": true,
-        "detail": "PySide6.QtGui",
         "documentation": {}
     },
     {
@@ -815,6 +791,14 @@
         "isExtraImport": true,
         "importPath": "os",
         "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "urandom",
+        "importPath": "os",
+        "description": "os",
+        "isExtraImport": true,
         "detail": "os",
         "documentation": {}
     },
@@ -1207,6 +1191,14 @@
         "documentation": {}
     },
     {
+        "label": "sleep",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
         "label": "TimeoutException",
         "importPath": "selenium.common.exceptions",
         "description": "selenium.common.exceptions",
@@ -1460,6 +1452,22 @@
         "isExtraImport": true,
         "importPath": "base64",
         "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "b64decode",
+        "importPath": "base64",
+        "description": "base64",
+        "isExtraImport": true,
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "b64encode",
+        "importPath": "base64",
+        "description": "base64",
+        "isExtraImport": true,
         "detail": "base64",
         "documentation": {}
     },
@@ -1843,6 +1851,102 @@
         "documentation": {}
     },
     {
+        "label": "encrypt",
+        "importPath": "functions.transformApi.encrypt",
+        "description": "functions.transformApi.encrypt",
+        "isExtraImport": true,
+        "detail": "functions.transformApi.encrypt",
+        "documentation": {}
+    },
+    {
+        "label": "decrypt",
+        "importPath": "functions.transformApi.decrypt",
+        "description": "functions.transformApi.decrypt",
+        "isExtraImport": true,
+        "detail": "functions.transformApi.decrypt",
+        "documentation": {}
+    },
+    {
+        "label": "Cipher",
+        "importPath": "cryptography.hazmat.primitives.ciphers",
+        "description": "cryptography.hazmat.primitives.ciphers",
+        "isExtraImport": true,
+        "detail": "cryptography.hazmat.primitives.ciphers",
+        "documentation": {}
+    },
+    {
+        "label": "algorithms",
+        "importPath": "cryptography.hazmat.primitives.ciphers",
+        "description": "cryptography.hazmat.primitives.ciphers",
+        "isExtraImport": true,
+        "detail": "cryptography.hazmat.primitives.ciphers",
+        "documentation": {}
+    },
+    {
+        "label": "modes",
+        "importPath": "cryptography.hazmat.primitives.ciphers",
+        "description": "cryptography.hazmat.primitives.ciphers",
+        "isExtraImport": true,
+        "detail": "cryptography.hazmat.primitives.ciphers",
+        "documentation": {}
+    },
+    {
+        "label": "Cipher",
+        "importPath": "cryptography.hazmat.primitives.ciphers",
+        "description": "cryptography.hazmat.primitives.ciphers",
+        "isExtraImport": true,
+        "detail": "cryptography.hazmat.primitives.ciphers",
+        "documentation": {}
+    },
+    {
+        "label": "algorithms",
+        "importPath": "cryptography.hazmat.primitives.ciphers",
+        "description": "cryptography.hazmat.primitives.ciphers",
+        "isExtraImport": true,
+        "detail": "cryptography.hazmat.primitives.ciphers",
+        "documentation": {}
+    },
+    {
+        "label": "modes",
+        "importPath": "cryptography.hazmat.primitives.ciphers",
+        "description": "cryptography.hazmat.primitives.ciphers",
+        "isExtraImport": true,
+        "detail": "cryptography.hazmat.primitives.ciphers",
+        "documentation": {}
+    },
+    {
+        "label": "default_backend",
+        "importPath": "cryptography.hazmat.backends",
+        "description": "cryptography.hazmat.backends",
+        "isExtraImport": true,
+        "detail": "cryptography.hazmat.backends",
+        "documentation": {}
+    },
+    {
+        "label": "default_backend",
+        "importPath": "cryptography.hazmat.backends",
+        "description": "cryptography.hazmat.backends",
+        "isExtraImport": true,
+        "detail": "cryptography.hazmat.backends",
+        "documentation": {}
+    },
+    {
+        "label": "padding",
+        "importPath": "cryptography.hazmat.primitives",
+        "description": "cryptography.hazmat.primitives",
+        "isExtraImport": true,
+        "detail": "cryptography.hazmat.primitives",
+        "documentation": {}
+    },
+    {
+        "label": "padding",
+        "importPath": "cryptography.hazmat.primitives",
+        "description": "cryptography.hazmat.primitives",
+        "isExtraImport": true,
+        "detail": "cryptography.hazmat.primitives",
+        "documentation": {}
+    },
+    {
         "label": "handleGetMachineCode",
         "importPath": "functions.hdcklsfw.handleGetMachineCode",
         "description": "functions.hdcklsfw.handleGetMachineCode",
@@ -2143,7 +2247,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
         "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
-        "peekOfCode": "def handleSelectMonth(self):\n    self.self_main.table_account_info.scrollToBottom()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Bắt đầu reg...\")\n    )\n    QCoreApplication.processEvents()\n    try:\n        waitForNavigation = WebDriverWait(self.driver, 30)\n        monthSelectElement = waitForNavigation.until(\n            EC.presence_of_element_located(",
+        "peekOfCode": "def handleSelectMonth(self):\n    self.self_main.table_account_info.scrollToBottom()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Bắt đầu reg...\")\n    )\n    QCoreApplication.processEvents()\n    # wait(4, 6)\n    # acceptCookie = self.driver.find_elements(\"css selector\", '.button-wrapper')\n    # print(\"acceptCookie: \", acceptCookie)\n    # if acceptCookie:",
         "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
         "documentation": {}
     },
@@ -2476,7 +2580,7 @@
         "kind": 2,
         "importPath": "functions.hdcklsfw.hdcklsfw",
         "description": "functions.hdcklsfw.hdcklsfw",
-        "peekOfCode": "def hdcklsfw(klsfw, mclsfw):\n    body = {\n        \"klsfw\": klsfw,\n        \"mclsfw\": mclsfw\n    }\n    data = requests.post(\"https://longsoftware.vn/api.php\", body).json()\n    print(\"data: \", data)\n    return data",
+        "peekOfCode": "def hdcklsfw(klsfw, mclsfw):\n    body = {\n        \"klsfw\": klsfw,\n        \"mclsfw\": mclsfw\n    }\n    key = b'BMGhq7VA9f2rY3Px6WdFtg5HmSUZLQeu'\n    json_data = json.dumps(body)\n    encrypted_data = encrypt(json_data, key)\n    req_data = {\n        \"data\": encrypted_data,",
         "detail": "functions.hdcklsfw.hdcklsfw",
         "documentation": {}
     },
@@ -2589,6 +2693,24 @@
         "documentation": {}
     },
     {
+        "label": "decrypt",
+        "kind": 2,
+        "importPath": "functions.transformApi.decrypt",
+        "description": "functions.transformApi.decrypt",
+        "peekOfCode": "def decrypt(encrypted_text, key):\n    encrypted_data = b64decode(encrypted_text.encode('utf-8'))\n    iv = encrypted_data[:16]\n    ciphertext = encrypted_data[16:]\n    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())\n    decryptor = cipher.decryptor()\n    decrypted_data = decryptor.update(ciphertext) + decryptor.finalize()\n    unpadder = padding.PKCS7(algorithms.AES.block_size).unpadder()\n    decrypted_text = unpadder.update(decrypted_data) + unpadder.finalize()\n    decrypted_data = json.loads(decrypted_text)",
+        "detail": "functions.transformApi.decrypt",
+        "documentation": {}
+    },
+    {
+        "label": "encrypt",
+        "kind": 2,
+        "importPath": "functions.transformApi.encrypt",
+        "description": "functions.transformApi.encrypt",
+        "peekOfCode": "def encrypt(text, key):\n    iv = urandom(16)\n    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())\n    encryptor = cipher.encryptor()\n    padder = padding.PKCS7(algorithms.AES.block_size).padder()\n    padded_data = padder.update(text.encode('utf-8')) + padder.finalize()\n    ciphertext = encryptor.update(padded_data) + encryptor.finalize()\n    encrypted_data = iv + ciphertext\n    encrypted_text = b64encode(encrypted_data).decode('utf-8')\n    return encrypted_text",
+        "detail": "functions.transformApi.encrypt",
+        "documentation": {}
+    },
+    {
         "label": "darkMode",
         "kind": 2,
         "importPath": "GUI.darkMode",
@@ -2629,7 +2751,7 @@
         "kind": 6,
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
-        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.10\"\n        self.latest_version = self.data[\"latest_version\"]\n        self.remaining_days = self.data[\"remaining_days\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.15\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
         "detail": "GUI.uiLogicMain",
         "documentation": {}
     },
@@ -2703,15 +2825,6 @@
         "description": "mplctlsfw",
         "peekOfCode": "class hmlsfw(QMainWindow):\n    def __init__(self, ui_self):\n        super().__init__()\n        self.ui_self = ui_self\n        self.ui_self.is_update = False\n    def closeEvent(self, event):\n        if self.ui_self.is_update:\n            event.accept()\n            return\n        result = QMessageBox.question(",
         "detail": "mplctlsfw",
-        "documentation": {}
-    },
-    {
-        "label": "MyWidget",
-        "kind": 6,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "class MyWidget(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.init_ui()\n    def init_ui(self):\n        # Tạo một QTabWidget\n        tab_widget = QTabWidget(self)\n        # Tạo các tab\n        self.home = QWidget()\n        self.setting = QWidget()",
-        "detail": "test",
         "documentation": {}
     }
 ]

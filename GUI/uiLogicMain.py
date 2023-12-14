@@ -21,9 +21,9 @@ class utrclttlsfw(QObject):
         super().__init__()
 
         self.data = data
-        self.current_version = "1.0.10"
-        self.latest_version = self.data["latest_version"]
-        self.remaining_days = self.data["remaining_days"]
+        self.current_version = "1.0.15"
+        self.remaining_days = self.data["rasdq765re2432rvad76sv"]
+        self.latest_version = self.data["lfct34re32fdaefda8765ddsa"]
         self.is_start = False
         self.startAutomation_called = False
         self.is_check_mail = False
