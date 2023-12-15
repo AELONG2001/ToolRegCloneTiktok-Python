@@ -21,7 +21,7 @@ class utrclttlsfw(QObject):
         super().__init__()
 
         self.data = data
-        self.current_version = "1.0.15"
+        self.current_version = "1.0.16"
         self.remaining_days = self.data["rasdq765re2432rvad76sv"]
         self.latest_version = self.data["lfct34re32fdaefda8765ddsa"]
         self.is_start = False
@@ -33,6 +33,7 @@ class utrclttlsfw(QObject):
         self.stop_all_threads = False
         self.success_mail_count = 0
         self.failed_mail_count = 0
+        self.total_email_count = 0
 
         self.start_timer = QTimer(self)
         self.re_start_timer = QTimer(self)

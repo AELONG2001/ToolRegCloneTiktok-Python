@@ -31,6 +31,7 @@ class AutomationController:
         self.ui_instance.update_progress_dialog.show()
         QCoreApplication.processEvents()
         url = self.ui_instance.data["link_update"]
+        print("url: ", url)
         total_size_version = int(self.ui_instance.data["size_update"])
         file_name = "./repository.zip"
         

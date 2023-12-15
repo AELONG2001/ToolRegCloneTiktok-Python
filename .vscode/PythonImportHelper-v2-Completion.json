@@ -2247,7 +2247,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
         "description": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
-        "peekOfCode": "def handleSelectMonth(self):\n    self.self_main.table_account_info.scrollToBottom()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Bắt đầu reg...\")\n    )\n    QCoreApplication.processEvents()\n    # wait(4, 6)\n    # acceptCookie = self.driver.find_elements(\"css selector\", '.button-wrapper')\n    # print(\"acceptCookie: \", acceptCookie)\n    # if acceptCookie:",
+        "peekOfCode": "def handleSelectMonth(self):\n    self.self_main.table_account_info.scrollToBottom()\n    self.self_main.table_account_info.setItem(\n        self.current_row_count, 3, QTableWidgetItem(\"Bắt đầu reg...\")\n    )\n    QCoreApplication.processEvents()\n    try:\n        waitForNavigation = WebDriverWait(self.driver, 30)\n        monthSelectElement = waitForNavigation.until(\n            EC.presence_of_element_located(",
         "detail": "functions.handleMultiThreads.selenium.handleAutoScreen.handleSelectMonth",
         "documentation": {}
     },
@@ -2544,7 +2544,7 @@
         "kind": 2,
         "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
         "description": "functions.HandleUploadAvatar.handleUploadAvatar",
-        "peekOfCode": "def handleInsertCookieAndWriteAccount(self):\n    cookies = self.driver.get_cookies()\n    cookies_string = \";\".join(\n        [f\"{cookie['name']}={cookie['value']}\" for cookie in cookies]\n    )\n    account = f\"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}\"\n    with open(self.output_file_path, \"a\") as f:\n        f.write(account + \"\\n\")\ndef showSuccessAccount(self):\n    item = QTableWidgetItem(\"Tạo tài khoản thành công...\")",
+        "peekOfCode": "def handleInsertCookieAndWriteAccount(self):\n    pageContent = self.driver.page_source\n    if '\"nickName\":\"' in pageContent:\n        try:\n            userId = pageContent.split('\"nickName\":\"')[1].split('\"')[0]\n        except IndexError:\n            userId = \"\"\n    else:\n        userId = \"\"\n    cookies = self.driver.get_cookies()",
         "detail": "functions.HandleUploadAvatar.handleUploadAvatar",
         "documentation": {}
     },
@@ -2751,7 +2751,7 @@
         "kind": 6,
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
-        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.15\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.16\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
         "detail": "GUI.uiLogicMain",
         "documentation": {}
     },

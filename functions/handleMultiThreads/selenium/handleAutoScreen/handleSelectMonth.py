@@ -14,13 +14,6 @@ def handleSelectMonth(self):
     )
     QCoreApplication.processEvents()
 
-    # wait(4, 6)
-    # acceptCookie = self.driver.find_elements("css selector", '.button-wrapper')
-    # print("acceptCookie: ", acceptCookie)
-    # if acceptCookie:
-    #     acceptCookie[0].click()
-    
-
     try:
         waitForNavigation = WebDriverWait(self.driver, 30)
         monthSelectElement = waitForNavigation.until(

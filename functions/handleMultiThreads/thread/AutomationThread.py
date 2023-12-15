@@ -251,11 +251,6 @@ class AutomationThread(QThread):
 
                 # check if data not exist
                 if not exists_output:
-                    # if not self.is_skip_new_username:
-                    #     account = f"{self.user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                    #     with open(self.output_file_path, "a") as f:
-                    #         f.write(account + "\n")
-                    # else:
                     wait(2, 4)
                     pageContent = self.driver.page_source
                     if '"nickName":"' in pageContent:
@@ -456,11 +451,22 @@ class AutomationThread(QThread):
                 handleUploadAvatar(self)
             else:
                 wait(4, 6)
+                pageContent = self.driver.page_source
+                if '"nickName":"' in pageContent:
+                    try:
+                        userId = pageContent.split('"nickName":"')[1].split('"')[0]
+                    except IndexError:
+                        userId = ""
+                else:
+                    userId = ""
                 cookies = self.driver.get_cookies()
                 cookies_string = ";".join(
                     [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
                 )
-                account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                if userId:
+                    account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                else:
+                    account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
                 with open(self.output_file_path, "a") as f:
                     f.write(account + "\n")
 

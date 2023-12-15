@@ -14,7 +14,7 @@ def handleCreateJobGetHcaptcha(
         )
         QCoreApplication.processEvents()
 
-        headers: {
+        headers = {
             "Content-Type": "application/json",
             "apikey": "zkpro2001-39398ae8-0b66-e856-396d-8e4cd1f6eeec"
         }
@@ -28,8 +28,7 @@ def handleCreateJobGetHcaptcha(
             },
         }
 
-        response = requests.post("free.nocaptchaai.com/solve", headers=headers, json=body)
-        data = response.json()
+        data = requests.post("free.nocaptchaai.com/solve", headers=headers, json=body).json()
 
         wait(6, 8)
         return data

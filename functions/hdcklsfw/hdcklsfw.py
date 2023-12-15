@@ -19,10 +19,7 @@ def hdcklsfw(klsfw, mclsfw):
         "data": encrypted_data,
     }
 
-    response = requests.post("https://longsoftware.vn/asdf234asdf8094fa", req_data).json()
+    response = requests.post("https://longsoftware.vn/asdf234asdf8094awev.php", req_data).json()
 
     decrypted_data = decrypt(response["data"], key)
-
-    print("decrypted_data: ", decrypted_data)
-
     return decrypted_data

@@ -3,12 +3,11 @@
     "mclsfw": "bf2aa4bee397a5ba7d1227eba82ef816138676404a0308e061d8e3e4c4cb411f",
     "captcha_key": "9a01ed0e58638e7c5478100fdecacc34",
     "proxys": [
-        "cd0df731c3d882048a67cf4b5aca944a",
-        "1f7471ef4e938ec5a4a6601f11e04b0a"
+        "c1ab47068e181e05c15a66e3386e218f"
     ],
-    "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTcwMTM5OTI4NjU4ZGI1ZGFiZjBlMjgiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTcwMTNiNDlhMGViZGY3NmE4NGM4YWIifQ.BFVAJ_6b2-9UlgpVyjQ76jf_KvXsMhqaJ4hv-2axvz0",
+    "api_token_gologin": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTdjMTYzMzAxNDA4OTNiODk4MTM3NDkiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTdjMTc4NjFiZjk1ZTMzMGFkNDAyMzEifQ.BG77aXmU7RSwOcTbikdqf_aVd8dsq_2JyWouIlIShms",
     "api_value_hotmailbox": "",
-    "num_threads": 2,
+    "num_threads": 1,
     "password_account": "",
     "random_password_account": true,
     "path_gologin": "C:\\Users\\HD\\AppData\\Local\\Temp\\GoLogin\\profiles",
@@ -19,10 +18,10 @@
     "captcha_type": 0,
     "url_mail": "C:/Users/HD/OneDrive/Documents/MMO/ToolRegCloneTiktok/data/hotmail.txt",
     "typeExportAccount": 0,
-    "is_change_username_check": false,
+    "is_change_username_check": true,
     "is_upload_avatar": true,
     "url_username": "",
-    "proxy_type": 2,
+    "proxy_type": 0,
     "is_proxy_ip_port": false,
     "darkmode": false,
     "chromeValueDelay": 1
