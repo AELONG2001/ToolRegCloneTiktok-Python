@@ -144,14 +144,15 @@ class AutomationThread(QThread):
         self.password_mail = self.password_restart
 
     def handleAutoBuyMail(self):
+        wait(1, 2)
         self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
         print("Mail: ", self.mail)
         if self.mail:
             self.username_mail, self.password_mail =  self.mail.split("|")
-        else:
-            self.stop_flag = True
-            QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbox đang không đủ mail hãy đợi một lúc rồi chạy lại.")
-            return
+        # else:
+        #     self.stop_flag = True
+        #     QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbase đang không đủ mail hãy đợi một lúc rồi chạy lại.")
+        #     return
         
     def handleCheckProxy(self):
         if self.proxy_type == 0:

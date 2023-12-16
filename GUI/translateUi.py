@@ -85,7 +85,7 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    )
    self.api_token_gologin.setText(_translate("ToolRegCloneTiktok", "API Token Gologin:"))
    self.path_gologin.setText(_translate("ToolRegCloneTiktok", "Path Gologin:"))
-   self.api_hotmailbox.setText(_translate("ToolRegCloneTiktok", "API Hotmailbox:"))
+   self.api_hotmailbox.setText(_translate("ToolRegCloneTiktok", "API Hotmailbase:"))
    self.export_account_format.setText(_translate("ToolRegCloneTiktok", "Định dạng xuất accounts:"))
    self.export_account_format_value.setItemText(0, _translate("ToolRegCloneTiktok", "id | pass | mail | passMail | coookie | date"))
    self.export_account_format_value.setItemText(1, _translate("ToolRegCloneTiktok", "id | pass | mail | passMail | date"))

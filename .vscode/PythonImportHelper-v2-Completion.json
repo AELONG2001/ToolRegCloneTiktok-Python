@@ -1103,22 +1103,6 @@
         "documentation": {}
     },
     {
-        "label": "wait",
-        "importPath": "utils.utils",
-        "description": "utils.utils",
-        "isExtraImport": true,
-        "detail": "utils.utils",
-        "documentation": {}
-    },
-    {
-        "label": "generate_random_name",
-        "importPath": "utils.utils",
-        "description": "utils.utils",
-        "isExtraImport": true,
-        "detail": "utils.utils",
-        "documentation": {}
-    },
-    {
         "label": "WebDriverWait",
         "importPath": "selenium.webdriver.support.ui",
         "description": "selenium.webdriver.support.ui",
@@ -2067,7 +2051,7 @@
         "kind": 2,
         "importPath": "functions.autoBuyHotmail.autoBuyHotmail",
         "description": "functions.autoBuyHotmail.autoBuyHotmail",
-        "peekOfCode": "def handleAutoBuyHotmail(api_key):\n    try:\n        email_password = \"\"\n        params = {\n            \"apikey\": f\"{api_key.strip()}\",\n            \"mailcode\": \"HOTMAIL\",\n            \"quantity\": 1\n        }\n        response = requests.get(\"https://api.hotmailbox.me/mail/buy\", params=params).json()\n        if \"Message\" in response and response[\"Message\"] == \"Bạn đã mua hàng thành công\":",
+        "peekOfCode": "def handleAutoBuyHotmail(api_key):\n    try:\n        email_password = \"\"\n        params = {\n            \"apikey\": f\"{api_key.strip()}\",\n            \"mailcode\": \"HMAIL\",\n            \"quantity\": 1\n        }\n        response = requests.get(\"https://hotmailbase.com/api/user/buy\", params=params).json()\n        if \"Message\" in response and response[\"Message\"] == \"Success\":",
         "detail": "functions.autoBuyHotmail.autoBuyHotmail",
         "documentation": {}
     },
@@ -2157,7 +2141,7 @@
         "kind": 2,
         "importPath": "functions.handleCheckMail.checkMail",
         "description": "functions.handleCheckMail.checkMail",
-        "peekOfCode": "def handleCheckMailApi(username, password):\n    url = f\"https://tools.dongvanfb.net/api/check_mail\"\n    params = {\n        \"mail\": username,\n        \"pass\": password\n    }\n    response = requests.get(url, params=params)\n    data = response.json()\n    return (username, password, data.get(\"status\", False))\nclass EmailCheckerTaskSignals(QObject):",
+        "peekOfCode": "def handleCheckMailApi(username, password):\n    url = f\"https://hotmailbase.com/api/check_mail\"\n    params = {\n        \"mail\": f\"{username}|{password}\",\n    }\n    response = requests.get(url, params=params)\n    data = response.json()\n    return (username, password, data.get(\"Success\", False))\nclass EmailCheckerTaskSignals(QObject):\n    result_signal = Signal(str, str, bool)",
         "detail": "functions.handleCheckMail.checkMail",
         "documentation": {}
     },
@@ -2751,7 +2735,7 @@
         "kind": 6,
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
-        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.16\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.17\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
         "detail": "GUI.uiLogicMain",
         "documentation": {}
     },

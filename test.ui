@@ -761,7 +761,7 @@ font: 11pt &quot;Sans Serif Collection&quot;;</string>
         </rect>
        </property>
        <property name="text">
-        <string>API Hotmailbox:</string>
+        <string>API Hotmailbase:</string>
        </property>
       </widget>
       <widget class="QLabel" name="export_account_format">

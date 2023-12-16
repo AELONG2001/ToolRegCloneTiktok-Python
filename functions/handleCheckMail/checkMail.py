@@ -5,14 +5,13 @@ from PySide6.QtWidgets import *
 
 
 def handleCheckMailApi(username, password):
-    url = f"https://tools.dongvanfb.net/api/check_mail"
+    url = f"https://hotmailbase.com/api/check_mail"
     params = {
-        "mail": username,
-        "pass": password
+        "mail": f"{username}|{password}",
     }
     response = requests.get(url, params=params)
     data = response.json()
-    return (username, password, data.get("status", False))
+    return (username, password, data.get("Success", False))
 
 
 class EmailCheckerTaskSignals(QObject):
@@ -48,6 +47,14 @@ def checkMail(
     with open(fileNameCheck, 'r') as file:
         lines = file.readlines()
         total_email_count += len(lines)
+
+        if not lines:
+            QMessageBox.warning(
+            None,
+            "Warning",
+            "File mail không được để trống",
+            )
+            return
 
         for line in lines:
             username, password = line.strip().split('|')

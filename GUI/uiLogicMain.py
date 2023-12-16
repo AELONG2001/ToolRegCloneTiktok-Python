@@ -11,7 +11,6 @@ from functions.handleLogicMain.logicMain import AutomationController
 from functions.handleMultiThreads.thread.AutomationThread import AutomationThread
 from GUI.uiMain import uiMain
 from GUI.translateUi import translateUi
-from utils.utils import wait, generate_random_name
 
 import json
 import datetime
@@ -21,7 +20,7 @@ class utrclttlsfw(QObject):
         super().__init__()
 
         self.data = data
-        self.current_version = "1.0.16"
+        self.current_version = "1.0.17"
         self.remaining_days = self.data["rasdq765re2432rvad76sv"]
         self.latest_version = self.data["lfct34re32fdaefda8765ddsa"]
         self.is_start = False

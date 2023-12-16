@@ -116,29 +116,29 @@ class InitalValuesCheckerTask(QRunnable):
             self.signals.result_signal.emit(False, message)
             return
             
-        if "api_value_hotmailbox" in data and data["api_value_hotmailbox"]:
-            response_api_hotmailbox_check_balance = handleCheckBalance(data["api_value_hotmailbox"])
-            response_api_hotmailbox_check_instock = handleCheckInstock(data["api_value_hotmailbox"])
+        # if "api_value_hotmailbox" in data and data["api_value_hotmailbox"]:
+        #     response_api_hotmailbox_check_balance = handleCheckBalance(data["api_value_hotmailbox"])
+        #     response_api_hotmailbox_check_instock = handleCheckInstock(data["api_value_hotmailbox"])
 
-            if "Code" in response_api_hotmailbox_check_balance and response_api_hotmailbox_check_balance["Code"] == 401:
-                message = "Api hotmailbox không chính xác.Vui lòng kiểm tra lại"
-                setEnableStartButton(self.ui_instance)
-                self.signals.result_signal.emit(False, message)
-                return
+        #     if "Code" in response_api_hotmailbox_check_balance and response_api_hotmailbox_check_balance["Code"] == 401:
+        #         message = "Api hotmailbox không chính xác.Vui lòng kiểm tra lại"
+        #         setEnableStartButton(self.ui_instance)
+        #         self.signals.result_signal.emit(False, message)
+        #         return
                 
 
-            if int(response_api_hotmailbox_check_balance["Balance"]) == 0:
-                message = "Tài khoản Hotmailbox đã hết tiền.Vui lòng kiểm tra lại"
-                setEnableStartButton(self.ui_instance)
-                self.signals.result_signal.emit(False, message)
-                return
+        #     if int(response_api_hotmailbox_check_balance["Balance"]) == 0:
+        #         message = "Tài khoản Hotmailbox đã hết tiền.Vui lòng kiểm tra lại"
+        #         setEnableStartButton(self.ui_instance)
+        #         self.signals.result_signal.emit(False, message)
+        #         return
                 
             
-            if response_api_hotmailbox_check_instock < 2000:
-                message = "Số lượng hotmail trên Hotmailbox đang ít hơn 2000.Vui lòng mua tay và tiếp tục chạy"
-                setEnableStartButton(self.ui_instance)
-                self.signals.result_signal.emit(False, message)
-                return
+        #     if response_api_hotmailbox_check_instock < 2000:
+        #         message = "Số lượng hotmail trên Hotmailbox đang ít hơn 2000.Vui lòng mua tay và tiếp tục chạy"
+        #         setEnableStartButton(self.ui_instance)
+        #         self.signals.result_signal.emit(False, message)
+        #         return
             
         # input user have to includes proxys
         if not "proxys" in data or not data["proxys"]:
