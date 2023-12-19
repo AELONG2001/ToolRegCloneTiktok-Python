@@ -10,6 +10,8 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import NoSuchElementException
 from utils.utils import wait, generate_random_name
+from unidecode import unidecode
+import re
 
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
     handleResolveCaptchaRotateObjectAChi,
@@ -49,9 +51,19 @@ def handleInsertCookieAndWriteAccount(self):
     if userId:
         account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
     else:
-        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        account2 = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        with open("data/output_not_user_id.txt", "a") as f:
+            f.write(account2 + "\n")
+
+        self.self_main.total_success += 1
+        self.self_main.total_success_account.setText(f"Số acc đã tạo thành công: {self.self_main.total_success}")
+        QCoreApplication.processEvents()
     with open(self.output_file_path, "a") as f:
         f.write(account + "\n")
+
+    self.self_main.total_success += 1
+    self.self_main.total_success_account.setText(f"Số acc đã tạo thành công: {self.self_main.total_success}")
+    QCoreApplication.processEvents()
 
 def showSuccessAccount(self):
     item = QTableWidgetItem("Tạo tài khoản thành công...")
@@ -62,7 +74,6 @@ def showSuccessAccount(self):
     QCoreApplication.processEvents()
 
 def handleUploadAvatar(self):
-
     isGetUserIdAgain = True
     while isGetUserIdAgain:
         try:
@@ -193,8 +204,8 @@ def handleUploadAvatar(self):
         data = json.load(json_file)
 
     if "url_username" in data and data["url_username"]:
-        with open(data["url_username"], "r") as f:
-            list_username = f.read()
+        with open(data["url_username"], "r", encoding="utf-8") as f:
+            usernames = f.readlines()
 
     if is_random_name:
         if "url_username" in data and data["url_username"]:
@@ -202,8 +213,10 @@ def handleUploadAvatar(self):
                 wait(4, 6)
             else:
                 wait(10, 12)
-            usernames= list_username.split("|")
-            userNameRandomByFile = f"{usernames[random_number(0, len(usernames) - 1)]}_{generate_random_name(8)}"
+            username_random = usernames[random_number(0, len(usernames) - 1)]
+            cleaned_str = unidecode(username_random).lower()
+            username = re.sub(r'\s', '', cleaned_str)
+            userNameRandomByFile = f"{username}{generate_random_name(6)}"
             editUserName = self.driver.find_elements("xpath", '//*[@placeholder="Username"]')
             editUserName[0].clear()
             editUserName[0].clear()
@@ -224,7 +237,7 @@ def handleUploadAvatar(self):
                 wait(4, 6)
             else:
                 wait(10, 12)
-            editName[0].send_keys(userNameRandomByFile)
+            editName[0].send_keys(username_random)
         else:
             if self.type_reg_country == 0:
                 wait(4, 6)
@@ -279,11 +292,21 @@ def handleUploadAvatar(self):
            if userId:
                account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
            else:
-               account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                account2 = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                with open("data/output_not_user_id.txt", "a") as f:
+                    f.write(account2 + "\n")
+
+                self.self_main.total_success += 1
+                self.self_main.total_success_account.setText(f"Số acc đã tạo thành công: {self.self_main.total_success}")
+                QCoreApplication.processEvents()
         
         # insert account
         with open(self.output_file_path, "a") as f:
             f.write(account + "\n")
+
+        self.self_main.total_success += 1
+        self.self_main.total_success_account.setText(f"Số acc đã tạo thành công: {self.self_main.total_success}")
+        QCoreApplication.processEvents()
     except ElementClickInterceptedException:
         print("không tìm thấy saveElement")
         handleInsertCookieAndWriteAccount(self)

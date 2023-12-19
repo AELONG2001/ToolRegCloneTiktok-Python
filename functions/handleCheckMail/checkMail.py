@@ -60,7 +60,7 @@ def checkMail(
             username, password = line.strip().split('|')
             task = EmailCheckerTask(username, password)
             task.signals.result_signal.connect(self.updateResultCheckMail)
-            self.threadpool.start(task)
+            self.threadpool_check_mail.start(task)
 
     self.total_email_count = total_email_count
     self.btn_check.setEnabled(False)

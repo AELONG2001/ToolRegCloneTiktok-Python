@@ -6,6 +6,7 @@ from functions.handleMultiThreads.thread.startAutomation import startAutomation
 from functions.handleMultiThreads.thread.stopAutomation import stopAutomation
 from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
 from functions.handleCheckMail.checkMail import checkMail
+from functions.handleCheckAccounts.checkLiveAccounts import checkLiveAccounts
 from GUI.darkMode import darkMode
 from GUI.lightMode import lightMode
 
@@ -255,15 +256,38 @@ class AutomationController:
 
         handleSaveDataInputUser("proxy_type", proxy_type)
 
+    def getProxyTypeCheckLive(self):
+        proxy_type = self.ui_instance.proxy_type_check_live.currentIndex()
+        if proxy_type == 2 or proxy_type == 3:
+            self.ui_instance.proxy_value_check_live.setPlaceholderText("Mỗi proxy một dòng")
+            self.ui_instance.proxy_value_check_live_ip_port.setVisible(True)
+            self.ui_instance.proxy_value_check_live_ip_port_user_pass.setVisible(True)
+        else:
+            self.ui_instance.proxy_value_check_live.setPlaceholderText("Mỗi Api key một dòng")
+            self.ui_instance.proxy_value_check_live_ip_port.setVisible(False)
+            self.ui_instance.proxy_value_check_live_ip_port_user_pass.setVisible(False)
+
+        handleSaveDataInputUser("proxy_type_check_live", proxy_type)
+
     def importProxy(self):
         proxy_text = self.ui_instance.proxy_value.toPlainText().strip()
         proxy_list = proxy_text.splitlines()
 
         handleSaveDataInputUser("proxys", proxy_list)
 
+    def importProxyCheckLive(self):
+        proxy_text = self.ui_instance.proxy_value_check_live.toPlainText().strip()
+        proxy_list = proxy_text.splitlines()
+
+        handleSaveDataInputUser("proxys_check_live", proxy_list)
+
     def checkIsProxyIpPort(self):
         proxy_value_ip_port = self.ui_instance.proxy_value_ip_port.isChecked()
         handleSaveDataInputUser("is_proxy_ip_port", proxy_value_ip_port)
+    
+    def checkAccountIsProxyIpPort(self):
+        proxy_value_ip_port = self.ui_instance.proxy_value_check_live_ip_port.isChecked()
+        handleSaveDataInputUser("is_proxy_ip_port_check_live", proxy_value_ip_port)
         
     def getDefaultPassword(self):
         password_account = self.ui_instance.password_reg_account_value.text().strip()
@@ -370,3 +394,33 @@ class AutomationController:
             fileMailCheck = self.ui_instance.fileNameCheck        
 
         checkMail(self.ui_instance, fileMailCheck)
+
+    def inputAccountsCheck(self):
+        list_accounts = self.ui_instance.fileNameCheck = QFileDialog.getOpenFileName(
+            None, "Open File", "", "(*.txt)"
+        )[0]
+        self.ui_instance.file_accounts_check_value.setText(self.ui_instance.fileNameCheck)
+
+        handleSaveDataInputUser("url_accounts_check", list_accounts)
+
+    def handleCheckAccounts(self):        
+        if not self.ui_instance.file_accounts_check_value.text().strip():
+            QMessageBox.warning(None, "Warning", "Vui lòng chọn file cần check")
+            return
+        
+        if not self.ui_instance.proxy_value_check_live.toPlainText().strip():
+            QMessageBox.warning(None, "Warning", "Vui lòng nhập proxy")
+            return
+        
+        self.ui_instance.max_thread_count_check_accounts = len(self.ui_instance.proxy_value_check_live.toPlainText().strip().splitlines())
+        self.ui_instance.threadpool_check_accounts.setMaxThreadCount(self.ui_instance.max_thread_count_check_accounts)
+        
+        if os.path.exists("configs_account.json"):
+            with open("configs_account.json", "r") as json_file:
+                data = json.load(json_file)
+            fileMailCheck = data["url_accounts_check"]
+        else:
+            fileMailCheck = self.ui_instance.fileNameCheck        
+
+        checkLiveAccounts(self.ui_instance, fileMailCheck)
+

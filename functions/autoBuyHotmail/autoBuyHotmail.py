@@ -9,7 +9,7 @@ def handleAutoBuyHotmail(api_key):
             "mailcode": "HMAIL",
             "quantity": 1
         }
-    
+        
         response = requests.get("https://hotmailbase.com/api/user/buy", params=params).json()
 
         if "Message" in response and response["Message"] == "Success":

@@ -209,6 +209,14 @@
         "documentation": {}
     },
     {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
         "label": "QFileDialog",
         "importPath": "PySide6.QtWidgets",
         "description": "PySide6.QtWidgets",
@@ -539,10 +547,10 @@
     },
     {
         "label": "*",
-        "importPath": "PySide6.QtGui",
-        "description": "PySide6.QtGui",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
         "isExtraImport": true,
-        "detail": "PySide6.QtGui",
+        "detail": "PySide6.QtCore",
         "documentation": {}
     },
     {
@@ -615,6 +623,159 @@
         "description": "PySide6.QtGui",
         "isExtraImport": true,
         "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "sleep",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "sleep",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "sleep",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "sleep",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewShopLikeProxy",
+        "importPath": "functions.proxy.ShopLike.handleGetNewShopLikeProxy",
+        "description": "functions.proxy.ShopLike.handleGetNewShopLikeProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.ShopLike.handleGetNewShopLikeProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewShopLikeProxy",
+        "importPath": "functions.proxy.ShopLike.handleGetNewShopLikeProxy",
+        "description": "functions.proxy.ShopLike.handleGetNewShopLikeProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.ShopLike.handleGetNewShopLikeProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCurrentShopLikeProxy",
+        "importPath": "functions.proxy.ShopLike.handleGetCurrentShopLikeProxy",
+        "description": "functions.proxy.ShopLike.handleGetCurrentShopLikeProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.ShopLike.handleGetCurrentShopLikeProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCurrentShopLikeProxy",
+        "importPath": "functions.proxy.ShopLike.handleGetCurrentShopLikeProxy",
+        "description": "functions.proxy.ShopLike.handleGetCurrentShopLikeProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.ShopLike.handleGetCurrentShopLikeProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTMProxy",
+        "importPath": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "description": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTMProxy",
+        "importPath": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "description": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TMProxy.handleGetNewTMProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCurrentTMProxy",
+        "importPath": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "description": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCurrentTMProxy",
+        "importPath": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "description": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTinProxy",
+        "importPath": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "description": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewTinProxy",
+        "importPath": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "description": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TinProxy.handleGetNewTinProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCurrentTinProxy",
+        "importPath": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "description": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCurrentTinProxy",
+        "importPath": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "description": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "isExtraImport": true,
+        "detail": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
         "documentation": {}
     },
     {
@@ -751,6 +912,14 @@
         "description": "functions.handleCheckMail.checkMail",
         "isExtraImport": true,
         "detail": "functions.handleCheckMail.checkMail",
+        "documentation": {}
+    },
+    {
+        "label": "checkLiveAccounts",
+        "importPath": "functions.handleCheckAccounts.checkLiveAccounts",
+        "description": "functions.handleCheckAccounts.checkLiveAccounts",
+        "isExtraImport": true,
+        "detail": "functions.handleCheckAccounts.checkLiveAccounts",
         "documentation": {}
     },
     {
@@ -1159,30 +1328,6 @@
         "documentation": {}
     },
     {
-        "label": "sleep",
-        "importPath": "time",
-        "description": "time",
-        "isExtraImport": true,
-        "detail": "time",
-        "documentation": {}
-    },
-    {
-        "label": "sleep",
-        "importPath": "time",
-        "description": "time",
-        "isExtraImport": true,
-        "detail": "time",
-        "documentation": {}
-    },
-    {
-        "label": "sleep",
-        "importPath": "time",
-        "description": "time",
-        "isExtraImport": true,
-        "detail": "time",
-        "documentation": {}
-    },
-    {
         "label": "TimeoutException",
         "importPath": "selenium.common.exceptions",
         "description": "selenium.common.exceptions",
@@ -1585,38 +1730,6 @@
         "documentation": {}
     },
     {
-        "label": "handleGetNewTMProxy",
-        "importPath": "functions.proxy.TMProxy.handleGetNewTMProxy",
-        "description": "functions.proxy.TMProxy.handleGetNewTMProxy",
-        "isExtraImport": true,
-        "detail": "functions.proxy.TMProxy.handleGetNewTMProxy",
-        "documentation": {}
-    },
-    {
-        "label": "handleGetCurrentTMProxy",
-        "importPath": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
-        "description": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
-        "isExtraImport": true,
-        "detail": "functions.proxy.TMProxy.handleGetCurrentTMProxy",
-        "documentation": {}
-    },
-    {
-        "label": "handleGetNewTinProxy",
-        "importPath": "functions.proxy.TinProxy.handleGetNewTinProxy",
-        "description": "functions.proxy.TinProxy.handleGetNewTinProxy",
-        "isExtraImport": true,
-        "detail": "functions.proxy.TinProxy.handleGetNewTinProxy",
-        "documentation": {}
-    },
-    {
-        "label": "handleGetCurrentTinProxy",
-        "importPath": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
-        "description": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
-        "isExtraImport": true,
-        "detail": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
-        "documentation": {}
-    },
-    {
         "label": "getMailContent",
         "importPath": "functions.handleInputFileMail.getMailContent",
         "description": "functions.handleInputFileMail.getMailContent",
@@ -1807,6 +1920,14 @@
         "importPath": "datetime",
         "description": "datetime",
         "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "unidecode",
+        "importPath": "unidecode",
+        "description": "unidecode",
+        "isExtraImport": true,
+        "detail": "unidecode",
         "documentation": {}
     },
     {
@@ -2004,15 +2125,6 @@
         "documentation": {}
     },
     {
-        "label": "random",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "random",
-        "description": "random",
-        "detail": "random",
-        "documentation": {}
-    },
-    {
         "label": "string",
         "kind": 6,
         "isExtraImport": true,
@@ -2092,6 +2204,42 @@
         "documentation": {}
     },
     {
+        "label": "AccountsCheckerTaskSignals",
+        "kind": 6,
+        "importPath": "functions.handleCheckAccounts.checkLiveAccounts",
+        "description": "functions.handleCheckAccounts.checkLiveAccounts",
+        "peekOfCode": "class AccountsCheckerTaskSignals(QObject):\n    result_signal = Signal(str, str, bool)\nclass AccountsCheckerTask(QRunnable):\n    def __init__(self, self_main, user, user_id):\n        super().__init__()\n        self.self_main = self_main\n        self.user = user\n        self.user_id = user_id\n        self.signals = AccountsCheckerTaskSignals()\n    def run(self):",
+        "detail": "functions.handleCheckAccounts.checkLiveAccounts",
+        "documentation": {}
+    },
+    {
+        "label": "AccountsCheckerTask",
+        "kind": 6,
+        "importPath": "functions.handleCheckAccounts.checkLiveAccounts",
+        "description": "functions.handleCheckAccounts.checkLiveAccounts",
+        "peekOfCode": "class AccountsCheckerTask(QRunnable):\n    def __init__(self, self_main, user, user_id):\n        super().__init__()\n        self.self_main = self_main\n        self.user = user\n        self.user_id = user_id\n        self.signals = AccountsCheckerTaskSignals()\n    def run(self):\n        _, status = handleCheckAccountsApi(self.self_main, self.user_id)\n        self.signals.result_signal.emit(self.user, self.user_id, status)",
+        "detail": "functions.handleCheckAccounts.checkLiveAccounts",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckAccountsApi",
+        "kind": 2,
+        "importPath": "functions.handleCheckAccounts.checkLiveAccounts",
+        "description": "functions.handleCheckAccounts.checkLiveAccounts",
+        "peekOfCode": "def handleCheckAccountsApi(self, user_id):\n    all_indices = list(range(self.max_thread_count_check_accounts))\n    proxy = \"\"\n    index = random.choice(all_indices)\n    if self.proxy_type_check_live.currentIndex() == 0:\n            isGetShopLikeProxyAgain = True\n            while isGetShopLikeProxyAgain:\n                api_key_list = self.proxy_value_check_live.toPlainText().splitlines()\n                new_proxy = handleGetNewShopLikeProxy(api_key_list[index])\n                current_proxy = handleGetCurrentShopLikeProxy(api_key_list[index])",
+        "detail": "functions.handleCheckAccounts.checkLiveAccounts",
+        "documentation": {}
+    },
+    {
+        "label": "checkLiveAccounts",
+        "kind": 2,
+        "importPath": "functions.handleCheckAccounts.checkLiveAccounts",
+        "description": "functions.handleCheckAccounts.checkLiveAccounts",
+        "peekOfCode": "def checkLiveAccounts(\n    self, fileNameCheck\n):\n    self.live_accounts.setText(f\"Live (0):\")\n    self.die_accounts.setText(f\"Die (0):\")\n    self.live_accounts_box.clear()\n    self.die_accounts_box.clear()\n    self.success_account_live_count = 0\n    self.failed_accounts_live_count = 0\n    total_accounts_check_live_count = 0",
+        "detail": "functions.handleCheckAccounts.checkLiveAccounts",
+        "documentation": {}
+    },
+    {
         "label": "InitalValuesCheckerTaskSignals",
         "kind": 6,
         "importPath": "functions.handleCheckInitialValues.handleCheckInitialValues",
@@ -2114,7 +2262,7 @@
         "kind": 2,
         "importPath": "functions.handleCheckInitialValues.handleCheckInitialValues",
         "description": "functions.handleCheckInitialValues.handleCheckInitialValues",
-        "peekOfCode": "def handleCheckInitialValues(self):\n    task = InitalValuesCheckerTask(self)\n    task.signals.result_signal.connect(self.updateResultCheckInitalValues)\n    self.threadpool.start(task)",
+        "peekOfCode": "def handleCheckInitialValues(self):\n    task = InitalValuesCheckerTask(self)\n    task.signals.result_signal.connect(self.updateResultCheckInitalValues)\n    self.threadpool_check_mail.start(task)",
         "detail": "functions.handleCheckInitialValues.handleCheckInitialValues",
         "documentation": {}
     },
@@ -2605,6 +2753,24 @@
         "documentation": {}
     },
     {
+        "label": "handleGetCurrentShopLikeProxy",
+        "kind": 2,
+        "importPath": "functions.proxy.ShopLike.handleGetCurrentShopLikeProxy",
+        "description": "functions.proxy.ShopLike.handleGetCurrentShopLikeProxy",
+        "peekOfCode": "def handleGetCurrentShopLikeProxy(api_key):\n    url = \"http://proxy.shoplike.vn/Api/getCurrentProxy\"\n    response = requests.get(url, params={\"access_token\": f\"{api_key.strip()}\"})\n    data = response.json()\n    https = data[\"data\"][\"proxy\"]\n    return https",
+        "detail": "functions.proxy.ShopLike.handleGetCurrentShopLikeProxy",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetNewShopLikeProxy",
+        "kind": 2,
+        "importPath": "functions.proxy.ShopLike.handleGetNewShopLikeProxy",
+        "description": "functions.proxy.ShopLike.handleGetNewShopLikeProxy",
+        "peekOfCode": "def handleGetNewShopLikeProxy(api_key):\n    https = \"\"\n    url = \"http://proxy.shoplike.vn/Api/getNewProxy\"\n    response = requests.get(url, params={\"access_token\": f\"{api_key.strip()}\"})\n    data = response.json()\n    if \"data\" in response:\n        https = data[\"data\"][\"proxy\"]\n    else:\n        https = \"\"\n    return https",
+        "detail": "functions.proxy.ShopLike.handleGetNewShopLikeProxy",
+        "documentation": {}
+    },
+    {
         "label": "handleGetCurrentTinProxy",
         "kind": 2,
         "importPath": "functions.proxy.TinProxy.handleGetCurrentTinProxy",
@@ -2735,7 +2901,7 @@
         "kind": 6,
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
-        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.17\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.20\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
         "detail": "GUI.uiLogicMain",
         "documentation": {}
     },
@@ -2744,7 +2910,7 @@
         "kind": 2,
         "importPath": "GUI.uiMain",
         "description": "GUI.uiMain",
-        "peekOfCode": "def uiMain(self, ToolRegCloneTiktok):\n    if os.path.exists(\"configs_account.json\"):\n        with open(\"configs_account.json\", \"r\") as json_file:\n                data = json.load(json_file)\n    ToolRegCloneTiktok.setObjectName(\"ToolRegCloneTiktok\")\n    ToolRegCloneTiktok.resize(1256, 546)\n    self.centralwidget = QWidget(parent=ToolRegCloneTiktok)\n    self.centralwidget.setObjectName(\"centralwidget\")\n    self.ToolRegCloneTiktok = QTabWidget(parent=self.centralwidget)\n    self.ToolRegCloneTiktok.setGeometry(QRect(0, 0, 1301, 1079))",
+        "peekOfCode": "def uiMain(self, ToolRegCloneTiktok):\n    if os.path.exists(\"configs_account.json\"):\n        with open(\"configs_account.json\", \"r\") as json_file:\n                data = json.load(json_file)\n    ToolRegCloneTiktok.setObjectName(\"ToolRegCloneTiktok\")\n    ToolRegCloneTiktok.resize(1256, 540)\n    self.centralwidget = QWidget(parent=ToolRegCloneTiktok)\n    self.centralwidget.setObjectName(\"centralwidget\")\n    self.ToolRegCloneTiktok = QTabWidget(parent=self.centralwidget)\n    self.ToolRegCloneTiktok.setGeometry(QRect(0, 0, 1301, 1079))",
         "detail": "GUI.uiMain",
         "documentation": {}
     },

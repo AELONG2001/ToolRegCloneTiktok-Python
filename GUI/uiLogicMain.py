@@ -20,7 +20,7 @@ class utrclttlsfw(QObject):
         super().__init__()
 
         self.data = data
-        self.current_version = "1.0.17"
+        self.current_version = "1.0.20"
         self.remaining_days = self.data["rasdq765re2432rvad76sv"]
         self.latest_version = self.data["lfct34re32fdaefda8765ddsa"]
         self.is_start = False
@@ -33,6 +33,7 @@ class utrclttlsfw(QObject):
         self.success_mail_count = 0
         self.failed_mail_count = 0
         self.total_email_count = 0
+        self.total_success = 0
 
         self.start_timer = QTimer(self)
         self.re_start_timer = QTimer(self)
@@ -119,12 +120,21 @@ class utrclttlsfw(QObject):
 
     def getProxyType(self):
         self.automation_controller.getProxyType()
+    
+    def getProxyTypeCheckLive(self):
+        self.automation_controller.getProxyTypeCheckLive()
 
     def importProxy(self):
         self.automation_controller.importProxy()
 
+    def importProxyCheckLive(self):
+        self.automation_controller.importProxyCheckLive()
+
     def checkIsProxyIpPort(self):
         self.automation_controller.checkIsProxyIpPort()
+
+    def checkAccountIsProxyIpPort(self):
+        self.automation_controller.checkAccountIsProxyIpPort()
 
     def getDefaultPassword(self):
         self.automation_controller.getDefaultPassword()
@@ -177,6 +187,12 @@ class utrclttlsfw(QObject):
     def handleCheckMail(self):
         self.automation_controller.handleCheckMail()
 
+    def inputAccountsCheck(self):
+        self.automation_controller.inputAccountsCheck()
+
+    def handleCheckAccounts(self):
+        self.automation_controller.handleCheckAccounts()
+
     def updateResultCheckInitalValues(self, can_continue, message):
         if can_continue:
             self.is_start = True
@@ -220,6 +236,49 @@ class utrclttlsfw(QObject):
             msg.setText("Kiểm tra email hoàn thành.")
             msg.setWindowTitle("Thành công")
             msg.exec()
+
+    def updateResultCheckAccounts(self, user, user_id, status):
+        if status:
+            self.live_accounts_box.append(f"{user_id}")
+            self.success_account_live_count += 1
+
+            with open("data/LiveAccounts.txt", "a") as f:
+                f.write(user)
+
+        else:
+            self.die_accounts_box.append(f"{user_id}")
+            self.failed_accounts_live_count += 1
+            
+            with open("data/DieAccounts.txt", "a") as f:
+                f.write(user)
+
+        self.live_accounts.setText(f"Live ({self.success_account_live_count}):")
+        self.die_accounts.setText(f"Die ({self.failed_accounts_live_count}):")
+
+        if self.success_account_live_count + self.failed_accounts_live_count == self.total_accounts_check_live_count:
+            with open("configs_account.json", "r") as json_file:
+                data = json.load(json_file)
+            
+            with open(data["url_accounts_check"], "r") as file:
+                accounts =  file.read()
+
+            with open("data/output_backup.txt", "w") as file:
+                file.write(accounts)
+        
+            with open(data["url_accounts_check"], "w") as file:
+                file.write("")
+
+            self.btn_check_accounts.setEnabled(True)
+            self.btn_check_accounts.setText("Check")
+            self.btn_check_accounts.setGeometry(QRect(480, 40, 75, 24))
+            self.btn_check_accounts.setStyleSheet("color: #fff; background-color: rgb(64, 170, 15)")
+            self.loading_icon_check_accounts.setVisible(False)
+
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Icon.Information)
+            msg.setText("Check Live hoàn thành.")
+            msg.setWindowTitle("Thành công")
+            msg.exec()        
 
     def retranslateUi(self, ToolRegCloneTiktok):
         translateUi(self, ToolRegCloneTiktok, self.current_version, self.remaining_days)

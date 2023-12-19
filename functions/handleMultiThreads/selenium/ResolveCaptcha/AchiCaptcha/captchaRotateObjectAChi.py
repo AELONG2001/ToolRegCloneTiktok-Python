@@ -242,10 +242,6 @@ def handleResolveCaptchaRotateObjectAChi(self):
 
         if emailElement:
             if emailElement[0].value_of_css_property("color") == "rgba(255, 76, 58, 1)":
-                wait(1, 2)
-                # with open("data/account_created.txt", "a") as file:
-                #     file.write(f"{self.username_mail}|{self.password_mail}\n")
-
                 isResolveCaptchaAgain = False
                 self.driver.quit()
                 handleRestartThreadNewMail(self)

@@ -12,6 +12,9 @@ from functions.profilesGologin.handleCreateProfile import (
     handleCreateProfile,
 )
 
+from functions.proxy.ShopLike.handleGetNewShopLikeProxy import handleGetNewShopLikeProxy
+from functions.proxy.ShopLike.handleGetCurrentShopLikeProxy import handleGetCurrentShopLikeProxy
+
 from functions.proxy.TMProxy.handleGetNewTMProxy import handleGetNewTMProxy
 from functions.proxy.TMProxy.handleGetCurrentTMProxy import handleGetCurrentTMProxy
 
@@ -121,6 +124,9 @@ class AutomationThread(QThread):
             "Vui lòng nhập thêm mail",
         )
 
+    def handleShowTotalSuccessAccount(self):
+        pass
+
     def handleGetMailAndUpdateMail(self):
         with open(self.input_file_path, "r") as f:
             mail_content = f.read()
@@ -156,6 +162,24 @@ class AutomationThread(QThread):
         
     def handleCheckProxy(self):
         if self.proxy_type == 0:
+            isGetShopLikeProxyAgain = True
+            while isGetShopLikeProxyAgain:
+                api_key_shoplike_proxy = self.self_main.proxy_value.toPlainText()
+                api_key_list = api_key_shoplike_proxy.splitlines()
+
+                new_proxy = handleGetNewShopLikeProxy(api_key_list[self.num_threads])
+                current_proxy = handleGetCurrentShopLikeProxy(api_key_list[self.num_threads])
+
+                if not new_proxy:
+                    self.proxy = current_proxy
+                else:
+                    self.proxy = new_proxy
+                    
+                if ':' in self.proxy:
+                    isGetShopLikeProxyAgain = False
+                else:
+                    isGetShopLikeProxyAgain = True
+        elif self.proxy_type == 1:
             isGetTMProxyAgain = True
             while isGetTMProxyAgain:
                 api_key_tmproxy = self.self_main.proxy_value.toPlainText()
@@ -173,7 +197,7 @@ class AutomationThread(QThread):
                     isGetTMProxyAgain = False
                 else:
                     isGetTMProxyAgain = True
-        elif self.proxy_type == 1:
+        elif self.proxy_type == 2:
             api_key_tinproxy = self.self_main.proxy_value.toPlainText()
             api_key_list = api_key_tinproxy.splitlines()
 
@@ -184,7 +208,7 @@ class AutomationThread(QThread):
                 self.proxy = current_proxy
             else:
                 self.proxy = new_proxy
-        elif self.proxy_type == 2 or self.proxy_type == 3:
+        elif self.proxy_type == 3 or self.proxy_type == 4:
             self.type_ip_port = self.self_main.proxy_value_ip_port.isChecked()
 
             get_list_proxy = self.self_main.proxy_value.toPlainText()
@@ -268,7 +292,9 @@ class AutomationThread(QThread):
                     if userId:
                         account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
                     else:
-                        account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                        account2 = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                        with open("data/output_not_user_id", "a") as f:
+                            f.write(account2 + "\n")
                     wait(1, 2)
                     if existing_data_output[-1].endswith("\n"):
                         with open(self.output_file_path, "a") as f:
@@ -292,81 +318,82 @@ class AutomationThread(QThread):
 
         QCoreApplication.processEvents()
     def run(self):
-        print("run")
-        num_worker = self.num_threads
-        chrome_percent_zoom = self.chrome_percent_zoom
-
-        num_chrome_a_row = int(self.chrome_count)
-
-        self.handleCheckProxy()
-
-        self.profile_id = handleCreateProfile(self)
-
-        print("profile_id: ", self.profile_id)
-
-        chromedriver_path = ChromeDriverManager().install()
-        
-        self.options.add_argument(f"webdriver.chrome.driver={chromedriver_path}")
-        self.options.add_argument(
-            f"--force-device-scale-factor={chrome_percent_zoom}"
-        )
-        self.options.add_argument("--mute-audio")
-        self.options.add_argument('--no-first-run')
-        self.options.add_argument('--no-service-autorun')
-        self.options.add_argument('--password-store-basic')
-        self.options.add_argument('--lang=en-US')
-        self.options.add_argument('--disabled-gpu')
-        self.options.add_argument('--disabled-cpu')
-        prefs = {
-            "credentials_enable_service": False,
-            "profile.password_manager_enabled": False,
-            "profile.default_content_setting_values.notifications": 2,
-            "download_restrictions": 3
-        }
-        self.options.add_experimental_option('prefs', prefs)
-        self.options.add_experimental_option('useAutomationExtension', False)
-        self.options.add_argument('--enable-main-frame-before-activation')
-        self.options.add_argument('--display-capture-permissions-policy-allowed')
-        self.options.add_argument('--device-scale-factor=1')
-        self.options.add_argument('--disable-web-secutiry')
-        self.options.add_argument('--allow-running-insecure-content')
-        self.options.add_argument('--disable-popup-blocking')
-        self.options.add_argument('--ignore-certificate-errors')
-        self.options.add_argument('--disable-plugins-discovery')
-        self.options.add_argument('--disable-gpu-shader-disk-cache')
-
-        self.options.add_argument("--disable-blink-features=AutomationControlled")
-        self.options.add_argument(
-            fr"--user-data-dir={self.path_profile_gologin}\{self.profile_id}\Default"
-        )
-        
-        if self.proxy_type == 2:
-            if self.type_ip_port:
-                self.options.add_argument(f"--proxy-server=http://{self.proxy}")
-            else:
-                self.options.add_extension(self.proxy_auth)
-        elif self.proxy_type == 3:
-            if self.type_ip_port:
-                self.options.add_argument(f"--proxy-server=socks5://{self.proxy}")
-            else:
-                self.options.add_extension(self.proxy_auth)
-        else:
-            self.options.add_argument(f"--proxy-server=http://{self.proxy}")
-
-
-        self.driver = webdriver.Chrome(options=self.options)
-        AutomationThread.drivers_list.append(self.driver)
-        
-        # Số cột muốn sắp xếp trên màn hình
-        cols = num_chrome_a_row
-        x = (num_worker % cols) * 504
-        y = math.floor(num_worker / cols) * 810
-
-        self.driver.set_window_rect(x, y, 200, 800)
-
-        self.isAutoBuyMail = self.self_main.api_hotmailbox_value.text()
-        
         while not self.stop_flag:
+            print("run")
+            num_worker = self.num_threads
+            chrome_percent_zoom = self.chrome_percent_zoom
+
+            num_chrome_a_row = int(self.chrome_count)
+
+            self.handleCheckProxy()
+
+            self.profile_id = handleCreateProfile(self)
+
+            print("profile_id: ", self.profile_id)
+
+            chromedriver_path = ChromeDriverManager().install()
+            
+            self.options.add_argument(f"webdriver.chrome.driver={chromedriver_path}")
+            self.options.add_argument(
+                f"--force-device-scale-factor={chrome_percent_zoom}"
+            )
+            self.options.add_argument("--mute-audio")
+            self.options.add_argument('--no-first-run')
+            self.options.add_argument('--no-service-autorun')
+            self.options.add_argument('--password-store-basic')
+            self.options.add_argument('--lang=en-US')
+            self.options.add_argument('--disabled-gpu')
+            self.options.add_argument('--disabled-cpu')
+            prefs = {
+                "credentials_enable_service": False,
+                "profile.password_manager_enabled": False,
+                "profile.default_content_setting_values.notifications": 2,
+                "download_restrictions": 3
+            }
+            self.options.add_experimental_option('prefs', prefs)
+            self.options.add_experimental_option('useAutomationExtension', False)
+            self.options.add_argument('--enable-main-frame-before-activation')
+            self.options.add_argument('--display-capture-permissions-policy-allowed')
+            self.options.add_argument('--device-scale-factor=1')
+            self.options.add_argument('--disable-web-secutiry')
+            self.options.add_argument('--allow-running-insecure-content')
+            self.options.add_argument('--disable-popup-blocking')
+            self.options.add_argument('--ignore-certificate-errors')
+            self.options.add_argument('--disable-plugins-discovery')
+            self.options.add_argument('--disable-gpu-shader-disk-cache')
+
+            self.options.add_argument("--disable-blink-features=AutomationControlled")
+            self.options.add_argument(
+                fr"--user-data-dir={self.path_profile_gologin}\{self.profile_id}\Default"
+            )
+            
+            if self.proxy_type == 2:
+                if self.type_ip_port:
+                    self.options.add_argument(f"--proxy-server=http://{self.proxy}")
+                else:
+                    self.options.add_extension(self.proxy_auth)
+            elif self.proxy_type == 3:
+                if self.type_ip_port:
+                    self.options.add_argument(f"--proxy-server=socks5://{self.proxy}")
+                else:
+                    self.options.add_extension(self.proxy_auth)
+            else:
+                self.options.add_argument(f"--proxy-server=http://{self.proxy}")
+
+
+            self.driver = webdriver.Chrome(options=self.options)
+            AutomationThread.drivers_list.append(self.driver)
+            
+            # Số cột muốn sắp xếp trên màn hình
+            cols = num_chrome_a_row
+            x = (num_worker % cols) * 504
+            y = math.floor(num_worker / cols) * 810
+
+            self.driver.set_window_rect(x, y, 200, 800)
+
+            self.isAutoBuyMail = self.self_main.api_hotmailbox_value.text()
+        
+        
             self.self_main.table_account_info.scrollToBottom()
             if self.random_password_account:
                 self.password_account = generate_password()
@@ -467,11 +494,20 @@ class AutomationThread(QThread):
                 if userId:
                     account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
                 else:
-                    account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                    account2 = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                    with open("data/output_not_user_id.txt", "a") as f:
+                        f.write(account2 + "\n")
+                    
+                        self.self_main.total_success += 1
+                        self.self_main.total_success_account.setText(f"Số acc đã tạo thành công: {self.self_main.total_success}")
+                        QCoreApplication.processEvents()
                 with open(self.output_file_path, "a") as f:
                     f.write(account + "\n")
 
+                self.self_main.total_success += 1
+                self.self_main.total_success_account.setText(f"Số acc đã tạo thành công: {self.self_main.total_success}")
+                QCoreApplication.processEvents()
             wait(4, 6)
             self.driver.delete_all_cookies()
-            self.driver.refresh()
-        self.driver.quit()
+            handleDeleteProfile(self.profile_id)
+            self.driver.quit()

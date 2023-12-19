@@ -152,7 +152,7 @@ class InitalValuesCheckerTask(QRunnable):
                 proxy_type = self.ui_instance.proxy_type.currentIndex()
                 api_key_list = data["proxys"]
                                  
-                if proxy_type == 0:
+                if proxy_type == 1:
                     response_api_tm_proxy_check_correct = handleCheckKeyTmProxy(api_key_list)
                     if response_api_tm_proxy_check_correct:
                         message = response_api_tm_proxy_check_correct
@@ -189,6 +189,6 @@ class InitalValuesCheckerTask(QRunnable):
 def handleCheckInitialValues(self):
     task = InitalValuesCheckerTask(self)
     task.signals.result_signal.connect(self.updateResultCheckInitalValues)
-    self.threadpool.start(task)
+    self.threadpool_check_mail.start(task)
 
 

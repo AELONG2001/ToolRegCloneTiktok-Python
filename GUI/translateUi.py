@@ -19,6 +19,8 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.start_button.setText(_translate("ToolRegCloneTiktok", "Bắt đầu"))
    self.proxy_value_ip_port.setText(_translate("ToolRegCloneTiktok", "ip:port"))
    self.proxy_value_ip_port_user_pass.setText(_translate("ToolRegCloneTiktok", "ip:port:user:pass"))
+   self.proxy_value_check_live_ip_port.setText(_translate("ToolRegCloneTiktok", "ip:port"))
+   self.proxy_value_check_live_ip_port_user_pass.setText(_translate("ToolRegCloneTiktok", "ip:port:user:pass"))
    self.stop_button.setText(_translate("ToolRegCloneTiktok", "Kết thúc"))
    self.threads.setText(_translate("ToolRegCloneTiktok", "Số luồng:"))
    self.table_account_info.setSortingEnabled(False)
@@ -33,18 +35,25 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.avatar_value.setText(_translate("ToolRegCloneTiktok", "C://images"))
    self.captcha_type.setItemText(0, _translate("ToolRegCloneTiktok", "Achicaptcha"))
    self.captcha_type.setItemText(1, _translate("ToolRegCloneTiktok", "Omocaptcha"))
-   self.proxy_type.setItemText(0, _translate("ToolRegCloneTiktok", "TM Proxy"))
-   self.proxy_type.setItemText(1, _translate("ToolRegCloneTiktok", "Tin Proxy"))
-   self.proxy_type.setItemText(2, _translate("ToolRegCloneTiktok", "HTTP Proxy"))
-   self.proxy_type.setItemText(3, _translate("ToolRegCloneTiktok", "SOCKS5 Proxy"))
+   self.proxy_type.setItemText(0, _translate("ToolRegCloneTiktok", "ShopLike"))
+   self.proxy_type.setItemText(1, _translate("ToolRegCloneTiktok", "TM Proxy"))
+   self.proxy_type.setItemText(2, _translate("ToolRegCloneTiktok", "Tin Proxy"))
+   self.proxy_type.setItemText(3, _translate("ToolRegCloneTiktok", "HTTP Proxy"))
+   self.proxy_type.setItemText(4, _translate("ToolRegCloneTiktok", "SOCKS5 Proxy"))
+   self.proxy_type_check_live.setItemText(0, _translate("ToolRegCloneTiktok", "ShopLike"))
+   self.proxy_type_check_live.setItemText(1, _translate("ToolRegCloneTiktok", "TM Proxy"))
+   self.proxy_type_check_live.setItemText(2, _translate("ToolRegCloneTiktok", "Tin Proxy"))
+   self.proxy_type_check_live.setItemText(3, _translate("ToolRegCloneTiktok", "HTTP Proxy"))
+   self.proxy_type_check_live.setItemText(4, _translate("ToolRegCloneTiktok", "SOCKS5 Proxy"))
 
    self.list_mail.setText(_translate("ToolRegCloneTiktok", "Nhập mail"))
    self.export_account.setText(_translate("ToolRegCloneTiktok", "Xuất tài khoản"))
    self.update_label.setText(_translate("ToolRegCloneTiktok", "Đã có phiên bản mới, cập nhập ngay...."))
    self.update_button.setText(_translate("ToolRegCloneTiktok", "Cập nhập"))
    self.list_proxy.setText(_translate("ToolRegCloneTiktok", "Proxys:"))
-   self.hint.setText(
-        _translate("ToolRegCloneTiktok", "Tool chạy ổn định khi mạng ok + số luồng chạy phù hợp với cấu hình máy")
+   self.list_proxy_check_live.setText(_translate("ToolRegCloneTiktok", "Proxys:"))
+   self.total_success_account.setText(
+        _translate("ToolRegCloneTiktok", f"Số acc đã tạo thành công: 0")
    )
    self.copyright.setText(
         _translate("ToolRegCloneTiktok", "© Bản quyền thuộc về longsoftware.vn")
@@ -76,9 +85,11 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
       _translate("ToolRegCloneTiktok", "Tỉ lệ Zoom chrome:")
    )
 
-
    self.file_mail_check.setText(
       _translate("ToolRegCloneTiktok", "Nhập Mail cần check")
+   )
+   self.file_accounts_check.setText(
+      _translate("ToolRegCloneTiktok", "Nhập File Accounts cần check")
    )
    self.chrome_delay_seconed.setText(
       _translate("ToolRegCloneTiktok", "Số giây delay sau mỗi thread:")
@@ -99,12 +110,20 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.type_reg_country.setItemText(0, _translate("ToolRegCloneTiktok", "Việt Nam"))
    self.type_reg_country.setItemText(1, _translate("ToolRegCloneTiktok", "US"))
    self.btn_check.setText(_translate("ToolRegCloneTiktok", "Check"))
+   self.btn_check_accounts.setText(_translate("ToolRegCloneTiktok", "Check"))
    self.note_mail.setText(_translate("ToolRegCloneTiktok", "Chú ý: Mail Live sẽ được tự thêm vào file mail"))
+   self.note_accounts.setText(_translate("ToolRegCloneTiktok", "Chú ý:\n+ Accounts Live sẽ được tự thêm vào file LiveAccounts.txt\n+ Accouns Die sẽ được tự thêm vào file DieAccounts.txt\n+ File output sẽ bị xóa hết dữ liệu, dữ liệu sẽ được backup sang file output_backup.txt"))
    self.mail_success.setText(_translate("ToolRegCloneTiktok", "Live Mail:"))
    self.mail_failed.setText(_translate("ToolRegCloneTiktok", "Die Mail"))
+   self.live_accounts.setText(_translate("ToolRegCloneTiktok", "Live:"))
+   self.die_accounts.setText(_translate("ToolRegCloneTiktok", "Die:"))
    self.ToolRegCloneTiktok.setTabText(
       self.ToolRegCloneTiktok.indexOf(self.settings),
       _translate("ToolRegCloneTiktok", "Cài đặt"),
+   )
+   self.ToolRegCloneTiktok.setTabText(
+      self.ToolRegCloneTiktok.indexOf(self.check_live),
+      _translate("ToolRegCloneTiktok", "Check Live"),
    )
 
    with open("configs_account.json", "r") as json_file:
@@ -140,10 +159,20 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    else:
       self.proxy_value.setPlainText("")
 
+   if "proxys_check_live" in data:
+      self.proxy_value_check_live.setPlainText("\n".join(data["proxys_check_live"]))
+   else:
+      self.proxy_value_check_live.setPlainText("")
+
    if "proxy_type" in data:
       self.proxy_type.setCurrentIndex(data["proxy_type"])
    else:
       self.proxy_type.setCurrentIndex(0)
+
+   if "proxy_type_check_live" in data:
+      self.proxy_type_check_live.setCurrentIndex(data["proxy_type_check_live"])
+   else:
+      self.proxy_type_check_live.setCurrentIndex(0)
 
    if "is_proxy_ip_port" in data:
       if data["is_proxy_ip_port"]:
@@ -152,6 +181,14 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
          self.proxy_value_ip_port_user_pass.setChecked(True)
    else:
       self.proxy_value_ip_port.setChecked(True)
+
+   if "is_proxy_ip_port_check_live" in data:
+      if data["is_proxy_ip_port_check_live"]:
+         self.proxy_value_check_live_ip_port.setChecked(True)
+      else:
+         self.proxy_value_check_live_ip_port_user_pass.setChecked(True)
+   else:
+      self.proxy_value_check_live_ip_port.setChecked(True)
    
    if "password_account" in data:
       self.password_reg_account_value.setText(data["password_account"])
@@ -243,3 +280,8 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
       self.file_mail_check_value.setText(data["url_mail_check"])
    else:
       self.file_mail_check_value.setText("")
+
+   if "url_accounts_check" in data:
+      self.file_accounts_check_value.setText(data["url_accounts_check"])
+   else:
+      self.file_accounts_check_value.setText("")

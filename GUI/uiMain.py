@@ -12,7 +12,7 @@ def uiMain(self, ToolRegCloneTiktok):
                 data = json.load(json_file)
 
     ToolRegCloneTiktok.setObjectName("ToolRegCloneTiktok")
-    ToolRegCloneTiktok.resize(1256, 546)
+    ToolRegCloneTiktok.resize(1256, 540)
     self.centralwidget = QWidget(parent=ToolRegCloneTiktok)
     self.centralwidget.setObjectName("centralwidget")
     self.ToolRegCloneTiktok = QTabWidget(parent=self.centralwidget)
@@ -182,6 +182,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_type.addItem("")
     self.proxy_type.addItem("")
     self.proxy_type.addItem("")
+    self.proxy_type.addItem("")
     self.proxy_value = QPlainTextEdit(parent=self.home)
     self.proxy_value.setGeometry(QRect(900, 90, 211, 361))
     self.proxy_value.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
@@ -198,54 +199,14 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value_ip_port_user_pass.setObjectName("proxy_value_ip_port_user_pass")
     self.proxy_value_ip_port.setVisible(False)
     self.proxy_value_ip_port_user_pass.setVisible(False)
-    # self.proxy_value_ip_port_user_pass.setDisabled(True)
-    self.hint = QLabel(parent=self.home)
-    self.hint.setGeometry(QRect(10, 465, 500, 16))
-    self.hint.setStyleSheet('font: 700 10pt "Segoe UI";')
-    self.hint.setObjectName("hint")
+    self.total_success_account = QLabel(parent=self.home)
+    self.total_success_account.setGeometry(QRect(10, 458, 300, 20))
+    self.total_success_account.setStyleSheet('font: 700 10pt "Segoe UI"; color:rgb(64, 170, 15)')
+    self.total_success_account.setObjectName("total_success_account")
     self.copyright = QLabel(parent=self.home)
-    self.copyright.setGeometry(QRect(790, 465, 250, 16))
+    self.copyright.setGeometry(QRect(790, 460, 250, 28))
     self.copyright.setStyleSheet('font: 700 10pt "Segoe UI";')
     self.copyright.setObjectName("copyright")
-    
-    # self.check_proxy = QPushButton(parent=self.home)
-    # self.check_proxy.setGeometry(QRect(1125, 420, 60, 30))
-    # self.check_proxy.setStyleSheet(
-    #     'font: 700 10pt "Segoe UI";\n'
-    #     "color: #fff;\n"
-    #     "background-color:rgb(64, 170, 15);\n"
-    #     ""
-    # )
-    # self.check_proxy.setObjectName("import_proxy")
-    # self.loading_icon_check_proxy = QLabel(parent=self.home)
-    # self.loading_icon_check_proxy.setGeometry(QRect(1208, 461, 60, 30))
-    # self.loading_icon_check_proxy.setText("abc")
-    # relative_path_check_proxy = "icons/loading.gif"
-    # absolute_path_check_proxy = os.path.abspath(relative_path_check_proxy)
-    # self.loadingMovieCheckProxy = QMovie(absolute_path_check_proxy)
-    # self.loading_icon_check_proxy.setMovie(self.loadingMovieCheckProxy)
-    # self.loading_icon_check_proxy.setObjectName("loading_icon_check_proxy")
-    # self.loading_icon_check_proxy.setVisible(False)
-
-    if self.current_version == self.latest_version:
-        self.update_label.hide()
-        self.update_button.hide()
-    else:
-        ToolRegCloneTiktok.resize(1256, 573)
-        self.table_account_info.setGeometry(QRect(10, 100, 860, 391))
-        self.list_proxy.setGeometry(QRect(900, 85, 61, 41))
-        self.proxy_type.setGeometry(QRect(950, 95, 121, 22))
-        self.proxy_value.setGeometry(QRect(900, 130, 211, 361))
-        self.hint.setGeometry(QRect(10, 500, 500, 16))
-        self.copyright.setGeometry(QRect(790, 500, 250, 16))
-
-        if "proxy_type" in data:
-            if data["proxy_type"] == 2 or data["proxy_type"] == 3:
-                self.proxy_value_ip_port.setVisible(True)
-                self.proxy_value_ip_port_user_pass.setVisible(True)
-            else:
-                self.proxy_value_ip_port.setVisible(False)
-                self.proxy_value_ip_port_user_pass.setVisible(False)
 
     self.link_facebook = QLabel(parent=self.home)
     self.link_facebook.setGeometry(QRect(50, 490, 301, 31))
@@ -453,7 +414,7 @@ def uiMain(self, ToolRegCloneTiktok):
     )
     self.mail_success.setObjectName("mail_success")
     self.mail_success_box = QTextEdit(parent=self.settings)
-    self.mail_success_box.setGeometry(QRect(580, 260, 271, 236))
+    self.mail_success_box.setGeometry(QRect(580, 260, 271, 216))
     self.mail_success_box.setStyleSheet("border: 1px solid rgb(0, 170, 54);")
     self.mail_success_box.setObjectName("mail_success_box")
     self.mail_failed = QLabel(parent=self.settings)
@@ -463,7 +424,7 @@ def uiMain(self, ToolRegCloneTiktok):
     )
     self.mail_failed.setObjectName("mail_failed")
     self.mail_failed_box = QTextEdit(parent=self.settings)
-    self.mail_failed_box.setGeometry(QRect(890, 260, 271, 236))
+    self.mail_failed_box.setGeometry(QRect(890, 260, 271, 216))
     self.mail_failed_box.setStyleSheet("border: 1px solid rgb(255, 0, 0);")
     self.mail_failed_box.setObjectName("mail_failed_box")
     self.ToolRegCloneTiktok.addTab(self.settings, "")
@@ -471,6 +432,114 @@ def uiMain(self, ToolRegCloneTiktok):
     self.statusbar = QStatusBar(parent=ToolRegCloneTiktok)
     self.statusbar.setObjectName("statusbar")
     ToolRegCloneTiktok.setStatusBar(self.statusbar)
+
+    self.check_live = QWidget()
+    self.check_live.setObjectName("check_live")
+    self.file_accounts_check = QPushButton(parent=self.check_live)
+    self.file_accounts_check.setGeometry(QRect(20, 40, 180, 24))
+    self.file_accounts_check.setIcon(icon3)
+    self.file_accounts_check.setObjectName("file_accounts_check")
+    self.file_accounts_check_value = QLineEdit(parent=self.check_live)
+    self.file_accounts_check_value.setGeometry(QRect(210, 40, 261, 21))
+    self.file_accounts_check_value.setObjectName("file_accounts_check_value")
+    self.file_accounts_check_value.setReadOnly(True)
+    self.btn_check_accounts = QPushButton(parent=self.check_live)
+    self.btn_check_accounts.setGeometry(QRect(480, 40, 75, 24))
+    self.btn_check_accounts.setStyleSheet(
+        'font: 700 10pt "Segoe UI";\n'
+        "color: #fff;\n"
+        "background-color:rgb(64, 170, 15);\n"
+        ""
+    )
+    self.btn_check_accounts.setObjectName("btn_check_accounts")
+    self.loading_icon_check_accounts = QLabel(parent=self.check_live)
+    self.loading_icon_check_accounts.setGeometry(QRect(562, 46, 14, 14))
+    self.loading_icon_check_accounts.setText("abc")
+    relative_path_check_accounts = "icons/loading.gif"
+    absolute_path_check_accounts = os.path.abspath(relative_path_check_accounts)
+    self.loadingMovieCheckAccounts = QMovie(absolute_path_check_accounts)
+    self.loading_icon_check_accounts.setMovie(self.loadingMovieCheckAccounts)
+    self.loading_icon_check_accounts.setObjectName("loading_icon_check_accounts")
+    self.loading_icon_check_accounts.setVisible(False)
+    self.list_proxy_check_live = QLabel(parent=self.check_live)
+    self.list_proxy_check_live.setGeometry(QRect(20, 80, 61, 41))
+    self.list_proxy_check_live.setStyleSheet('font: 700 10pt "Segoe UI";')
+    self.list_proxy_check_live.setObjectName("list_proxy_check_live")
+    self.proxy_type_check_live = QComboBox(parent=self.check_live)
+    self.proxy_type_check_live.setGeometry(QRect(20, 114, 121, 22))
+    self.proxy_type_check_live.setObjectName("proxy_type_check_live")
+    self.proxy_type_check_live.addItem("")
+    self.proxy_type_check_live.addItem("")
+    self.proxy_type_check_live.addItem("")
+    self.proxy_type_check_live.addItem("")
+    self.proxy_type_check_live.addItem("")
+    self.proxy_value_check_live = QPlainTextEdit(parent=self.check_live)
+    self.proxy_value_check_live.setGeometry(QRect(150, 90, 250, 200))
+    self.proxy_value_check_live.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
+    self.proxy_value_check_live.setPlainText("")
+    self.proxy_value_check_live.setPlaceholderText("Mỗi Api key một dòng")
+    self.proxy_value_check_live_ip_port =QRadioButton(parent=self.check_live)
+    self.proxy_value_check_live_ip_port.setGeometry(QRect(420, 240, 60, 31))
+    self.proxy_value_check_live_ip_port.setStyleSheet("font: 10pt \"Segoe UI\";")
+    self.proxy_value_check_live_ip_port.setObjectName("proxy_value_check_live_ip_port")
+    self.proxy_value_check_live_ip_port.setChecked(True)
+    self.proxy_value_check_live_ip_port_user_pass =QRadioButton(parent=self.check_live)
+    self.proxy_value_check_live_ip_port_user_pass.setGeometry(QRect(420, 260, 124, 31))
+    self.proxy_value_check_live_ip_port_user_pass.setStyleSheet("font: 10pt \"Segoe UI\";")
+    self.proxy_value_check_live_ip_port_user_pass.setObjectName("proxy_value_check_live_ip_port_user_pass")
+    self.proxy_value_check_live_ip_port.setVisible(False)
+    self.proxy_value_check_live_ip_port_user_pass.setVisible(False)
+    self.note_accounts = QLabel(parent=self.check_live)
+    self.note_accounts.setGeometry(QRect(20, 300, 526, 100))
+    self.note_accounts.setStyleSheet('font: 700 10pt "Segoe UI";')
+    self.note_accounts.setObjectName("note_accounts")
+    
+    self.live_accounts = QLabel(parent=self.check_live)
+    self.live_accounts.setGeometry(QRect(620, 20, 100, 16))
+    self.live_accounts.setStyleSheet(
+        'font: 700 10pt "Segoe UI";\n' "color: rgb(0, 170, 54);"
+    )
+    self.live_accounts.setObjectName("live_accounts")
+    self.live_accounts_box = QTextEdit(parent=self.check_live)
+    self.live_accounts_box.setGeometry(QRect(620, 50, 271, 420))
+    self.live_accounts_box.setStyleSheet("border: 1px solid rgb(0, 170, 54);")
+    self.live_accounts_box.setObjectName("live_accounts_box")
+    self.die_accounts = QLabel(parent=self.check_live)
+    self.die_accounts.setGeometry(QRect(910, 20, 100, 16))
+    self.die_accounts.setStyleSheet(
+        'font: 700 10pt "Segoe UI";\n' "color: rgb(255, 0, 0);"
+    )
+    self.die_accounts.setObjectName("die_accounts")
+    self.die_accounts_box = QTextEdit(parent=self.check_live)
+    self.die_accounts_box.setGeometry(QRect(910, 50, 271, 420))
+    self.die_accounts_box.setStyleSheet("border: 1px solid rgb(255, 0, 0);")
+    self.die_accounts_box.setObjectName("die_accounts_box")
+    self.ToolRegCloneTiktok.addTab(self.check_live, "")
+
+    if self.current_version == self.latest_version:
+        self.update_label.hide()
+        self.update_button.hide()
+    else:
+        ToolRegCloneTiktok.resize(1256, 578)
+        self.table_account_info.setGeometry(QRect(10, 100, 860, 391))
+        self.list_proxy.setGeometry(QRect(900, 85, 61, 41))
+        self.proxy_type.setGeometry(QRect(950, 95, 121, 22))
+        self.proxy_value.setGeometry(QRect(900, 130, 211, 361))
+        self.total_success_account.setGeometry(QRect(10, 496, 300, 20))
+        self.copyright.setGeometry(QRect(790, 500, 250, 28))
+        self.mail_success_box.setGeometry(QRect(580, 260, 271, 236))
+        self.mail_failed_box.setGeometry(QRect(890, 260, 271, 236))
+        self.live_accounts_box.setGeometry(QRect(620, 50, 271, 450))
+        self.die_accounts_box.setGeometry(QRect(910, 50, 271, 450))
+
+        if "proxy_type" in data:
+            if data["proxy_type"] == 2 or data["proxy_type"] == 3:
+                self.proxy_value_ip_port.setVisible(True)
+                self.proxy_value_ip_port_user_pass.setVisible(True)
+            else:
+                self.proxy_value_ip_port.setVisible(False)
+                self.proxy_value_ip_port_user_pass.setVisible(False)
+
 
     self.retranslateUi(ToolRegCloneTiktok)
     self.ToolRegCloneTiktok.setCurrentIndex(0)
@@ -507,11 +576,23 @@ def uiMain(self, ToolRegCloneTiktok):
     self.export_account_format_value.currentTextChanged.connect(self.getTypeExportAccount)
     self.file_mail_check.clicked.connect(self.inputMailCheck)
     self.btn_check.clicked.connect(self.handleCheckMail)
+    self.file_accounts_check.clicked.connect(self.inputAccountsCheck)
+    self.btn_check_accounts.clicked.connect(self.handleCheckAccounts)
+
+    # handle logic tab 3
+    self.proxy_value_check_live.textChanged.connect(self.importProxyCheckLive)
+    self.proxy_value_check_live_ip_port.toggled.connect(self.checkAccountIsProxyIpPort)
+    self.proxy_type_check_live.currentTextChanged.connect(self.getProxyTypeCheckLive)
 
     self.chrome_threads = []
-    self.max_thread_count = 20
-    self.threadpool = QThreadPool.globalInstance()
-    self.threadpool.setMaxThreadCount(self.max_thread_count)
+
+    self.max_thread_count_check_mail = 10
+    self.threadpool_check_mail = QThreadPool()
+    self.threadpool_check_mail.setMaxThreadCount(self.max_thread_count_check_mail)
+
+    self.max_thread_count_check_accounts = 1
+    self.threadpool_check_accounts = QThreadPool()
+    self.threadpool_check_accounts.setMaxThreadCount(self.max_thread_count_check_accounts)
 
     ToolRegCloneTiktok.setStatusBar(self.statusbar)
 
