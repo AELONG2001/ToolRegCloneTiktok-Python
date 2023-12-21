@@ -2673,15 +2673,6 @@
         "documentation": {}
     },
     {
-        "label": "remove_accents",
-        "kind": 2,
-        "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
-        "description": "functions.HandleUploadAvatar.handleUploadAvatar",
-        "peekOfCode": "def remove_accents(input_str):\n    nfkd_form = unicodedata.normalize('NFKD', input_str)\n    return ''.join([c for c in nfkd_form if not unicodedata.combining(c)])\ndef handleInsertCookieAndWriteAccount(self):\n    pageContent = self.driver.page_source\n    if '\"nickName\":\"' in pageContent:\n        try:\n            userId = pageContent.split('\"nickName\":\"')[1].split('\"')[0]\n        except IndexError:\n            userId = \"\"",
-        "detail": "functions.HandleUploadAvatar.handleUploadAvatar",
-        "documentation": {}
-    },
-    {
         "label": "handleInsertCookieAndWriteAccount",
         "kind": 2,
         "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
@@ -2911,7 +2902,7 @@
         "kind": 6,
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
-        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.25\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.28\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
         "detail": "GUI.uiLogicMain",
         "documentation": {}
     },

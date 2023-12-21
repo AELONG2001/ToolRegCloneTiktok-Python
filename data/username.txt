@@ -124,7 +124,6 @@ Hoàng Văn Thọ
 Đỗ Thị Ngọc
 Trần Văn Hùng
 Phạm Văn Quân
-Bùi Thị Thu Hà
 Lê Văn Hiển
 Nguyễn Thị Thúy
 Vũ Thị Ngọc
@@ -140,20 +139,15 @@ Vũ Văn Hiệp
 Đỗ Thị Thu Thảo
 Lê Thị Thủy
 Nguyễn Văn Tùng
-Phạm Thị Thu Hà
 Hoàng Văn Thắng
-Bùi Thị Thu Thủy
 Trần Văn Hiển
-Lê Thị Thu Thảo
 Nguyễn Văn Tuân
 Phạm Thị Hiền
 Vũ Văn Hiện
 Đỗ Văn Thịnh
-Hoàng Thị Thu Thủy
 Bùi Thị Thanh
 Lê Thị Thuý
 Trần Văn Tuân
-Nguyễn Thị Thu Hiền
 Phạm Văn Hiệp
 Vũ Thị Hiền
 Hoàng Thị Thùy
@@ -165,12 +159,8 @@ Trần Văn Thực
 Vũ Thị Hoa
 Đỗ Thị Thu Hiền
 Lê Thị Thúy
-Nguyễn Văn Thương
 Phạm Văn Thực
-Hoàng Thị Thu Hương
-Bùi Thị Thu Thảo
 Lê Văn Tuấn
-Nguyễn Thị Thương
 Trần Văn Thọ
 Vũ Văn Thăng
 Đỗ Thị Thanh
@@ -179,6 +169,5 @@ Bùi Thị Thơ
 Lê Thị Thu Hiền
 Nguyễn Văn Thủy
 Phạm Văn Thực
-Trần Thị Thu Hiền
 Vũ Văn Thuyết
 Đỗ Văn Thanh

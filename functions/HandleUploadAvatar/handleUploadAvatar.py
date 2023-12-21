@@ -35,9 +35,9 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSlid
 
 from utils.utils import random_number
 
-def remove_accents(input_str):
-    nfkd_form = unicodedata.normalize('NFKD', input_str)
-    return ''.join([c for c in nfkd_form if not unicodedata.combining(c)])
+# def remove_accents(input_str):
+#     nfkd_form = unicodedata.normalize('NFKD', input_str)
+#     return ''.join([c for c in nfkd_form if not unicodedata.combining(c)])
 
 def handleInsertCookieAndWriteAccount(self):
     pageContent = self.driver.page_source
@@ -217,9 +217,8 @@ def handleUploadAvatar(self):
                 wait(4, 6)
             else:
                 wait(10, 12)
-            username_random = usernames[random_number(0, len(usernames) - 1)]
-            username = remove_accents(username_random).replace(" ", "").lower()
-            userNameRandomByFile = f"{username}{generate_random_name(6)}"
+            # username = remove_accents(username_random).replace(" ", "").lower()
+            username_random = f"{generate_random_name(8)}_{generate_random_name(8)}"
             editUserName = self.driver.find_elements("xpath", '//*[@placeholder="Username"]')
             editUserName[0].clear()
             editUserName[0].clear()
@@ -227,7 +226,7 @@ def handleUploadAvatar(self):
                 wait(4, 6)
             else:
                 wait(10, 12)
-            editUserName[0].send_keys(userNameRandomByFile)
+            editUserName[0].send_keys(username_random)
 
             if self.type_reg_country == 0:
                 wait(4, 6)
@@ -240,7 +239,7 @@ def handleUploadAvatar(self):
                 wait(4, 6)
             else:
                 wait(10, 12)
-            editName[0].send_keys(username_random)
+            editName[0].send_keys(usernames[random_number(0, len(usernames) - 1)])
         else:
             if self.type_reg_country == 0:
                 wait(4, 6)

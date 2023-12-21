@@ -55,7 +55,7 @@ def handleSubmitAccount(self):
                     [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
                 )
                 account = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                with open("data/output_not_user_id", "a") as f:
+                with open("data/output_not_user_id.txt", "a") as f:
                     f.write(account + "\n")
                 
                 self.driver.quit()
