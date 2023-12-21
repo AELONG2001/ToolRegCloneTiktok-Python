@@ -10,7 +10,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import NoSuchElementException
 from utils.utils import wait, generate_random_name
-from unidecode import unidecode
+import unicodedata
 import re
 
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
@@ -34,6 +34,10 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSlid
 )
 
 from utils.utils import random_number
+
+def remove_accents(input_str):
+    nfkd_form = unicodedata.normalize('NFKD', input_str)
+    return ''.join([c for c in nfkd_form if not unicodedata.combining(c)])
 
 def handleInsertCookieAndWriteAccount(self):
     pageContent = self.driver.page_source
@@ -214,8 +218,7 @@ def handleUploadAvatar(self):
             else:
                 wait(10, 12)
             username_random = usernames[random_number(0, len(usernames) - 1)]
-            cleaned_str = unidecode(username_random).lower()
-            username = re.sub(r'\s', '', cleaned_str)
+            username = remove_accents(username_random).replace(" ", "").lower()
             userNameRandomByFile = f"{username}{generate_random_name(6)}"
             editUserName = self.driver.find_elements("xpath", '//*[@placeholder="Username"]')
             editUserName[0].clear()
@@ -276,29 +279,28 @@ def handleUploadAvatar(self):
         if is_random_name:
             confirmChangeUser = self.driver.find_element("xpath", '//*[@data-e2e="set-username-popup-confirm"]')
             confirmChangeUser.click()
-
-        wait(4, 6)
+        
+        wait(6, 8)
         cookies = self.driver.get_cookies()
         cookies_string = ";".join(
             [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
         )
+        wait(6, 8)
+        try:
+            get_user_id = self.driver.current_url.split("@")[1]
+        except IndexError:
+            get_user_id = ""
         
-        if is_random_name:
-            if "url_username" in data and data["url_username"]:
-               account = f"{userNameRandomByFile}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-            else:
-               account = f"{userNameRandom}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
+        if get_user_id:
+            account = f"{get_user_id}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
         else:
-           if userId:
-               account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
-           else:
-                account2 = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                with open("data/output_not_user_id.txt", "a") as f:
-                    f.write(account2 + "\n")
+            account2 = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+            with open("data/output_not_user_id.txt", "a") as f:
+                f.write(account2 + "\n")
 
-                self.self_main.total_success += 1
-                self.self_main.total_success_account.setText(f"Số acc đã tạo thành công: {self.self_main.total_success}")
-                QCoreApplication.processEvents()
+            self.self_main.total_success += 1
+            self.self_main.total_success_account.setText(f"Số acc đã tạo thành công: {self.self_main.total_success}")
+            QCoreApplication.processEvents()
         
         # insert account
         with open(self.output_file_path, "a") as f:

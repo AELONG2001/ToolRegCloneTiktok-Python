@@ -1923,11 +1923,12 @@
         "documentation": {}
     },
     {
-        "label": "unidecode",
-        "importPath": "unidecode",
-        "description": "unidecode",
+        "label": "unicodedata",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "unidecode",
+        "importPath": "unicodedata",
+        "description": "unicodedata",
+        "detail": "unicodedata",
         "documentation": {}
     },
     {
@@ -2163,7 +2164,7 @@
         "kind": 2,
         "importPath": "functions.autoBuyHotmail.autoBuyHotmail",
         "description": "functions.autoBuyHotmail.autoBuyHotmail",
-        "peekOfCode": "def handleAutoBuyHotmail(api_key):\n    try:\n        email_password = \"\"\n        params = {\n            \"apikey\": f\"{api_key.strip()}\",\n            \"mailcode\": \"HMAIL\",\n            \"quantity\": 1\n        }\n        response = requests.get(\"https://hotmailbase.com/api/user/buy\", params=params).json()\n        if \"Message\" in response and response[\"Message\"] == \"Success\":",
+        "peekOfCode": "def handleAutoBuyHotmail(self):\n    try:\n        email_password = \"\"\n        params = {\n            \"apikey\": f\"{self.api_key_hotmailbox.strip()}\",\n            \"mailcode\": \"HMAIL\",\n            \"quantity\": 1\n        }\n        response = requests.get(\"https://hotmailbase.com/api/user/buy\", params=params).json()\n        if \"Message\" in response and response[\"Message\"] == \"Success\":",
         "detail": "functions.autoBuyHotmail.autoBuyHotmail",
         "documentation": {}
     },
@@ -2622,7 +2623,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo",
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo",
-        "peekOfCode": "def handleCheckApiKeyOmo(api_key):\n    try:\n        url = \"https://omocaptcha.com/api/getBalance\"\n        body = {\n            \"api_token\": f\"{api_key}\",\n        }\n        response = requests.post(url, json=body).json()\n        return response\n    except requests.exceptions.RequestException:\n        return \"api key not correct\"",
+        "peekOfCode": "def handleCheckApiKeyOmo(api_key):\n    url = \"https://omocaptcha.com/api/getBalance\"\n    body = {\n        \"api_token\": f\"{api_key}\",\n    }\n    response = requests.post(url, json=body)\n    if \"balance\" in response.text:\n        return response.json()\n    else:\n        return \"api key not correct\"",
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.handleCheckApiKeyOmo",
         "documentation": {}
     },
@@ -2669,6 +2670,15 @@
         "description": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
         "peekOfCode": "def handleSaveDataInputUser(kzlsfw, value):\n    # Kiểm tra sự tồn tại của tệp JSON\n    if os.path.exists(\"configs_account.json\"):\n        try:\n            # Đọc dữ liệu từ tệp JSON hiện có\n            with open(\"configs_account.json\", \"r\") as json_file:\n                data = json.load(json_file)\n        except json.JSONDecodeError:\n            data = {}\n    else:",
         "detail": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "documentation": {}
+    },
+    {
+        "label": "remove_accents",
+        "kind": 2,
+        "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "description": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "peekOfCode": "def remove_accents(input_str):\n    nfkd_form = unicodedata.normalize('NFKD', input_str)\n    return ''.join([c for c in nfkd_form if not unicodedata.combining(c)])\ndef handleInsertCookieAndWriteAccount(self):\n    pageContent = self.driver.page_source\n    if '\"nickName\":\"' in pageContent:\n        try:\n            userId = pageContent.split('\"nickName\":\"')[1].split('\"')[0]\n        except IndexError:\n            userId = \"\"",
+        "detail": "functions.HandleUploadAvatar.handleUploadAvatar",
         "documentation": {}
     },
     {
@@ -2901,7 +2911,7 @@
         "kind": 6,
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
-        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.20\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.25\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
         "detail": "GUI.uiLogicMain",
         "documentation": {}
     },

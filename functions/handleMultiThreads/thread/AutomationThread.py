@@ -151,7 +151,7 @@ class AutomationThread(QThread):
 
     def handleAutoBuyMail(self):
         wait(1, 2)
-        self.mail = handleAutoBuyHotmail(self.api_key_hotmailbox)
+        self.mail = handleAutoBuyHotmail(self)
         print("Mail: ", self.mail)
         if self.mail:
             self.username_mail, self.password_mail =  self.mail.split("|")

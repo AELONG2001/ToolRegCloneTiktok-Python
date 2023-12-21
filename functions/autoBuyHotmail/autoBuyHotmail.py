@@ -1,11 +1,11 @@
 import requests
 from PySide6.QtWidgets import *
 
-def handleAutoBuyHotmail(api_key):
+def handleAutoBuyHotmail(self):
     try:
         email_password = ""
         params = {
-            "apikey": f"{api_key.strip()}",
+            "apikey": f"{self.api_key_hotmailbox.strip()}",
             "mailcode": "HMAIL",
             "quantity": 1
         }
