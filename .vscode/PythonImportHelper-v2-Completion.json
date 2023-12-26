@@ -690,15 +690,6 @@
         "documentation": {}
     },
     {
-        "label": "time",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "time",
-        "description": "time",
-        "detail": "time",
-        "documentation": {}
-    },
-    {
         "label": "sleep",
         "importPath": "time",
         "description": "time",
@@ -2417,14 +2408,6 @@
         "documentation": {}
     },
     {
-        "label": "BytesIO",
-        "importPath": "io",
-        "description": "io",
-        "isExtraImport": true,
-        "detail": "io",
-        "documentation": {}
-    },
-    {
         "label": "handleAutoBuyHotmail",
         "kind": 2,
         "importPath": "functions.autoBuyHotmail.autoBuyHotmail",
@@ -3358,114 +3341,6 @@
         "description": "mplctlsfw",
         "peekOfCode": "class hmlsfw(QMainWindow):\n    def __init__(self, ui_self):\n        super().__init__()\n        self.ui_self = ui_self\n        self.ui_self.is_update = False\n    def closeEvent(self, event):\n        if self.ui_self.is_update:\n            event.accept()\n            return\n        result = QMessageBox.question(",
         "detail": "mplctlsfw",
-        "documentation": {}
-    },
-    {
-        "label": "key",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "key = '837c315533f8364a1e90b21de86ea148'\nurl1 = 'https://p16-rc-captcha-va.ibyteimg.com/tos-maliva-i-b4yrtqhy5a-us/14f6e22582754d0a8378529e62b31630~tplv-b4yrtqhy5a-2.jpeg'\nurl2 = 'https://p16-rc-captcha-va.ibyteimg.com/tos-maliva-i-b4yrtqhy5a-us/6cb5c78e040f4166ad9106c625a9dc22~tplv-b4yrtqhy5a-2.jpeg'\nur1_bytes = url1.encode('utf-8')\nur2_bytes = url2.encode('utf-8')\nee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "url1",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "url1 = 'https://p16-rc-captcha-va.ibyteimg.com/tos-maliva-i-b4yrtqhy5a-us/14f6e22582754d0a8378529e62b31630~tplv-b4yrtqhy5a-2.jpeg'\nurl2 = 'https://p16-rc-captcha-va.ibyteimg.com/tos-maliva-i-b4yrtqhy5a-us/6cb5c78e040f4166ad9106c625a9dc22~tplv-b4yrtqhy5a-2.jpeg'\nur1_bytes = url1.encode('utf-8')\nur2_bytes = url2.encode('utf-8')\nee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "url2",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "url2 = 'https://p16-rc-captcha-va.ibyteimg.com/tos-maliva-i-b4yrtqhy5a-us/6cb5c78e040f4166ad9106c625a9dc22~tplv-b4yrtqhy5a-2.jpeg'\nur1_bytes = url1.encode('utf-8')\nur2_bytes = url2.encode('utf-8')\nee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "ur1_bytes",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "ur1_bytes = url1.encode('utf-8')\nur2_bytes = url2.encode('utf-8')\nee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "ur2_bytes",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "ur2_bytes = url2.encode('utf-8')\nee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "ee1",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "ee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "ee2",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "ee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "payload",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "payload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "res",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "res = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "rt",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "rt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "url",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "url = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "response",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "response = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
-        "detail": "test",
         "documentation": {}
     }
 ]
