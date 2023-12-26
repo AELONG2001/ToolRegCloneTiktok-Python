@@ -1,12 +1,14 @@
+import os
 import math
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
-from utils.utils import wait, generate_random_name, generate_password
+from utils.utils import wait, generate_random_name, generate_password, delete_all_subfolders
 from functions.profilesGologin.handleDeleteProfile import handleDeleteProfile
 from functions.proxy.Authentication.AuthenticationForProxy import create_proxyauth_extension
+import shutil
 
 from functions.profilesGologin.handleCreateProfile import (
     handleCreateProfile,
@@ -59,6 +61,13 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRot
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaChooseTwoObjectsAChi import (
     handleResolveCaptchaChooseTwoObjectsAChi,
 )
+from functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru import (
+    handleResolveCaptchaRotateObjectGuru,
+)
+from functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru import (
+    handleResolveCaptchaChooseTwoObjectsGuru,
+)
+
 
 from functions.HandleUploadAvatar.handleUploadAvatar import handleUploadAvatar
 
@@ -123,9 +132,6 @@ class AutomationThread(QThread):
             "Warning",
             "Vui lòng nhập thêm mail",
         )
-
-    def handleShowTotalSuccessAccount(self):
-        pass
 
     def handleGetMailAndUpdateMail(self):
         with open(self.input_file_path, "r") as f:
@@ -289,11 +295,12 @@ class AutomationThread(QThread):
                     cookies_string = ";".join(
                         [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
                     )
+                    account = ""
                     if userId:
                         account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
                     else:
                         account2 = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
-                        with open("data/output_not_user_id", "a") as f:
+                        with open("data/output_not_user_id.txt", "a") as f:
                             f.write(account2 + "\n")
                     wait(1, 2)
                     if existing_data_output[-1].endswith("\n"):
@@ -316,6 +323,8 @@ class AutomationThread(QThread):
             f"Đã dừng {completed_threads} luồng"
         )
 
+        delete_all_subfolders(fr"{self.path_profile_gologin}")
+
         QCoreApplication.processEvents()
     def run(self):
         while not self.stop_flag:
@@ -328,6 +337,7 @@ class AutomationThread(QThread):
             self.handleCheckProxy()
 
             self.profile_id = handleCreateProfile(self)
+            self.profile_fullpath = fr"{self.path_profile_gologin}\{self.profile_id}"
 
             print("profile_id: ", self.profile_id)
 
@@ -364,7 +374,7 @@ class AutomationThread(QThread):
 
             self.options.add_argument("--disable-blink-features=AutomationControlled")
             self.options.add_argument(
-                fr"--user-data-dir={self.path_profile_gologin}\{self.profile_id}\Default"
+                f"--user-data-dir={self.profile_fullpath}\Default"
             )
             
             if self.proxy_type == 2:
@@ -460,16 +470,15 @@ class AutomationThread(QThread):
             handleGetCode(self)
 
             if self.captcha_type == 0:
-                # Resolve captcha by Achi
                 handleResolveCaptchaRotateObjectAChi(self)
                 handleResolveCaptchaChooseTwoObjectsAChi(self)
-               
-            else:
-                # Resolve captcha by Omo
+            elif self.captcha_type == 1:
                 handleResolveCaptchaRotateObjectOmo(self)
-
                 handleResolveCaptchaChooseTwoObjectsOmo(self)
-
+            else:
+                handleResolveCaptchaRotateObjectGuru(self)
+                handleResolveCaptchaChooseTwoObjectsGuru(self)
+                
             handleGetCodeFromMail(self)
             
             handleSubmitAccount(self)
@@ -491,6 +500,7 @@ class AutomationThread(QThread):
                 cookies_string = ";".join(
                     [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
                 )
+                account = ""
                 if userId:
                     account = f"{userId}|{self.password_account}|{self.username_mail}|{self.password_mail}|{cookies_string}|{self.current_date}"
                 else:
@@ -511,3 +521,6 @@ class AutomationThread(QThread):
             self.driver.delete_all_cookies()
             handleDeleteProfile(self.profile_id)
             self.driver.quit()
+            wait(4, 6)
+            if os.path.exists(self.profile_fullpath):
+                shutil.rmtree(self.profile_fullpath)

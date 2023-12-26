@@ -9,6 +9,7 @@ from functions.handleCheckMail.checkMail import checkMail
 from functions.handleCheckAccounts.checkLiveAccounts import checkLiveAccounts
 from GUI.darkMode import darkMode
 from GUI.lightMode import lightMode
+import shutil
 
 import os
 import json
@@ -245,7 +246,7 @@ class AutomationController:
             
     def getProxyType(self):
         proxy_type = self.ui_instance.proxy_type.currentIndex()
-        if proxy_type == 2 or proxy_type == 3:
+        if proxy_type == 3 or proxy_type == 4:
             self.ui_instance.proxy_value.setPlaceholderText("Mỗi proxy một dòng")
             self.ui_instance.proxy_value_ip_port.setVisible(True)
             self.ui_instance.proxy_value_ip_port_user_pass.setVisible(True)
@@ -258,7 +259,7 @@ class AutomationController:
 
     def getProxyTypeCheckLive(self):
         proxy_type = self.ui_instance.proxy_type_check_live.currentIndex()
-        if proxy_type == 2 or proxy_type == 3:
+        if proxy_type == 3 or proxy_type == 4:
             self.ui_instance.proxy_value_check_live.setPlaceholderText("Mỗi proxy một dòng")
             self.ui_instance.proxy_value_check_live_ip_port.setVisible(True)
             self.ui_instance.proxy_value_check_live_ip_port_user_pass.setVisible(True)

@@ -20,7 +20,7 @@ class utrclttlsfw(QObject):
         super().__init__()
 
         self.data = data
-        self.current_version = "1.0.28"
+        self.current_version = "1.0.34"
         self.remaining_days = self.data["rasdq765re2432rvad76sv"]
         self.latest_version = self.data["lfct34re32fdaefda8765ddsa"]
         self.is_start = False
@@ -267,6 +267,12 @@ class utrclttlsfw(QObject):
         
             with open(data["url_accounts_check"], "w") as file:
                 file.write("")
+
+            with open("data/LiveAccounts.txt", "r") as file:
+                accounts_live =  file.read()
+
+            with open(data["url_accounts_check"], "w") as file:
+                file.write(accounts_live)
 
             self.btn_check_accounts.setEnabled(True)
             self.btn_check_accounts.setText("Check")

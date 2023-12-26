@@ -11,7 +11,6 @@ from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import NoSuchElementException
 from utils.utils import wait, generate_random_name
 import unicodedata
-import re
 
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
     handleResolveCaptchaRotateObjectAChi,
@@ -33,11 +32,21 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSlid
     handleResolveCaptchaSliderObjectOmo,
 )
 
+from functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru import (
+    handleResolveCaptchaRotateObjectGuru,
+)
+from functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru import (
+    handleResolveCaptchaChooseTwoObjectsGuru,
+)
+from functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru import (
+    handleResolveCaptchaSliderObjectGuru,
+)
+
 from utils.utils import random_number
 
-# def remove_accents(input_str):
-#     nfkd_form = unicodedata.normalize('NFKD', input_str)
-#     return ''.join([c for c in nfkd_form if not unicodedata.combining(c)])
+def remove_accents(input_str):
+    nfkd_form = unicodedata.normalize('NFKD', input_str)
+    return ''.join([c for c in nfkd_form if not unicodedata.combining(c)])
 
 def handleInsertCookieAndWriteAccount(self):
     pageContent = self.driver.page_source
@@ -142,10 +151,14 @@ def handleUploadAvatar(self):
             handleResolveCaptchaRotateObjectAChi(self)
             handleResolveCaptchaChooseTwoObjectsAChi(self)
             handleResolveCaptchaSliderObjectAChi(self)
-        else: 
+        elif self.captcha_type == 1: 
             handleResolveCaptchaRotateObjectOmo(self)
             handleResolveCaptchaChooseTwoObjectsOmo(self)
             handleResolveCaptchaSliderObjectOmo(self)
+        else:
+            handleResolveCaptchaRotateObjectGuru(self)
+            handleResolveCaptchaChooseTwoObjectsGuru(self)
+            handleResolveCaptchaSliderObjectGuru(self)
 
         waitForNavigation = WebDriverWait(self.driver, 60)
         editProfile = waitForNavigation.until(
@@ -217,8 +230,9 @@ def handleUploadAvatar(self):
                 wait(4, 6)
             else:
                 wait(10, 12)
-            # username = remove_accents(username_random).replace(" ", "").lower()
-            username_random = f"{generate_random_name(8)}_{generate_random_name(8)}"
+            user_random = usernames[random_number(0, len(usernames) - 1)]
+            username = remove_accents(user_random).replace(" ", "").lower()
+            username_random_by_file = f"{username}_{generate_random_name(8)}"
             editUserName = self.driver.find_elements("xpath", '//*[@placeholder="Username"]')
             editUserName[0].clear()
             editUserName[0].clear()
@@ -226,7 +240,7 @@ def handleUploadAvatar(self):
                 wait(4, 6)
             else:
                 wait(10, 12)
-            editUserName[0].send_keys(username_random)
+            editUserName[0].send_keys(username_random_by_file)
 
             if self.type_reg_country == 0:
                 wait(4, 6)
@@ -239,7 +253,7 @@ def handleUploadAvatar(self):
                 wait(4, 6)
             else:
                 wait(10, 12)
-            editName[0].send_keys(usernames[random_number(0, len(usernames) - 1)])
+            editName[0].send_keys(user_random)
         else:
             if self.type_reg_country == 0:
                 wait(4, 6)

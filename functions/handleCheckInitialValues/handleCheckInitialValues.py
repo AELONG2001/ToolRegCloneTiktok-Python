@@ -1,3 +1,5 @@
+import os
+import json
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
@@ -11,7 +13,9 @@ from functions.proxy.TinProxy.handleGetNewTinProxyCheckExpired import handleGetN
 from functions.profilesGologin.handleCheckTokenGologin import handleCheckTokenGologin
 from functions.autoBuyHotmail.handleCheckBalance import handleCheckBalance
 from functions.autoBuyHotmail.handleCheckInstock import handleCheckInstock
-import json
+from functions.profilesGologin.handleGetListProfile import handleGetListProfile
+from functions.profilesGologin.handleDeleteProfile import handleDeleteProfile
+from utils.utils import delete_all_subfolders
 
 class InitalValuesCheckerTaskSignals(QObject):
     result_signal = Signal(bool, str)
@@ -21,6 +25,7 @@ class InitalValuesCheckerTask(QRunnable):
         super().__init__()
         self.ui_instance = ui_instance
         self.signals = InitalValuesCheckerTaskSignals()
+
         
     def run(self):
         message = ""
@@ -64,7 +69,7 @@ class InitalValuesCheckerTask(QRunnable):
                     self.signals.result_signal.emit(False, message)
                     return
                     
-            else:
+            elif self.ui_instance.captcha_type.currentIndex() == 1:
                 response_api_omo = handleCheckApiKeyOmo(data["captcha_key"])
 
                 if response_api_omo == "api key not correct":
@@ -108,6 +113,15 @@ class InitalValuesCheckerTask(QRunnable):
                 setEnableStartButton(self.ui_instance)
                 self.signals.result_signal.emit(False, message)
                 return
+            
+             
+            listProfiles = handleGetListProfile(data["api_token_gologin"])
+            for profile in listProfiles:
+                handleDeleteProfile(profile["id"])
+                print(f"Đã delete profile {profile['id']}")
+            if os.path.exists(data['path_gologin']):
+                delete_all_subfolders(fr"{data['path_gologin']}")
+            
         
         # input user have to includes path_gologin
         if not "path_gologin" in data or not data["path_gologin"]:

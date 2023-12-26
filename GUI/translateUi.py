@@ -1,7 +1,6 @@
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
-import os
 import json
 
 def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
@@ -35,6 +34,7 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.avatar_value.setText(_translate("ToolRegCloneTiktok", "C://images"))
    self.captcha_type.setItemText(0, _translate("ToolRegCloneTiktok", "Achicaptcha"))
    self.captcha_type.setItemText(1, _translate("ToolRegCloneTiktok", "Omocaptcha"))
+   self.captcha_type.setItemText(2, _translate("ToolRegCloneTiktok", "CaptchaGuru"))
    self.proxy_type.setItemText(0, _translate("ToolRegCloneTiktok", "ShopLike"))
    self.proxy_type.setItemText(1, _translate("ToolRegCloneTiktok", "TM Proxy"))
    self.proxy_type.setItemText(2, _translate("ToolRegCloneTiktok", "Tin Proxy"))
@@ -285,3 +285,5 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
       self.file_accounts_check_value.setText(data["url_accounts_check"])
    else:
       self.file_accounts_check_value.setText("")
+
+   

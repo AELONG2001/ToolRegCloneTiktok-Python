@@ -138,6 +138,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.captcha_type.setGeometry(QRect(860, 10, 101, 21))
     self.captcha_type.addItem("")
     self.captcha_type.addItem("")
+    self.captcha_type.addItem("")
     self.list_mail = QPushButton(parent=self.home)
     self.list_mail.setGeometry(QRect(590, 10, 121, 24))
     icon3 = QIcon()
@@ -533,7 +534,7 @@ def uiMain(self, ToolRegCloneTiktok):
         self.die_accounts_box.setGeometry(QRect(910, 50, 271, 450))
 
         if "proxy_type" in data:
-            if data["proxy_type"] == 2 or data["proxy_type"] == 3:
+            if data["proxy_type"] == 3 or data["proxy_type"] == 4:
                 self.proxy_value_ip_port.setVisible(True)
                 self.proxy_value_ip_port_user_pass.setVisible(True)
             else:

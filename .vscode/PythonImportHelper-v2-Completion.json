@@ -217,6 +217,30 @@
         "documentation": {}
     },
     {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtWidgets",
+        "description": "PySide6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PySide6.QtWidgets",
+        "documentation": {}
+    },
+    {
         "label": "QFileDialog",
         "importPath": "PySide6.QtWidgets",
         "description": "PySide6.QtWidgets",
@@ -555,10 +579,26 @@
     },
     {
         "label": "*",
-        "importPath": "PySide6.QtGui",
-        "description": "PySide6.QtGui",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
         "isExtraImport": true,
-        "detail": "PySide6.QtGui",
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtCore",
+        "description": "PySide6.QtCore",
+        "isExtraImport": true,
+        "detail": "PySide6.QtCore",
         "documentation": {}
     },
     {
@@ -639,6 +679,23 @@
         "description": "PySide6.QtGui",
         "isExtraImport": true,
         "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PySide6.QtGui",
+        "description": "PySide6.QtGui",
+        "isExtraImport": true,
+        "detail": "PySide6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
         "documentation": {}
     },
     {
@@ -779,6 +836,23 @@
         "documentation": {}
     },
     {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "urandom",
+        "importPath": "os",
+        "description": "os",
+        "isExtraImport": true,
+        "detail": "os",
+        "documentation": {}
+    },
+    {
         "label": "setEnableStartButton",
         "importPath": "functions.handleActiveButton.setEnableStartButton",
         "description": "functions.handleActiveButton.setEnableStartButton",
@@ -867,176 +941,11 @@
         "documentation": {}
     },
     {
-        "label": "handleSaveDataInputUser",
-        "importPath": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
-        "description": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "label": "handleGetListProfile",
+        "importPath": "functions.profilesGologin.handleGetListProfile",
+        "description": "functions.profilesGologin.handleGetListProfile",
         "isExtraImport": true,
-        "detail": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
-        "documentation": {}
-    },
-    {
-        "label": "handleSaveDataInputUser",
-        "importPath": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
-        "description": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
-        "isExtraImport": true,
-        "detail": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
-        "documentation": {}
-    },
-    {
-        "label": "startAutomation",
-        "importPath": "functions.handleMultiThreads.thread.startAutomation",
-        "description": "functions.handleMultiThreads.thread.startAutomation",
-        "isExtraImport": true,
-        "detail": "functions.handleMultiThreads.thread.startAutomation",
-        "documentation": {}
-    },
-    {
-        "label": "stopAutomation",
-        "importPath": "functions.handleMultiThreads.thread.stopAutomation",
-        "description": "functions.handleMultiThreads.thread.stopAutomation",
-        "isExtraImport": true,
-        "detail": "functions.handleMultiThreads.thread.stopAutomation",
-        "documentation": {}
-    },
-    {
-        "label": "selectAvatarFolder",
-        "importPath": "functions.handleOpenFolder.handleOpenListAvatar",
-        "description": "functions.handleOpenFolder.handleOpenListAvatar",
-        "isExtraImport": true,
-        "detail": "functions.handleOpenFolder.handleOpenListAvatar",
-        "documentation": {}
-    },
-    {
-        "label": "checkMail",
-        "importPath": "functions.handleCheckMail.checkMail",
-        "description": "functions.handleCheckMail.checkMail",
-        "isExtraImport": true,
-        "detail": "functions.handleCheckMail.checkMail",
-        "documentation": {}
-    },
-    {
-        "label": "checkLiveAccounts",
-        "importPath": "functions.handleCheckAccounts.checkLiveAccounts",
-        "description": "functions.handleCheckAccounts.checkLiveAccounts",
-        "isExtraImport": true,
-        "detail": "functions.handleCheckAccounts.checkLiveAccounts",
-        "documentation": {}
-    },
-    {
-        "label": "darkMode",
-        "importPath": "GUI.darkMode",
-        "description": "GUI.darkMode",
-        "isExtraImport": true,
-        "detail": "GUI.darkMode",
-        "documentation": {}
-    },
-    {
-        "label": "darkMode",
-        "importPath": "GUI.darkMode",
-        "description": "GUI.darkMode",
-        "isExtraImport": true,
-        "detail": "GUI.darkMode",
-        "documentation": {}
-    },
-    {
-        "label": "lightMode",
-        "importPath": "GUI.lightMode",
-        "description": "GUI.lightMode",
-        "isExtraImport": true,
-        "detail": "GUI.lightMode",
-        "documentation": {}
-    },
-    {
-        "label": "lightMode",
-        "importPath": "GUI.lightMode",
-        "description": "GUI.lightMode",
-        "isExtraImport": true,
-        "detail": "GUI.lightMode",
-        "documentation": {}
-    },
-    {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
-        "label": "urandom",
-        "importPath": "os",
-        "description": "os",
-        "isExtraImport": true,
-        "detail": "os",
-        "documentation": {}
-    },
-    {
-        "label": "re",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "re",
-        "description": "re",
-        "detail": "re",
-        "documentation": {}
-    },
-    {
-        "label": "urllib.request",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "urllib.request",
-        "description": "urllib.request",
-        "detail": "urllib.request",
-        "documentation": {}
-    },
-    {
-        "label": "zipfile",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "zipfile",
-        "description": "zipfile",
-        "detail": "zipfile",
-        "documentation": {}
-    },
-    {
-        "label": "shutil",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "shutil",
-        "description": "shutil",
-        "detail": "shutil",
-        "documentation": {}
-    },
-    {
-        "label": "run",
-        "importPath": "subprocess",
-        "description": "subprocess",
-        "isExtraImport": true,
-        "detail": "subprocess",
-        "documentation": {}
-    },
-    {
-        "label": "CREATE_NO_WINDOW",
-        "importPath": "subprocess",
-        "description": "subprocess",
-        "isExtraImport": true,
-        "detail": "subprocess",
-        "documentation": {}
-    },
-    {
-        "label": "run",
-        "importPath": "subprocess",
-        "description": "subprocess",
-        "isExtraImport": true,
-        "detail": "subprocess",
-        "documentation": {}
-    },
-    {
-        "label": "CREATE_NO_WINDOW",
-        "importPath": "subprocess",
-        "description": "subprocess",
-        "isExtraImport": true,
-        "detail": "subprocess",
+        "detail": "functions.profilesGologin.handleGetListProfile",
         "documentation": {}
     },
     {
@@ -1061,6 +970,38 @@
         "description": "functions.profilesGologin.handleDeleteProfile",
         "isExtraImport": true,
         "detail": "functions.profilesGologin.handleDeleteProfile",
+        "documentation": {}
+    },
+    {
+        "label": "handleDeleteProfile",
+        "importPath": "functions.profilesGologin.handleDeleteProfile",
+        "description": "functions.profilesGologin.handleDeleteProfile",
+        "isExtraImport": true,
+        "detail": "functions.profilesGologin.handleDeleteProfile",
+        "documentation": {}
+    },
+    {
+        "label": "delete_all_subfolders",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
         "documentation": {}
     },
     {
@@ -1113,6 +1054,30 @@
     },
     {
         "label": "random_number",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "wait",
         "importPath": "utils.utils",
         "description": "utils.utils",
         "isExtraImport": true,
@@ -1240,6 +1205,14 @@
         "documentation": {}
     },
     {
+        "label": "delete_all_subfolders",
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "isExtraImport": true,
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
         "label": "wait",
         "importPath": "utils.utils",
         "description": "utils.utils",
@@ -1269,6 +1242,162 @@
         "description": "utils.utils",
         "isExtraImport": true,
         "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "handleSaveDataInputUser",
+        "importPath": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "description": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "isExtraImport": true,
+        "detail": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "documentation": {}
+    },
+    {
+        "label": "handleSaveDataInputUser",
+        "importPath": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "description": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "isExtraImport": true,
+        "detail": "functions.handleSaveDataInputUser.handleSaveDataInputUser",
+        "documentation": {}
+    },
+    {
+        "label": "startAutomation",
+        "importPath": "functions.handleMultiThreads.thread.startAutomation",
+        "description": "functions.handleMultiThreads.thread.startAutomation",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.thread.startAutomation",
+        "documentation": {}
+    },
+    {
+        "label": "stopAutomation",
+        "importPath": "functions.handleMultiThreads.thread.stopAutomation",
+        "description": "functions.handleMultiThreads.thread.stopAutomation",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.thread.stopAutomation",
+        "documentation": {}
+    },
+    {
+        "label": "selectAvatarFolder",
+        "importPath": "functions.handleOpenFolder.handleOpenListAvatar",
+        "description": "functions.handleOpenFolder.handleOpenListAvatar",
+        "isExtraImport": true,
+        "detail": "functions.handleOpenFolder.handleOpenListAvatar",
+        "documentation": {}
+    },
+    {
+        "label": "checkMail",
+        "importPath": "functions.handleCheckMail.checkMail",
+        "description": "functions.handleCheckMail.checkMail",
+        "isExtraImport": true,
+        "detail": "functions.handleCheckMail.checkMail",
+        "documentation": {}
+    },
+    {
+        "label": "checkLiveAccounts",
+        "importPath": "functions.handleCheckAccounts.checkLiveAccounts",
+        "description": "functions.handleCheckAccounts.checkLiveAccounts",
+        "isExtraImport": true,
+        "detail": "functions.handleCheckAccounts.checkLiveAccounts",
+        "documentation": {}
+    },
+    {
+        "label": "darkMode",
+        "importPath": "GUI.darkMode",
+        "description": "GUI.darkMode",
+        "isExtraImport": true,
+        "detail": "GUI.darkMode",
+        "documentation": {}
+    },
+    {
+        "label": "darkMode",
+        "importPath": "GUI.darkMode",
+        "description": "GUI.darkMode",
+        "isExtraImport": true,
+        "detail": "GUI.darkMode",
+        "documentation": {}
+    },
+    {
+        "label": "lightMode",
+        "importPath": "GUI.lightMode",
+        "description": "GUI.lightMode",
+        "isExtraImport": true,
+        "detail": "GUI.lightMode",
+        "documentation": {}
+    },
+    {
+        "label": "lightMode",
+        "importPath": "GUI.lightMode",
+        "description": "GUI.lightMode",
+        "isExtraImport": true,
+        "detail": "GUI.lightMode",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.request",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.request",
+        "description": "urllib.request",
+        "detail": "urllib.request",
+        "documentation": {}
+    },
+    {
+        "label": "zipfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "zipfile",
+        "description": "zipfile",
+        "detail": "zipfile",
+        "documentation": {}
+    },
+    {
+        "label": "run",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "CREATE_NO_WINDOW",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "run",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "CREATE_NO_WINDOW",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
         "documentation": {}
     },
     {
@@ -1361,6 +1490,14 @@
     },
     {
         "label": "StaleElementReferenceException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverException",
         "importPath": "selenium.common.exceptions",
         "description": "selenium.common.exceptions",
         "isExtraImport": true,
@@ -1512,6 +1649,46 @@
         "documentation": {}
     },
     {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThread",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThreadNewMail",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "documentation": {}
+    },
+    {
+        "label": "handleRestartThreadNewMail",
+        "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
+        "documentation": {}
+    },
+    {
         "label": "handleRestartThreadNewMail",
         "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
         "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
@@ -1646,6 +1823,46 @@
         "description": "selenium.webdriver.common.action_chains",
         "isExtraImport": true,
         "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCode",
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetCode",
+        "importPath": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "description": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
         "documentation": {}
     },
     {
@@ -1866,6 +2083,38 @@
         "documentation": {}
     },
     {
+        "label": "handleResolveCaptchaRotateObjectGuru",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaRotateObjectGuru",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaChooseTwoObjectsGuru",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaChooseTwoObjectsGuru",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "documentation": {}
+    },
+    {
         "label": "handleUploadAvatar",
         "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
         "description": "functions.HandleUploadAvatar.handleUploadAvatar",
@@ -1945,6 +2194,14 @@
         "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
         "isExtraImport": true,
         "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.OmoCaptcha.captchaSliderObjectOmo",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaSliderObjectGuru",
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
+        "isExtraImport": true,
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
         "documentation": {}
     },
     {
@@ -2160,6 +2417,14 @@
         "documentation": {}
     },
     {
+        "label": "BytesIO",
+        "importPath": "io",
+        "description": "io",
+        "isExtraImport": true,
+        "detail": "io",
+        "documentation": {}
+    },
+    {
         "label": "handleAutoBuyHotmail",
         "kind": 2,
         "importPath": "functions.autoBuyHotmail.autoBuyHotmail",
@@ -2335,7 +2600,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
         "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
-        "peekOfCode": "def handleRestartThread(self):\n    handleDeleteProfile(self.profile_id)\n    self.self_main.table_account_info.setItem(\n        self.current_row_count,\n        3,\n        QTableWidgetItem(\"Bị chặn, đợi restart lại...\"),\n    )\n    QCoreApplication.processEvents()\n    self.self_main.restart_thread(self.num_threads, self.username_mail, self.password_mail)\n    return",
+        "peekOfCode": "def handleRestartThread(self):\n    wait(4, 6)\n    if os.path.exists(self.profile_fullpath):\n        shutil.rmtree(self.profile_fullpath)\n    handleDeleteProfile(self.profile_id)\n    self.self_main.table_account_info.setItem(\n        self.current_row_count,\n        3,\n        QTableWidgetItem(\"Bị chặn, đợi restart lại...\"),\n    )",
         "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThread",
         "documentation": {}
     },
@@ -2344,7 +2609,7 @@
         "kind": 2,
         "importPath": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
         "description": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
-        "peekOfCode": "def handleRestartThreadNewMail(self):\n    handleDeleteProfile(self.profile_id)\n    self.self_main.table_account_info.setItem(\n        self.current_row_count,\n        3,\n        QTableWidgetItem(\"Bị chặn, đợi restart lại...\"),\n    )\n    QCoreApplication.processEvents()\n    self.self_main.restart_thread(self.num_threads, \"\", \"\")\n    return",
+        "peekOfCode": "def handleRestartThreadNewMail(self):\n    wait(4, 6)\n    if os.path.exists(self.profile_fullpath):\n        shutil.rmtree(self.profile_fullpath)\n    handleDeleteProfile(self.profile_id)\n    self.self_main.table_account_info.setItem(\n        self.current_row_count,\n        3,\n        QTableWidgetItem(\"Bị chặn, đợi restart lại...\"),\n    )",
         "detail": "functions.handleMultiThreads.handleRestartThread.handleRestartThreadNewMail",
         "documentation": {}
     },
@@ -2520,6 +2785,96 @@
         "documentation": {}
     },
     {
+        "label": "getResultCaptchaChooseTwoObjectsGuru",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "peekOfCode": "def getResultCaptchaChooseTwoObjectsGuru(self, job_id):\n    try:\n        body = {\n            \"key\": self.captcha_key,\n            \"action\": \"get\",\n            \"id\": job_id,\n            \"json\": 1\n        }\n        response = requests.post(\"http://api.cap.guru/res.php\", json=body).json()\n        transformData = re.findall(r'x=(\\d+),y=(\\d+)', response[\"request\"])",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateJobGetCaptchaChooseTwoObjectsGuru",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "peekOfCode": "def handleCreateJobGetCaptchaChooseTwoObjectsGuru(self, base64):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang đợi kết quả captcha...\")\n        )\n        QCoreApplication.processEvents()\n        body = {\n            \"key\": self.captcha_key,\n            \"method\": \"base64\",\n            \"textinstructions\": \"abc\",",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaChooseTwoObjectsGuru",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "peekOfCode": "def handleResolveCaptchaChooseTwoObjectsGuru(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        if self.type_reg_country == 0:\n            wait(4, 6)\n        else:\n            wait(14, 16)\n        captchaElements = self.driver.find_elements(\"css selector\", \"#captcha-verify-image\")\n        isNotCaptchaChooseTwoObjects = self.driver.find_elements(\"css selector\", \".secsdk-captcha-drag-icon\")",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaChooseTwoObjectsGuru",
+        "documentation": {}
+    },
+    {
+        "label": "getResultCaptchaRotateObjectGuru",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "peekOfCode": "def getResultCaptchaRotateObjectGuru(self, job_id):\n    try:\n        params = {\n            \"key\": self.captcha_key,\n            \"id\": job_id,\n        }\n        response = requests.get(\"http://api.cap.guru/res.php\", params=params).text\n        getValueResponse = response.split(\"|\")[1]\n        data = getValueResponse.split(\"y=\")[1]\n        return data",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateJobGetCaptchaRotateObjectGuru",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "peekOfCode": "def handleCreateJobGetCaptchaRotateObjectGuru(\n    self, base64DataImgOutside, base64DataImgInside\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count, 3, QTableWidgetItem(\"Đang đợi kết quả captcha...\")\n        )\n        QCoreApplication.processEvents()\n        body = {\n            \"key\": self.captcha_key,",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaRotateObjectGuru",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "peekOfCode": "def handleResolveCaptchaRotateObjectGuru(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        if self.type_reg_country == 0:\n            wait(4, 6)\n        else:\n            wait(14, 16)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \".captcha_verify_slide--button\"",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaRotateObjectGuru",
+        "documentation": {}
+    },
+    {
+        "label": "getResultCaptchaSliderObjectGuru",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
+        "peekOfCode": "def getResultCaptchaSliderObjectGuru(self, job_id):\n    try:\n        body = {\n            \"key\": self.captcha_key,\n            \"action\": \"get\",\n            \"id\": job_id,\n            \"json\": 1\n        }\n        response = requests.post(\"http://api.cap.guru/res.php\", json=body).json()\n        data = response[\"request\"].split(\"y=\")[1]",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
+        "documentation": {}
+    },
+    {
+        "label": "handleCreateJobGetCaptchaSliderObjectGuru",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
+        "peekOfCode": "def handleCreateJobGetCaptchaSliderObjectGuru(\n    self, base64\n):\n    try:\n        self.self_main.table_account_info.setItem(\n            self.current_row_count,\n            3,\n            QTableWidgetItem(\"Đang đợi kết quả captcha...\"),\n        )\n        QCoreApplication.processEvents()",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
+        "documentation": {}
+    },
+    {
+        "label": "handleResolveCaptchaSliderObjectGuru",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
+        "peekOfCode": "def handleResolveCaptchaSliderObjectGuru(self):\n    isResolveCaptchaAgain = True\n    isCheckResolveCaptchaAgain = False\n    while isResolveCaptchaAgain:\n        if self.type_reg_country == 0:\n            wait(4, 6)\n        else:\n            wait(14, 16)\n        captchaElements = self.driver.find_elements(\n            \"css selector\", \"#captcha-verify-image\"",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru",
+        "documentation": {}
+    },
+    {
+        "label": "handleCheckApiKeyOmo",
+        "kind": 2,
+        "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.handleCheckApiKeyOmo",
+        "description": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.handleCheckApiKeyOmo",
+        "peekOfCode": "def handleCheckApiKeyOmo(api_key):\n    url = \"https://omocaptcha.com/api/getBalance\"\n    body = {\n        \"api_token\": f\"{api_key}\",\n    }\n    response = requests.post(url, json=body)\n    if \"balance\" in response.text:\n        return response.json()\n    else:\n        return \"api key not correct\"",
+        "detail": "functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.handleCheckApiKeyOmo",
+        "documentation": {}
+    },
+    {
         "label": "handleCreateJobGetHcaptcha",
         "kind": 2,
         "importPath": "functions.handleMultiThreads.selenium.ResolveCaptcha.Hcaptcha.handleResolveHcaptcha",
@@ -2673,6 +3028,15 @@
         "documentation": {}
     },
     {
+        "label": "remove_accents",
+        "kind": 2,
+        "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "description": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "peekOfCode": "def remove_accents(input_str):\n    nfkd_form = unicodedata.normalize('NFKD', input_str)\n    return ''.join([c for c in nfkd_form if not unicodedata.combining(c)])\ndef handleInsertCookieAndWriteAccount(self):\n    pageContent = self.driver.page_source\n    if '\"nickName\":\"' in pageContent:\n        try:\n            userId = pageContent.split('\"nickName\":\"')[1].split('\"')[0]\n        except IndexError:\n            userId = \"\"",
+        "detail": "functions.HandleUploadAvatar.handleUploadAvatar",
+        "documentation": {}
+    },
+    {
         "label": "handleInsertCookieAndWriteAccount",
         "kind": 2,
         "importPath": "functions.HandleUploadAvatar.handleUploadAvatar",
@@ -2742,6 +3106,15 @@
         "description": "functions.profilesGologin.handleDeleteProfile",
         "peekOfCode": "def handleDeleteProfile(profile_id):\n    try:\n        with open(\"configs_account.json\", \"r\") as json_file:\n           data = json.load(json_file)\n        api_token_gologin = data[\"api_token_gologin\"]\n        url = f\"https://api.gologin.com/browser/{profile_id}\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_token_gologin}\",\n            \"Content-Type\": \"application/json\",\n        }",
         "detail": "functions.profilesGologin.handleDeleteProfile",
+        "documentation": {}
+    },
+    {
+        "label": "handleGetListProfile",
+        "kind": 2,
+        "importPath": "functions.profilesGologin.handleGetListProfile",
+        "description": "functions.profilesGologin.handleGetListProfile",
+        "peekOfCode": "def handleGetListProfile(token):\n    url = \"https://api.gologin.com/browser/v2\"\n    headers = {\n        \"Authorization\": f\"Bearer {token}\",\n        \"Content-Type\": \"application/json\",\n    }\n    response = requests.get(url, headers=headers).json()\n    return response[\"profiles\"]",
+        "detail": "functions.profilesGologin.handleGetListProfile",
         "documentation": {}
     },
     {
@@ -2902,7 +3275,7 @@
         "kind": 6,
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
-        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.28\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.34\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
         "detail": "GUI.uiLogicMain",
         "documentation": {}
     },
@@ -2970,12 +3343,129 @@
         "documentation": {}
     },
     {
+        "label": "delete_all_subfolders",
+        "kind": 2,
+        "importPath": "utils.utils",
+        "description": "utils.utils",
+        "peekOfCode": "def delete_all_subfolders(parent_folder):\n    subfolders = [f.path for f in os.scandir(parent_folder) if f.is_dir()]\n    for subfolder in subfolders:\n        try:\n            shutil.rmtree(subfolder)\n            print(f'Thư mục con {subfolder} đã được xóa.')\n        except Exception as e:\n            print(f\"Không thể xóa thư mục con {subfolder}. Lỗi: {e}\")",
+        "detail": "utils.utils",
+        "documentation": {}
+    },
+    {
         "label": "hmlsfw",
         "kind": 6,
         "importPath": "mplctlsfw",
         "description": "mplctlsfw",
         "peekOfCode": "class hmlsfw(QMainWindow):\n    def __init__(self, ui_self):\n        super().__init__()\n        self.ui_self = ui_self\n        self.ui_self.is_update = False\n    def closeEvent(self, event):\n        if self.ui_self.is_update:\n            event.accept()\n            return\n        result = QMessageBox.question(",
         "detail": "mplctlsfw",
+        "documentation": {}
+    },
+    {
+        "label": "key",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "key = '837c315533f8364a1e90b21de86ea148'\nurl1 = 'https://p16-rc-captcha-va.ibyteimg.com/tos-maliva-i-b4yrtqhy5a-us/14f6e22582754d0a8378529e62b31630~tplv-b4yrtqhy5a-2.jpeg'\nurl2 = 'https://p16-rc-captcha-va.ibyteimg.com/tos-maliva-i-b4yrtqhy5a-us/6cb5c78e040f4166ad9106c625a9dc22~tplv-b4yrtqhy5a-2.jpeg'\nur1_bytes = url1.encode('utf-8')\nur2_bytes = url2.encode('utf-8')\nee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "url1",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "url1 = 'https://p16-rc-captcha-va.ibyteimg.com/tos-maliva-i-b4yrtqhy5a-us/14f6e22582754d0a8378529e62b31630~tplv-b4yrtqhy5a-2.jpeg'\nurl2 = 'https://p16-rc-captcha-va.ibyteimg.com/tos-maliva-i-b4yrtqhy5a-us/6cb5c78e040f4166ad9106c625a9dc22~tplv-b4yrtqhy5a-2.jpeg'\nur1_bytes = url1.encode('utf-8')\nur2_bytes = url2.encode('utf-8')\nee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "url2",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "url2 = 'https://p16-rc-captcha-va.ibyteimg.com/tos-maliva-i-b4yrtqhy5a-us/6cb5c78e040f4166ad9106c625a9dc22~tplv-b4yrtqhy5a-2.jpeg'\nur1_bytes = url1.encode('utf-8')\nur2_bytes = url2.encode('utf-8')\nee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "ur1_bytes",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "ur1_bytes = url1.encode('utf-8')\nur2_bytes = url2.encode('utf-8')\nee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "ur2_bytes",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "ur2_bytes = url2.encode('utf-8')\nee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "ee1",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "ee1 = base64.b64encode((ur1_bytes))\nee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "ee2",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "ee2 = base64.b64encode((ur2_bytes))\npayload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "payload",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "payload = {'textinstructions': 'koleso', 'click': 'geetest', 'key': key, 'method': 'base64', 'body0': ee1, 'body1': ee2}\nres = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "res",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "res = requests.post(\"http://api.cap.guru/in.php\", data=payload)\ntime.sleep(10)\nrt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "rt",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "rt = res.text.split('|')\nurl = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "url",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "url = 'http://api.cap.guru/res.php?key='+key+'&id='+rt[1]\nresponse = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "response",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "response = requests.get(url).text\nprint(response.split(\"|\")[1].split('y=')[1])",
+        "detail": "test",
         "documentation": {}
     }
 ]

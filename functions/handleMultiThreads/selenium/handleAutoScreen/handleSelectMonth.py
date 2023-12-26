@@ -35,7 +35,6 @@ def handleSelectMonth(self):
         print("Không tìm thấy monthSelectElement sau khoảng thời gian chờ")
         self.driver.quit()
         handleRestartThread(self)
-        return
         
 
     

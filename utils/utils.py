@@ -1,11 +1,11 @@
 import random
 import string
 from time import sleep
-
+import os
+import shutil
 
 def random_number(min_num, max_num):
     return random.randint(min_num, max_num)
-
 
 def wait(min_time, max_time):
     delay = random.uniform(min_time, max_time)
@@ -47,3 +47,13 @@ def generate_password():
     password_account = ''.join(password_list)
 
     return password_account
+
+def delete_all_subfolders(parent_folder):
+    subfolders = [f.path for f in os.scandir(parent_folder) if f.is_dir()]
+
+    for subfolder in subfolders:
+        try:
+            shutil.rmtree(subfolder)
+            print(f'Thư mục con {subfolder} đã được xóa.')
+        except Exception as e:
+            print(f"Không thể xóa thư mục con {subfolder}. Lỗi: {e}")

@@ -149,7 +149,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
                 return
             else:
                 return
-
+        
         result = handleCreateJobGetCaptchaRotateObjectAChi(
             self, base64DataImgInside, base64DataImgOutside
         )
