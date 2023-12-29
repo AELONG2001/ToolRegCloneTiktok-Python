@@ -115,10 +115,10 @@ class InitalValuesCheckerTask(QRunnable):
                 return
             
              
-            listProfiles = handleGetListProfile(data["api_token_gologin"])
-            for profile in listProfiles:
-                handleDeleteProfile(profile["id"])
-                print(f"Đã delete profile {profile['id']}")
+            # listProfiles = handleGetListProfile(data["api_token_gologin"])
+            # for profile in listProfiles:
+            #     handleDeleteProfile(profile["id"])
+            #     print(f"Đã delete profile {profile['id']}")
             if os.path.exists(data['path_gologin']):
                 delete_all_subfolders(fr"{data['path_gologin']}")
             

@@ -690,6 +690,15 @@
         "documentation": {}
     },
     {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
         "label": "sleep",
         "importPath": "time",
         "description": "time",
@@ -1448,6 +1457,94 @@
         "documentation": {}
     },
     {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
+        "label": "ActionChains",
+        "importPath": "selenium.webdriver.common.action_chains",
+        "description": "selenium.webdriver.common.action_chains",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.action_chains",
+        "documentation": {}
+    },
+    {
         "label": "TimeoutException",
         "importPath": "selenium.common.exceptions",
         "description": "selenium.common.exceptions",
@@ -1769,78 +1866,6 @@
         "documentation": {}
     },
     {
-        "label": "ActionChains",
-        "importPath": "selenium.webdriver.common.action_chains",
-        "description": "selenium.webdriver.common.action_chains",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.action_chains",
-        "documentation": {}
-    },
-    {
-        "label": "ActionChains",
-        "importPath": "selenium.webdriver.common.action_chains",
-        "description": "selenium.webdriver.common.action_chains",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.action_chains",
-        "documentation": {}
-    },
-    {
-        "label": "ActionChains",
-        "importPath": "selenium.webdriver.common.action_chains",
-        "description": "selenium.webdriver.common.action_chains",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.action_chains",
-        "documentation": {}
-    },
-    {
-        "label": "ActionChains",
-        "importPath": "selenium.webdriver.common.action_chains",
-        "description": "selenium.webdriver.common.action_chains",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.action_chains",
-        "documentation": {}
-    },
-    {
-        "label": "ActionChains",
-        "importPath": "selenium.webdriver.common.action_chains",
-        "description": "selenium.webdriver.common.action_chains",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.action_chains",
-        "documentation": {}
-    },
-    {
-        "label": "ActionChains",
-        "importPath": "selenium.webdriver.common.action_chains",
-        "description": "selenium.webdriver.common.action_chains",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.action_chains",
-        "documentation": {}
-    },
-    {
-        "label": "ActionChains",
-        "importPath": "selenium.webdriver.common.action_chains",
-        "description": "selenium.webdriver.common.action_chains",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.action_chains",
-        "documentation": {}
-    },
-    {
-        "label": "ActionChains",
-        "importPath": "selenium.webdriver.common.action_chains",
-        "description": "selenium.webdriver.common.action_chains",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.action_chains",
-        "documentation": {}
-    },
-    {
-        "label": "ActionChains",
-        "importPath": "selenium.webdriver.common.action_chains",
-        "description": "selenium.webdriver.common.action_chains",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.common.action_chains",
-        "documentation": {}
-    },
-    {
         "label": "handleGetCode",
         "importPath": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
         "description": "functions.handleMultiThreads.selenium.handleCode.handleGetCode",
@@ -1911,6 +1936,14 @@
         "description": "webdriver_manager.chrome",
         "isExtraImport": true,
         "detail": "webdriver_manager.chrome",
+        "documentation": {}
+    },
+    {
+        "label": "webdriver",
+        "importPath": "selenium",
+        "description": "selenium",
+        "isExtraImport": true,
+        "detail": "selenium",
         "documentation": {}
     },
     {
@@ -2405,6 +2438,22 @@
         "description": "GUI.uiLogicMain",
         "isExtraImport": true,
         "detail": "GUI.uiLogicMain",
+        "documentation": {}
+    },
+    {
+        "label": "Options",
+        "importPath": "selenium.webdriver.chrome.options",
+        "description": "selenium.webdriver.chrome.options",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.chrome.options",
+        "documentation": {}
+    },
+    {
+        "label": "GoLogin",
+        "importPath": "gologin",
+        "description": "gologin",
+        "isExtraImport": true,
+        "detail": "gologin",
         "documentation": {}
     },
     {
@@ -3258,7 +3307,7 @@
         "kind": 6,
         "importPath": "GUI.uiLogicMain",
         "description": "GUI.uiLogicMain",
-        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.34\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
+        "peekOfCode": "class utrclttlsfw(QObject):\n    def __init__(self, data):\n        super().__init__()\n        self.data = data\n        self.current_version = \"1.0.40\"\n        self.remaining_days = self.data[\"rasdq765re2432rvad76sv\"]\n        self.latest_version = self.data[\"lfct34re32fdaefda8765ddsa\"]\n        self.is_start = False\n        self.startAutomation_called = False\n        self.is_check_mail = False",
         "detail": "GUI.uiLogicMain",
         "documentation": {}
     },
@@ -3341,6 +3390,60 @@
         "description": "mplctlsfw",
         "peekOfCode": "class hmlsfw(QMainWindow):\n    def __init__(self, ui_self):\n        super().__init__()\n        self.ui_self = ui_self\n        self.ui_self.is_update = False\n    def closeEvent(self, event):\n        if self.ui_self.is_update:\n            event.accept()\n            return\n        result = QMessageBox.question(",
         "detail": "mplctlsfw",
+        "documentation": {}
+    },
+    {
+        "label": "gl",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "gl = GoLogin({\n 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTg3ZWM5ZjVkODcxMDE0NDY5NDc1MjQiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTg3ZWRhNTVkODcxMDE0NDY5NGY1YTQifQ.iUHo5CDRIds7uGGQ4eip4WkbtCEOXTLlTnwCkzcy6jA',\n})\nprofile_id = gl.create({\n    \"name\": '1',\n    \"os\": 'win',\n    \"navigator\": {\n        \"language\": 'vi',\n        \"userAgent\": 'random',\n        \"resolution\": 'random',",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "profile_id",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "profile_id = gl.create({\n    \"name\": '1',\n    \"os\": 'win',\n    \"navigator\": {\n        \"language\": 'vi',\n        \"userAgent\": 'random',\n        \"resolution\": 'random',\n        \"platform\": 'win',\n    },\n    'proxyEnabled': True,",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "gl",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "gl = GoLogin({\n 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTg3ZWM5ZjVkODcxMDE0NDY5NDc1MjQiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NTg3ZWRhNTVkODcxMDE0NDY5NGY1YTQifQ.iUHo5CDRIds7uGGQ4eip4WkbtCEOXTLlTnwCkzcy6jA',\n 'profile_id': profile_id\n})\nprint('profile id=', profile_id)\ndebugger_address = gl.start()\nchrome_options = Options()\nchrome_options.add_argument(\"--disable-blink-features=AutomationControlled\")\nchrome_options.add_experimental_option(\"debuggerAddress\", debugger_address)\ndriver = webdriver.Chrome(options=chrome_options)",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "debugger_address",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "debugger_address = gl.start()\nchrome_options = Options()\nchrome_options.add_argument(\"--disable-blink-features=AutomationControlled\")\nchrome_options.add_experimental_option(\"debuggerAddress\", debugger_address)\ndriver = webdriver.Chrome(options=chrome_options)\ndriver.get(\"https://www.tiktok.com/signup/phone-or-email/email\")\ntime.sleep(20)\ndriver.close()\ngl.stop()\ngl.delete(profile_id)",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "chrome_options",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "chrome_options = Options()\nchrome_options.add_argument(\"--disable-blink-features=AutomationControlled\")\nchrome_options.add_experimental_option(\"debuggerAddress\", debugger_address)\ndriver = webdriver.Chrome(options=chrome_options)\ndriver.get(\"https://www.tiktok.com/signup/phone-or-email/email\")\ntime.sleep(20)\ndriver.close()\ngl.stop()\ngl.delete(profile_id)\nprint(\"complete\")",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "driver",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "driver = webdriver.Chrome(options=chrome_options)\ndriver.get(\"https://www.tiktok.com/signup/phone-or-email/email\")\ntime.sleep(20)\ndriver.close()\ngl.stop()\ngl.delete(profile_id)\nprint(\"complete\")",
+        "detail": "test",
         "documentation": {}
     }
 ]

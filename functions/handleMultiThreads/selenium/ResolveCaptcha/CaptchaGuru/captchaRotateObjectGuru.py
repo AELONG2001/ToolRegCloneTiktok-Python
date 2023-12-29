@@ -144,9 +144,6 @@ def handleResolveCaptchaRotateObjectGuru(self):
             else:
                 return
             
-        print("base64DataImgOutside: ", base64DataImgOutside)
-        print("base64DataImgInside: ", base64DataImgInside)
-
         result = handleCreateJobGetCaptchaRotateObjectGuru(
             self, base64DataImgOutside, base64DataImgInside
         )

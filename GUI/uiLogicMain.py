@@ -20,7 +20,7 @@ class utrclttlsfw(QObject):
         super().__init__()
 
         self.data = data
-        self.current_version = "1.0.34"
+        self.current_version = "1.0.40"
         self.remaining_days = self.data["rasdq765re2432rvad76sv"]
         self.latest_version = self.data["lfct34re32fdaefda8765ddsa"]
         self.is_start = False
