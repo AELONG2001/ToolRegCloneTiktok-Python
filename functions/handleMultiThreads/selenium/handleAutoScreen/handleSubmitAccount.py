@@ -19,7 +19,7 @@ def handleSubmitAccount(self):
         wait(2, 3)
         if self.driver.current_url == "https://www.tiktok.com/login/download-app":
             isSubmitAccount = False
-            self.driver.quit()
+            self.driver.close()
             handleRestartThread(self)
             return
 
@@ -58,10 +58,10 @@ def handleSubmitAccount(self):
                 with open("data/output_not_user_id.txt", "a") as f:
                     f.write(account + "\n")
                 
-                self.driver.quit()
+                self.driver.close()
                 handleRestartThreadNewMail(self)
                 return
             else:
-               self.driver.quit()
+               self.driver.close()
                handleRestartThread(self)
                return

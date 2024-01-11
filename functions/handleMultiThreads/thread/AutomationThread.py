@@ -1,14 +1,18 @@
-import os
 import math
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import WebDriverException
+from selenium_stealth import stealth
 from utils.utils import wait, generate_random_name, generate_password, delete_all_subfolders
 from functions.profilesGologin.handleDeleteProfile import handleDeleteProfile
 from functions.proxy.Authentication.AuthenticationForProxy import create_proxyauth_extension
-import shutil
+from functions.handleMultiThreads.handleRestartThread.handleRestartThread import handleRestartThread
+
 
 from functions.profilesGologin.handleCreateProfile import (
     handleCreateProfile,
@@ -312,7 +316,7 @@ class AutomationThread(QThread):
 
         if hasattr(self, "driver"):
             AutomationThread.num_quit += 1
-            self.driver.quit()
+            self.driver.close()
         
         total_threads = len(self.self_main.chrome_threads)
         completed_threads = AutomationThread.num_quit
@@ -323,7 +327,7 @@ class AutomationThread(QThread):
             f"Đã dừng {completed_threads} luồng"
         )
 
-        delete_all_subfolders(fr"{self.path_profile_gologin}")
+        # delete_all_subfolders(fr"{self.path_profile_gologin}")
 
         QCoreApplication.processEvents()
     def run(self):
@@ -336,14 +340,16 @@ class AutomationThread(QThread):
 
             self.handleCheckProxy()
 
-            self.profile_id = handleCreateProfile(self)
-            self.profile_fullpath = fr"{self.path_profile_gologin}\{self.profile_id}"
+            # self.profile_id = handleCreateProfile(self)
+            # self.profile_fullpath = fr"{self.path_profile_gologin}\{self.profile_id}"
 
-            print("profile_id: ", self.profile_id)
-
+            # print("profile_id: ", self.profile_id)
             chromedriver_path = ChromeDriverManager().install()
-            
             self.options.add_argument(f"webdriver.chrome.driver={chromedriver_path}")
+            self.options.add_argument("start-maximized")
+            self.options.add_experimental_option("excludeSwitches", ["enable-automation"])
+            self.options.add_experimental_option('useAutomationExtension', False)
+            
             self.options.add_argument(
                 f"--force-device-scale-factor={chrome_percent_zoom}"
             )
@@ -351,7 +357,7 @@ class AutomationThread(QThread):
             self.options.add_argument('--no-first-run')
             self.options.add_argument('--no-service-autorun')
             self.options.add_argument('--password-store-basic')
-            self.options.add_argument('--lang=en-US')
+            self.options.add_argument('--lang=vi')
             self.options.add_argument('--disabled-gpu')
             self.options.add_argument('--disabled-cpu')
             prefs = {
@@ -373,9 +379,9 @@ class AutomationThread(QThread):
             self.options.add_argument('--disable-gpu-shader-disk-cache')
 
             self.options.add_argument("--disable-blink-features=AutomationControlled")
-            self.options.add_argument(
-                f"--user-data-dir={self.profile_fullpath}\Default"
-            )
+            # self.options.add_argument(
+            #     f"--user-data-dir={self.profile_fullpath}\Default"
+            # )
             
             if self.proxy_type == 2:
                 if self.type_ip_port:
@@ -392,6 +398,14 @@ class AutomationThread(QThread):
 
 
             self.driver = webdriver.Chrome(options=self.options)
+            stealth(self.driver,
+                languages=["vi"],
+                vendor="Google Inc.",
+                platform="Win32",
+                webgl_vendor="Intel Inc.",
+                renderer="Intel Iris OpenGL Engine",
+                fix_hairline=True,
+            )
             AutomationThread.drivers_list.append(self.driver)
             
             # Số cột muốn sắp xếp trên màn hình
@@ -519,8 +533,4 @@ class AutomationThread(QThread):
                 QCoreApplication.processEvents()
             wait(4, 6)
             self.driver.delete_all_cookies()
-            handleDeleteProfile(self.profile_id)
-            self.driver.quit()
-            wait(4, 6)
-            if os.path.exists(self.profile_fullpath):
-                shutil.rmtree(self.profile_fullpath)
+            self.driver.close()

@@ -78,14 +78,14 @@ def handleResolveCaptchaSliderObjectAChi(self):
         wait(3, 4)
         noInternetCaptcha = self.driver.find_elements(
                 "xpath",
-                '//div[contains(text(), "No internet connection. Please try again.")]',
+                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
             )
         
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.quit()
+                self.driver.close()
                 handleRestartThread(self)
                 return
             else:
@@ -115,7 +115,7 @@ def handleResolveCaptchaSliderObjectAChi(self):
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.quit()
+                self.driver.close()
                 handleRestartThread(self)
                 return
             else:
@@ -148,14 +148,14 @@ def handleResolveCaptchaSliderObjectAChi(self):
         wait(3, 4)
         noInternetCaptcha = self.driver.find_elements(
                 "xpath",
-                '//div[contains(text(), "No internet connection. Please try again.")]',
+                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
             )
 
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.quit()
+                self.driver.close()
                 handleRestartThread(self)
                 return
             else:

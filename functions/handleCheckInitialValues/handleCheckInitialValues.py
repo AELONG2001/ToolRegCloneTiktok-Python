@@ -93,42 +93,42 @@ class InitalValuesCheckerTask(QRunnable):
                 return
                         
         # input user have to includes api_token_gologin
-        if not "api_token_gologin" in data or not data["api_token_gologin"]:
-            message = "Vui lòng nhập Token Gologin"
-            setEnableStartButton(self.ui_instance)
-            self.signals.result_signal.emit(False, message)
-            return
-        else:
-            response_api_gologin = handleCheckTokenGologin(data["api_token_gologin"])
+        # if not "api_token_gologin" in data or not data["api_token_gologin"]:
+        #     message = "Vui lòng nhập Token Gologin"
+        #     setEnableStartButton(self.ui_instance)
+        #     self.signals.result_signal.emit(False, message)
+        #     return
+        # else:
+            # response_api_gologin = handleCheckTokenGologin(data["api_token_gologin"])
 
-            if "statusCode" in response_api_gologin and response_api_gologin["statusCode"] == 401:
-                message = "Token Gologin không chính xác.Vui lòng kiểm tra lại"
-                setEnableStartButton(self.ui_instance)
-                self.signals.result_signal.emit(False, message)
-                return
+            # if "statusCode" in response_api_gologin and response_api_gologin["statusCode"] == 401:
+            #     message = "Token Gologin không chính xác.Vui lòng kiểm tra lại"
+            #     setEnableStartButton(self.ui_instance)
+            #     self.signals.result_signal.emit(False, message)
+            #     return
                 
             
-            if "plan" in response_api_gologin and response_api_gologin["plan"]["name"] == "Unpaid":
-                message = "Token Gologin đã hết hạn.Vui lòng kiểm tra lại"
-                setEnableStartButton(self.ui_instance)
-                self.signals.result_signal.emit(False, message)
-                return
+            # if "plan" in response_api_gologin and response_api_gologin["plan"]["name"] == "Unpaid":
+            #     message = "Token Gologin đã hết hạn.Vui lòng kiểm tra lại"
+            #     setEnableStartButton(self.ui_instance)
+            #     self.signals.result_signal.emit(False, message)
+            #     return
             
              
             # listProfiles = handleGetListProfile(data["api_token_gologin"])
             # for profile in listProfiles:
             #     handleDeleteProfile(profile["id"])
             #     print(f"Đã delete profile {profile['id']}")
-            if os.path.exists(data['path_gologin']):
-                delete_all_subfolders(fr"{data['path_gologin']}")
+            # if os.path.exists(data['path_gologin']):
+            #     delete_all_subfolders(fr"{data['path_gologin']}")
             
         
         # input user have to includes path_gologin
-        if not "path_gologin" in data or not data["path_gologin"]:
-            message = "Vui lòng nhập Path Profile Gologin"
-            setEnableStartButton(self.ui_instance)
-            self.signals.result_signal.emit(False, message)
-            return
+        # if not "path_gologin" in data or not data["path_gologin"]:
+        #     message = "Vui lòng nhập Path Profile Gologin"
+        #     setEnableStartButton(self.ui_instance)
+        #     self.signals.result_signal.emit(False, message)
+        #     return
             
         # if "api_value_hotmailbox" in data and data["api_value_hotmailbox"]:
         #     response_api_hotmailbox_check_balance = handleCheckBalance(data["api_value_hotmailbox"])

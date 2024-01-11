@@ -8,7 +8,7 @@ from functions.handleMultiThreads.handleRestartThread.handleRestartThread import
 def handleSubmitCode(self, code):
     wait(1, 2)
     inputCodeElement = self.driver.find_element(
-        "xpath", '//input[@placeholder="Enter 6-digit code"]'
+        "xpath", '//input[@placeholder="Nhập mã gồm 6 chữ số"]'
     )
     self.self_main.table_account_info.setItem(
         self.current_row_count, 3, QTableWidgetItem("Đang nhập code...")
@@ -24,11 +24,11 @@ def handleSubmitCode(self, code):
         try:
             agreePolicyElement.click()
         except ElementClickInterceptedException:
-            self.driver.quit()
+            self.driver.close()
             handleRestartThread(self)
             return
         except StaleElementReferenceException:
-            self.driver.quit()
+            self.driver.close()
             handleRestartThread(self)
             return
     else:

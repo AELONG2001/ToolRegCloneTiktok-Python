@@ -17,7 +17,7 @@ def getResultCaptchaSliderObjectGuru(self, job_id):
         }
 
         response = requests.post("http://api.cap.guru/res.php", json=body).json()
-        data = response["request"].split("y=")[1]
+        data = response["request"].split("=")[1].split(',')[0]
         return data
     except requests.exceptions.RequestException as e:
         print(e)
@@ -80,14 +80,14 @@ def handleResolveCaptchaSliderObjectGuru(self):
         wait(3, 4)
         noInternetCaptcha = self.driver.find_elements(
                 "xpath",
-                '//div[contains(text(), "No internet connection. Please try again.")]',
+                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
             )
         
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.quit()
+                self.driver.close()
                 handleRestartThread(self)
                 return
             else:
@@ -110,11 +110,11 @@ def handleResolveCaptchaSliderObjectGuru(self):
 
         if result:
             # Tính toán tọa độ mới x1
-            x1 = int(result) + 82
+            x1 = int(result) * 340 / 552 + 82
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.quit()
+                self.driver.close()
                 handleRestartThread(self)
                 return
             else:
@@ -147,14 +147,14 @@ def handleResolveCaptchaSliderObjectGuru(self):
         wait(3, 4)
         noInternetCaptcha = self.driver.find_elements(
                 "xpath",
-                '//div[contains(text(), "No internet connection. Please try again.")]',
+                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
             )
 
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.quit()
+                self.driver.close()
                 handleRestartThread(self)
                 return
             else:

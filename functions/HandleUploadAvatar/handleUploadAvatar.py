@@ -163,7 +163,7 @@ def handleUploadAvatar(self):
 
         waitForNavigation = WebDriverWait(self.driver, 60)
         editProfile = waitForNavigation.until(
-            EC.presence_of_element_located(("xpath", '//span[text()="Edit profile"]'))
+            EC.presence_of_element_located(("xpath", '//span[text()="Sửa hồ sơ"]'))
         )
        
         editProfile.click()
@@ -202,9 +202,12 @@ def handleUploadAvatar(self):
         showSuccessAccount(self)
         return
 
-    wait(4, 6)
+    wait(6, 6)
     try:
-        applyAvatarBtn = self.driver.find_element("xpath", '//button[text()="Apply"]')
+        waitForNavigation = WebDriverWait(self.driver, 20)
+        applyAvatarBtn = waitForNavigation.until(
+            EC.presence_of_element_located(("xpath", '//button[text()="Đăng ký"]'))
+        )
         if not applyAvatarBtn.is_displayed():
             self.driver.execute_script("arguments[0].scrollIntoView();", applyAvatarBtn)
             applyAvatarBtn.click()
@@ -234,7 +237,7 @@ def handleUploadAvatar(self):
             user_random = usernames[random_number(0, len(usernames) - 1)]
             username = remove_accents(user_random).replace(" ", "").lower()
             username_random_by_file = f"{username}_{generate_random_name(8)}"
-            editUserName = self.driver.find_elements("xpath", '//*[@placeholder="Username"]')
+            editUserName = self.driver.find_elements("xpath", '//*[@placeholder="TikTok ID"]')
             editUserName[0].clear()
             editUserName[0].clear()
             if self.type_reg_country == 0:
@@ -247,7 +250,7 @@ def handleUploadAvatar(self):
                 wait(4, 6)
             else:
                 wait(10, 12)
-            editName = self.driver.find_elements("xpath", '//*[@placeholder="Name"]')
+            editName = self.driver.find_elements("xpath", '//*[@placeholder="Tên"]')
             editName[0].clear()
             editName[0].clear()
             if self.type_reg_country == 0:
@@ -261,7 +264,7 @@ def handleUploadAvatar(self):
             else:
                 wait(10, 12)
             userNameRandom = f"{generate_random_name(8)}_{generate_random_name(8)}"
-            editUserName = self.driver.find_elements("xpath", '//*[@placeholder="Username"]')
+            editUserName = self.driver.find_elements("xpath", '//*[@placeholder="TikTok ID"]')
             editUserName[0].clear()
             editUserName[0].clear()
             if self.type_reg_country == 0:
@@ -274,7 +277,7 @@ def handleUploadAvatar(self):
                 wait(4, 6)
             else:
                 wait(10, 12)
-            editName = self.driver.find_elements("xpath", '//*[@placeholder="Name"]')
+            editName = self.driver.find_elements("xpath", '//*[@placeholder="Tên"]')
             editName[0].clear()
             editName[0].clear()
             if self.type_reg_country == 0:
@@ -283,13 +286,12 @@ def handleUploadAvatar(self):
                 wait(10, 12)
             editName[0].send_keys(userNameRandom)
 
-    wait(4, 6)
+    wait(8, 10)
     saveElement = self.driver.find_elements("xpath", '//*[@data-e2e="edit-profile-save"]')
     
     try:
         saveElement[0].click()
         wait(4, 6)
-
         if is_random_name:
             confirmChangeUser = self.driver.find_element("xpath", '//*[@data-e2e="set-username-popup-confirm"]')
             confirmChangeUser.click()

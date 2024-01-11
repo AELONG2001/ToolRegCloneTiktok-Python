@@ -6,7 +6,7 @@ def handleAutoBuyHotmail(self):
         email_password = ""
         params = {
             "apikey": f"{self.api_key_hotmailbox.strip()}",
-            "mailcode": "HMAIL",
+            "mailcode": "OMAIL",
             "quantity": 1
         }
         

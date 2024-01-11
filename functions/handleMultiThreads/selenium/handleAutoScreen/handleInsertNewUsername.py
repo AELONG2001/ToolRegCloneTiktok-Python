@@ -38,7 +38,7 @@ def handleInsertNewUsername(self):
 
     waitForNavigation = WebDriverWait(self.driver, 100)
     skipElement = waitForNavigation.until(
-        EC.presence_of_element_located(("xpath", '//div[text()="Skip"]'))
+        EC.presence_of_element_located(("xpath", '//div[text()="Bỏ qua"]'))
     )
     skipElement.click()
     

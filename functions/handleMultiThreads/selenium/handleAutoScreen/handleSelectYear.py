@@ -6,7 +6,7 @@ from utils.utils import random_number, wait
 def handleSelectYear(self):
     self.self_main.table_account_info.scrollToBottom()
     yearSelectElement = self.driver.find_element(
-        "xpath", '//*[@aria-label="Year. Double-tap for more options"]'
+        "xpath", '//*[@aria-label="Năm. Nhấn đúp để xem tùy chọn khác"]'
     )
     yearSelectElement.click()
     self.self_main.table_account_info.setItem(

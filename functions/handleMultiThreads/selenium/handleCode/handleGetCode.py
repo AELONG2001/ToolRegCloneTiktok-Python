@@ -27,7 +27,7 @@ def handleGetCode(self):
             wait(4, 6)
             checkDectect = self.driver.find_element(
                 "xpath",
-                '//span[contains(text(), "Maximum number of attempts reached. Try again later.")]',
+                '//span[contains(text(), "Bạn truy cập dịch vụ của chúng tôi quá thường xuyên..")]',
             )
             
             emailElement = self.driver.find_elements("css selector", "input[name='email']")
@@ -37,7 +37,7 @@ def handleGetCode(self):
                     attempts = 0
                     is_get_code_again = False
 
-                    self.driver.quit()
+                    self.driver.close()
                     handleRestartThreadNewMail(self)
                     return
 
@@ -50,7 +50,7 @@ def handleGetCode(self):
 
         # Nếu đã thực hiện đủ số lần tối đa, khởi động lại self.thread
         if attempts >= max_attempts:
-            self.driver.quit()
+            self.driver.close()
             handleRestartThread(self)
             return
 

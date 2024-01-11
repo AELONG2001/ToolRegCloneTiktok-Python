@@ -79,14 +79,14 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
         wait(3, 4)
         noInternetCaptcha = self.driver.find_elements(
                 "xpath",
-                '//div[contains(text(), "No internet connection. Please try again.")]',
+                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
             )
         
         if noInternetCaptcha:
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                isResolveCaptchaAgain = False
-               self.driver.quit()
+               self.driver.close()
                handleRestartThread(self)
                return
             else:
@@ -111,7 +111,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.quit()
+                self.driver.close()
                 handleRestartThread(self)
                 return
             else:
@@ -138,7 +138,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
         except WebDriverException:
             print("Lỗi trong quá trình thực hiện chuỗi hành động")
             isResolveCaptchaAgain = False
-            self.driver.quit()
+            self.driver.close()
             handleRestartThread(self)
             return
 
@@ -159,14 +159,14 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
         wait(4, 6)
         checkDectect = self.driver.find_elements(
             "xpath",
-            '//span[contains(text(), "Maximum number of attempts reached. Try again later.")]',
+            '//span[contains(text(), "Bạn truy cập dịch vụ của chúng tôi quá thường xuyên..")]',
         )
         emailElement = self.driver.find_elements("css selector", "input[name='email']")
 
         if emailElement:
             if emailElement[0].value_of_css_property("color") == "rgba(255, 76, 58, 1)":
                 isResolveCaptchaAgain = False
-                self.driver.quit()
+                self.driver.close()
                 handleRestartThreadNewMail(self)
                 return
             

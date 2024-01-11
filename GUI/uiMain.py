@@ -7,10 +7,6 @@ from GUI.lightMode import lightMode
 import json
 
 def uiMain(self, ToolRegCloneTiktok):
-    if os.path.exists("configs_account.json"):
-        with open("configs_account.json", "r") as json_file:
-                data = json.load(json_file)
-
     ToolRegCloneTiktok.setObjectName("ToolRegCloneTiktok")
     ToolRegCloneTiktok.resize(1256, 540)
     self.centralwidget = QWidget(parent=ToolRegCloneTiktok)
@@ -491,7 +487,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.proxy_value_check_live_ip_port.setVisible(False)
     self.proxy_value_check_live_ip_port_user_pass.setVisible(False)
     self.note_accounts = QLabel(parent=self.check_live)
-    self.note_accounts.setGeometry(QRect(20, 300, 526, 100))
+    self.note_accounts.setGeometry(QRect(20, 300, 540, 100))
     self.note_accounts.setStyleSheet('font: 700 10pt "Segoe UI";')
     self.note_accounts.setObjectName("note_accounts")
     
@@ -532,6 +528,10 @@ def uiMain(self, ToolRegCloneTiktok):
         self.mail_failed_box.setGeometry(QRect(890, 260, 271, 236))
         self.live_accounts_box.setGeometry(QRect(620, 50, 271, 450))
         self.die_accounts_box.setGeometry(QRect(910, 50, 271, 450))
+
+    if os.path.exists("configs_account.json"):
+        with open("configs_account.json", "r") as json_file:
+            data = json.load(json_file)
 
         if "proxy_type" in data:
             if data["proxy_type"] == 3 or data["proxy_type"] == 4:

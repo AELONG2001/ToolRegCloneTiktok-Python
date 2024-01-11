@@ -40,7 +40,7 @@ def handleGetCodeFromMail(self):
                print("Restart invalid mail")
                attempts = 0
                isCode = False
-               self.driver.quit()
+               self.driver.close()
                handleRestartThreadNewMail(self)
                return
 
@@ -59,7 +59,7 @@ def handleGetCodeFromMail(self):
                 attempts += 1
 
         if attempts >= max_attempts:
-            self.driver.quit()
+            self.driver.close()
             handleRestartThread(self)
             return
 

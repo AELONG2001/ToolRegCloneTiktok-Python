@@ -7,7 +7,7 @@ def handleSelectDay(self):
     self.self_main.table_account_info.scrollToBottom()
     wait(4, 6)
     daySelectElement = self.driver.find_element(
-        "xpath", '//*[@aria-label="Day. Double-tap for more options"]'
+        "xpath", '//*[@aria-label="Ngày. Nhấn đúp để xem tùy chọn khác"]'
     )
     daySelectElement.click()
     self.self_main.table_account_info.setItem(
