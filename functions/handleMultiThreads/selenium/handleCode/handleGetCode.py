@@ -37,7 +37,7 @@ def handleGetCode(self):
                     attempts = 0
                     is_get_code_again = False
 
-                    self.driver.close()
+                    self.driver.quit()
                     handleRestartThreadNewMail(self)
                     return
 
@@ -50,7 +50,7 @@ def handleGetCode(self):
 
         # Nếu đã thực hiện đủ số lần tối đa, khởi động lại self.thread
         if attempts >= max_attempts:
-            self.driver.close()
+            self.driver.quit()
             handleRestartThread(self)
             return
 

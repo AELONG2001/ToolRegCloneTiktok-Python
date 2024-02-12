@@ -3,13 +3,14 @@ from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 import json
 
-def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
+def translateUi(self, ToolRegCloneTiktok):
    _translate = QCoreApplication.translate
    ToolRegCloneTiktok.setWindowTitle(
-      _translate("ToolRegCloneTiktok", f"ToolRegCloneTiktok - {current_version} - By Long Software (Còn {remaining_days} ngày)")
+      _translate("ToolRegCloneTiktok", f"ToolRegCloneTiktok - By Long Software")
    )
    self.mail_value.setText(_translate("ToolRegCloneTiktok", ""))
    self.list_avatar.setText(_translate("ToolRegCloneTiktok", " Folder Avatar"))
+   self.list_video.setText(_translate("ToolRegCloneTiktok", " Folder Video"))
    self.start_button.setWhatsThis(
       _translate(
          "ToolRegCloneTiktok", "<html><head/><body><p><br/></p></body></html>"
@@ -24,13 +25,26 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.threads.setText(_translate("ToolRegCloneTiktok", "Số luồng:"))
    self.table_account_info.setSortingEnabled(False)
    item = self.table_account_info.horizontalHeaderItem(0)
-   item.setText(_translate("ToolRegCloneTiktok", "username"))
+   item.setText(_translate("ToolRegCloneTiktok", "Username"))
+
    item = self.table_account_info.horizontalHeaderItem(1)
-   item.setText(_translate("ToolRegCloneTiktok", "passMail"))
+   item.setText(_translate("ToolRegCloneTiktok", "Password"))
+
    item = self.table_account_info.horizontalHeaderItem(2)
-   item.setText(_translate("ToolRegCloneTiktok", "proxy"))
+   item.setText(_translate("ToolRegCloneTiktok", "Proxy"))
+
    item = self.table_account_info.horizontalHeaderItem(3)
-   item.setText(_translate("ToolRegCloneTiktok", "status"))
+   item.setText(_translate("ToolRegCloneTiktok", "Status"))
+
+   item = self.table_account_info.horizontalHeaderItem(4)
+   item.setText(_translate("ToolRegCloneTiktok", "Job"))
+
+   item = self.table_account_info.horizontalHeaderItem(5)
+   item.setText(_translate("ToolRegCloneTiktok", "Xu nhận"))
+
+   item = self.table_account_info.horizontalHeaderItem(6)
+   item.setText(_translate("ToolRegCloneTiktok", "Tổng xu"))
+   
    self.avatar_value.setText(_translate("ToolRegCloneTiktok", "C://images"))
    self.captcha_type.setItemText(0, _translate("ToolRegCloneTiktok", "Achicaptcha"))
    self.captcha_type.setItemText(1, _translate("ToolRegCloneTiktok", "Omocaptcha"))
@@ -38,23 +52,25 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.proxy_type.setItemText(0, _translate("ToolRegCloneTiktok", "ShopLike"))
    self.proxy_type.setItemText(1, _translate("ToolRegCloneTiktok", "TM Proxy"))
    self.proxy_type.setItemText(2, _translate("ToolRegCloneTiktok", "Tin Proxy"))
-   self.proxy_type.setItemText(3, _translate("ToolRegCloneTiktok", "HTTP Proxy"))
-   self.proxy_type.setItemText(4, _translate("ToolRegCloneTiktok", "SOCKS5 Proxy"))
+   self.proxy_type.setItemText(3, _translate("ToolRegCloneTiktok", "Proxy No 1"))
+   self.proxy_type.setItemText(4, _translate("ToolRegCloneTiktok", "HTTP Proxy"))
+   self.proxy_type.setItemText(5, _translate("ToolRegCloneTiktok", "SOCKS5 Proxy"))
    self.proxy_type_check_live.setItemText(0, _translate("ToolRegCloneTiktok", "ShopLike"))
    self.proxy_type_check_live.setItemText(1, _translate("ToolRegCloneTiktok", "TM Proxy"))
    self.proxy_type_check_live.setItemText(2, _translate("ToolRegCloneTiktok", "Tin Proxy"))
-   self.proxy_type_check_live.setItemText(3, _translate("ToolRegCloneTiktok", "HTTP Proxy"))
-   self.proxy_type_check_live.setItemText(4, _translate("ToolRegCloneTiktok", "SOCKS5 Proxy"))
+   self.proxy_type_check_live.setItemText(3, _translate("ToolRegCloneTiktok", "Proxy No 1"))
+   self.proxy_type_check_live.setItemText(4, _translate("ToolRegCloneTiktok", "HTTP Proxy"))
+   self.proxy_type_check_live.setItemText(5, _translate("ToolRegCloneTiktok", "SOCKS5 Proxy"))
 
-   self.list_mail.setText(_translate("ToolRegCloneTiktok", "Nhập mail"))
+   self.list_mail.setText(_translate("ToolRegCloneTiktok", "Nhập accounts"))
    self.export_account.setText(_translate("ToolRegCloneTiktok", "Xuất tài khoản"))
-   self.update_label.setText(_translate("ToolRegCloneTiktok", "Đã có phiên bản mới, cập nhập ngay...."))
-   self.update_button.setText(_translate("ToolRegCloneTiktok", "Cập nhập"))
+   # self.update_label.setText(_translate("ToolRegCloneTiktok", "Đã có phiên bản mới, cập nhập ngay...."))
+   # self.update_button.setText(_translate("ToolRegCloneTiktok", "Cập nhập"))
    self.list_proxy.setText(_translate("ToolRegCloneTiktok", "Proxys:"))
    self.list_proxy_check_live.setText(_translate("ToolRegCloneTiktok", "Proxys:"))
-   self.total_success_account.setText(
-        _translate("ToolRegCloneTiktok", f"Số acc đã tạo thành công: 0")
-   )
+   # self.total_success_account.setText(
+   #      _translate("ToolRegCloneTiktok", f"Số acc đã tạo thành công: 0")
+   # )
    self.copyright.setText(
         _translate("ToolRegCloneTiktok", "© Bản quyền thuộc về longsoftware.vn")
    )
@@ -68,6 +84,18 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.random_password_account.setText(_translate("ToolRegCloneTiktok", "random"))
    self.is_change_username.setText(
       _translate("ToolRegCloneTiktok", "Đổi tên khi reg")
+   )
+   self.is_watch_live_label.setText(
+      _translate("ToolRegCloneTiktok", "Xem Live")
+   )
+   self.is_upload_avatar_label.setText(
+      _translate("ToolRegCloneTiktok", "Upload Avatar")
+   )
+   self.is_upload_video_label.setText(
+      _translate("ToolRegCloneTiktok", "Upload Video")
+   )
+   self.is_run_tds_label.setText(
+      _translate("ToolRegCloneTiktok", "Run TDS")
    )
    self.change_theme.setText(
       _translate("ToolRegCloneTiktok", "DarkMode")
@@ -94,18 +122,13 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    self.chrome_delay_seconed.setText(
       _translate("ToolRegCloneTiktok", "Số giây delay sau mỗi thread:")
    )
-   self.api_token_gologin.setText(_translate("ToolRegCloneTiktok", "API Token Gologin:"))
-   self.path_gologin.setText(_translate("ToolRegCloneTiktok", "Path Gologin:"))
-   self.api_hotmailbox.setText(_translate("ToolRegCloneTiktok", "API Hotmailbase:"))
+   self.database.setText(_translate("ToolRegCloneTiktok", "Database:"))
    self.export_account_format.setText(_translate("ToolRegCloneTiktok", "Định dạng xuất accounts:"))
    self.export_account_format_value.setItemText(0, _translate("ToolRegCloneTiktok", "id | pass | mail | passMail | coookie | date"))
    self.export_account_format_value.setItemText(1, _translate("ToolRegCloneTiktok", "id | pass | mail | passMail | date"))
    self.export_account_format_value.setItemText(2, _translate("ToolRegCloneTiktok", "id | pass | mail | passMail | cookie"))
    self.export_account_format_value.setItemText(3, _translate("ToolRegCloneTiktok", "id | pass | mail | passMail"))
    self.export_account_format_value.setItemText(4, _translate("ToolRegCloneTiktok", "id | pass"))
-   self.is_upload_avatar.setText(_translate("ToolRegCloneTiktok", "Upload avatar:"))
-   self.is_upload_avatar_yes.setText(_translate("ToolRegCloneTiktok", "Có"))
-   self.is_upload_avatar_no.setText(_translate("ToolRegCloneTiktok", "Không"))
    self.type_reg_country_label.setText(_translate("ToolRegCloneTiktok", "Chọn nước Reg:"))
    self.type_reg_country.setItemText(0, _translate("ToolRegCloneTiktok", "Việt Nam"))
    self.type_reg_country.setItemText(1, _translate("ToolRegCloneTiktok", "US"))
@@ -139,10 +162,47 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    else:
       self.avatar_value.setText("C://images")
 
+   if "url_video" in data: 
+      self.video_value.setText(data["url_video"])
+   else:
+      self.video_value.setText("C://videos")
+
    if "url_mail" in data:
       self.mail_value.setText(data["url_mail"])
    else:
       self.mail_value.setText("")
+
+   if "is_watch_live" in data:
+      if data["is_watch_live"]:
+         self.is_watch_live.setChecked(True)
+      else:
+         self.is_watch_live.setChecked(False)
+   else:
+      self.is_upload_avatar.setChecked(False)
+
+   if "is_upload_avatar" in data:
+      if data["is_upload_avatar"]:
+         self.is_upload_avatar.setChecked(True)
+      else:
+         self.is_upload_avatar.setChecked(False)
+   else:
+      self.is_upload_avatar.setChecked(False)
+
+   if "is_upload_video" in data:
+      if data["is_upload_video"]:
+         self.is_upload_video.setChecked(True)
+      else:
+         self.is_upload_video.setChecked(False)
+   else:
+      self.is_upload_video.setChecked(False)
+
+   if "is_run_tds" in data:
+      if data["is_run_tds"]:
+         self.is_run_tds.setChecked(True)
+      else:
+         self.is_run_tds.setChecked(False)
+   else:
+      self.is_run_tds.setChecked(False)
 
    if "captcha_type" in data:
       self.captcha_type.setCurrentIndex(data["captcha_type"])
@@ -227,7 +287,6 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
       self.change_theme_switch_off.setVisible(True)
       self.change_theme_switch_on.setVisible(False)
 
-
    if "is_chrome_count" in data:
       self.chrome_setting_line_value.setValue(data["is_chrome_count"])
    else:
@@ -243,28 +302,10 @@ def translateUi(self, ToolRegCloneTiktok, current_version, remaining_days):
    else:
       self.chrome_delay_second_value.setValue(3)
 
-   if "api_token_gologin" in data:
-      self.api_token_gologin_value.setText(data["api_token_gologin"])
+   if "database_value" in data:
+      self.database_value.setText(data["database_value"])
    else:
-      self.api_token_gologin_value.setText("")
-
-   if "path_gologin" in data:
-      self.path_gologin_value.setText(data["path_gologin"])
-   else:
-      self.path_gologin_value.setText("")
-   
-   if "api_value_hotmailbox" in data:
-      self.api_hotmailbox_value.setText(data["api_value_hotmailbox"])
-   else:
-      self.api_hotmailbox_value.setText("")
-
-   if "is_upload_avatar" in data:
-      if data["is_upload_avatar"]:
-         self.is_upload_avatar_yes.setChecked(True)
-      else:
-         self.is_upload_avatar_no.setChecked(True)
-   else:
-      self.is_upload_avatar_yes.setChecked(True)
+      self.database_value.setText("")
 
    if "type_reg_country" in data:
       self.type_reg_country.setCurrentIndex(data["type_reg_country"])

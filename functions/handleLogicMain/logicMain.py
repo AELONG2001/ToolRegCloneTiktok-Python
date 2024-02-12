@@ -4,7 +4,7 @@ from PySide6.QtCore import *
 from functions.handleSaveDataInputUser.handleSaveDataInputUser import handleSaveDataInputUser
 from functions.handleMultiThreads.thread.startAutomation import startAutomation
 from functions.handleMultiThreads.thread.stopAutomation import stopAutomation
-from functions.handleOpenFolder.handleOpenListAvatar import selectAvatarFolder
+from functions.handleOpenFolder.handleOpenListAvatar import selectFolder
 from functions.handleCheckMail.checkMail import checkMail
 from functions.handleCheckAccounts.checkLiveAccounts import checkLiveAccounts
 from GUI.darkMode import darkMode
@@ -102,7 +102,7 @@ class AutomationController:
             thread = self.ui_instance.chrome_threads[self.ui_instance.thread_index]
             thread.start()
             self.ui_instance.thread_index += 1
-            self.ui_instance.start_timer.start()  # Khởi động lại timer để tạo khoảng thời gian cho lần khởi động luồng tiếp theo
+            self.ui_instance.start_timer.start()
         else:
             self.ui_instance.start_timer.stop()
 
@@ -138,10 +138,16 @@ class AutomationController:
         handleSaveDataInputUser("num_threads", num_threads)
 
     def handleAvatarFolderSelection(self):
-        link_avatar = selectAvatarFolder()
+        link_avatar = selectFolder()
         if link_avatar:
             self.ui_instance.avatar_value.setText(link_avatar)
         handleSaveDataInputUser("url_avatar", link_avatar)
+
+    def handleVideoFolderSelection(self):
+        link_video = selectFolder()
+        if link_video:
+            self.ui_instance.video_value.setText(link_video)
+        handleSaveDataInputUser("url_video", link_video)
 
     def inputMail(self):
         link_mail = QFileDialog.getOpenFileName(
@@ -150,6 +156,22 @@ class AutomationController:
         self.ui_instance.mail_value.setText(link_mail)
 
         handleSaveDataInputUser("url_mail", link_mail)
+
+    def checkWatchLive(self):
+        is_watch_live = self.ui_instance.is_watch_live.isChecked()
+        handleSaveDataInputUser("is_watch_live", is_watch_live)
+
+    def checkUploadAvatar(self):
+        is_upload_avatar = self.ui_instance.is_upload_avatar.isChecked()
+        handleSaveDataInputUser("is_upload_avatar", is_upload_avatar)
+
+    def checkUploadVideo(self):
+        is_upload_video = self.ui_instance.is_upload_video.isChecked()
+        handleSaveDataInputUser("is_upload_video", is_upload_video)
+
+    def checkRunTDS(self):
+        is_run_tds = self.ui_instance.is_run_tds.isChecked()
+        handleSaveDataInputUser("is_run_tds", is_run_tds)
 
     def getCaptchaType(self):
         captcha_type = self.ui_instance.captcha_type.currentIndex()
@@ -246,7 +268,7 @@ class AutomationController:
             
     def getProxyType(self):
         proxy_type = self.ui_instance.proxy_type.currentIndex()
-        if proxy_type == 3 or proxy_type == 4:
+        if proxy_type == 4 or proxy_type == 5:
             self.ui_instance.proxy_value.setPlaceholderText("Mỗi proxy một dòng")
             self.ui_instance.proxy_value_ip_port.setVisible(True)
             self.ui_instance.proxy_value_ip_port_user_pass.setVisible(True)
@@ -259,7 +281,7 @@ class AutomationController:
 
     def getProxyTypeCheckLive(self):
         proxy_type = self.ui_instance.proxy_type_check_live.currentIndex()
-        if proxy_type == 3 or proxy_type == 4:
+        if proxy_type == 4 or proxy_type == 5:
             self.ui_instance.proxy_value_check_live.setPlaceholderText("Mỗi proxy một dòng")
             self.ui_instance.proxy_value_check_live_ip_port.setVisible(True)
             self.ui_instance.proxy_value_check_live_ip_port_user_pass.setVisible(True)
@@ -348,17 +370,9 @@ class AutomationController:
         chromeValueDelay = self.ui_instance.chrome_delay_second_value.value()
         handleSaveDataInputUser("chromeValueDelay", chromeValueDelay)
 
-    def getTokenGologin(self):
-        api_token_gologin = self.ui_instance.api_token_gologin_value.text().strip()
-        handleSaveDataInputUser("api_token_gologin", api_token_gologin)
-
-    def getPathGologin(self):
-        path_gologin = self.ui_instance.path_gologin_value.text().strip()
-        handleSaveDataInputUser("path_gologin", path_gologin)    
-
-    def getValueApiHotmailbox(self):
-        api_value_hotmailbox = self.ui_instance.api_hotmailbox_value.text().strip()
-        handleSaveDataInputUser("api_value_hotmailbox", api_value_hotmailbox)
+    def getDatabaseValue(self):
+        database_value = self.ui_instance.database_value.text().strip()
+        handleSaveDataInputUser("database_value", database_value)
 
     def checkIsUploadAvatar(self):
         is_upload_avatar = self.ui_instance.is_upload_avatar_yes.isChecked()

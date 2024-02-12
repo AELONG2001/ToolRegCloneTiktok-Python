@@ -3,14 +3,13 @@ import json
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import NoSuchElementException
-from utils.utils import wait, generate_random_name
+from utils.utils import wait, generate_random_name, random_number
 import unicodedata
 
 from functions.handleMultiThreads.selenium.ResolveCaptcha.AchiCaptcha.captchaRotateObjectAChi import (
@@ -42,8 +41,6 @@ from functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaCho
 from functions.handleMultiThreads.selenium.ResolveCaptcha.CaptchaGuru.captchaSliderObjectGuru import (
     handleResolveCaptchaSliderObjectGuru,
 )
-
-from utils.utils import random_number
 
 def remove_accents(input_str):
     nfkd_form = unicodedata.normalize('NFKD', input_str)
@@ -89,7 +86,19 @@ def showSuccessAccount(self):
 
 def handleUploadAvatar(self):
     isGetUserIdAgain = True
+    attemp = 0
+    max_attemp = 3
     while isGetUserIdAgain:
+        if attemp >= max_attemp:
+            isGetUserIdAgain = False
+            cookies = self.driver.get_cookies()
+            cookies_string = ";".join(
+                [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+            )
+            account2 = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+            with open("data/output_not_user_id.txt", "a") as f:
+                f.write(account2 + "\n")
+            return
         try:
             waitForNavigation = WebDriverWait(self.driver, 10)
             waitForNavigation.until(
@@ -99,24 +108,24 @@ def handleUploadAvatar(self):
         except TimeoutException:
             try:
                 self.driver.get("https://www.tiktok.com")
+                attemp += 1
                 isGetUserIdAgain = True
             except WebDriverException:
-                handleInsertCookieAndWriteAccount(self)
-                showSuccessAccount(self)
+                cookies = self.driver.get_cookies()
+                cookies_string = ";".join(
+                    [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+                )
+                account2 = f"{self.username_mail}|{self.password_account}|{self.password_mail}|{cookies_string}|{self.current_date}"
+                with open("data/output_not_user_id.txt", "a") as f:
+                    f.write(account2 + "\n")
                 isGetUserIdAgain = False
-                self.is_restart = False
                 return
 
-    is_list_avtart_default = True
 
     with open("configs_account.json", "r") as json_file:
         data = json.load(json_file)
-    if "url_avatar" in data and data["url_avatar"]:
-        is_list_avtart_default = False
-        list_avatar_folder = data["url_avatar"]
-    else:
-        is_list_avtart_default = True
-        list_avatar_folder = "data/wibus"
+        
+    list_avatar_folder = data["url_avatar"]
     list_avatar = os.listdir(list_avatar_folder)
 
     pageContent = self.driver.page_source
@@ -134,7 +143,10 @@ def handleUploadAvatar(self):
 
     try:
         if userId:
-            self.driver.get(f"https://www.tiktok.com/@{userId}")
+            try:
+                self.driver.get(f"https://www.tiktok.com/@{userId}")
+            except WebDriverException:
+                return
         else:
             handleInsertCookieAndWriteAccount(self)
             showSuccessAccount(self)
@@ -147,20 +159,6 @@ def handleUploadAvatar(self):
     self.is_restart = False
     
     try:
-        wait(2, 3)
-        if self.captcha_type == 0:
-            handleResolveCaptchaRotateObjectAChi(self)
-            handleResolveCaptchaChooseTwoObjectsAChi(self)
-            handleResolveCaptchaSliderObjectAChi(self)
-        elif self.captcha_type == 1: 
-            handleResolveCaptchaRotateObjectOmo(self)
-            handleResolveCaptchaChooseTwoObjectsOmo(self)
-            handleResolveCaptchaSliderObjectOmo(self)
-        else:
-            handleResolveCaptchaRotateObjectGuru(self)
-            handleResolveCaptchaChooseTwoObjectsGuru(self)
-            handleResolveCaptchaSliderObjectGuru(self)
-
         waitForNavigation = WebDriverWait(self.driver, 60)
         editProfile = waitForNavigation.until(
             EC.presence_of_element_located(("xpath", '//span[text()="Sửa hồ sơ"]'))
@@ -183,26 +181,17 @@ def handleUploadAvatar(self):
 
     wait(4, 6)
     inputUploadAvatar = self.driver.find_elements("css selector", "input[type='file']")
-    if inputUploadAvatar:
-        if is_list_avtart_default:
-            relative_path = "data/wibus"
-            absolute_path = os.path.abspath(relative_path)
-
-            path_avatar_default_origin = absolute_path
-            inputUploadAvatar[0].send_keys(
-                f"{path_avatar_default_origin}/{list_avatar[random_number(0, len(list_avatar) - 1)]}"
-            )
-        else:
-            inputUploadAvatar[0].send_keys(
-                f"{list_avatar_folder}/{list_avatar[random_number(0, len(list_avatar) - 1)]}"
-            )
+    if len(inputUploadAvatar) > 0:
+        inputUploadAvatar[0].send_keys(
+            f"{list_avatar_folder}/{list_avatar[random_number(0, len(list_avatar) - 1)]}"
+        )
         
     else:
         handleInsertCookieAndWriteAccount(self)
         showSuccessAccount(self)
         return
 
-    wait(6, 6)
+    wait(6, 8)
     try:
         waitForNavigation = WebDriverWait(self.driver, 20)
         applyAvatarBtn = waitForNavigation.until(
@@ -219,6 +208,9 @@ def handleUploadAvatar(self):
         handleInsertCookieAndWriteAccount(self)
         showSuccessAccount(self)
         return
+    except TimeoutException:
+        handleInsertCookieAndWriteAccount(self)
+        showSuccessAccount(self)
     
     is_random_name = self.self_main.is_change_username_check.isChecked()
     with open("configs_account.json", "r") as json_file:

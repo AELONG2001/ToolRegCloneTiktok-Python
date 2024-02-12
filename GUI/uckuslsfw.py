@@ -2,7 +2,7 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 from functions.hdcklsfw.handleGetMachineCode import handleGetMachineCode
-from functions.hdcklsfw.hdcklsfw import hdcklsfw
+# from functions.hdcklsfw.hdcklsfw import hdcklsfw
 from functions.handleSaveDataInputUser.handleSaveDataInputUser import handleSaveDataInputUser
 from subprocess import run, CREATE_NO_WINDOW
 import webbrowser
@@ -41,8 +41,8 @@ class ckuslsw(QMainWindow):
         self.submit_button = QPushButton("Submit", self)
         self.submit_button.setGeometry(180, 76, 100, 30)
         self.submit_button.setStyleSheet("color: white; background-color: rgb(64, 170, 15)")
-        self.key_input.returnPressed.connect(self.hckuslfw)
-        self.submit_button.clicked.connect(self.hckuslfw)
+        # self.key_input.returnPressed.connect(self.hckuslfw)
+        # self.submit_button.clicked.connect(self.hckuslfw)
 
         self.zalo = QLabel(self)
         self.zalo.setGeometry(10, 136, 28, 28)
@@ -88,15 +88,15 @@ class ckuslsw(QMainWindow):
     def open_link(url):
         webbrowser.open(url)
 
-    def hckuslfw(self):
-        input_key = self.key_input.text().strip()
-        response_text = hdcklsfw(input_key, self.machine_code)
-        response = json.loads(response_text)
+    # def hckuslfw(self):
+    #     input_key = self.key_input.text().strip()
+    #     response_text = hdcklsfw(input_key, self.machine_code)
+    #     response = json.loads(response_text)
         
-        if response["sfad23sewf32ewdds47rfd"]:
-            handleSaveDataInputUser("klsfw", input_key)
-            handleSaveDataInputUser("mclsfw", self.machine_code)
-            QApplication.quit()
-            run("./ToolRegCloneTiktok.exe", creationflags=CREATE_NO_WINDOW)
-        else:
-            QMessageBox.critical(self, "Xác nhận", "Key không đúng hoặc đã hết hạn.\nVui lòng kiểm tra lại", QMessageBox.Ok)
+    #     if response["sfad23sewf32ewdds47rfd"]:
+    #         handleSaveDataInputUser("klsfw", input_key)
+    #         handleSaveDataInputUser("mclsfw", self.machine_code)
+    #         QApplication.quit()
+    #         run("./ToolRegCloneTiktok.exe", creationflags=CREATE_NO_WINDOW)
+    #     else:
+    #         QMessageBox.critical(self, "Xác nhận", "Key không đúng hoặc đã hết hạn.\nVui lòng kiểm tra lại", QMessageBox.Ok)

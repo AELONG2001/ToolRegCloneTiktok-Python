@@ -56,10 +56,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
-        if self.type_reg_country == 0:
-            wait(4, 6)
-        else:
-            wait(14, 16)
+        wait(4, 6)
         captchaElements = self.driver.find_elements("css selector", "#captcha-verify-image")
         isNotCaptchaChooseTwoObjects = self.driver.find_elements("css selector", ".secsdk-captcha-drag-icon")
         
@@ -76,21 +73,21 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
         
         captchaElement = captchaElements[0]
 
-        wait(3, 4)
-        noInternetCaptcha = self.driver.find_elements(
-                "xpath",
-                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
-            )
+        # wait(3, 4)
+        # noInternetCaptcha = self.driver.find_elements(
+        #         "xpath",
+        #         '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
+        #     )
         
-        if noInternetCaptcha:
-            print("No internet captcha")
-            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-               isResolveCaptchaAgain = False
-               self.driver.close()
-               handleRestartThread(self)
-               return
-            else:
-                return
+        # if noInternetCaptcha:
+        #     print("No internet captcha")
+        #     if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+        #        isResolveCaptchaAgain = False
+        #        self.driver.quit()
+        #        handleRestartThread(self)
+        #        return
+        #     else:
+        #         return
 
 
         widthCaptcha = captchaElement.size["width"]
@@ -111,7 +108,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.close()
+                self.driver.quit()
                 handleRestartThread(self)
                 return
             else:
@@ -138,7 +135,7 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
         except WebDriverException:
             print("Lỗi trong quá trình thực hiện chuỗi hành động")
             isResolveCaptchaAgain = False
-            self.driver.close()
+            self.driver.quit()
             handleRestartThread(self)
             return
 
@@ -156,24 +153,24 @@ def handleResolveCaptchaChooseTwoObjectsAChi(self):
             isResolveCaptchaAgain = False
             isCheckResolveCaptchaAgain = False
 
-        wait(4, 6)
-        checkDectect = self.driver.find_elements(
-            "xpath",
-            '//span[contains(text(), "Bạn truy cập dịch vụ của chúng tôi quá thường xuyên..")]',
-        )
-        emailElement = self.driver.find_elements("css selector", "input[name='email']")
+        # wait(4, 6)
+        # checkDectect = self.driver.find_elements(
+        #     "xpath",
+        #     '//span[contains(text(), "Bạn truy cập dịch vụ của chúng tôi quá thường xuyên..")]',
+        # )
+        # emailElement = self.driver.find_elements("css selector", "input[name='email']")
 
-        if emailElement:
-            if emailElement[0].value_of_css_property("color") == "rgba(255, 76, 58, 1)":
-                isResolveCaptchaAgain = False
-                self.driver.close()
-                handleRestartThreadNewMail(self)
-                return
+        # if emailElement:
+        #     if emailElement[0].value_of_css_property("color") == "rgba(255, 76, 58, 1)":
+        #         isResolveCaptchaAgain = False
+        #         self.driver.quit()
+        #         handleRestartThreadNewMail(self)
+        #         return
             
-        if checkDectect:
-            getCodeElement = self.driver.find_element(
-                "xpath",
-                '//*[@data-e2e="send-code-button"]',
-            )
-            if getCodeElement:
-                handleGetCode(self)
+        # if checkDectect:
+        #     getCodeElement = self.driver.find_element(
+        #         "xpath",
+        #         '//*[@data-e2e="send-code-button"]',
+        #     )
+        #     if getCodeElement:
+        #         handleGetCode(self)

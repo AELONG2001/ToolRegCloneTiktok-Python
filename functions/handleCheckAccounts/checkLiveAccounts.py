@@ -11,6 +11,7 @@ from functions.proxy.TMProxy.handleGetCurrentTMProxy import handleGetCurrentTMPr
 
 from functions.proxy.TinProxy.handleGetNewTinProxy import handleGetNewTinProxy
 from functions.proxy.TinProxy.handleGetCurrentTinProxy import handleGetCurrentTinProxy
+from functions.proxy.ProxyNo1.handleGetCurrentProxyNo1Proxy import handleGetCurrentProxyNo1Proxy
 import random
 
 def handleCheckAccountsApi(self, user_id):
@@ -41,7 +42,7 @@ def handleCheckAccountsApi(self, user_id):
             
             new_proxy = handleGetNewTMProxy(api_key_list[index])
             current_proxy = handleGetCurrentTMProxy(api_key_list[index])
-            sleep(1)
+            sleep(2)
 
             if not new_proxy:
                 proxy = current_proxy
@@ -53,27 +54,31 @@ def handleCheckAccountsApi(self, user_id):
             else:
                 isGetTMProxyAgain = True
     elif self.proxy_type_check_live.currentIndex() == 2:
-            api_key_tinproxy = self.self_main.proxy_value_check_live.toPlainText()
+            api_key_tinproxy = self.proxy_value_check_live.toPlainText()
             api_key_list = api_key_tinproxy.splitlines()
 
             new_proxy = handleGetNewTinProxy(api_key_list[index])
             current_proxy = handleGetCurrentTinProxy(api_key_list[index])
 
             if not new_proxy:
-                self.proxy = current_proxy
+                proxy = current_proxy
             else:
-                self.proxy = new_proxy
-    elif self.proxy_type_check_live.currentIndex() == 3 or self.proxy_type_check_live.currentIndex() == 4:
-            self.type_ip_port = self.self_main.proxy_value_check_live_ip_port.isChecked()
+                proxy = new_proxy
+    elif self.proxy_type_check_live.currentIndex() == 3:
+            proxys = self.proxy_value_check_live.toPlainText().splitlines()
 
-            get_list_proxy = self.self_main.proxy_value_check_live.toPlainText()
+            proxy = proxys[index]         
+    elif self.proxy_type_check_live.currentIndex() == 4 or self.proxy_type_check_live.currentIndex() == 5:
+            self.type_ip_port = self.proxy_value_check_live_ip_port.isChecked()
+
+            get_list_proxy = self.proxy_value_check_live.toPlainText()
             proxys = get_list_proxy.splitlines()
 
             if self.type_ip_port:
-                self.proxy = proxys[index]
+                proxy = proxys[index]
             else:
                 ip,port,user_proxy,password_proxy = proxys[index].split(":")
-                self.proxy = f"{ip}:{port}:{user_proxy}:{password_proxy}"
+                proxy = f"{ip}:{port}:{user_proxy}:{password_proxy}"
     
     if not proxy:
         return
@@ -147,13 +152,13 @@ def checkLiveAccounts(
 
     total_accounts_check_live_count = 0
 
-    with open("data/LiveAccounts.txt", "w") as f:
+    with open("data/LiveAccounts.txt", "w", encoding="utf-8") as f:
         f.write("")
 
-    with open("data/DieAccounts.txt", "w") as f:
+    with open("data/DieAccounts.txt", "w", encoding="utf-8") as f:
                 f.write("")
     
-    with open(fileNameCheck, 'r') as file:
+    with open(fileNameCheck, 'r', encoding="utf-8") as file:
         users = file.readlines()
         total_accounts_check_live_count += len(users)
 

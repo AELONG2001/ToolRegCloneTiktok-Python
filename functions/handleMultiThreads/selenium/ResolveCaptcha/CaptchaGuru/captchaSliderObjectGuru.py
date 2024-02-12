@@ -54,10 +54,7 @@ def handleResolveCaptchaSliderObjectGuru(self):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
-        if self.type_reg_country == 0:
-            wait(4, 6)
-        else:
-            wait(14, 16)
+        wait(8, 10)
         captchaElements = self.driver.find_elements(
             "css selector", "#captcha-verify-image"
         )
@@ -77,21 +74,21 @@ def handleResolveCaptchaSliderObjectGuru(self):
 
         captchaElement = captchaElements[0]
 
-        wait(3, 4)
-        noInternetCaptcha = self.driver.find_elements(
-                "xpath",
-                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
-            )
+        # wait(3, 4)
+        # noInternetCaptcha = self.driver.find_elements(
+        #         "xpath",
+        #         '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
+        #     )
         
-        if noInternetCaptcha:
-            print("No internet captcha")
-            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                isResolveCaptchaAgain = False
-                self.driver.close()
-                handleRestartThread(self)
-                return
-            else:
-                return
+        # if noInternetCaptcha:
+        #     print("No internet captcha")
+        #     if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+        #         isResolveCaptchaAgain = False
+        #         self.driver.quit()
+        #         handleRestartThread(self)
+        #         return
+        #     else:
+        #         return
 
         img_src = captchaElement.get_attribute("src")
 
@@ -110,11 +107,11 @@ def handleResolveCaptchaSliderObjectGuru(self):
 
         if result:
             # Tính toán tọa độ mới x1
-            x1 = int(result) * 340 / 552 + 82
+            x1 = int(result) * 340 / 552
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.close()
+                self.driver.quit()
                 handleRestartThread(self)
                 return
             else:
@@ -133,7 +130,7 @@ def handleResolveCaptchaSliderObjectGuru(self):
         action_chains.move_to_element(dragIcon).perform()
         action_chains.click_and_hold().perform()
 
-        step_distance = (x1 - x) / num_steps
+        step_distance = x1 / num_steps
 
         # Di chuyển từng bước nhỏ và chờ một khoảng thời gian
         for _ in range(num_steps):
@@ -141,24 +138,28 @@ def handleResolveCaptchaSliderObjectGuru(self):
 
         action_chains.release().perform()
 
-        wait(4, 6)
-        self.driver.refresh()
+        # wait(4, 6)
+        # self.driver.refresh()
 
-        wait(3, 4)
-        noInternetCaptcha = self.driver.find_elements(
-                "xpath",
-                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
-            )
-
-        if noInternetCaptcha:
-            print("No internet captcha")
-            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                isResolveCaptchaAgain = False
-                self.driver.close()
-                handleRestartThread(self)
-                return
-            else:
-                return
+        # wait(3, 4)
+        # noInternetCaptchaVi = self.driver.find_elements(
+        #     "xpath",
+        #     '//div[contains(text(), "Không có kết nối Internet. Vui lòng thử lại.")]',
+        # )
+        # noInternetCaptchaEn = self.driver.find_elements(
+        #     "xpath",
+        #     '//div[contains(text(), "No internet connection. Please try again.")]',
+        # )
+        
+        # if noInternetCaptchaVi or noInternetCaptchaEn:
+        #     print("No internet captcha")
+        #     if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+        #         isResolveCaptchaAgain = False
+        #         self.driver.quit()
+        #         handleRestartThread(self)
+        #         return
+        #     else:
+        #         return
 
         wait(2, 4)
         if captchaElements:

@@ -80,7 +80,7 @@ def handleResolveCaptchaChooseTwoObjectsOmo(self):
             print("No internet captcha")
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.close()
+                self.driver.quit()
                 handleRestartThread(self)
                 return
             else:
@@ -104,7 +104,7 @@ def handleResolveCaptchaChooseTwoObjectsOmo(self):
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.close()
+                self.driver.quit()
                 handleRestartThread(self)
                 return
             else:
@@ -131,7 +131,7 @@ def handleResolveCaptchaChooseTwoObjectsOmo(self):
         except WebDriverException:
             print("Lỗi trong quá trình thực hiện chuỗi hành động")
             isResolveCaptchaAgain = False
-            self.driver.close()
+            self.driver.quit()
             handleRestartThread(self)
             return
 
@@ -159,7 +159,7 @@ def handleResolveCaptchaChooseTwoObjectsOmo(self):
         if emailElement:
             if emailElement[0].value_of_css_property("color") == "rgba(255, 76, 58, 1)":
                 isResolveCaptchaAgain = False
-                self.driver.close()
+                self.driver.quit()
                 handleRestartThreadNewMail(self)
                 return
         

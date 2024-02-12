@@ -21,8 +21,8 @@ class utrclttlsfw(QObject):
 
         self.data = data
         self.current_version = "1.0.40"
-        self.remaining_days = self.data["rasdq765re2432rvad76sv"]
-        self.latest_version = self.data["lfct34re32fdaefda8765ddsa"]
+        # self.remaining_days = self.data["rasdq765re2432rvad76sv"]
+        # self.latest_version = self.data["lfct34re32fdaefda8765ddsa"]
         self.is_start = False
         self.startAutomation_called = False
         self.is_check_mail = False
@@ -55,6 +55,7 @@ class utrclttlsfw(QObject):
         self.automation_controller.start_next_thread()
     
     def restart_thread(self, thread, username, password):
+        print("Restart")
         with open("configs_account.json", "r") as json_file:
             data = json.load(json_file)
 
@@ -67,11 +68,6 @@ class utrclttlsfw(QObject):
         proxy_type = self.proxy_type.currentIndex()
         random_password_account = self.random_password_account.isChecked()
         chrome_percent_zoom = self.chrome_percent_zoom_value.value()
-        path_profile_gologin = self.path_gologin_value.text()
-        if "api_value_hotmailbox" in data:
-            api_key_hotmailbox = data["api_value_hotmailbox"]
-        else:
-            api_key_hotmailbox = ""
         type_reg_country = self.type_reg_country.currentIndex()
         is_upload_avatar = self.is_upload_avatar_yes.isChecked()
         
@@ -87,8 +83,6 @@ class utrclttlsfw(QObject):
             proxy_type,
             random_password_account,
             chrome_percent_zoom,
-            path_profile_gologin,
-            api_key_hotmailbox,
             type_reg_country,
             is_upload_avatar,
             username,
@@ -106,8 +100,23 @@ class utrclttlsfw(QObject):
     def handleAvatarFolderSelection(self):
         self.automation_controller.handleAvatarFolderSelection()
 
+    def handleVideoFolderSelection(self):
+        self.automation_controller.handleVideoFolderSelection()
+
     def inputMail(self):
         self.automation_controller.inputMail()
+
+    def checkWatchLive(self):
+        self.automation_controller.checkWatchLive()
+
+    def checkUploadAvatar(self):
+        self.automation_controller.checkUploadAvatar()
+
+    def checkUploadVideo(self):
+        self.automation_controller.checkUploadVideo()
+
+    def checkRunTDS(self):
+        self.automation_controller.checkRunTDS()
 
     def getCaptchaType(self):
         self.automation_controller.getCaptchaType()
@@ -163,14 +172,8 @@ class utrclttlsfw(QObject):
     def getChromeValueDelay(self, value):
         self.automation_controller.getChromeValueDelay(value)
 
-    def getTokenGologin(self):
-        self.automation_controller.getTokenGologin()
-
-    def getPathGologin(self):
-        self.automation_controller.getPathGologin()
-
-    def getValueApiHotmailbox(self):
-        self.automation_controller.getValueApiHotmailbox()
+    def getDatabaseValue(self):
+        self.automation_controller.getDatabaseValue()
 
     def checkIsUploadAvatar(self):
         self.automation_controller.checkIsUploadAvatar()
@@ -242,14 +245,14 @@ class utrclttlsfw(QObject):
             self.live_accounts_box.append(f"{user_id}")
             self.success_account_live_count += 1
 
-            with open("data/LiveAccounts.txt", "a") as f:
+            with open("data/LiveAccounts.txt", "a", encoding="utf-8") as f:
                 f.write(user)
 
         else:
             self.die_accounts_box.append(f"{user_id}")
             self.failed_accounts_live_count += 1
             
-            with open("data/DieAccounts.txt", "a") as f:
+            with open("data/DieAccounts.txt", "a", encoding="utf-8") as f:
                 f.write(user)
 
         self.live_accounts.setText(f"Live ({self.success_account_live_count}):")
@@ -259,19 +262,19 @@ class utrclttlsfw(QObject):
             with open("configs_account.json", "r") as json_file:
                 data = json.load(json_file)
             
-            with open(data["url_accounts_check"], "r") as file:
+            with open(data["url_accounts_check"], "r", encoding="utf-8") as file:
                 accounts =  file.read()
 
-            with open("data/output_backup.txt", "w") as file:
+            with open("data/output_backup.txt", "w", encoding="utf-8") as file:
                 file.write(accounts)
         
-            with open(data["url_accounts_check"], "w") as file:
+            with open(data["url_accounts_check"], "w", encoding="utf-8") as file:
                 file.write("")
 
-            with open("data/LiveAccounts.txt", "r") as file:
+            with open("data/LiveAccounts.txt", "r", encoding="utf-8") as file:
                 accounts_live =  file.read()
 
-            with open(data["url_accounts_check"], "w") as file:
+            with open(data["url_accounts_check"], "w", encoding="utf-8") as file:
                 file.write(accounts_live)
 
             self.btn_check_accounts.setEnabled(True)
@@ -287,4 +290,4 @@ class utrclttlsfw(QObject):
             msg.exec()        
 
     def retranslateUi(self, ToolRegCloneTiktok):
-        translateUi(self, ToolRegCloneTiktok, self.current_version, self.remaining_days)
+        translateUi(self, ToolRegCloneTiktok)

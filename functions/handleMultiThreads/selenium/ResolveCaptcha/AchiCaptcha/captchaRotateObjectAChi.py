@@ -44,7 +44,7 @@ def handleCreateJobGetCaptchaRotateObjectAChi(
         response = requests.post("http://api.achicaptcha.com/createTask", json=body)
         data = response.json()
 
-        wait(6, 8)
+        wait(10, 12)
         return getResultCaptchaRotateObjectAChi(self, data["taskId"])
     except requests.exceptions.RequestException as e:
         print(e)
@@ -54,10 +54,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
-        if self.type_reg_country == 0:
-            wait(4, 6)
-        else:
-            wait(14, 16)
+        wait(4, 6)
         captchaElements = self.driver.find_elements(
             "css selector", ".captcha_verify_slide--button"
         )
@@ -77,38 +74,36 @@ def handleResolveCaptchaRotateObjectAChi(self):
 
         captchaElement = captchaElements[0]
 
-        wait(3, 4)
-        noInternetCaptcha = self.driver.find_elements(
-                "xpath",
-                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
-        )
+        # wait(3, 4)
+        # noInternetCaptcha = self.driver.find_elements(
+        #         "xpath",
+        #         '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
+        # )
         
-        cannotLoadImageCaptcha = self.driver.find_elements(
-                "xpath",
-                '//div[contains(text(), "Couldn’t load image. Refresh to try again.")]',
-        )
+        # cannotLoadImageCaptcha = self.driver.find_elements(
+        #         "xpath",
+        #         '//div[contains(text(), "Couldn’t load image. Refresh to try again.")]',
+        # )
         
-        if noInternetCaptcha:
-            print("No internet captcha")
-            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                isResolveCaptchaAgain = False
-                self.driver.close()
-                handleRestartThread(self)
-                return
-            else:
-                return
+        # if noInternetCaptcha:
+        #     print("No internet captcha")
+        #     if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+        #         isResolveCaptchaAgain = False
+        #         self.driver.quit()
+        #         handleRestartThread(self)
+        #         return
+        #     else:
+        #         return
         
-       
-        
-        if cannotLoadImageCaptcha:
-            print("No load image captcha")
-            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                isResolveCaptchaAgain = False
-                self.driver.close()
-                handleRestartThread(self)
-                return
-            else:
-                return
+        # if cannotLoadImageCaptcha:
+        #     print("No load image captcha")
+        #     if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+        #         isResolveCaptchaAgain = False
+        #         self.driver.quit()
+        #         handleRestartThread(self)
+        #         return
+        #     else:
+        #         return
 
 
         dragIcon = self.driver.find_element("css selector", ".secsdk-captcha-drag-icon")
@@ -144,7 +139,7 @@ def handleResolveCaptchaRotateObjectAChi(self):
         else:
             if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
                 isResolveCaptchaAgain = False
-                self.driver.close()
+                self.driver.quit()
                 handleRestartThread(self)
                 return
             else:
@@ -162,14 +157,6 @@ def handleResolveCaptchaRotateObjectAChi(self):
         if result:
             # Tính toán tọa độ mới x1
             x1 = int(result) + 82
-        else:
-            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                isResolveCaptchaAgain = False
-                self.driver.close()
-                handleRestartThread(self)
-                return
-            else:
-                return
 
         num_steps = 5
 
@@ -182,21 +169,21 @@ def handleResolveCaptchaRotateObjectAChi(self):
         )
         QCoreApplication.processEvents()
 
-        wait(3, 4)
-        cannotLoadImageCaptcha = self.driver.find_elements(
-                "xpath",
-                '//div[contains(text(), "Couldn’t load image. Refresh to try again.")]',
-            )
+        # wait(3, 4)
+        # cannotLoadImageCaptcha = self.driver.find_elements(
+        #         "xpath",
+        #         '//div[contains(text(), "Couldn’t load image. Refresh to try again.")]',
+        #     )
         
-        if cannotLoadImageCaptcha:
-            print("No load image captcha")
-            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                isResolveCaptchaAgain = False
-                self.driver.close()
-                handleRestartThread(self)
-                return
-            else:
-                return
+        # if cannotLoadImageCaptcha:
+        #     print("No load image captcha")
+        #     if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+        #         isResolveCaptchaAgain = False
+        #         self.driver.quit()
+        #         handleRestartThread(self)
+        #         return
+        #     else:
+        #         return
         
         action_chains.move_to_element(dragIcon).perform()
         action_chains.click_and_hold().perform()
@@ -209,48 +196,48 @@ def handleResolveCaptchaRotateObjectAChi(self):
 
         action_chains.release().perform()
 
-        wait(3, 4)
-        noInternetCaptcha = self.driver.find_elements(
-                "xpath",
-                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
-            )
+        # wait(3, 4)
+        # noInternetCaptcha = self.driver.find_elements(
+        #         "xpath",
+        #         '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
+        #     )
         
-        if noInternetCaptcha:
-            print("No internet captcha")
-            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-               isResolveCaptchaAgain = False
-               self.driver.close()
-               handleRestartThread(self)
-               return
-            else:
-                return
+        # if noInternetCaptcha:
+        #     print("No internet captcha")
+        #     if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+        #        isResolveCaptchaAgain = False
+        #        self.driver.quit()
+        #        handleRestartThread(self)
+        #        return
+        #     else:
+        #         return
 
-        wait(2, 4)
-        if captchaElements:
-            isResolveCaptchaAgain = True
-            isCheckResolveCaptchaAgain = True
-        else:
-            isResolveCaptchaAgain = False
-            isCheckResolveCaptchaAgain = False
+        # wait(2, 4)
+        # if captchaElements:
+        #     isResolveCaptchaAgain = True
+        #     isCheckResolveCaptchaAgain = True
+        # else:
+        #     isResolveCaptchaAgain = False
+        #     isCheckResolveCaptchaAgain = False
 
-        wait(4, 6)
-        checkDectect = self.driver.find_elements(
-            "xpath",
-            '//span[contains(text(), "Bạn truy cập dịch vụ của chúng tôi quá thường xuyên..")]',
-        )
-        emailElement = self.driver.find_elements("css selector", "input[name='email']")
+        # wait(4, 6)
+        # checkDectect = self.driver.find_elements(
+        #     "xpath",
+        #     '//span[contains(text(), "Bạn truy cập dịch vụ của chúng tôi quá thường xuyên..")]',
+        # )
+        # emailElement = self.driver.find_elements("css selector", "input[name='email']")
 
-        if emailElement:
-            if emailElement[0].value_of_css_property("color") == "rgba(255, 76, 58, 1)":
-                isResolveCaptchaAgain = False
-                self.driver.close()
-                handleRestartThreadNewMail(self)
-                return
+        # if emailElement:
+        #     if emailElement[0].value_of_css_property("color") == "rgba(255, 76, 58, 1)":
+        #         isResolveCaptchaAgain = False
+        #         self.driver.quit()
+        #         handleRestartThreadNewMail(self)
+        #         return
 
-        if checkDectect:
-            getCodeElement = self.driver.find_element(
-                "xpath",
-                '//*[@data-e2e="send-code-button"]',
-            )
-            if getCodeElement:
-                handleGetCode(self)
+        # if checkDectect:
+        #     getCodeElement = self.driver.find_element(
+        #         "xpath",
+        #         '//*[@data-e2e="send-code-button"]',
+        #     )
+        #     if getCodeElement:
+        #         handleGetCode(self)

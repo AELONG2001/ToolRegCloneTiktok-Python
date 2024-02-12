@@ -33,8 +33,8 @@ class UpdateProgressDialog(QDialog):
         self.logo_update_label.setAlignment(Qt.AlignCenter)
         self.logo_update_label.setStyleSheet('font: 600 10pt "Segoe UI";')
 
-        self.description_update = QLabel(f"Downloading {self.self_main.latest_version}")
-        self.description_update.setAlignment(Qt.AlignCenter)
+        # self.description_update = QLabel(f"Downloading {self.self_main.latest_version}")
+        # self.description_update.setAlignment(Qt.AlignCenter)
 
         self.percent_title = QLabel()
         self.percent_title.setAlignment(Qt.AlignCenter)
@@ -43,7 +43,7 @@ class UpdateProgressDialog(QDialog):
        
         layout.addWidget(self.logo_update)
         layout.addWidget(self.logo_update_label)
-        layout.addWidget(self.description_update)
+        # layout.addWidget(self.description_update)
         layout.addWidget(self.percent_title)
         layout.addWidget(self.progress_bar)
 

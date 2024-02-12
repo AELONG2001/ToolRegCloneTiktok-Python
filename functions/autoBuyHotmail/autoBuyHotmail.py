@@ -7,7 +7,8 @@ def handleAutoBuyHotmail(self):
         params = {
             "apikey": f"{self.api_key_hotmailbox.strip()}",
             "mailcode": "OMAIL",
-            "quantity": 1
+            "quantity": 1,
+            "country": "vn"
         }
         
         response = requests.get("https://hotmailbase.com/api/user/buy", params=params).json()

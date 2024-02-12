@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QFileDialog
 
 
-def selectAvatarFolder():
+def selectFolder():
     dialog = QFileDialog()
     dialog.setFileMode(QFileDialog.Directory)
     if dialog.exec_():

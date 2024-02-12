@@ -52,10 +52,7 @@ def handleResolveCaptchaSliderObjectAChi(self):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
-        if self.type_reg_country == 0:
-            wait(4, 6)
-        else:
-            wait(14, 16)
+        wait(4, 6)
         captchaElements = self.driver.find_elements(
             "css selector", "#captcha-verify-image"
         )
@@ -75,21 +72,21 @@ def handleResolveCaptchaSliderObjectAChi(self):
 
         captchaElement = captchaElements[0]
 
-        wait(3, 4)
-        noInternetCaptcha = self.driver.find_elements(
-                "xpath",
-                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
-            )
+        # wait(3, 4)
+        # noInternetCaptcha = self.driver.find_elements(
+        #         "xpath",
+        #         '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
+        #     )
         
-        if noInternetCaptcha:
-            print("No internet captcha")
-            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                isResolveCaptchaAgain = False
-                self.driver.close()
-                handleRestartThread(self)
-                return
-            else:
-                return
+        # if noInternetCaptcha:
+        #     print("No internet captcha")
+        #     if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+        #         isResolveCaptchaAgain = False
+        #         self.driver.quit()
+        #         handleRestartThread(self)
+        #         return
+        #     else:
+        #         return
 
 
         img_src = captchaElement.get_attribute("src")
@@ -112,15 +109,6 @@ def handleResolveCaptchaSliderObjectAChi(self):
         if result:
             # Tính toán tọa độ mới x1
             x1 = int(result) * 340 / 552 + 82
-        else:
-            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                isResolveCaptchaAgain = False
-                self.driver.close()
-                handleRestartThread(self)
-                return
-            else:
-                return
-
         num_steps = 5
 
         # Thực hiện kéo thả phần tử
@@ -142,24 +130,24 @@ def handleResolveCaptchaSliderObjectAChi(self):
 
         action_chains.release().perform()
 
-        wait(4, 6)
-        self.driver.refresh()
+        # wait(4, 6)
+        # self.driver.refresh()
 
-        wait(3, 4)
-        noInternetCaptcha = self.driver.find_elements(
-                "xpath",
-                '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
-            )
+        # wait(3, 4)
+        # noInternetCaptcha = self.driver.find_elements(
+        #         "xpath",
+        #         '//div[contains(text(), "Không thể tải hình ảnh. Hãy làm mới để thử lại.")]',
+        #     )
 
-        if noInternetCaptcha:
-            print("No internet captcha")
-            if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
-                isResolveCaptchaAgain = False
-                self.driver.close()
-                handleRestartThread(self)
-                return
-            else:
-                return
+        # if noInternetCaptcha:
+        #     print("No internet captcha")
+        #     if self.driver.current_url == "https://www.tiktok.com/signup/phone-or-email/email":
+        #         isResolveCaptchaAgain = False
+        #         self.driver.quit()
+        #         handleRestartThread(self)
+        #         return
+        #     else:
+        #         return
 
         wait(2, 4)
         if captchaElements:

@@ -50,7 +50,7 @@ def handleSelectMonth(self):
         dropDownSelectMonth.click()
     except TimeoutException:
         print("Không tìm thấy monthSelectElement sau khoảng thời gian chờ")
-        self.driver.close()
+        self.driver.quit()
         handleRestartThread(self)
         
 
