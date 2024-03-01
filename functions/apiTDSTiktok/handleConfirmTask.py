@@ -9,5 +9,6 @@ def handleConfirmTask(task_id, token):
     }
     response = requests.get(url, params=params)
     data = response.json()
+    print("data: ", data)
     
     return data["cache"]

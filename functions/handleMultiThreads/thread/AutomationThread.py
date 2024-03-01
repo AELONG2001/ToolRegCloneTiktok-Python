@@ -305,10 +305,12 @@ class AutomationThread(QThread):
 
             num_chrome_a_row = int(self.chrome_count)
 
-            # self.handleCheckProxy()
+            self.handleCheckProxy()
 
             # self.profile_id = handleCreateProfile(self)
             # print(self.profile_id)
+
+            # wait(200000, 4000000)
             
             # with open("configs_account.json", "r") as json_file:
             #     data = json.load(json_file)
@@ -359,7 +361,7 @@ class AutomationThread(QThread):
             
 
             self.options.add_argument("--disable-blink-features=AutomationControlled")
-            # self.options.add_argument(f"--proxy-server=http://{self.proxy}")
+            self.options.add_argument(f"--proxy-server=http://{self.proxy}")
             
             # self.options.add_experimental_option("prefs", prefs)
             # if self.proxy_type == 4:
@@ -455,6 +457,8 @@ class AutomationThread(QThread):
             self.cookies = ";".join(
                 [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
             )
+            
+
             with open("configs_account.json", "r") as json_file:
                 data = json.load(json_file)
 
@@ -581,7 +585,7 @@ class AutomationThread(QThread):
                 wait(1, 2)
                 bodyElement.send_keys(Keys.ARROW_DOWN)
 
-                wait(28, 30)
+                wait(36, 40)
                 followBtn = self.driver.find_elements("xpath", "//span[text()='Follow']")
                 self.driver.execute_script("arguments[0].scrollIntoView();", followBtn[0])
                 # try:
@@ -608,7 +612,7 @@ class AutomationThread(QThread):
                 bodyElement = self.driver.find_element("tag name", "body")
                 bodyElement.send_keys(Keys.ARROW_DOWN)
 
-                wait(28, 30)
+                wait(36, 40)
                 followBtn = self.driver.find_elements("xpath", "//span[text()='Follow']")
                 self.driver.execute_script("arguments[0].scrollIntoView();", followBtn[0])
                 # try:
@@ -656,7 +660,7 @@ class AutomationThread(QThread):
                     bodyElement = self.driver.find_element("tag name", "body")
                     bodyElement.send_keys(Keys.ARROW_DOWN)
 
-                    wait(28, 30)
+                    wait(36, 40)
                     followBtn = self.driver.find_elements("xpath", "//span[text()='Follow']")
                     self.driver.execute_script("arguments[0].scrollIntoView();", followBtn[0])
                     # try:
@@ -715,116 +719,117 @@ class AutomationThread(QThread):
                         self.self_main.chrome_threads[self.num_threads].quit()
                         self.self_main.chrome_threads[self.num_threads].wait()
             
-            # if is_run_tds:
-            #     wait(4, 6)
-            #     try:
-            #         self.driver.get(f"https://traodoisub.com/api/autoclick/abcd/3491/?access_token={self.tokenTds}&type=tiktok_like")
-            #         wait(4, 6)
-            #         configBtn = self.driver.find_element("xpath", "//*[@data-target='#exampleModal']")      
-            #         configBtn.click()       
-            #         wait(4, 6)
-            #         inputIdTiktok = self.driver.find_element("css selector", "#id_run")
-            #         inputIdTiktok.send_keys(self.username)
+            if is_run_tds:
+                self.tokenTds = "TDSQfiUjclZXZzJiOiIXZ2V2ciwiIxADMy8mcwtmeiojIyV2c1Jye"
+                wait(4, 6)
+                try:
+                    self.driver.get(f"https://traodoisub.com/api/autoclick/abcd/3491/?access_token={self.tokenTds}&type=tiktok_like")
+                    wait(4, 6)
+                    configBtn = self.driver.find_element("xpath", "//*[@data-target='#exampleModal']")      
+                    configBtn.click()       
+                    wait(4, 6)
+                    inputIdTiktok = self.driver.find_element("css selector", "#id_run")
+                    inputIdTiktok.send_keys(self.username)
 
-            #         wait(2, 3)
-            #         confirmBtn = self.driver.find_element("css selector", "#chbutton")
-            #         confirmBtn.click()
-            #         wait(4, 6)
-            #         self.driver.get(f"https://www.tiktok.com/live")
-            #     except:
-            #         self.driver.refresh()
+                    wait(2, 3)
+                    confirmBtn = self.driver.find_element("css selector", "#chbutton")
+                    confirmBtn.click()
+                    wait(4, 6)
+                    self.driver.get(f"https://www.tiktok.com/live")
+                except:
+                    self.driver.refresh()
                 
-            #     while True:
-            #         coin = 0
-            #         totalCoin = 0
-            #         list_task = handleGetTask(self.tokenTds)
-            #         for task in list_task:
-            #             taskId = task["id"]
-            #             uniqueID = task["uniqueID"]
-            #             link = task["link"]
+                while True:
+                    coin = 0
+                    totalCoin = 0
+                    list_task = handleGetTask(self.tokenTds)
+                    for task in list_task:
+                        taskId = task["id"]
+                        uniqueID = task["uniqueID"]
+                        link = task["link"]
                         
-            #             try:
+                        try:
                            
-            #                 self.driver.get(f"https://www.tiktok.com")
-            #                 wait(2, 3)
-            #                 inputSearchTiktokId = self.driver.find_element("xpath", "//*[@data-e2e='search-user-input']")
-            #                 inputSearchTiktokId.send_keys(uniqueID)
-            #                 wait(2, 3)
-            #                 btnSearch = self.driver.find_element("xpath", "//*[@data-e2e='search-box-button']")
-            #                 btnSearch.click()
-            #                 wait(6, 8)
-            #                 waitForNavigation = WebDriverWait(self.driver, 10)
-            #                 try:
-            #                     tiktokIdClick = waitForNavigation.until(
-            #                     EC.presence_of_element_located(
-            #                         ('xpath', f'//p[text()="{uniqueID}"]')
-            #                     )
-            #                     )
-            #                     tiktokIdClick.click()
-            #                 except TimeoutException:
-            #                     self.driver.get(link)
-            #             except:
-            #                 self.driver.refresh()
-            #             try:
-            #                 wait(4, 6)
-            #                 try:
-            #                     waitForNavigation = WebDriverWait(self.driver, 10)
-            #                     followBtnTask = waitForNavigation.until(
-            #                         EC.presence_of_element_located(
-            #                             ("xpath", "//*[@data-e2e='follow-button']")
-            #                         )
-            #                     )
-            #                     followBtnTask.click()
-            #                 except Exception as e:
-            #                     pass
-            #                 handleResolveCaptchaChooseTwoObjectsGuru(self)
-            #                 # self.driver.close()
-            #                 # self.driver.switch_to.window(self.driver.window_handles[-1])
-            #             except TimeoutException:
-            #                 pass
+                            self.driver.get(f"https://www.tiktok.com")
+                            wait(2, 3)
+                            inputSearchTiktokId = self.driver.find_element("xpath", "//*[@data-e2e='search-user-input']")
+                            inputSearchTiktokId.send_keys(uniqueID)
+                            wait(2, 3)
+                            btnSearch = self.driver.find_element("xpath", "//*[@data-e2e='search-box-button']")
+                            btnSearch.click()
+                            wait(6, 8)
+                            waitForNavigation = WebDriverWait(self.driver, 10)
+                            try:
+                                tiktokIdClick = waitForNavigation.until(
+                                EC.presence_of_element_located(
+                                    ('xpath', f'//p[text()="{uniqueID}"]')
+                                )
+                                )
+                                tiktokIdClick.click()
+                            except TimeoutException:
+                                self.driver.get(link)
+                        except:
+                            self.driver.refresh()
+                        try:
+                            wait(4, 6)
+                            try:
+                                waitForNavigation = WebDriverWait(self.driver, 10)
+                                followBtnTask = waitForNavigation.until(
+                                    EC.presence_of_element_located(
+                                        ("xpath", "//*[@data-e2e='follow-button']")
+                                    )
+                                )
+                                followBtnTask.click()
+                            except Exception as e:
+                                pass
+                            handleResolveCaptchaChooseTwoObjectsGuru(self)
+                            # self.driver.close()
+                            # self.driver.switch_to.window(self.driver.window_handles[-1])
+                        except TimeoutException:
+                            pass
                         
-            #             try:
-            #                 cache = handleConfirmTask(taskId, self.tokenTds)
-            #                 print(f"cache for {self.username}: ", cache)
-            #                 self.self_main.table_account_info.setItem(
-            #                     self.current_row_count, 4, QTableWidgetItem(cache)
-            #                 )
-            #                 QCoreApplication.processEvents()
-            #             except Exception as e:
-            #                 pass
+                        try:
+                            cache = handleConfirmTask(taskId, self.tokenTds)
+                            print(f"cache for {self.username}: ", cache)
+                            self.self_main.table_account_info.setItem(
+                                self.current_row_count, 4, QTableWidgetItem(cache)
+                            )
+                            QCoreApplication.processEvents()
+                        except Exception as e:
+                            pass
 
-            #             if int(cache) >= 10:
-            #                 wait(4, 6)
-            #                 data = handleReceiveCoin(self.tokenTds)
-            #                 if "msg" in data:
-            #                     coin = int(''.join(filter(str.isdigit, data["msg"])))
-            #                     print(f"coin for {self.username}: ", coin)
+                        if int(cache) >= 10:
+                            wait(4, 6)
+                            data = handleReceiveCoin(self.tokenTds)
+                            if "msg" in data:
+                                coin = int(''.join(filter(str.isdigit, data["msg"])))
+                                print(f"coin for {self.username}: ", coin)
 
-            #                     if coin == 0:
-            #                         with open("data/accounts.txt", 'r', encoding="utf-8") as file:
-            #                             lines = file.readlines()
+                                if coin == 0:
+                                    with open("data/accounts.txt", 'r', encoding="utf-8") as file:
+                                        lines = file.readlines()
                                         
-            #                         new_lines = [line for line in lines if not line.startswith(f"{self.username}")]
+                                    new_lines = [line for line in lines if not line.startswith(f"{self.username}")]
 
-            #                         with open("data/accounts.txt", 'w', encoding="utf-8") as file:
-            #                             file.writelines(new_lines)
+                                    with open("data/accounts.txt", 'w', encoding="utf-8") as file:
+                                        file.writelines(new_lines)
 
-            #                         # gl.stop()
-            #                         self.driver.quit()
-            #                         self.self_main.chrome_threads[self.num_threads].quit()
-            #                         self.self_main.chrome_threads[self.num_threads].wait()
-            #                     self.self_main.table_account_info.setItem(
-            #                         self.current_row_count, 5, QTableWidgetItem(coin)
-            #                     )
-            #                     QCoreApplication.processEvents()
-            #                     totalCoin += coin
-            #             wait(4, 6)
+                                    # gl.stop()
+                                    self.driver.quit()
+                                    self.self_main.chrome_threads[self.num_threads].quit()
+                                    self.self_main.chrome_threads[self.num_threads].wait()
+                                self.self_main.table_account_info.setItem(
+                                    self.current_row_count, 5, QTableWidgetItem(coin)
+                                )
+                                QCoreApplication.processEvents()
+                                totalCoin += coin
+                        wait(4, 6)
                             
-            #         print(f"totalCoin {self.username}: ", totalCoin)
-            #         self.self_main.table_account_info.setItem(
-            #             self.current_row_count, 6, QTableWidgetItem(totalCoin)
-            #         )
-            #         QCoreApplication.processEvents()
+                    print(f"totalCoin {self.username}: ", totalCoin)
+                    self.self_main.table_account_info.setItem(
+                        self.current_row_count, 6, QTableWidgetItem(totalCoin)
+                    )
+                    QCoreApplication.processEvents()
 
             # try:
             #     self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")

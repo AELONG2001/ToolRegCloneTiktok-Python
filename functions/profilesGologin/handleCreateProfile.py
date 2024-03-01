@@ -6,8 +6,8 @@ from gologin import GoLogin
 
 def handleCreateProfile(self):
     random_name = generate_random_name()
-    ip = self.proxy.split(":")[0]
-    port = self.proxy.split(":")[1]
+    # ip = self.proxy.split(":")[0]
+    # port = self.proxy.split(":")[1]
     # if len(self.proxy.split(":")) > 2:
     #     get_proxy = self.proxy.split(":")
     #     ip = get_proxy[0]
@@ -52,8 +52,10 @@ def handleCreateProfile(self):
         'proxyEnabled': False,
         'proxy': {
             'mode': 'http',
-            'host': f"{ip}",
-            'port': f"{port}",
+            # 'host': f"{ip}",
+            # 'port': f"{port}",
+            'host': "",
+            'port': "",
             'username': "",
             'password': ""
         },

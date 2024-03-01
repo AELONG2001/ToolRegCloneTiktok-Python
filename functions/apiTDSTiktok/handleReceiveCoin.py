@@ -11,6 +11,7 @@ def handleReceiveCoin(token):
     try:
         response = requests.get(url, params=params)
         data = response.json()
+        print("data: ", data)
 
         if 'data' in data:
             return data["data"]
