@@ -118,6 +118,9 @@ class utrclttlsfw(QObject):
     def checkRunTDS(self):
         self.automation_controller.checkRunTDS()
 
+    def checkLoginGoogle(self):
+        self.automation_controller.checkLoginGoogle()
+
     def getCaptchaType(self):
         self.automation_controller.getCaptchaType()
 

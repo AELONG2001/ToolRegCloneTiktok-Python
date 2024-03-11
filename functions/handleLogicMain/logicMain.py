@@ -173,6 +173,10 @@ class AutomationController:
         is_run_tds = self.ui_instance.is_run_tds.isChecked()
         handleSaveDataInputUser("is_run_tds", is_run_tds)
 
+    def checkLoginGoogle(self):
+        is_login_google = self.ui_instance.is_login_google.isChecked()
+        handleSaveDataInputUser("is_login_google", is_login_google)
+
     def getCaptchaType(self):
         captcha_type = self.ui_instance.captcha_type.currentIndex()
         handleSaveDataInputUser("captcha_type", captcha_type)

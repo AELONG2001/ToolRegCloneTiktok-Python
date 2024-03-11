@@ -23,7 +23,7 @@ def auto_buy_tiktok(username, password, user_id, amount):
         print("Đã xảy ra lỗi:", str(e))
 
 username = 'longdevzz'
-password = 'Ue86W7u@TGDsYz'
+password = 'longkmhd'
 id = 20
 amount = 1
 

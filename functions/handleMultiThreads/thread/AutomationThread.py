@@ -89,6 +89,7 @@ from functions.apiTDSTiktok.handleGetTask import handleGetTask
 from functions.apiTDSTiktok.handleConfirmTask import handleConfirmTask
 from functions.apiTDSTiktok.handleReceiveCoin import handleReceiveCoin
 from gologin import GoLogin
+import keyboard
 
 
 class AutomationThread(QThread):
@@ -416,67 +417,165 @@ class AutomationThread(QThread):
             self.self_main.table_account_info.setItem(
                 self.current_row_count, 1, QTableWidgetItem(self.password)
             )
-            # self.self_main.table_account_info.setItem(
-            #     self.current_row_count, 2, QTableWidgetItem(self.proxy)
-            # )
-
-
-            try:
-                self.driver.get("https://www.tiktok.com/login/phone-or-email/email")
-            except:
-                self.driver.refresh()
-                self.driver.refresh()
-                
-            waitForNavigation = WebDriverWait(self.driver, 30)
-            usernameElement = waitForNavigation.until(
-                EC.presence_of_element_located(
-                    ("css selector", "input[type='text']")
-                )
-            )
-            usernameElement.send_keys(self.username)
-            wait(1, 2)
-
-            passwordElement = self.driver.find_element("xpath", '//input[@autocomplete="new-password"]')
-            passwordElement.send_keys(self.password)
-            wait(1, 2)
-            passwordElement.send_keys(Keys.ENTER)
-
-            if self.captcha_type == 0:
-                handleResolveCaptchaRotateObjectAChi(self)
-                handleResolveCaptchaChooseTwoObjectsAChi(self)
-                handleResolveCaptchaSliderObjectAChi(self)
-            elif self.captcha_type == 1:
-                handleResolveCaptchaRotateObjectOmo(self)
-                handleResolveCaptchaChooseTwoObjectsOmo(self)
-            else:
-                handleResolveCaptchaRotateObjectGuru(self)
-                handleResolveCaptchaChooseTwoObjectsGuru(self)
-                handleResolveCaptchaSliderObjectGuru(self)
-            
-            cookies = self.driver.get_cookies()
-            self.cookies = ";".join(
-                [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
-            )
-            
-
-            with open("configs_account.json", "r") as json_file:
-                data = json.load(json_file)
 
             is_watch_live = self.self_main.is_watch_live.isChecked()
             is_upload_avatar = self.self_main.is_upload_avatar.isChecked()
             is_upload_video = self.self_main.is_upload_video.isChecked()
             is_run_tds = self.self_main.is_run_tds.isChecked()
+            is_login_google = self.self_main.is_login_google.isChecked()
+            
+            main_window_handle = self.driver.current_window_handle
+            if is_login_google:
+                try:
+                    self.driver.get("https://www.tiktok.com/signup")
+                except:
+                    self.driver.refresh()
+
+                wait(2, 3)
+                btn_google_login = self.driver.find_element("xpath", "//div[text()='Tiếp tục với Google']")
+                btn_google_login.click()
+
+                wait(3, 4)
+                window_handles = self.driver.window_handles
+                self.driver.switch_to.window(window_handles[-1])
+
+                wait(4, 6)
+                emailElement = self.driver.find_element("css selector", "input[type='email']")
+                emailElement.send_keys(self.username)
+                emailElement.send_keys(Keys.ENTER)
+
+                wait(4, 6)
+                passwordElement = self.driver.find_element("css selector", "input[type='password']")
+                passwordElement.send_keys(self.password)
+                passwordElement.send_keys(Keys.ENTER)
+
+                wait(8, 10)
+                continueElement = self.driver.find_elements("css selector", "button[type='button']")
+                try:
+                    continueElement[2].click()
+                except IndexError:
+                    with open("data/failed.txt", "a", encoding="utf-8") as f:
+                        f.write(f"{self.username.strip()}|{self.password.strip()}" + "\n")
+                
+                    with open("data/accounts.txt", 'r') as file:
+                        lines = file.readlines()
+                        
+                    new_lines = [line for line in lines if not line.startswith(f"{self.username}")]
+
+                    with open("data/accounts.txt", 'w') as file:
+                        file.writelines(new_lines)
+
+                    self.driver.switch_to.window(main_window_handle)
+
+                    self.driver.quit()    
+                    self.self_main.chrome_threads[self.num_threads].quit()
+                    self.self_main.chrome_threads[self.num_threads].wait()
+                    
+                
+            else:
+                try:
+                    self.driver.get("https://www.tiktok.com/login/phone-or-email/email")
+                except:
+                    self.driver.refresh()
+            
+                waitForNavigation = WebDriverWait(self.driver, 30)
+                usernameElement = waitForNavigation.until(
+                    EC.presence_of_element_located(
+                        ("css selector", "input[type='text']")
+                    )
+                )
+                usernameElement.send_keys(self.username)
+                wait(1, 2)
+
+                passwordElement = self.driver.find_element("xpath", '//input[@autocomplete="new-password"]')
+                passwordElement.send_keys(self.password)
+                wait(1, 2)
+                passwordElement.send_keys(Keys.ENTER)
+
+                if self.captcha_type == 0:
+                    handleResolveCaptchaRotateObjectAChi(self)
+                    handleResolveCaptchaChooseTwoObjectsAChi(self)
+                    handleResolveCaptchaSliderObjectAChi(self)
+                elif self.captcha_type == 1:
+                    handleResolveCaptchaRotateObjectOmo(self)
+                    handleResolveCaptchaChooseTwoObjectsOmo(self)
+                else:
+                    handleResolveCaptchaRotateObjectGuru(self)
+                    handleResolveCaptchaChooseTwoObjectsGuru(self)
+                    handleResolveCaptchaSliderObjectGuru(self)
+            
+            self.driver.switch_to.window(main_window_handle)
+            
+            is_login_again = True
+            while is_login_again:
+                wait(8, 10)
+                self.driver.switch_to.window(main_window_handle)
+                self.driver.refresh()
+                wait(6, 8)
+                if self.driver.current_url == "https://www.tiktok.com/signup":
+                    is_login_again = True
+                    wait(4, 6)
+                    btn_google_login = self.driver.find_element("xpath", "//div[text()='Tiếp tục với Google']")
+                    btn_google_login.click()
+
+                    wait(4, 6)
+                    window_handles = self.driver.window_handles
+                    self.driver.switch_to.window(window_handles[-1])
+                    user_google = self.driver.find_element("xpath", "//div[@data-authuser='0']")
+                    user_google.click()
+
+                    wait(8, 10)
+                    continueElement = self.driver.find_elements("css selector", "button[type='button']")
+                    continueElement[2].click()
+                else:
+                    is_login_again = False
+
+            cookies = self.driver.get_cookies()
+            self.cookies = ";".join(
+                [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
+            )
+
+            with open("configs_account.json", "r") as json_file:
+                data = json.load(json_file)
 
 
             if is_upload_avatar:
                 list_avatar_folder = data["url_avatar"]
                 list_avatar = os.listdir(list_avatar_folder)
+                
+                if is_login_google:
+                    pageContent = self.driver.page_source
+                    try:
+                        self.userId = pageContent.split('"uniqueId":"')[1].split('"')[0]
+                    except IndexError:
+                        with open("data/failed.txt", "a", encoding="utf-8") as f:
+                            f.write(f"{self.username.strip()}|{self.password.strip()}" + "\n")
+                    
+                        with open("data/accounts.txt", 'r') as file:
+                            lines = file.readlines()
+                            
+                        new_lines = [line for line in lines if not line.startswith(f"{self.username}")]
 
-                try:
-                    self.driver.get(f"https://www.tiktok.com/@{self.username}")
-                except:
-                    self.driver.refresh()
-                    self.driver.refresh()
+                        with open("data/accounts.txt", 'w') as file:
+                            file.writelines(new_lines)
+
+                        self.driver.switch_to.window(main_window_handle)
+
+                        self.driver.quit()    
+                        self.self_main.chrome_threads[self.num_threads].quit()
+                        self.self_main.chrome_threads[self.num_threads].wait()
+
+                    try:
+                        self.driver.get(f"https://www.tiktok.com/@{self.userId}")
+                    except:
+                        self.driver.refresh()
+                        self.driver.refresh()
+                else:
+                    try:
+                        self.driver.get(f"https://www.tiktok.com/@{self.username}")
+                    except:
+                        self.driver.refresh()
+                        self.driver.refresh()
 
                 try:
                     waitForNavigation = WebDriverWait(self.driver, 20)
@@ -526,7 +625,6 @@ class AutomationThread(QThread):
                     self.driver.get("https://www.tiktok.com/creator-center/upload?from=upload")
                 except:
                     self.driver.refresh()
-                    self.driver.refresh()             
                 
                 iframe = WebDriverWait(self.driver, 20).until(
                     EC.presence_of_element_located(("xpath", "//*[@data-tt='Upload_index_iframe']"))
@@ -562,79 +660,48 @@ class AutomationThread(QThread):
                     self.driver.refresh()
             
             if is_watch_live:
-                wait(4, 6)
-                try:
-                    self.driver.get("https://www.tiktok.com/live")
-                except:
-                    self.driver.refresh()
-                    self.driver.refresh()
-                
-                wait(4, 6)
-                try:
-                    btnMoveLiveAction = self.driver.find_element("xpath", "//button[text()='Nhấp để xem LIVE']")
-                    btnMoveLiveAction.click()
-                except NoSuchElementException:
-                    # handleRestartThread(self.num_threads, self.username, self.password)
-                    return
+                if is_login_google:
+                    for _ in range(2):
+                        wait(4, 6)
+                        try:
+                            self.driver.get("https://www.tiktok.com/live")
+                        except:
+                            self.driver.refresh()
+                        
+                        wait(4, 6)
+                        try:
+                            btnMoveLiveAction = self.driver.find_element("xpath", "//button[text()='Nhấp để xem LIVE']")
+                            btnMoveLiveAction.click()
+                        except NoSuchElementException:
+                           pass
 
-                bodyElement = self.driver.find_element("tag name", "body")
+                        bodyElement = self.driver.find_element("tag name", "body")
 
-                wait(1, 2)
-                bodyElement.send_keys(Keys.ARROW_DOWN)
+                        wait(1, 2)
+                        bodyElement.send_keys(Keys.ARROW_DOWN)
 
-                wait(1, 2)
-                bodyElement.send_keys(Keys.ARROW_DOWN)
+                        wait(1, 2)
+                        bodyElement.send_keys(Keys.ARROW_DOWN)
 
-                wait(36, 40)
-                followBtn = self.driver.find_elements("xpath", "//span[text()='Follow']")
-                self.driver.execute_script("arguments[0].scrollIntoView();", followBtn[0])
-                # try:
-                followBtn[0].click()
-                # except ElementClickInterceptedException:
-                #     # handleRestartThread(self.num_threads, self.username, self.password)
-                #     return
-                
-                wait(4, 6)
-                try:
-                    self.driver.get(f"https://www.tiktok.com/@{self.username}")
-                except:
-                    self.driver.refresh()
-                    self.driver.refresh()
+                        wait(36, 40)
+                        followBtn = self.driver.find_elements("xpath", "//span[text()='Follow']")
+                        try:
+                            self.driver.execute_script("arguments[0].scrollIntoView();", followBtn[0])
+                            followBtn[0].click()
+                        except:
+                            pass
+                        
+                        wait(4, 6)
+                        try:
+                            self.driver.get(f"https://www.tiktok.com/@{self.userId}")
+                        except:
+                            self.driver.refresh()
 
-                wait(4, 6)
-                try:
-                    self.driver.get("https://www.tiktok.com/live")
-                except:
-                    self.driver.refresh()
-                    self.driver.refresh()
+                        wait(2, 3)
 
-                wait(4, 6)
-                bodyElement = self.driver.find_element("tag name", "body")
-                bodyElement.send_keys(Keys.ARROW_DOWN)
-
-                wait(36, 40)
-                followBtn = self.driver.find_elements("xpath", "//span[text()='Follow']")
-                self.driver.execute_script("arguments[0].scrollIntoView();", followBtn[0])
-                # try:
-                followBtn[0].click()
-                # except ElementClickInterceptedException:
-                #     # handleRestartThread(self.num_threads, self.username, self.password)
-                #     return
-
-                wait(4, 6)
-                try:
-                    self.driver.get(f"https://www.tiktok.com/@{self.username}")
-                except:
-                    self.driver.refresh()
-                    self.driver.refresh()
-
-                wait(4, 6)
-                countFollow = self.driver.find_element("xpath", "//*[@data-e2e='following-count']").text
-
-                if int(countFollow) >= 1:
-                    accountKicked = f"{self.username.strip()}|{self.password.strip()}|{self.cookies.strip()}"
-                    with open("data/account_kicked.txt", "a", encoding="utf-8") as f:
-                        f.write(accountKicked + "\n")
+                    cookies = f"{self.cookies}"
+                    with open("data/cookies.txt", "a", encoding="utf-8") as f:
+                        f.write(cookies + "\n")
                     
                     with open("data/accounts.txt", 'r') as file:
                         lines = file.readlines()
@@ -644,11 +711,48 @@ class AutomationThread(QThread):
                     with open("data/accounts.txt", 'w') as file:
                         file.writelines(new_lines)
 
-                    # gl.stop()
                     self.driver.quit()    
                     self.self_main.chrome_threads[self.num_threads].quit()
-                    self.self_main.chrome_threads[self.num_threads].wait()    
+                    self.self_main.chrome_threads[self.num_threads].wait()
+                    
                 else:
+                    wait(4, 6)
+                    try:
+                        self.driver.get("https://www.tiktok.com/live")
+                    except:
+                        self.driver.refresh()
+                        self.driver.refresh()
+                    
+                    wait(4, 6)
+                    try:
+                        btnMoveLiveAction = self.driver.find_element("xpath", "//button[text()='Nhấp để xem LIVE']")
+                        btnMoveLiveAction.click()
+                    except NoSuchElementException:
+                        pass
+
+                    bodyElement = self.driver.find_element("tag name", "body")
+
+                    wait(1, 2)
+                    bodyElement.send_keys(Keys.ARROW_DOWN)
+
+                    wait(1, 2)
+                    bodyElement.send_keys(Keys.ARROW_DOWN)
+
+                    wait(36, 40)
+                    followBtn = self.driver.find_elements("xpath", "//span[text()='Follow']")
+                    try:
+                        self.driver.execute_script("arguments[0].scrollIntoView();", followBtn[0])
+                        followBtn[0].click()
+                    except:
+                        pass
+                    
+                    wait(4, 6)
+                    try:
+                        self.driver.get(f"https://www.tiktok.com/@{self.username}")
+                    except:
+                        self.driver.refresh()
+                        self.driver.refresh()
+
                     wait(4, 6)
                     try:
                         self.driver.get("https://www.tiktok.com/live")
@@ -662,31 +766,26 @@ class AutomationThread(QThread):
 
                     wait(36, 40)
                     followBtn = self.driver.find_elements("xpath", "//span[text()='Follow']")
-                    self.driver.execute_script("arguments[0].scrollIntoView();", followBtn[0])
-                    # try:
-                    followBtn[0].click()
-                    # except ElementClickInterceptedException:
-                    #     # handleRestartThread(self.num_threads, self.username, self.password)
-                    #     return
-                    
+                    try:
+                        self.driver.execute_script("arguments[0].scrollIntoView();", followBtn[0])
+                        followBtn[0].click()
+                    except:
+                        pass
+
                     wait(4, 6)
                     try:
                         self.driver.get(f"https://www.tiktok.com/@{self.username}")
                     except:
                         self.driver.refresh()
+                        self.driver.refresh()
 
                     wait(4, 6)
-                    try:
-                        countFollow = self.driver.find_element("xpath", "//*[@data-e2e='following-count']").text
-                    except:
-                        # handleRestartThread(self.num_threads, self.username, self.password)
-                        return 
+                    countFollow = self.driver.find_element("xpath", "//*[@data-e2e='following-count']").text
 
                     if int(countFollow) >= 1:
                         accountKicked = f"{self.username.strip()}|{self.password.strip()}|{self.cookies.strip()}"
                         with open("data/account_kicked.txt", "a", encoding="utf-8") as f:
                             f.write(accountKicked + "\n")
-
                         
                         with open("data/accounts.txt", 'r') as file:
                             lines = file.readlines()
@@ -695,30 +794,77 @@ class AutomationThread(QThread):
 
                         with open("data/accounts.txt", 'w') as file:
                             file.writelines(new_lines)
-                        
-                        # gl.stop()
-                        self.driver.quit()
+
+                        self.driver.quit()    
                         self.self_main.chrome_threads[self.num_threads].quit()
                         self.self_main.chrome_threads[self.num_threads].wait()    
                     else:
-                        accountWaitKickAgain = f"{self.username}|{self.password}|{self.cookies}"
-                        with open("data/account_wait_kick_again.txt", "a", encoding="utf-8") as f:
-                            f.write(accountWaitKickAgain + "\n")
+                        wait(4, 6)
+                        try:
+                            self.driver.get("https://www.tiktok.com/live")
+                        except:
+                            self.driver.refresh()
+                            self.driver.refresh()
 
+                        wait(4, 6)
+                        bodyElement = self.driver.find_element("tag name", "body")
+                        bodyElement.send_keys(Keys.ARROW_DOWN)
+
+                        wait(36, 40)
+                        followBtn = self.driver.find_elements("xpath", "//span[text()='Follow']")
+                        try:
+                            self.driver.execute_script("arguments[0].scrollIntoView();", followBtn[0])
+                            followBtn[0].click()
+                        except:
+                            pass
                         
-                        with open("data/accounts.txt", 'r') as file:
-                            lines = file.readlines()
+                        wait(4, 6)
+                        try:
+                            self.driver.get(f"https://www.tiktok.com/@{self.username}")
+                        except:
+                            self.driver.refresh()
+
+                        wait(4, 6)
+                        try:
+                            countFollow = self.driver.find_element("xpath", "//*[@data-e2e='following-count']").text
+                        except:
+                            pass 
+
+                        if int(countFollow) >= 1:
+                            accountKicked = f"{self.username.strip()}|{self.password.strip()}|{self.cookies.strip()}"
+                            with open("data/account_kicked.txt", "a", encoding="utf-8") as f:
+                                f.write(accountKicked + "\n")
+
                             
-                        new_lines = [line for line in lines if not line.startswith(f"{self.username}")]
+                            with open("data/accounts.txt", 'r') as file:
+                                lines = file.readlines()
+                                
+                            new_lines = [line for line in lines if not line.startswith(f"{self.username}")]
 
-                        with open("data/accounts.txt", 'w') as file:
-                            file.writelines(new_lines)
+                            with open("data/accounts.txt", 'w') as file:
+                                file.writelines(new_lines)
+                            
+                            self.driver.quit()
+                            self.self_main.chrome_threads[self.num_threads].quit()
+                            self.self_main.chrome_threads[self.num_threads].wait()    
+                        else:
+                            accountWaitKickAgain = f"{self.username}|{self.password}|{self.cookies}"
+                            with open("data/account_wait_kick_again.txt", "a", encoding="utf-8") as f:
+                                f.write(accountWaitKickAgain + "\n")
 
-                        # gl.stop()
-                        self.driver.quit()
-                        self.self_main.chrome_threads[self.num_threads].quit()
-                        self.self_main.chrome_threads[self.num_threads].wait()
-            
+                            
+                            with open("data/accounts.txt", 'r') as file:
+                                lines = file.readlines()
+                                
+                            new_lines = [line for line in lines if not line.startswith(f"{self.username}")]
+
+                            with open("data/accounts.txt", 'w') as file:
+                                file.writelines(new_lines)
+
+                            self.driver.quit()
+                            self.self_main.chrome_threads[self.num_threads].quit()
+                            self.self_main.chrome_threads[self.num_threads].wait()
+                
             if is_run_tds:
                 self.tokenTds = "TDSQfiUjclZXZzJiOiIXZ2V2ciwiIxADMy8mcwtmeiojIyV2c1Jye"
                 wait(4, 6)
@@ -814,7 +960,6 @@ class AutomationThread(QThread):
                                     with open("data/accounts.txt", 'w', encoding="utf-8") as file:
                                         file.writelines(new_lines)
 
-                                    # gl.stop()
                                     self.driver.quit()
                                     self.self_main.chrome_threads[self.num_threads].quit()
                                     self.self_main.chrome_threads[self.num_threads].wait()
@@ -830,6 +975,23 @@ class AutomationThread(QThread):
                         self.current_row_count, 6, QTableWidgetItem(totalCoin)
                     )
                     QCoreApplication.processEvents()
+            
+            if not is_watch_live:
+                cookies = f"{self.cookies}"
+                with open("data/cookies.txt", "a", encoding="utf-8") as f:
+                    f.write(cookies + "\n")
+                
+                with open("data/accounts.txt", 'r') as file:
+                    lines = file.readlines()
+                    
+                new_lines = [line for line in lines if not line.startswith(f"{self.username}")]
+
+                with open("data/accounts.txt", 'w') as file:
+                    file.writelines(new_lines)
+
+                self.driver.quit()    
+                self.self_main.chrome_threads[self.num_threads].quit()
+                self.self_main.chrome_threads[self.num_threads].wait()   
 
             # try:
             #     self.driver.get("https://www.tiktok.com/signup/phone-or-email/email")
