@@ -5,6 +5,8 @@
     "proxys": [
         "24ee17d7093d0a09274cbafd98deb845",
         "24ee17d7093d0a09274cbafd98deb845",
+        "0fe7425f3d613466750a8c873ebaa282",
+        "0fe7425f3d613466750a8c873ebaa282",
         "24ee17d7093d0a09274cbafd98deb845",
         "24ee17d7093d0a09274cbafd98deb845",
         "24ee17d7093d0a09274cbafd98deb845",
@@ -19,7 +21,7 @@
         "b1122f61dc687558da95d24230e4f893",
         "b1122f61dc687558da95d24230e4f893"
     ],
-    "num_threads": 15,
+    "num_threads": 10,
     "password_account": "",
     "random_password_account": true,
     "url_mail_check": "C:/Users/ADMIN/OneDrive/Documents/MMO/ToolRegCloneTiktok-Javascript/src/data-tool/hotmail.txt",
@@ -30,7 +32,7 @@
     "url_mail": "C:/Users/ADMIN/OneDrive/Documents/MMO/ToolRegCloneTiktok-Python/data/accounts.txt",
     "typeExportAccount": 4,
     "is_change_username_check": true,
-    "is_upload_avatar": true,
+    "is_upload_avatar": false,
     "url_username": "C:/Users/ADMIN/OneDrive/Documents/MMO/ToolRegCloneTiktok-Python/data/usernames.txt",
     "proxy_type": 1,
     "is_proxy_ip_port": false,
@@ -58,5 +60,5 @@
     "is_watch_live": true,
     "is_run_tds": false,
     "is_chrome_count": 5,
-    "is_login_google": true
+    "is_login_google": false
 }
