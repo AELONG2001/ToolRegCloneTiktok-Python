@@ -85,9 +85,9 @@ def translateUi(self, ToolRegCloneTiktok):
    self.is_change_username.setText(
       _translate("ToolRegCloneTiktok", "Đổi tên khi reg")
    )
-   self.is_watch_live_label.setText(
-      _translate("ToolRegCloneTiktok", "Xem Live")
-   )
+   # self.is_watch_live_label.setText(
+   #    _translate("ToolRegCloneTiktok", "Xem Live")
+   # )
    self.is_upload_avatar_label.setText(
       _translate("ToolRegCloneTiktok", "Upload Avatar")
    )
@@ -175,13 +175,13 @@ def translateUi(self, ToolRegCloneTiktok):
    else:
       self.mail_value.setText("")
 
-   if "is_watch_live" in data:
-      if data["is_watch_live"]:
-         self.is_watch_live.setChecked(True)
-      else:
-         self.is_watch_live.setChecked(False)
-   else:
-      self.is_upload_avatar.setChecked(False)
+   # if "is_watch_live" in data:
+   #    if data["is_watch_live"]:
+   #       self.is_watch_live.setChecked(True)
+   #    else:
+   #       self.is_watch_live.setChecked(False)
+   # else:
+   #    self.is_upload_avatar.setChecked(False)
 
    if "is_upload_avatar" in data:
       if data["is_upload_avatar"]:

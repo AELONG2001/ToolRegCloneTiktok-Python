@@ -144,17 +144,17 @@ def uiMain(self, ToolRegCloneTiktok):
     self.table_account_info.setColumnWidth(4, 280)
     self.table_account_info.setColumnWidth(5, 280)
     self.table_account_info.setColumnWidth(6, 280)
-    self.is_watch_live_label = QLabel(parent=self.home)
-    self.is_watch_live_label.setGeometry(QRect(30, 48, 100, 20))
-    self.is_watch_live_label.setStyleSheet(
-        'font: 600 10pt "Segoe UI";'
-    )
-    self.is_watch_live_label.setObjectName("is_watch_live_label")
-    self.is_watch_live = QCheckBox(parent=self.home)
-    self.is_watch_live.setGeometry(QRect(10, 50, 72, 20))
-    self.is_watch_live.setStyleSheet("font: 600 10pt \"Segoe UI\";")
-    self.is_watch_live.setObjectName("is_watch_live")
-    self.is_watch_live.setChecked(True)
+    # self.is_watch_live_label = QLabel(parent=self.home)
+    # self.is_watch_live_label.setGeometry(QRect(30, 48, 100, 20))
+    # self.is_watch_live_label.setStyleSheet(
+    #     'font: 600 10pt "Segoe UI";'
+    # )
+    # self.is_watch_live_label.setObjectName("is_watch_live_label")
+    # self.is_watch_live = QCheckBox(parent=self.home)
+    # self.is_watch_live.setGeometry(QRect(10, 50, 72, 20))
+    # self.is_watch_live.setStyleSheet("font: 600 10pt \"Segoe UI\";")
+    # self.is_watch_live.setObjectName("is_watch_live")
+    # self.is_watch_live.setChecked(True)
     self.is_upload_avatar_label = QLabel(parent=self.home)
     self.is_upload_avatar_label.setGeometry(QRect(120, 48, 100, 20))
     self.is_upload_avatar_label.setStyleSheet(
@@ -603,7 +603,7 @@ def uiMain(self, ToolRegCloneTiktok):
     self.threads_value.valueChanged.connect(self.checkThreadsValue)
     self.list_avatar.clicked.connect(self.handleAvatarFolderSelection)
     self.list_video.clicked.connect(self.handleVideoFolderSelection)
-    self.is_watch_live.toggled.connect(self.checkWatchLive)
+    # self.is_watch_live.toggled.connect(self.checkWatchLive)
     self.is_upload_avatar.toggled.connect(self.checkUploadAvatar)
     self.is_upload_video.toggled.connect(self.checkUploadVideo)
     self.is_run_tds.toggled.connect(self.checkRunTDS)

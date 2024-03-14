@@ -14,7 +14,7 @@ def auto_buy_tiktok(username, password, user_id, amount):
         if response["status"] == "success":
             print(response)
             account = response["data"]["lists"][0]["account"]
-            with open(r"C:\Users\ADMIN\OneDrive\Documents\MMO\ToolRegCloneTiktok-Python\data\accounts.txt", "a", encoding="utf-8") as f:
+            with open(r"C:\Users\ADMIN\OneDrive\Documents\MMO\ToolRegCloneTiktok-Python\data\accounts2.txt", "a", encoding="utf-8") as f:
                 f.write(account.strip() + "\n")
         else:
             print(response)

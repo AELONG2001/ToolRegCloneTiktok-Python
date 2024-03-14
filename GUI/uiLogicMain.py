@@ -106,8 +106,8 @@ class utrclttlsfw(QObject):
     def inputMail(self):
         self.automation_controller.inputMail()
 
-    def checkWatchLive(self):
-        self.automation_controller.checkWatchLive()
+    # def checkWatchLive(self):
+    #     self.automation_controller.checkWatchLive()
 
     def checkUploadAvatar(self):
         self.automation_controller.checkUploadAvatar()
