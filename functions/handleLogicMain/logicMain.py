@@ -157,9 +157,9 @@ class AutomationController:
 
         handleSaveDataInputUser("url_mail", link_mail)
 
-    # def checkWatchLive(self):
-    #     is_watch_live = self.ui_instance.is_watch_live.isChecked()
-    #     handleSaveDataInputUser("is_watch_live", is_watch_live)
+    def checkWatchLive(self):
+        is_watch_live = self.ui_instance.is_watch_live.isChecked()
+        handleSaveDataInputUser("is_watch_live", is_watch_live)
 
     def checkUploadAvatar(self):
         is_upload_avatar = self.ui_instance.is_upload_avatar.isChecked()

@@ -54,7 +54,7 @@ def handleResolveCaptchaSliderObjectGuru(self):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
-        wait(8, 10)
+        wait(4, 6)
         captchaElements = self.driver.find_elements(
             "css selector", "#captcha-verify-image"
         )

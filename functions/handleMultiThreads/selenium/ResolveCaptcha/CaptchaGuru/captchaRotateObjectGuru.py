@@ -53,7 +53,7 @@ def handleResolveCaptchaRotateObjectGuru(self):
     isResolveCaptchaAgain = True
     isCheckResolveCaptchaAgain = False
     while isResolveCaptchaAgain:
-        wait(14, 16)
+        wait(8, 10)
         captchaElements = self.driver.find_elements(
             "css selector", ".captcha_verify_slide--button"
         )
