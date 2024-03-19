@@ -1,0 +1,6 @@
+Pyside6
+selenium
+gologin
+keyboard
+py-machineid
+webdriver_manager

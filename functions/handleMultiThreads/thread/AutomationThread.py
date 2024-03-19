@@ -305,7 +305,7 @@ class AutomationThread(QThread):
 
             num_chrome_a_row = int(self.chrome_count)
 
-            self.handleCheckProxy()
+            # self.handleCheckProxy()
 
             # self.profile_id = handleCreateProfile(self)
             # print(self.profile_id)
@@ -361,7 +361,7 @@ class AutomationThread(QThread):
             
 
             self.options.add_argument("--disable-blink-features=AutomationControlled")
-            self.options.add_argument(f"--proxy-server=http://{self.proxy}")
+            # self.options.add_argument(f"--proxy-server=http://{self.proxy}")
             
             # self.options.add_experimental_option("prefs", prefs)
             # if self.proxy_type == 4:
@@ -660,7 +660,7 @@ class AutomationThread(QThread):
             
             if is_watch_live:
                 if is_login_google:
-                    for _ in range(2):
+                    for _ in range(3):
                         wait(4, 6)
                         try:
                             self.driver.get("https://www.tiktok.com/live")
