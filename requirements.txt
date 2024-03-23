@@ -1,4 +1,4 @@
-Pyside6
+PySide6
 selenium
 gologin
 keyboard

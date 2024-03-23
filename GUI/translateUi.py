@@ -100,6 +100,9 @@ def translateUi(self, ToolRegCloneTiktok):
    self.is_login_google_label.setText(
       _translate("ToolRegCloneTiktok", "Login google")
    )
+   self.is_login_cookie_label.setText(
+      _translate("ToolRegCloneTiktok", "Login Cookie")
+   )
    self.change_theme.setText(
       _translate("ToolRegCloneTiktok", "DarkMode")
    )
@@ -214,6 +217,14 @@ def translateUi(self, ToolRegCloneTiktok):
          self.is_login_google.setChecked(False)
    else:
       self.is_login_google.setChecked(False)
+
+   if "is_login_cookie" in data:
+      if data["is_login_cookie"]:
+         self.is_login_cookie.setChecked(True)
+      else:
+         self.is_login_cookie.setChecked(False)
+   else:
+      self.is_login_cookie.setChecked(False)
 
    if "captcha_type" in data:
       self.captcha_type.setCurrentIndex(data["captcha_type"])

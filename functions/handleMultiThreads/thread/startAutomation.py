@@ -8,14 +8,7 @@ from queue import Queue
 
 def startAutomation(self):
     setDisableStartButton(self)
-    # removeMailUsed()
     
-    # if not self.startAutomation_called:
-        # # handleCheckInitialValues(self)
-        # if not self.is_start:
-        #     return
-
-        # self.startAutomation_called = True
     AutomationThread.num_quit = 0
     AutomationThread.drivers_list = []
 
@@ -40,14 +33,14 @@ def startAutomation(self):
     # with open(input_file_path, 'w') as file:
     #     file.write('\n'.join(non_empty_lines_input))
 
-    with open(input_file_path, 'r') as file:
-        accounts = file.readlines()
+    # with open(input_file_path, 'r') as file:
+    #     accounts = file.readlines()
 
-    self.data_queue = Queue()
-    for account in accounts:
-        username = account.strip().split('|')[0]
-        password = account.strip().split('|')[1]
-        self.data_queue.put((username, password))
+    # self.data_queue = Queue()
+    # for account in accounts:
+    #     username = account.strip().split('|')[0]
+    #     password = account.strip().split('|')[1]
+    #     self.data_queue.put((username, password))
 
     chrome_count = self.chrome_setting_line_value.value()
     captcha_type = self.captcha_type.currentIndex()
@@ -78,6 +71,7 @@ def startAutomation(self):
         )
         for thread in range(num_threads)
     ]
+
 
     secondTimer = self.chrome_delay_second_value.value()
     

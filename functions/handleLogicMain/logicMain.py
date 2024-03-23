@@ -177,6 +177,10 @@ class AutomationController:
         is_login_google = self.ui_instance.is_login_google.isChecked()
         handleSaveDataInputUser("is_login_google", is_login_google)
 
+    def checkLoginCookie(self):
+        is_login_cookie = self.ui_instance.is_login_cookie.isChecked()
+        handleSaveDataInputUser("is_login_cookie", is_login_cookie)
+
     def getCaptchaType(self):
         captcha_type = self.ui_instance.captcha_type.currentIndex()
         handleSaveDataInputUser("captcha_type", captcha_type)

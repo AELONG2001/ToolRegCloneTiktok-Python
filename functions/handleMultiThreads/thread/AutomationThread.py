@@ -148,26 +148,6 @@ class AutomationThread(QThread):
             "Vui lòng nhập thêm mail",
         )
 
-    def handleGetAccounts(self):
-        # hotmails = readMail()
-        # self.username_mail = hotmails[self.num_threads]["username"]
-        # self.password_mail = hotmails[self.num_threads]["password"]
-        with open("data/accounts.txt", "r") as f:
-            accounts = f.read()
-
-        # self.accounts = getMailContent(mail_content)
-        # # Lấy nội dung mail
-        # # self.username_mail, self.password_mail = self.data_queue.get()
-        # self.username_mail, self.password_mail = self.accounts[self.num_threads]
-
-        # # update lại file mail
-        # with open(self.input_file_path, 'r') as file:
-        #     lines = file.readlines()
-
-        # new_lines = [line for line in lines if not line.startswith(f"{self.username_mail}|{self.password_mail}")]
-
-        # with open(self.input_file_path, 'w') as file:
-        #     file.writelines(new_lines)
 
     def handleGetOldMailAndRestart(self):
         self.username_mail = self.username_restart
@@ -176,13 +156,8 @@ class AutomationThread(QThread):
     def handleAutoBuyMail(self):
         wait(1, 2)
         self.mail = handleAutoBuyHotmail(self)
-        print("Mail: ", self.mail)
         if self.mail:
             self.username_mail, self.password_mail =  self.mail.split("|")
-        # else:
-        #     self.stop_flag = True
-        #     QMessageBox.warning(None, "Warning", "Hệ thống Hotmailbase đang không đủ mail hãy đợi một lúc rồi chạy lại.")
-        #     return
         
     def handleCheckProxy(self):
         if self.proxy_type == 0:
@@ -386,9 +361,12 @@ class AutomationThread(QThread):
 
             with open(self.input_file_path, "r", encoding="utf-8") as f:
                 accounts = f.readlines()
-
+            
             self.username = accounts[self.num_threads].split('|')[0]
-            self.password = accounts[self.num_threads].split('|')[1]
+            try:
+                self.password = accounts[self.num_threads].split('|')[1]
+            except IndexError:
+                pass
             
             # if self.username_restart and self.password_restart:
             #     self.username = self.username_restart
@@ -422,6 +400,7 @@ class AutomationThread(QThread):
             is_upload_video = self.self_main.is_upload_video.isChecked()
             is_run_tds = self.self_main.is_run_tds.isChecked()
             is_login_google = self.self_main.is_login_google.isChecked()
+            is_login_cookie = self.self_main.is_login_cookie.isChecked()
             
             main_window_handle = self.driver.current_window_handle
             if is_login_google:
@@ -468,9 +447,20 @@ class AutomationThread(QThread):
 
                     self.driver.quit()    
                     self.self_main.chrome_threads[self.num_threads].quit()
-                    self.self_main.chrome_threads[self.num_threads].wait()
-                    
-                
+                    self.self_main.chrome_threads[self.num_threads].wait()   
+            elif is_login_cookie:
+                self.driver.get("https://www.tiktok.com")
+                cookies_list = [cookie.split("=") for cookie in self.username.split(";")]
+                cookies = [{'name': pair[0].strip(), 'value': pair[1].strip()} for pair in cookies_list]
+
+                for cookie in cookies:
+                    try:
+                        self.driver.add_cookie(cookie)
+                    except:
+                        self.driver.refresh()
+
+                wait(2, 4)
+                self.driver.refresh()
             else:
                 try:
                     self.driver.get("https://www.tiktok.com/login/phone-or-email/email")
@@ -505,31 +495,33 @@ class AutomationThread(QThread):
             
             self.driver.switch_to.window(main_window_handle)
             
-            is_login_again = True
-            while is_login_again:
-                wait(8, 10)
-                self.driver.switch_to.window(main_window_handle)
-                self.driver.refresh()
-                wait(6, 8)
-                if self.driver.current_url == "https://www.tiktok.com/signup":
-                    is_login_again = True
-                    wait(4, 6)
-                    btn_google_login = self.driver.find_element("xpath", "//div[text()='Tiếp tục với Google']")
-                    btn_google_login.click()
-
-                    handleResolveCaptchaChooseTwoObjectsGuru(self)
-                    handleResolveCaptchaSliderObjectGuru(self)
-                    window_handles = self.driver.window_handles
-                    self.driver.switch_to.window(window_handles[-1])
-                    user_google = self.driver.find_element("xpath", "//div[@data-authuser='0']")
-                    user_google.click()
-
+            if is_login_google:
+                is_login_again = True
+                while is_login_again:
                     wait(8, 10)
-                    continueElement = self.driver.find_elements("css selector", "button[type='button']")
-                    continueElement[2].click()
-                else:
-                    is_login_again = False
+                    self.driver.switch_to.window(main_window_handle)
+                    self.driver.refresh()
+                    wait(6, 8)
+                    if self.driver.current_url == "https://www.tiktok.com/signup":
+                        is_login_again = True
+                        wait(4, 6)
+                        btn_google_login = self.driver.find_element("xpath", "//div[text()='Tiếp tục với Google']")
+                        btn_google_login.click()
 
+                        handleResolveCaptchaChooseTwoObjectsGuru(self)
+                        handleResolveCaptchaSliderObjectGuru(self)
+                        window_handles = self.driver.window_handles
+                        self.driver.switch_to.window(window_handles[-1])
+                        user_google = self.driver.find_element("xpath", "//div[@data-authuser='0']")
+                        user_google.click()
+
+                        wait(8, 10)
+                        continueElement = self.driver.find_elements("css selector", "button[type='button']")
+                        continueElement[2].click()
+                    else:
+                        is_login_again = False
+
+            
             cookies = self.driver.get_cookies()
             self.cookies = ";".join(
                 [f"{cookie['name']}={cookie['value']}" for cookie in cookies]
@@ -542,7 +534,7 @@ class AutomationThread(QThread):
             if is_upload_avatar:
                 list_avatar_folder = data["url_avatar"]
                 list_avatar = os.listdir(list_avatar_folder)
-                if is_login_google:
+                if is_login_google or is_login_cookie:
                     pageContent = self.driver.page_source
                     try:
                         self.userId = pageContent.split('"uniqueId":"')[1].split('"')[0]
@@ -660,7 +652,7 @@ class AutomationThread(QThread):
             
             if is_watch_live:
                 if is_login_google:
-                    for _ in range(3):
+                    for _ in range(2):
                         wait(4, 6)
                         try:
                             self.driver.get("https://www.tiktok.com/live")

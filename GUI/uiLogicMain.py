@@ -121,6 +121,9 @@ class utrclttlsfw(QObject):
     def checkLoginGoogle(self):
         self.automation_controller.checkLoginGoogle()
 
+    def checkLoginCookie(self):
+        self.automation_controller.checkLoginCookie()
+
     def getCaptchaType(self):
         self.automation_controller.getCaptchaType()
 
